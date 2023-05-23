@@ -1,0 +1,72 @@
+0.0.6
+CameraWork 추가
+	- 터치로 화면 이동
+	- 줌인, 줌아웃
+
+0.0.7
+City 모델링
+	- GPS 이동 거리와 비율을 맞추기 위해 스케일을 0.265로 조정
+
+GPSEncoder
+	- 원점을 천안역 앞으로 설정
+
+CameraWork
+	- 아이레벨 회전 기능
+	- 조작상태에 따라 조작 방식 달라지도록 적용
+
+JoyStickMove
+	- UIVirtual 조이스틱의 값을 받아서 움직이는 스크립트
+
+MainCanvas
+	- SideSearch 추가
+
+SafeArea
+	- 노치 대응 위한 SafeArea 적용
+
+CurrentControl
+	- 현재 조작 상태를 저장
+	- 조작상태 변경 시 호출 될 EventHandler
+
+무료 에셋인 cell shader 적용
+
+0.0.10
+CameraWork
+	- 조이스틱과 화면 회전 버그 수정
+	- 줌인/아웃 방식을 카메라의 position을 변경하는 것에서 field of view를 변경하는 방식으로 변경
+	- ResetPosToPlayer 추가
+	- GetEncounter Raycast로 오브젝트 감지
+SearchResult
+	- 검색 결과를 보여줄 클래스
+
+0.1.2
+appSetting에 baseURL 설정
+SearchResult -> SearchManager로 바꿈
+	- http 통신을 통해서 백엔드에서 검색 결과 가져옴
+WeatherManger
+	- http 통신을 통해서 벡엔드에서 날씨 결과 가져옴
+Scripts/StructuralClasses
+	- User 클래스 추가
+	- Weather 클래스 추가
+	- SearchedStore 클래스 추가
+Scripts/StructuralClasses/Util
+	- PlayerDataSaver 추가
+		- 사용자 정보, 토큰 저장
+		- 토큰 암호화
+Scripts/Login
+	- DeepLinkManager
+		- 딥링크 활성화 및 딥링크 메시지 처리
+	- LoginManger
+		- 카카오 로그인 링크 열어줌
+안드로이드/iOS 딥링크 설정함 appdev://
+
+0.1.6
+텍스쳐 오류 해결
+흥룡, 칠성구 추가
+shootball 추가
+cinemachine 추가
+
+0.2.0
+URP로 변경
+Lens Flare 변경
+Global Volume 생성 및 포스트 프로세싱 설정
+건물들 셰이더 URP/Lit으로 변경
