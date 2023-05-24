@@ -25,6 +25,8 @@ namespace ToonJido.UI
         [SerializeField] private GameObject noResultText;
         [SerializeField] private Button backButton;
 
+        private HttpClient client = HttpClientProvider.GetHttpClient();
+
         private List<GameObject> resultPrefs = new List<GameObject>();
         public static SearchManager instance;
 
@@ -73,15 +75,12 @@ namespace ToonJido.UI
 
         private async Task<string> SearchStore(string keyword)
         {
-            using (HttpClient client = new())
-            {
-                var searchURL = baseURL + "search/?query=" + keyword;
-                var response = await client.GetAsync(searchURL);
-                response.EnsureSuccessStatusCode();
+            var searchURL = baseURL + "search/?query=" + keyword;
+            var response = await client.GetAsync(searchURL);
+            response.EnsureSuccessStatusCode();
 
-                var result = await response.Content.ReadAsStringAsync();
-                return result;
-            }
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
         }
 
         private void DisplayResult(SearchedStore input)

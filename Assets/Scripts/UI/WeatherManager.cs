@@ -12,8 +12,9 @@ namespace ToonJido.UI
     public class WeatherManager : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI weatherText;
+        private HttpClient client = HttpClientProvider.GetHttpClient();
         string wstring;
-        WeatherInfo weather1 = new();
+        WeatherInfo weather = new();
 
 
         // Start is called before the first frame update
@@ -25,21 +26,19 @@ namespace ToonJido.UI
         public async void DisplayWeather()
         {
             wstring = await GetWeatherData();
+            wstring = wstring.Substring(2, wstring.Length - 4);
             // 현재 서버측에서 보내는 json이 잘못된 파일임
-            // weather1 = JsonConvert.DeserializeObject<WeatherInfo>(wstring);
-            weatherText.text = wstring;
+            weather = JsonConvert.DeserializeObject<WeatherInfo>(wstring);
+            weatherText.text = ($"기온: {weather.temp}, 강수량: {weather.rainfall}, 습도: {weather.humidity}");
         }
 
         private async Task<string> GetWeatherData()
         {
-            using (HttpClient client = new())
-            {
-                var response = await client.GetAsync(appSetting.baseURL + "get_weather_api");
-                response.EnsureSuccessStatusCode();
-                string result = await response.Content.ReadAsStringAsync();
-                result = Regex.Unescape($@"{result}");
-                return result;
-            }
+            var response = await client.GetAsync(appSetting.baseURL + "get_weather_api");
+            response.EnsureSuccessStatusCode();
+            string result = await response.Content.ReadAsStringAsync();
+            result = Regex.Unescape($@"{result}");
+            return result;
         }
     }
 }

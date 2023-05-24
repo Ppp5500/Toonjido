@@ -48,10 +48,11 @@ public class DirtyLensFlare : MonoBehaviour {
 		CheckResources();
 		
 		// Disable if we don't support image effects
-		if (!SystemInfo.supportsImageEffects) {
-			enabled = false;
-			return;
-		}
+		// 더 이상 쓰지 않는 메소드
+		// if (!SystemInfo.supportsImageEffects) {
+		// 	enabled = false;
+		// 	return;
+		// }
 		
 		// Disable the image effect if the shader can't
 		// run on the users graphics card

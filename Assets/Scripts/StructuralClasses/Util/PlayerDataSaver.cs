@@ -10,9 +10,10 @@ namespace ToonJido.Data.Saver
 {
     public class PlayerDataSaver : IDisposable
     {
-        private readonly string infoFileName = "player_info.json";
-        private readonly string tokenPW = "rmdwjd17!!";
-        string dataPath = Path.Combine(Application.persistentDataPath, "token.txt");
+        private const string tokenPW = "rmdwjd17!!";
+        private readonly string dataPath = Path.Combine(Application.persistentDataPath, "token.txt");
+        private readonly string userInfoPath = Path.Combine(Application.persistentDataPath, "playerInfo.json");
+
 
         private bool disposedValue;
 
@@ -20,11 +21,8 @@ namespace ToonJido.Data.Saver
 
         public void SavePlayerInfo(User user)
         {
-            string path = Path.Combine(Application.persistentDataPath, "playerInfo.json");
-
             string saveData = JsonConvert.SerializeObject(user);
-
-            File.WriteAllTextAsync(path, saveData);
+            File.WriteAllTextAsync(userInfoPath, saveData);
         }
 
 

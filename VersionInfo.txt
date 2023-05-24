@@ -70,3 +70,11 @@ URP로 변경
 Lens Flare 변경
 Global Volume 생성 및 포스트 프로세싱 설정
 건물들 셰이더 URP/Lit으로 변경
+
+0.2.1
+텍스쳐 오류 진짜 해결
+Script/MoveSet/CameraControl
+	- 아이레벨에서 두 손가락 터치 시 화면이 의도하지 않은 곳으로 돌아가는 현상 수정
+	- 아이레벨에서 건물 터치 시, 터치 한 곳으로 오브젝트를 이동시기는 기능 추가
+
+DepthFilter 추가(못 생겨서 쓰진 못 할듯)

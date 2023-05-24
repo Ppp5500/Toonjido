@@ -1,5 +1,4 @@
 using Cinemachine;
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static System.Math;
+
 #if UNITY_EDITOR
 
 #elif UNITY_ANDROID
@@ -30,11 +30,11 @@ namespace ToonJido.Control
         [Tooltip("Current use camera")]
         public CinemachineVirtualCamera ActiveCamera = null;
 
-        // ºÎ°¨ Ä«¸Ş¶ó ÀÌµ¿°ü·Ã º¯¼ö
+        // ë¶€ê° ì¹´ë©”ë¼ ì´ë™ê´€ë ¨ ë³€ìˆ˜
         private float spanSpeed = 2f;
-        private float zoomSpeed = 10f;
-        private float twoFingerZoomPower = 3f;
-        private float minFOV = 20, maxFOV = 70, defaultFOV = 50;
+        private const float zoomSpeed = 10f;
+        private const float twoFingerZoomPower = 3f;
+        private const float minFOV = 20, maxFOV = 70, defaultFOV = 50;
         private Vector2 nowPos, prePos;
         private Vector3 movePos;
         private Vector2 nowPos02, prePos02;
@@ -45,26 +45,27 @@ namespace ToonJido.Control
         private bool startOnUI02 = true;
 
 
-        // ¾ÆÀÌ·¹º§ Ä«¸Ş¶ó ÀÌµ¿°ü·Ã º¯¼ö
+        // ì•„ì´ë ˆë²¨ ì¹´ë©”ë¼ ì´ë™ê´€ë ¨ ë³€ìˆ˜
         private float rotateSpeed = 2f;
         private float moveSpeed = 30f;
         private GameObject player;
         private Transform eyeLevelTransform;
         private Vector3 moveInput;
 
-        // ·¹ÀÌ
+        // ë ˆì´
         private RaycastHit hit;
         private int layerMask;
         private float maxRayDis = 50f;
         private GameObject firstEncounter;
         private GameObject lastEncounter;
+        public GameObject HitPos;
 
-        // Å×½ºÆ®¿ë º¯¼öµé
-        private string rayObj;
+#if DEVELOPMENT
+        // í…ŒìŠ¤íŠ¸ìš© ë³€ìˆ˜ë“¤
         private string debugText;
+#endif
 
-
-        // UIµé
+        // UIë“¤
         [Header("UI Objects")]
         [SerializeField] private GameObject joyStick;
         [SerializeField] private GameObject sideButton;
@@ -79,7 +80,7 @@ namespace ToonJido.Control
         [SerializeField] private Button weatherBackButton;
         [SerializeField] private GameObject weatherCanvas;
 
-        [Tooltip("ºÎ°¨¿¡¼­ »öÀÌ º¯ÇÒ ¸ÓÅ×¸®¾óµé")]
+        [Tooltip("ë¶€ê°ì—ì„œ ìƒ‰ì´ ë³€í•  ë¨¸í…Œë¦¬ì–¼ë“¤")]
         [SerializeField] private List<Material> materials;
         [Range(0.0f, 0.5f)]
         public float filterStrenth;
@@ -115,13 +116,14 @@ namespace ToonJido.Control
         private void OnGUI()
         {
             GUI.Label(new Rect(20, 500, 700, 300), $"{debugText}");
-            GUI.Label(new Rect(20, 850, 700, 200), $"ray obj: {rayObj}");
         }
 #endif
-
         void Update()
         {
-            // ÇöÀç Á¶ÀÛ ¸ğµå°¡ ºÎ°¨ÀÏ ¶§
+            // í”Œë ˆì´ì–´ ì´ë™ ì½”ë“œë‘ ê±´ë¬¼ í„°ì¹˜ ì½”ë“œê°€ ì„ì—¬ìˆìŒ....
+            // ë‚œì¤‘ì— ë¶„ë¦¬í•´ì•¼ ë¨
+
+            // í˜„ì¬ ì¡°ì‘ ëª¨ë“œê°€ ë¶€ê°ì¼ ë•Œ
             if (CurrentControl.state == CurrentControl.State.Overlook)
             {
                 if (Input.touchCount > 0)
@@ -132,7 +134,7 @@ namespace ToonJido.Control
                     {
                         movePos = Vector3.zero;
 
-                        // ÅÍÄ¡°¡ UIÀ§¿¡¼­ ½ÃÀÛµÈ °æ¿ì Ä«¸Ş¶ó ÀÌµ¿ false
+                        // í„°ì¹˜ê°€ UIìœ„ì—ì„œ ì‹œì‘ëœ ê²½ìš° ì¹´ë©”ë¼ ì´ë™ false
                         if (IsPointerOverUI(touch.fingerId))
                             startOnUI01 = false;
                         else
@@ -143,12 +145,12 @@ namespace ToonJido.Control
                     }
                     else if (touch.phase == TouchPhase.Moved)
                     {
-                        // È­¸é ÀÌµ¿ ¼Óµµ ¾÷µ¥ÀÌÆ®
+                        // í™”ë©´ ì´ë™ ì†ë„ ì—…ë°ì´íŠ¸
                         spanSpeed = CalSpanSpeed(mainCamera.fieldOfView);
 
                         if (startOnUI01)
                         {
-                            // ½ÇÁ¦ Ä«¸Ş¶ó ÀÌµ¿ ·ÎÁ÷
+                            // ì‹¤ì œ ì¹´ë©”ë¼ ì´ë™ ë¡œì§
                             nowPos = touch.position - touch.deltaPosition;
                             movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
                             camTarget.transform.Translate(movePos);
@@ -157,7 +159,7 @@ namespace ToonJido.Control
                         }
                     }
 
-                    // µÎ ¼Õ°¡¶ô ÄÁÆ®·Ñ ·ÎÁ÷
+                    // ë‘ ì†ê°€ë½ ì»¨íŠ¸ë¡¤ ë¡œì§
                     if (Input.touchCount == 2)
                     {
                         Touch touch02 = Input.GetTouch(1);
@@ -174,18 +176,18 @@ namespace ToonJido.Control
                             var newFOV = cameras[0].m_Lens.FieldOfView += twoFingerZoomPower * deltaDiff * Time.deltaTime;
                             cameras[0].m_Lens.FieldOfView = Clamp(newFOV, minFOV, maxFOV);
 
-                            filterStrenth = (newFOV - 50) / 70;
-                            filterStrenth = Clamp(filterStrenth, 0.0f, 0.5f);
-                            debugText = filterStrenth.ToString();
-                            foreach (var item in materials)
-                            {
-                                item.SetFloat("_FilterStrenth", filterStrenth);
-                            }
+                            // filterStrenth = (newFOV - 50) / 70;
+                            // filterStrenth = Clamp(filterStrenth, 0.0f, 0.5f);
+                            // debugText = filterStrenth.ToString();
+                            // foreach (var item in materials)
+                            // {
+                            //     item.SetFloat("_FilterStrenth", filterStrenth);
+                            // }
                         }
                     }
                 }
             }
-            // ÇöÀç Á¶ÀÛ ¸ğµå°¡ ¾ÆÀÌ·¹º§ÀÏ ¶§
+            // í˜„ì¬ ì¡°ì‘ ëª¨ë“œê°€ ì•„ì´ë ˆë²¨ì¼ ë•Œ
             else if (CurrentControl.state == CurrentControl.State.Eyelevel)
             {
                 if (Input.touchCount > 0)
@@ -194,7 +196,7 @@ namespace ToonJido.Control
 
                     if (touch.phase == TouchPhase.Began)
                     {
-                        // ÅÍÄ¡°¡ UIÀ§¿¡¼­ ½ÃÀÛµÈ °æ¿ì Ä«¸Ş¶ó ÀÌµ¿ false
+                        // í„°ì¹˜ê°€ UIìœ„ì—ì„œ ì‹œì‘ëœ ê²½ìš° ì¹´ë©”ë¼ ì´ë™ false
                         if (IsPointerOverUI(touch.fingerId))
                             startOnUI01 = true;
                         else
@@ -202,16 +204,20 @@ namespace ToonJido.Control
                             startOnUI01 = false;
                             player.transform.Translate(moveInput * moveSpeed * Time.deltaTime, Space.Self);
                             prePos = touch.position - touch.deltaPosition;
-
-                            // Ã¹ ÅÍÄ¡ ¶§ ·¹ÀÌ¿¡ ¸ÂÀº ¿ÀºêÁ§Æ® °¨Áö
-                            GetEncounter(ref firstEncounter);
+                            
+                            // ì²« í„°ì¹˜ ë•Œ ë ˆì´ì— ë§ì€ ì˜¤ë¸Œì íŠ¸ ê°ì§€
+                            if(GetEncounter(ref firstEncounter, out var position, out var norVec)){
+                                HitPos.transform.position = position;
+                                HitPos.transform.up = norVec;
+                                startOnUI01 = true;
+                            }
                         }
                     }
                     else if (touch.phase == TouchPhase.Moved)
                     {
                         if (!startOnUI01)
                         {
-                            // ½ÇÁ¦ Ä«¸Ş¶ó È¸Àü ·ÎÁ÷
+                            // ì¹´ë©”ë¼ íšŒì „ ë¡œì§
                             nowPos = touch.position - touch.deltaPosition;
                             movePos = (Vector3)(prePos - nowPos) * rotateSpeed * Time.deltaTime;
 
@@ -227,9 +233,12 @@ namespace ToonJido.Control
 
                             player.transform.Rotate(new Vector3(0, movePos.x, 0), Space.Self);
                             prePos = touch.position - touch.deltaPosition;
+                        }
 
-                            // ÅÍÄ¡ ÀÌµ¿ ½Ã ·¹ÀÌ¿¡ ¸ÂÀº ¿ÀºêÁ§Æ® °¨Áö
-                            GetEncounter(ref lastEncounter);
+                        // í„°ì¹˜ ì´ë™ ì‹œ ë ˆì´ì— ë§ì€ ì˜¤ë¸Œì íŠ¸ ê°ì§€
+                        if(GetEncounter(ref lastEncounter, out var position, out var norVec)){
+                            HitPos.transform.position = position;
+                            HitPos.transform.up = norVec;
                         }
                     }
                     else if (touch.phase == TouchPhase.Stationary)
@@ -238,24 +247,24 @@ namespace ToonJido.Control
                     }
                     else if (touch.phase == TouchPhase.Ended)
                     {
-                        // ÅÍÄ¡¸¦ ³¡³¾ ¶§ÀÇ ¿ÀºêÁ§Æ®¿Í ÅÍÄ¡¸¦ ½ÃÀÛÇÒ ¶§ÀÇ ¿ÀºêÁ§Æ®°¡ °°ÀºÁö °Ë»ç
+                        // í„°ì¹˜ë¥¼ ëë‚¼ ë•Œì˜ ì˜¤ë¸Œì íŠ¸ì™€ í„°ì¹˜ë¥¼ ì‹œì‘í•  ë•Œì˜ ì˜¤ë¸Œì íŠ¸ê°€ ê°™ì€ì§€ ê²€ì‚¬
                         if (CheckSameObject(firstEncounter, lastEncounter))
                         {
-
+                            // ê°™ì€ë©´ ê·¸ ê±´ë¬¼ì„ ê²€ìƒ‰ ë•Œë¦¬ë©´ ë¨
                         }
-
+                        HitPos.transform.position = new(0,-1,0);
                         firstEncounter = null;
                         lastEncounter = null;
                     }
 
-                    // µÎ ¹øÂ° ¼Õ°¡¶ô ÄÁÆ®·Ñ ·ÎÁ÷
+                    // ë‘ ì†ê°€ë½ ì»¨íŠ¸ë¡¤ ë¡œì§
                     if (Input.touchCount == 2)
                     {
                         Touch touch02 = Input.GetTouch(1);
 
                         if (touch02.phase == TouchPhase.Began)
                         {
-                            // ÅÍÄ¡°¡ UIÀ§¿¡¼­ ½ÃÀÛµÈ °æ¿ì Ä«¸Ş¶ó ÀÌµ¿ false
+                            // í„°ì¹˜ê°€ UIìœ„ì—ì„œ ì‹œì‘ëœ ê²½ìš° ì¹´ë©”ë¼ ì´ë™ false
                             if (IsPointerOverUI(touch02.fingerId))
                                 startOnUI02 = true;
                             else
@@ -263,14 +272,21 @@ namespace ToonJido.Control
                                 startOnUI02 = false;
                                 player.transform.Translate(moveInput * moveSpeed * Time.deltaTime, Space.Self);
                                 prePos02 = touch02.position - touch02.deltaPosition;
+
+                                // ì²« í„°ì¹˜ ë•Œ ë ˆì´ì— ë§ì€ ì˜¤ë¸Œì íŠ¸ ê°ì§€
+                                if(GetEncounter(ref firstEncounter, out var position, out var norVec)){
+                                    HitPos.transform.position = position;
+                                    HitPos.transform.up = norVec;
+                                    startOnUI02 = true;
+                                }
                             }
                         }
                         else if (touch02.phase == TouchPhase.Moved)
                         {
                             if (!startOnUI02)
                             {
-                                // ½ÇÁ¦ Ä«¸Ş¶ó È¸Àü ·ÎÁ÷
-                                nowPos02 = touch.position - touch.deltaPosition;
+                                // ì‹¤ì œ ì¹´ë©”ë¼ íšŒì „ ë¡œì§
+                                nowPos02 = touch02.position - touch02.deltaPosition;
                                 movePos02 = (Vector3)(prePos02 - nowPos02) * rotateSpeed * Time.deltaTime;
 
                                 var verAnglePow = movePos02.y * -1;
@@ -284,19 +300,36 @@ namespace ToonJido.Control
                                 }
 
                                 player.transform.Rotate(new Vector3(0, movePos02.x, 0), Space.Self);
-                                prePos02 = touch.position - touch.deltaPosition;
-
-                                // ÅÍÄ¡ ÀÌµ¿ ½Ã ·¹ÀÌ¿¡ ¸ÂÀº ¿ÀºêÁ§Æ® °¨Áö
-                                GetEncounter(ref lastEncounter);
+                                prePos02 = touch02.position - touch02.deltaPosition;
                             }
-                            debugText = $"nowpos2:{nowPos02}";
+
+                            // í„°ì¹˜ ì´ë™ ì‹œ ë ˆì´ì— ë§ì€ ì˜¤ë¸Œì íŠ¸ ê°ì§€
+                            if(GetEncounter(ref lastEncounter, out var position, out var norVec)){
+                                HitPos.transform.position = position;
+                                HitPos.transform.up = norVec;
+                            }
+                        }
+                        else if (touch.phase == TouchPhase.Stationary)
+                        {
+                            GetEncounter(ref lastEncounter);
+                        }
+                        else if (touch.phase == TouchPhase.Ended)
+                        {
+                            // í„°ì¹˜ë¥¼ ëë‚¼ ë•Œì˜ ì˜¤ë¸Œì íŠ¸ì™€ í„°ì¹˜ë¥¼ ì‹œì‘í•  ë•Œì˜ ì˜¤ë¸Œì íŠ¸ê°€ ê°™ì€ì§€ ê²€ì‚¬
+                            if (CheckSameObject(firstEncounter, lastEncounter))
+                            {
+                                // ê°™ì€ë©´ ê·¸ ê±´ë¬¼ì„ ê²€ìƒ‰ ë•Œë¦¬ë©´ ë¨
+                            }
+                            HitPos.transform.position = new(0,-5,0);
+                            firstEncounter = null;
+                            lastEncounter = null;
                         }
                     }
                 }
             }
         }
 
-        // Ä«¸Ş¶ó ÁÜÀÎ
+        // ì¹´ë©”ë¼ ì¤Œì¸
         public void CamZoomIn()
         {
             var tempFOV = Clamp(cameras[0].m_Lens.FieldOfView - 10, minFOV, maxFOV);
@@ -304,7 +337,7 @@ namespace ToonJido.Control
             StartCoroutine(CamMove((int)moveFOV));
         }
 
-        // Ä«¸Ş¶ó ÁÜ¾Æ¿ô
+        // ì¹´ë©”ë¼ ì¤Œì•„ì›ƒ
         public void CamZoomOut()
         {
             var tempFOV = Clamp(cameras[0].m_Lens.FieldOfView + 10, minFOV, maxFOV);
@@ -312,7 +345,7 @@ namespace ToonJido.Control
             StartCoroutine(CamMove((int)moveFOV));
         }
 
-        // Ä«¸Ş¶ó ÁÜ ÄÚ·çÆ¾
+        // ì¹´ë©”ë¼ ì¤Œ ì½”ë£¨í‹´
         public IEnumerator CamMove(int input)
         {
             if (input < 0)
@@ -341,7 +374,7 @@ namespace ToonJido.Control
         }
 
         /// <summary>
-        /// ÄÁÆ®·Ñ »óÅÂ º¯È­ ½Ã¿¡ È£ÃâµÉ ¸Ş¼Òµå
+        /// ì»¨íŠ¸ë¡¤ ìƒíƒœ ë³€í™” ì‹œì— í˜¸ì¶œë  ë©”ì†Œë“œ
         /// </summary>
         public void SwitchCont()
         {
@@ -427,6 +460,110 @@ namespace ToonJido.Control
             callback();
         }
 
+        /// <summary>
+        /// ë ˆì´ì— ë§ì€ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°˜í™˜, ìµœëŒ€ ê±°ë¦¬ì™€ ë ˆì´ì–´ë§ˆìŠ¤í¬ëŠ” ì´ë¯¸ ì‘ì„±ë˜ì–´ ìˆìŒ
+        /// </summary>
+        /// <param name="output"></param>
+        private bool GetEncounter(ref GameObject output)
+        {
+#if UNITY_EDITOR
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            {
+                output = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+#elif UNITY_ANDROID
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if(Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            { 
+                output = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+#elif UNITY_IOS
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if(Physics.Raycast(ray, out hit, maxRayDis, layerMask)) 
+            { 
+                output = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+#endif
+        }
+
+        private bool GetEncounter(ref GameObject output, out Vector3 point, out Vector3 norVector)
+        {
+#if UNITY_EDITOR
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            {
+                output = hit.collider.gameObject;
+                point = hit.point;
+                norVector = hit.normal;
+                return true;
+            }
+            else
+            {
+                output = null;
+                point = Vector3.one;
+                norVector = hit.normal;
+                return false;
+            }
+#elif UNITY_ANDROID
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if(Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            { 
+                output = hit.collider.gameObject;
+                point = hit.point;
+                norVector = hit.normal;
+                return true;
+            }
+            else
+            {
+                output = null;
+                point = Vector3.one;
+                norVector = hit.normal;
+                return false;
+            }
+#elif UNITY_IOS
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if(Physics.Raycast(ray, out hit, maxRayDis, layerMask)) 
+            { 
+                output = hit.collider.gameObject;
+                point = hit.point;
+                norVector = hit.normal;
+                return true;
+            }
+            else
+            {
+                output = null;
+                point = Vector3.one;
+                norVector = hit.normal;
+                return false;
+            }
+#endif
+        }
+
         public void SwitchCamera(CinemachineVirtualCamera cam)
         {
             cam.Priority = 1;
@@ -439,14 +576,12 @@ namespace ToonJido.Control
             }
         }
 
-        // ÇöÀç »ç¿ëÀÚ À§Ä¡·Î Ä«¸Ş¶ó ÀÌµ¿
+        // í˜„ì¬ ì‚¬ìš©ì ìœ„ì¹˜ë¡œ ì¹´ë©”ë¼ ì´ë™
         public void ResetPosToPlayer()
         {
             if (CurrentControl.state == CurrentControl.State.Overlook)
             {
-                // mainCamera.transform.parent = null;
                 camTarget.transform.position = PlayerGPSLocation.transform.position;
-                //mainCamera.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
             }
             else if (CurrentControl.state == CurrentControl.State.Eyelevel)
             {
@@ -454,51 +589,7 @@ namespace ToonJido.Control
             }
         }
 
-        /// <summary>
-        /// ·¹ÀÌ¿¡ ¸ÂÀº ¿ÀºêÁ§Æ®¸¦ ¹İÈ¯, ÃÖ´ë °Å¸®¿Í ·¹ÀÌ¾î¸¶½ºÅ©´Â ÀÌ¹Ì ÀÛ¼ºµÇ¾î ÀÖÀ½
-        /// </summary>
-        /// <param name="output"></param>
-        private void GetEncounter(ref GameObject output)
-        {
-#if UNITY_EDITOR
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                rayObj = hit.collider.gameObject.name;
-                output = hit.collider.gameObject;
-            }
-            else
-            {
-                output = null;
-            }
-#elif UNITY_ANDROID
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-
-        if(Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-        { 
-            rayObj = hit.collider.gameObject.name;
-            output = hit.collider.gameObject;
-        }
-        else
-        {
-            output = null;
-        }
-#elif UNITY_IOS
-        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-
-        if(Physics.Raycast(ray, out hit, maxRayDis, layerMask)) 
-        { 
-            rayObj = hit.collider.gameObject.name;
-            output = hit.collider.gameObject;
-        }
-        else
-        {
-            output = null;
-        }
-#endif
-        }
 
         private bool CheckSameObject(GameObject objA, GameObject objB)
         {
@@ -521,7 +612,7 @@ namespace ToonJido.Control
             moveInput.z = input.y;
         }
 
-        // ÅÍÄ¡°¡ UIÀ§¿¡¼­ ÀÌ·ç¾îÁö´ÂÁö °Ë»ç
+        // í„°ì¹˜ê°€ UIìœ„ì—ì„œ ì´ë£¨ì–´ì§€ëŠ”ì§€ ê²€ì‚¬
         public bool IsPointerOverUI(int fingerId)
         {
             return (eventSystem.IsPointerOverGameObject(fingerId) && eventSystem.currentSelectedGameObject != null);

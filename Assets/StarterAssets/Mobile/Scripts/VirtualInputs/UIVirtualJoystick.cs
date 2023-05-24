@@ -50,7 +50,8 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
         Vector2 outputPosition = ApplyInversionFilter(position);
 
         // Rect를 벗어나도 output이 계속 커져서 그냥 노마 벡터로 바꿔버림
-        outputPosition.Normalize();
+        outputPosition.x = Mathf.Clamp(outputPosition.x, -1.0f, 1.0f);
+        outputPosition.y = Mathf.Clamp(outputPosition.y, -1.0f, 1.0f);
 
         OutputPointerEventValue(outputPosition);
 
