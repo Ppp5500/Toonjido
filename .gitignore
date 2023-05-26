@@ -1,2 +1,7 @@
+*.png
+*.jpg
+*.hdr
+*.tif
+
 Builds/
 Library/

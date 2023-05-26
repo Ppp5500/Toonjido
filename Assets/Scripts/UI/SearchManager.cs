@@ -52,16 +52,21 @@ namespace ToonJido.UI
 
         public async void ClickSearchButton()
         {
+            ClearResultList();
+
             if (!string.IsNullOrEmpty(inputField.text))
             {
                 CurrentControl.ChangeToSearchResult();
                 noResultText.SetActive(false);
                 var searchResult = await SearchStore(inputField.text);
                 SearchedStore searchResultArr = new();
-                searchResultArr = JsonConvert.DeserializeObject<SearchedStore>(searchResult);
+                var setting = new JsonSerializerSettings{
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                searchResultArr = JsonConvert.DeserializeObject<SearchedStore>(searchResult, setting);
                 if (searchResultArr.cultures.Length == 0)
                 {
-                    ClearResultList();
                     noResultText.SetActive(true);
                 }
                 else
@@ -90,9 +95,9 @@ namespace ToonJido.UI
                 GameObject mypref = Instantiate(resultPref, resultParent.transform);
 
                 mypref.transform.Find("name").GetComponent<TextMeshProUGUI>()
-                    .SetText(input.cultures[i].name);
+                    .SetText(input.cultures[i].market_name);
                 mypref.transform.Find("explanation").GetComponent<TextMeshProUGUI>()
-                    .SetText(input.cultures[i].explanation);
+                    .SetText(input.cultures[i].explain);
                 resultPrefs.Add(mypref);
             }
         }

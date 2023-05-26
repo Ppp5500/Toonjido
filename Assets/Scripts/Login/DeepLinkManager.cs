@@ -7,6 +7,8 @@ namespace ToonJido.Login
     public class DeepLinkManager : MonoBehaviour
     {
         public static DeepLinkManager Instance { get; private set; }
+        [Header("This object is not destroy on load")]
+
         public string deeplinkURL;
         private string token;
         private string loadtoken;
