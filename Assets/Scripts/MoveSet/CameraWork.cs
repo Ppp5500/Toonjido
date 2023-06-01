@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ToonJido.UI;
+using ToonJido.Data.Model;
 using static System.Math;
 
 #if UNITY_EDITOR
@@ -115,10 +117,10 @@ namespace ToonJido.Control
 #if DEVELOPMENT
         private void OnGUI()
         {
-            GUI.Label(new Rect(20, 500, 700, 300), $"{debugText}");
+            
         }
 #endif
-        void Update()
+        async void Update()
         {
             // 플레이어 이동 코드랑 건물 터치 코드가 섞여있음....
             // 난중에 분리해야 됨
@@ -250,7 +252,9 @@ namespace ToonJido.Control
                         // 터치를 끝낼 때의 오브젝트와 터치를 시작할 때의 오브젝트가 같은지 검사
                         if (CheckSameObject(firstEncounter, lastEncounter))
                         {
-                            // 같은면 그 건물을 검색 때리면 됨
+                            var address = lastEncounter.GetComponent<BuildingInfo>().address;
+                            var result = await SearchManager.instance.SearchStoreByAddress(address);
+                            SearchManager.instance.DisplayResult(result);
                         }
                         HitPos.transform.position = new(0,-1,0);
                         firstEncounter = null;
@@ -380,10 +384,6 @@ namespace ToonJido.Control
         {
             if (CurrentControl.state == CurrentControl.State.Overlook)
             {
-                //mainCamera.transform.parent = null;
-                //mainCamera.transform.position = overlookTransform.position;
-                //mainCamera.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
-
                 SwitchCamera(cameras[0]);
 
                 joyStick.SetActive(false);
@@ -401,11 +401,6 @@ namespace ToonJido.Control
             }
             else if (CurrentControl.state == CurrentControl.State.Eyelevel)
             {
-                //mainCamera.transform.parent = eyeLevelTransform;
-                //mainCamera.transform.localPosition = Vector3.zero;
-                //mainCamera.transform.localRotation = Quaternion.Euler(Vector3.zero);
-                //mainCamera.fieldOfView = defaultFOV;
-
                 SwitchCamera(cameras[1]);
 
                 joyStick.SetActive(true);
@@ -588,8 +583,6 @@ namespace ToonJido.Control
                 player.transform.position = PlayerGPSLocation.transform.position;
             }
         }
-
-
 
         private bool CheckSameObject(GameObject objA, GameObject objB)
         {

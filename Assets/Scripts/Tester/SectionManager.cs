@@ -26,7 +26,7 @@ namespace ToonJido.Test.Section
 
         public async void SearchCategoryForSectionAsync(int input){
             string result = await SearchSectionInfo(input);
-            SearchedStore info = JsonConvert.DeserializeObject<SearchedStore>(result);    
+            SearchedStoreWithSection info = JsonConvert.DeserializeObject<SearchedStoreWithSection>(result);    
             SectionNumberUpdate(info);
         }
 
@@ -40,7 +40,7 @@ namespace ToonJido.Test.Section
             return result;
         }
 
-        private void SectionNumberUpdate(SearchedStore input){
+        private void SectionNumberUpdate(SearchedStoreWithSection input){
             for(int i = 0; i < sectionText.Count(); i++){
                 string propertyName = "section" + (i + 1) + "_count";
                 // 리플렉션

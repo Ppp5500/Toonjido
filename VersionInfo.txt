@@ -78,3 +78,6 @@ Script/MoveSet/CameraControl
 	- 아이레벨에서 건물 터치 시, 터치 한 곳으로 오브젝트를 이동시기는 기능 추가
 
 DepthFilter 추가(못 생겨서 쓰진 못 할듯)
+
+0.2.6
+UI 1차 시안

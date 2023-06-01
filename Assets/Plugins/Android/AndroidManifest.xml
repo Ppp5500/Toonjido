@@ -14,7 +14,7 @@
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="appdev" android:host="mylink" />
+				<data android:scheme="toonjido" android:host="mylink" />
 			</intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>

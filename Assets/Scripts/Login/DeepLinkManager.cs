@@ -37,13 +37,11 @@ namespace ToonJido.Login
 #if DEVELOPMENT
         private void OnGUI()
         {
-            //GUI.backgroundColor = Color.yellow;
-            //// Compute a fontSize based on the size of the screen width.
-            //GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
+            // Compute a fontSize based on the size of the screen width.
+            GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-            //GUI.Box(new Rect(20, 50, 400, 400), "DebugCube");
-            //GUI.Label(new Rect(20, 150, 700, 300), $"token: {token}");
-
+            GUI.Label(new Rect(20, 200, 500, 500),
+                 $"deeplink:{deeplinkURL}");
         }
 #endif
 

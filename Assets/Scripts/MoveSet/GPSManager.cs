@@ -38,10 +38,10 @@ namespace ToonJido.Control
 
             playerGPSLocation = transform;
 
-            // ±×¸°½ºÅ¸Æ®¾÷Å¸¿î
+            // ï¿½×¸ï¿½ï¿½ï¿½Å¸Æ®ï¿½ï¿½Å¸ï¿½ï¿½
             // GPSEncoder.SetLocalOrigin(new Vector2(36.80939f, 127.1443f));
 
-            // Ãµ¾È¿ª
+            // Ãµï¿½È¿ï¿½
             GPSEncoder.SetLocalOrigin(new Vector2(36.80926f, 127.14783f));
         }
 
@@ -54,19 +54,19 @@ namespace ToonJido.Control
 #if DEVELOPMENT
         void OnGUI()
         {
-            GUI.backgroundColor = Color.yellow;
-            GUI.Box(new Rect(20, 20, 400, 400), "DebugCube");
-            // Compute a fontSize based on the size of the screen width.
-            GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
+            // GUI.backgroundColor = Color.yellow;
+            // GUI.Box(new Rect(20, 20, 400, 400), "DebugCube");
+            // // Compute a fontSize based on the size of the screen width.
+            // GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-            //GUI.Label(new Rect(20, 100, width, height * 0.25f),
-            //     $"lat: {lat} lon: {lon}");
+            // //GUI.Label(new Rect(20, 100, width, height * 0.25f),
+            // //     $"lat: {lat} lon: {lon}");
 
-            //GUI.Label(new Rect(20, 200, width, height * 0.25f),
-            //     $"x: {xPos} lon: {yPos}");
+            // //GUI.Label(new Rect(20, 200, width, height * 0.25f),
+            // //     $"x: {xPos} lon: {yPos}");
 
-            GUI.Label(new Rect(20, 300, width, height * 0.25f),
-                 $"message: {debugmessage}");
+            // GUI.Label(new Rect(20, 300, width, height * 0.25f),
+            //      $"message: {debugmessage}");
         }
 #endif
 
@@ -98,7 +98,7 @@ namespace ToonJido.Control
             }
         }
 
-        //±ÇÇÑ ¿äÃ»ÀÎµ¥ s7¿¡¼­ ÀÛµ¿ ¾È µÊ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Îµï¿½ s7ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ ï¿½ï¿½ ï¿½ï¿½
         /*
         if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.CoarseLocation)) {
             UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.CoarseLocation);
