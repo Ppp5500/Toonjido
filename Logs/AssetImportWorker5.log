@@ -15,7 +15,7 @@ D:/Projects/3DJido
 -logFile
 Logs/AssetImportWorker5.log
 -srvPort
-56806
+64436
 Successfully changed project path to: D:/Projects/3DJido
 D:/Projects/3DJido
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ D:/Projects/3DJido
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [26892] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2981025444 [EditorId] 2981025444 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [48136] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 1611046182 [EditorId] 1611046182 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [26892] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2981025444 [EditorId] 2981025444 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [48136] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 1611046182 [EditorId] 1611046182 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 91.56 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 75.47 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.21f1 (1b156197d683)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Resources/UnitySubsystems
@@ -68,52 +68,52 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56648
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56208
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003614 seconds.
+Registered in 0.003747 seconds.
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 171 ms
-Refreshing native plugins compatible for Editor in 66.41 ms, found 3 plugins.
+Android Extension - Scanning For ADB Devices 176 ms
+Refreshing native plugins compatible for Editor in 64.95 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.588 seconds
+- Completed reload, in  0.541 seconds
 Domain Reload Profiling:
-	ReloadAssembly (589ms)
-		BeginReloadAssembly (61ms)
+	ReloadAssembly (542ms)
+		BeginReloadAssembly (46ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (0ms)
-		EndReloadAssembly (465ms)
-			LoadAssemblies (60ms)
+		EndReloadAssembly (443ms)
+			LoadAssemblies (44ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (68ms)
+			SetupTypeCache (58ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (14ms)
-			SetupLoadedEditorAssemblies (355ms)
+			RebuildScriptCaches (13ms)
+			SetupLoadedEditorAssemblies (344ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (212ms)
+				InitializePlatformSupportModulesInManaged (215ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (66ms)
+				RefreshPlugins (65ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (54ms)
-				ProcessInitializeOnLoadMethodAttributes (22ms)
+				ProcessInitializeOnLoadAttributes (43ms)
+				ProcessInitializeOnLoadMethodAttributes (21ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003312 seconds.
+Registered in 0.003587 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -121,33 +121,33 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 69.07 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 68.44 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.781 seconds
+- Completed reload, in  0.722 seconds
 Domain Reload Profiling:
-	ReloadAssembly (781ms)
-		BeginReloadAssembly (68ms)
+	ReloadAssembly (723ms)
+		BeginReloadAssembly (66ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (14ms)
-		EndReloadAssembly (657ms)
-			LoadAssemblies (67ms)
+		EndReloadAssembly (601ms)
+			LoadAssemblies (53ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (188ms)
+			SetupTypeCache (157ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (34ms)
-			SetupLoadedEditorAssemblies (349ms)
+			RebuildScriptCaches (38ms)
+			SetupLoadedEditorAssemblies (333ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
+				InitializePlatformSupportModulesInManaged (13ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (69ms)
-				BeforeProcessingInitializeOnLoad (64ms)
-				ProcessInitializeOnLoadAttributes (156ms)
-				ProcessInitializeOnLoadMethodAttributes (43ms)
-				AfterProcessingInitializeOnLoad (4ms)
+				BeforeProcessingInitializeOnLoad (65ms)
+				ProcessInitializeOnLoadAttributes (142ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
+				AfterProcessingInitializeOnLoad (5ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (3ms)
@@ -156,12 +156,79 @@ Platform modules already initialized, skipping
 Worker process is ready to serve import requests
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 1.02 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.97 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5287 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 65 unused Assets / (2.3 MB). Loaded Objects now: 5765.
-Memory consumption went from 247.2 MB to 244.9 MB.
-Total: 2.969000 ms (FindLiveObjects: 0.357800 ms CreateObjectMapping: 0.077100 ms MarkObjects: 1.992100 ms  DeleteObjects: 0.541600 ms)
+Unloading 5290 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 65 unused Assets / (2.3 MB). Loaded Objects now: 5768.
+Memory consumption went from 247.8 MB to 245.5 MB.
+Total: 3.234000 ms (FindLiveObjects: 0.287000 ms CreateObjectMapping: 0.128700 ms MarkObjects: 2.273200 ms  DeleteObjects: 0.544600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 611437.742264 seconds.
+  path: Assets/Images/UI/Test/03 MainIcons/확대버튼.png
+  artifactKey: Guid(edf2ac7053402a443953d63e28e0aae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/03 MainIcons/확대버튼.png using Guid(edf2ac7053402a443953d63e28e0aae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3968aa8e2d6b0552e6dff6780114e75') in 0.084697 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003774 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.650 seconds
+Domain Reload Profiling:
+	ReloadAssembly (650ms)
+		BeginReloadAssembly (92ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (34ms)
+		EndReloadAssembly (509ms)
+			LoadAssemblies (49ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (163ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (248ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (48ms)
+				ProcessInitializeOnLoadAttributes (142ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.74 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5790.
+Memory consumption went from 238.2 MB to 236.0 MB.
+Total: 3.168200 ms (FindLiveObjects: 0.334400 ms CreateObjectMapping: 0.075900 ms MarkObjects: 2.041300 ms  DeleteObjects: 0.715900 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -177,7 +244,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003004 seconds.
+Registered in 0.003030 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -185,32 +252,93 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.87 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.93 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.640 seconds
+- Completed reload, in  0.643 seconds
 Domain Reload Profiling:
-	ReloadAssembly (640ms)
-		BeginReloadAssembly (87ms)
+	ReloadAssembly (644ms)
+		BeginReloadAssembly (89ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (28ms)
-		EndReloadAssembly (504ms)
-			LoadAssemblies (54ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (503ms)
+			LoadAssemblies (50ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (163ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (238ms)
+			SetupTypeCache (152ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (248ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
+				InitializePlatformSupportModulesInManaged (14ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (43ms)
-				ProcessInitializeOnLoadAttributes (137ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
+				BeforeProcessingInitializeOnLoad (50ms)
+				ProcessInitializeOnLoadAttributes (136ms)
+				ProcessInitializeOnLoadMethodAttributes (42ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 2.01 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5805.
+Memory consumption went from 238.4 MB to 236.1 MB.
+Total: 3.061000 ms (FindLiveObjects: 0.332300 ms CreateObjectMapping: 0.079500 ms MarkObjects: 2.073700 ms  DeleteObjects: 0.574800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004484 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 1.39 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.684 seconds
+Domain Reload Profiling:
+	ReloadAssembly (685ms)
+		BeginReloadAssembly (99ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (531ms)
+			LoadAssemblies (63ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (167ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (257ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (53ms)
+				ProcessInitializeOnLoadAttributes (144ms)
+				ProcessInitializeOnLoadMethodAttributes (41ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -219,10 +347,10 @@ Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
 Refreshing native plugins compatible for Editor in 1.92 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5780.
-Memory consumption went from 234.0 MB to 231.7 MB.
-Total: 3.511500 ms (FindLiveObjects: 0.375600 ms CreateObjectMapping: 0.086900 ms MarkObjects: 2.454600 ms  DeleteObjects: 0.593500 ms)
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5820.
+Memory consumption went from 238.4 MB to 236.1 MB.
+Total: 2.867900 ms (FindLiveObjects: 0.319200 ms CreateObjectMapping: 0.074800 ms MarkObjects: 1.928600 ms  DeleteObjects: 0.544700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -238,7 +366,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003226 seconds.
+Registered in 0.003649 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -246,44 +374,44 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.90 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.92 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.642 seconds
+- Completed reload, in  0.634 seconds
 Domain Reload Profiling:
-	ReloadAssembly (643ms)
+	ReloadAssembly (635ms)
 		BeginReloadAssembly (88ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (503ms)
-			LoadAssemblies (51ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (498ms)
+			LoadAssemblies (54ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (154ms)
+			SetupTypeCache (150ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (241ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (245ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
+				InitializePlatformSupportModulesInManaged (14ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (44ms)
-				ProcessInitializeOnLoadAttributes (134ms)
-				ProcessInitializeOnLoadMethodAttributes (41ms)
-				AfterProcessingInitializeOnLoad (5ms)
+				BeforeProcessingInitializeOnLoad (45ms)
+				ProcessInitializeOnLoadAttributes (140ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
 Refreshing native plugins compatible for Editor in 1.93 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5795.
-Memory consumption went from 233.8 MB to 231.5 MB.
-Total: 3.383500 ms (FindLiveObjects: 0.416200 ms CreateObjectMapping: 0.083600 ms MarkObjects: 2.135100 ms  DeleteObjects: 0.748000 ms)
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5835.
+Memory consumption went from 238.4 MB to 236.1 MB.
+Total: 3.442200 ms (FindLiveObjects: 0.381800 ms CreateObjectMapping: 0.078600 ms MarkObjects: 2.352900 ms  DeleteObjects: 0.628500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -299,7 +427,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003288 seconds.
+Registered in 0.003299 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -307,44 +435,227 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.86 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.93 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.624 seconds
+- Completed reload, in  0.642 seconds
 Domain Reload Profiling:
-	ReloadAssembly (624ms)
+	ReloadAssembly (642ms)
 		BeginReloadAssembly (87ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (488ms)
-			LoadAssemblies (52ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (506ms)
+			LoadAssemblies (53ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (155ms)
+			SetupTypeCache (159ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (242ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (48ms)
+				ProcessInitializeOnLoadAttributes (129ms)
+				ProcessInitializeOnLoadMethodAttributes (45ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5850.
+Memory consumption went from 238.5 MB to 236.2 MB.
+Total: 3.110500 ms (FindLiveObjects: 0.305400 ms CreateObjectMapping: 0.078900 ms MarkObjects: 2.181200 ms  DeleteObjects: 0.544500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004253 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.92 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.691 seconds
+Domain Reload Profiling:
+	ReloadAssembly (692ms)
+		BeginReloadAssembly (92ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (32ms)
+		EndReloadAssembly (545ms)
+			LoadAssemblies (53ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (163ms)
 			ReleaseScriptCaches (2ms)
 			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (233ms)
+			SetupLoadedEditorAssemblies (280ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (14ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (46ms)
-				ProcessInitializeOnLoadAttributes (129ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
+				BeforeProcessingInitializeOnLoad (55ms)
+				ProcessInitializeOnLoadAttributes (164ms)
+				ProcessInitializeOnLoadMethodAttributes (42ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (4ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.98 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5810.
-Memory consumption went from 233.8 MB to 231.5 MB.
-Total: 3.634000 ms (FindLiveObjects: 0.396000 ms CreateObjectMapping: 0.093200 ms MarkObjects: 2.504400 ms  DeleteObjects: 0.639400 ms)
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5865.
+Memory consumption went from 238.5 MB to 236.2 MB.
+Total: 2.975300 ms (FindLiveObjects: 0.365500 ms CreateObjectMapping: 0.079700 ms MarkObjects: 1.978400 ms  DeleteObjects: 0.550800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003570 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.630 seconds
+Domain Reload Profiling:
+	ReloadAssembly (630ms)
+		BeginReloadAssembly (89ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (493ms)
+			LoadAssemblies (53ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (150ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (234ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (48ms)
+				ProcessInitializeOnLoadAttributes (127ms)
+				ProcessInitializeOnLoadMethodAttributes (37ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.85 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5880.
+Memory consumption went from 238.5 MB to 236.2 MB.
+Total: 3.502100 ms (FindLiveObjects: 0.598600 ms CreateObjectMapping: 0.127500 ms MarkObjects: 2.140100 ms  DeleteObjects: 0.635200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003136 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.626 seconds
+Domain Reload Profiling:
+	ReloadAssembly (627ms)
+		BeginReloadAssembly (89ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (489ms)
+			LoadAssemblies (53ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (154ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (233ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (45ms)
+				ProcessInitializeOnLoadAttributes (131ms)
+				ProcessInitializeOnLoadMethodAttributes (37ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.65 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5895.
+Memory consumption went from 238.5 MB to 236.2 MB.
+Total: 2.799200 ms (FindLiveObjects: 0.328400 ms CreateObjectMapping: 0.079800 ms MarkObjects: 1.859700 ms  DeleteObjects: 0.530700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -368,44 +679,44 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.86 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.33 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.626 seconds
+- Completed reload, in  0.731 seconds
 Domain Reload Profiling:
-	ReloadAssembly (626ms)
-		BeginReloadAssembly (87ms)
+	ReloadAssembly (732ms)
+		BeginReloadAssembly (102ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (488ms)
-			LoadAssemblies (54ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (560ms)
+			LoadAssemblies (59ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (153ms)
+			SetupTypeCache (197ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (235ms)
+			RebuildScriptCaches (28ms)
+			SetupLoadedEditorAssemblies (255ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
+				InitializePlatformSupportModulesInManaged (15ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (45ms)
-				ProcessInitializeOnLoadAttributes (132ms)
-				ProcessInitializeOnLoadMethodAttributes (38ms)
+				BeforeProcessingInitializeOnLoad (58ms)
+				ProcessInitializeOnLoadAttributes (135ms)
+				ProcessInitializeOnLoadMethodAttributes (42ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.09 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.78 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5825.
-Memory consumption went from 233.8 MB to 231.6 MB.
-Total: 3.456600 ms (FindLiveObjects: 0.399900 ms CreateObjectMapping: 0.104700 ms MarkObjects: 2.215900 ms  DeleteObjects: 0.735500 ms)
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5910.
+Memory consumption went from 238.5 MB to 236.3 MB.
+Total: 3.328400 ms (FindLiveObjects: 0.403800 ms CreateObjectMapping: 0.081300 ms MarkObjects: 2.123000 ms  DeleteObjects: 0.719300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -421,7 +732,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003315 seconds.
+Registered in 0.003296 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -429,44 +740,44 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.91 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.655 seconds
+- Completed reload, in  0.641 seconds
 Domain Reload Profiling:
-	ReloadAssembly (655ms)
+	ReloadAssembly (642ms)
 		BeginReloadAssembly (89ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (516ms)
-			LoadAssemblies (54ms)
+		EndReloadAssembly (504ms)
+			LoadAssemblies (52ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (164ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (30ms)
-			SetupLoadedEditorAssemblies (246ms)
+			SetupTypeCache (158ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (238ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
+				InitializePlatformSupportModulesInManaged (17ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (46ms)
-				ProcessInitializeOnLoadAttributes (140ms)
-				ProcessInitializeOnLoadMethodAttributes (40ms)
+				BeforeProcessingInitializeOnLoad (49ms)
+				ProcessInitializeOnLoadAttributes (130ms)
+				ProcessInitializeOnLoadMethodAttributes (37ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (4ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.06 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.62 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5840.
-Memory consumption went from 233.9 MB to 231.6 MB.
-Total: 3.117400 ms (FindLiveObjects: 0.371700 ms CreateObjectMapping: 0.087200 ms MarkObjects: 2.054800 ms  DeleteObjects: 0.603200 ms)
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5925.
+Memory consumption went from 238.5 MB to 236.3 MB.
+Total: 2.946300 ms (FindLiveObjects: 0.383800 ms CreateObjectMapping: 0.086400 ms MarkObjects: 1.876600 ms  DeleteObjects: 0.598700 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -482,68 +793,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.004050 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.96 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.708 seconds
-Domain Reload Profiling:
-	ReloadAssembly (708ms)
-		BeginReloadAssembly (90ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (32ms)
-		EndReloadAssembly (557ms)
-			LoadAssemblies (53ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (168ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (30ms)
-			SetupLoadedEditorAssemblies (278ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (65ms)
-				ProcessInitializeOnLoadAttributes (142ms)
-				ProcessInitializeOnLoadMethodAttributes (50ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.88 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5855.
-Memory consumption went from 233.9 MB to 231.6 MB.
-Total: 3.659800 ms (FindLiveObjects: 0.544000 ms CreateObjectMapping: 0.114800 ms MarkObjects: 2.234400 ms  DeleteObjects: 0.765400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004135 seconds.
+Registered in 0.002920 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -554,1311 +804,30 @@ Native extension for Android target not found
 Refreshing native plugins compatible for Editor in 1.02 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.740 seconds
+- Completed reload, in  0.711 seconds
 Domain Reload Profiling:
-	ReloadAssembly (741ms)
-		BeginReloadAssembly (97ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (33ms)
-		EndReloadAssembly (593ms)
-			LoadAssemblies (55ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (182ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (34ms)
-			SetupLoadedEditorAssemblies (291ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (19ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (57ms)
-				ProcessInitializeOnLoadAttributes (160ms)
-				ProcessInitializeOnLoadMethodAttributes (49ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.98 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5870.
-Memory consumption went from 233.9 MB to 231.6 MB.
-Total: 3.399300 ms (FindLiveObjects: 0.546300 ms CreateObjectMapping: 0.121700 ms MarkObjects: 1.954900 ms  DeleteObjects: 0.775600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004826 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.743 seconds
-Domain Reload Profiling:
-	ReloadAssembly (743ms)
-		BeginReloadAssembly (101ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (585ms)
-			LoadAssemblies (64ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (198ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (35ms)
-			SetupLoadedEditorAssemblies (262ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (19ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (54ms)
-				ProcessInitializeOnLoadAttributes (143ms)
-				ProcessInitializeOnLoadMethodAttributes (41ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.02 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5104 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 48 unused Assets / (2.3 MB). Loaded Objects now: 5885.
-Memory consumption went from 233.9 MB to 231.6 MB.
-Total: 3.309900 ms (FindLiveObjects: 0.457200 ms CreateObjectMapping: 0.111100 ms MarkObjects: 2.092200 ms  DeleteObjects: 0.648800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003014 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.34 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.738 seconds
-Domain Reload Profiling:
-	ReloadAssembly (738ms)
-		BeginReloadAssembly (90ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (594ms)
-			LoadAssemblies (58ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (152ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (29ms)
-			SetupLoadedEditorAssemblies (309ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (57ms)
-				ProcessInitializeOnLoadAttributes (169ms)
-				ProcessInitializeOnLoadMethodAttributes (57ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (7ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.02 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5105 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5901.
-Memory consumption went from 234.0 MB to 231.7 MB.
-Total: 3.084100 ms (FindLiveObjects: 0.343900 ms CreateObjectMapping: 0.074500 ms MarkObjects: 2.090200 ms  DeleteObjects: 0.575100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003705 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.23 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.795 seconds
-Domain Reload Profiling:
-	ReloadAssembly (795ms)
-		BeginReloadAssembly (101ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (621ms)
-			LoadAssemblies (66ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (207ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (33ms)
-			SetupLoadedEditorAssemblies (290ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (53ms)
-				ProcessInitializeOnLoadAttributes (162ms)
-				ProcessInitializeOnLoadMethodAttributes (52ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.06 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5105 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5916.
-Memory consumption went from 234.0 MB to 231.7 MB.
-Total: 3.725700 ms (FindLiveObjects: 0.481800 ms CreateObjectMapping: 0.185400 ms MarkObjects: 2.446000 ms  DeleteObjects: 0.611500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003648 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.712 seconds
-Domain Reload Profiling:
-	ReloadAssembly (713ms)
-		BeginReloadAssembly (93ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (571ms)
-			LoadAssemblies (62ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (169ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (32ms)
-			SetupLoadedEditorAssemblies (280ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (19ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (50ms)
-				ProcessInitializeOnLoadAttributes (159ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.79 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5932.
-Memory consumption went from 234.1 MB to 231.8 MB.
-Total: 3.082000 ms (FindLiveObjects: 0.403900 ms CreateObjectMapping: 0.095000 ms MarkObjects: 1.974800 ms  DeleteObjects: 0.607700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003657 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.747 seconds
-Domain Reload Profiling:
-	ReloadAssembly (748ms)
-		BeginReloadAssembly (90ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (32ms)
-		EndReloadAssembly (584ms)
-			LoadAssemblies (48ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (181ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (34ms)
-			SetupLoadedEditorAssemblies (283ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (19ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (56ms)
-				ProcessInitializeOnLoadAttributes (156ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.04 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5947.
-Memory consumption went from 234.1 MB to 231.8 MB.
-Total: 3.164400 ms (FindLiveObjects: 0.341800 ms CreateObjectMapping: 0.068200 ms MarkObjects: 1.957200 ms  DeleteObjects: 0.796600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004336 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.714 seconds
-Domain Reload Profiling:
-	ReloadAssembly (714ms)
+	ReloadAssembly (711ms)
 		BeginReloadAssembly (92ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (561ms)
-			LoadAssemblies (59ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (182ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (30ms)
-			SetupLoadedEditorAssemblies (259ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (17ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (47ms)
-				ProcessInitializeOnLoadAttributes (150ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.94 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5962.
-Memory consumption went from 234.1 MB to 231.8 MB.
-Total: 3.026900 ms (FindLiveObjects: 0.304200 ms CreateObjectMapping: 0.067700 ms MarkObjects: 2.103200 ms  DeleteObjects: 0.551200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003053 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.31 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.635 seconds
-Domain Reload Profiling:
-	ReloadAssembly (636ms)
-		BeginReloadAssembly (90ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (28ms)
-		EndReloadAssembly (493ms)
-			LoadAssemblies (55ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (158ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (235ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (16ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (49ms)
-				ProcessInitializeOnLoadAttributes (126ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.83 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5977.
-Memory consumption went from 234.1 MB to 231.8 MB.
-Total: 3.355900 ms (FindLiveObjects: 0.408700 ms CreateObjectMapping: 0.092600 ms MarkObjects: 2.203200 ms  DeleteObjects: 0.650600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002964 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.97 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.715 seconds
-Domain Reload Profiling:
-	ReloadAssembly (716ms)
-		BeginReloadAssembly (95ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (32ms)
-		EndReloadAssembly (558ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (569ms)
 			LoadAssemblies (51ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
 			SetupTypeCache (180ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (276ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (16ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (54ms)
-				ProcessInitializeOnLoadAttributes (154ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.99 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5992.
-Memory consumption went from 234.1 MB to 231.9 MB.
-Total: 3.593500 ms (FindLiveObjects: 0.549700 ms CreateObjectMapping: 0.119000 ms MarkObjects: 2.178600 ms  DeleteObjects: 0.745500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002998 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.88 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.622 seconds
-Domain Reload Profiling:
-	ReloadAssembly (622ms)
-		BeginReloadAssembly (94ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (37ms)
-		EndReloadAssembly (479ms)
-			LoadAssemblies (52ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (150ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (229ms)
+			RebuildScriptCaches (28ms)
+			SetupLoadedEditorAssemblies (283ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (14ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (44ms)
-				ProcessInitializeOnLoadAttributes (127ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.96 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6007.
-Memory consumption went from 234.2 MB to 231.9 MB.
-Total: 3.577400 ms (FindLiveObjects: 0.397500 ms CreateObjectMapping: 0.081000 ms MarkObjects: 2.378400 ms  DeleteObjects: 0.719900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004069 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.729 seconds
-Domain Reload Profiling:
-	ReloadAssembly (729ms)
-		BeginReloadAssembly (96ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (31ms)
-		EndReloadAssembly (577ms)
-			LoadAssemblies (55ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (188ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (30ms)
-			SetupLoadedEditorAssemblies (278ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (53ms)
-				ProcessInitializeOnLoadAttributes (155ms)
-				ProcessInitializeOnLoadMethodAttributes (46ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.58 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6022.
-Memory consumption went from 234.2 MB to 231.9 MB.
-Total: 3.024700 ms (FindLiveObjects: 0.443000 ms CreateObjectMapping: 0.082500 ms MarkObjects: 1.940200 ms  DeleteObjects: 0.558400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002997 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.647 seconds
-Domain Reload Profiling:
-	ReloadAssembly (647ms)
-		BeginReloadAssembly (86ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (511ms)
-			LoadAssemblies (48ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (174ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (240ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (16ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
 				BeforeProcessingInitializeOnLoad (51ms)
-				ProcessInitializeOnLoadAttributes (127ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.77 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6037.
-Memory consumption went from 234.2 MB to 231.9 MB.
-Total: 3.190900 ms (FindLiveObjects: 0.387000 ms CreateObjectMapping: 0.080700 ms MarkObjects: 2.090900 ms  DeleteObjects: 0.631800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003132 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.60 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.716 seconds
-Domain Reload Profiling:
-	ReloadAssembly (716ms)
-		BeginReloadAssembly (94ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (557ms)
-			LoadAssemblies (56ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (167ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (33ms)
-			SetupLoadedEditorAssemblies (278ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (53ms)
-				ProcessInitializeOnLoadAttributes (152ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
+				ProcessInitializeOnLoadAttributes (159ms)
+				ProcessInitializeOnLoadMethodAttributes (53ms)
 				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.85 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6052.
-Memory consumption went from 234.2 MB to 231.9 MB.
-Total: 3.202100 ms (FindLiveObjects: 0.386900 ms CreateObjectMapping: 0.074200 ms MarkObjects: 2.116800 ms  DeleteObjects: 0.623500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003184 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.78 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.630 seconds
-Domain Reload Profiling:
-	ReloadAssembly (630ms)
-		BeginReloadAssembly (85ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (28ms)
-		EndReloadAssembly (494ms)
-			LoadAssemblies (50ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (162ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (236ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (44ms)
-				ProcessInitializeOnLoadAttributes (128ms)
-				ProcessInitializeOnLoadMethodAttributes (43ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.10 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6067.
-Memory consumption went from 234.2 MB to 231.9 MB.
-Total: 3.093000 ms (FindLiveObjects: 0.404500 ms CreateObjectMapping: 0.096000 ms MarkObjects: 1.964400 ms  DeleteObjects: 0.627200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002961 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.97 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.627 seconds
-Domain Reload Profiling:
-	ReloadAssembly (627ms)
-		BeginReloadAssembly (91ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (483ms)
-			LoadAssemblies (55ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (151ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (228ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (44ms)
-				ProcessInitializeOnLoadAttributes (126ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.10 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6082.
-Memory consumption went from 234.3 MB to 232.0 MB.
-Total: 3.729000 ms (FindLiveObjects: 0.518700 ms CreateObjectMapping: 0.147500 ms MarkObjects: 2.329600 ms  DeleteObjects: 0.732500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003246 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.712 seconds
-Domain Reload Profiling:
-	ReloadAssembly (713ms)
-		BeginReloadAssembly (99ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (564ms)
-			LoadAssemblies (57ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (177ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (37ms)
-			SetupLoadedEditorAssemblies (269ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (57ms)
-				ProcessInitializeOnLoadAttributes (147ms)
-				ProcessInitializeOnLoadMethodAttributes (45ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.71 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6097.
-Memory consumption went from 234.3 MB to 232.0 MB.
-Total: 3.370400 ms (FindLiveObjects: 0.644800 ms CreateObjectMapping: 0.104300 ms MarkObjects: 1.991900 ms  DeleteObjects: 0.628500 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003751 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.647 seconds
-Domain Reload Profiling:
-	ReloadAssembly (647ms)
-		BeginReloadAssembly (92ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (506ms)
-			LoadAssemblies (53ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (166ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (236ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (45ms)
-				ProcessInitializeOnLoadAttributes (133ms)
-				ProcessInitializeOnLoadMethodAttributes (38ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.02 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6112.
-Memory consumption went from 234.3 MB to 232.0 MB.
-Total: 3.379000 ms (FindLiveObjects: 0.426200 ms CreateObjectMapping: 0.094600 ms MarkObjects: 2.120000 ms  DeleteObjects: 0.737300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003918 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.40 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.705 seconds
-Domain Reload Profiling:
-	ReloadAssembly (706ms)
-		BeginReloadAssembly (90ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (560ms)
-			LoadAssemblies (56ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (175ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (279ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (16ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (45ms)
-				ProcessInitializeOnLoadAttributes (166ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.02 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6127.
-Memory consumption went from 234.3 MB to 232.0 MB.
-Total: 3.345400 ms (FindLiveObjects: 0.448400 ms CreateObjectMapping: 0.099500 ms MarkObjects: 2.154100 ms  DeleteObjects: 0.642800 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003593 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.89 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.624 seconds
-Domain Reload Profiling:
-	ReloadAssembly (624ms)
-		BeginReloadAssembly (88ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (488ms)
-			LoadAssemblies (52ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (151ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (235ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (44ms)
-				ProcessInitializeOnLoadAttributes (130ms)
-				ProcessInitializeOnLoadMethodAttributes (40ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.72 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6142.
-Memory consumption went from 234.3 MB to 232.0 MB.
-Total: 3.007600 ms (FindLiveObjects: 0.357200 ms CreateObjectMapping: 0.071400 ms MarkObjects: 2.007600 ms  DeleteObjects: 0.571200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003197 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.66 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.631 seconds
-Domain Reload Profiling:
-	ReloadAssembly (632ms)
-		BeginReloadAssembly (85ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (28ms)
-		EndReloadAssembly (495ms)
-			LoadAssemblies (48ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (171ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (228ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (46ms)
-				ProcessInitializeOnLoadAttributes (125ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.92 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6157.
-Memory consumption went from 234.3 MB to 232.1 MB.
-Total: 2.918600 ms (FindLiveObjects: 0.361600 ms CreateObjectMapping: 0.073500 ms MarkObjects: 1.867500 ms  DeleteObjects: 0.615600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003019 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.28 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.623 seconds
-Domain Reload Profiling:
-	ReloadAssembly (623ms)
-		BeginReloadAssembly (85ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (490ms)
-			LoadAssemblies (49ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (157ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (236ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (17ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (46ms)
-				ProcessInitializeOnLoadAttributes (129ms)
-				ProcessInitializeOnLoadMethodAttributes (39ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.81 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6172.
-Memory consumption went from 234.4 MB to 232.1 MB.
-Total: 3.226300 ms (FindLiveObjects: 0.396600 ms CreateObjectMapping: 0.084000 ms MarkObjects: 2.070800 ms  DeleteObjects: 0.674100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004240 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.19 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.718 seconds
-Domain Reload Profiling:
-	ReloadAssembly (719ms)
-		BeginReloadAssembly (99ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (33ms)
-		EndReloadAssembly (550ms)
-			LoadAssemblies (62ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (158ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (34ms)
-			SetupLoadedEditorAssemblies (269ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (20ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (48ms)
-				ProcessInitializeOnLoadAttributes (147ms)
-				ProcessInitializeOnLoadMethodAttributes (48ms)
-				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
@@ -1867,9 +836,9 @@ Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexl
 Refreshing native plugins compatible for Editor in 1.84 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6187.
-Memory consumption went from 234.4 MB to 232.1 MB.
-Total: 3.320000 ms (FindLiveObjects: 0.455000 ms CreateObjectMapping: 0.116200 ms MarkObjects: 2.023500 ms  DeleteObjects: 0.724800 ms)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5940.
+Memory consumption went from 238.6 MB to 236.3 MB.
+Total: 3.852700 ms (FindLiveObjects: 0.385100 ms CreateObjectMapping: 0.196600 ms MarkObjects: 2.610300 ms  DeleteObjects: 0.660100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -1885,7 +854,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003249 seconds.
+Registered in 0.003757 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -1893,30 +862,30 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.96 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.623 seconds
+- Completed reload, in  0.626 seconds
 Domain Reload Profiling:
-	ReloadAssembly (623ms)
-		BeginReloadAssembly (86ms)
+	ReloadAssembly (627ms)
+		BeginReloadAssembly (85ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (489ms)
-			LoadAssemblies (47ms)
+			CreateAndSetChildDomain (26ms)
+		EndReloadAssembly (492ms)
+			LoadAssemblies (53ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (158ms)
+			SetupTypeCache (157ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (235ms)
+			RebuildScriptCaches (24ms)
+			SetupLoadedEditorAssemblies (234ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
+				InitializePlatformSupportModulesInManaged (18ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (48ms)
+				BeforeProcessingInitializeOnLoad (45ms)
 				ProcessInitializeOnLoadAttributes (128ms)
 				ProcessInitializeOnLoadMethodAttributes (38ms)
 				AfterProcessingInitializeOnLoad (4ms)
@@ -1925,12 +894,12 @@ Domain Reload Profiling:
 			AwakeInstancesAfterBackupRestoration (4ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.96 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.07 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6202.
-Memory consumption went from 234.4 MB to 232.1 MB.
-Total: 3.652500 ms (FindLiveObjects: 0.390600 ms CreateObjectMapping: 0.080900 ms MarkObjects: 2.458700 ms  DeleteObjects: 0.721600 ms)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5955.
+Memory consumption went from 238.6 MB to 236.3 MB.
+Total: 3.266600 ms (FindLiveObjects: 0.477400 ms CreateObjectMapping: 0.132800 ms MarkObjects: 2.016300 ms  DeleteObjects: 0.639400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -1946,7 +915,7 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003031 seconds.
+Registered in 0.003126 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -1954,44 +923,44 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.91 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.41 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.726 seconds
+- Completed reload, in  0.742 seconds
 Domain Reload Profiling:
-	ReloadAssembly (726ms)
-		BeginReloadAssembly (89ms)
+	ReloadAssembly (743ms)
+		BeginReloadAssembly (94ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (580ms)
-			LoadAssemblies (50ms)
+		EndReloadAssembly (586ms)
+			LoadAssemblies (61ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (168ms)
+			SetupTypeCache (192ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (35ms)
-			SetupLoadedEditorAssemblies (297ms)
+			RebuildScriptCaches (34ms)
+			SetupLoadedEditorAssemblies (275ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (20ms)
+				InitializePlatformSupportModulesInManaged (15ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (57ms)
-				ProcessInitializeOnLoadAttributes (164ms)
+				BeforeProcessingInitializeOnLoad (50ms)
+				ProcessInitializeOnLoadAttributes (152ms)
 				ProcessInitializeOnLoadMethodAttributes (52ms)
-				AfterProcessingInitializeOnLoad (3ms)
+				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (4ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.80 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.07 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6217.
-Memory consumption went from 234.4 MB to 232.2 MB.
-Total: 3.643200 ms (FindLiveObjects: 0.494000 ms CreateObjectMapping: 0.130300 ms MarkObjects: 2.277700 ms  DeleteObjects: 0.740200 ms)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5970.
+Memory consumption went from 238.7 MB to 236.4 MB.
+Total: 3.502000 ms (FindLiveObjects: 0.608800 ms CreateObjectMapping: 0.323900 ms MarkObjects: 1.980600 ms  DeleteObjects: 0.588100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -2007,7 +976,373 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003021 seconds.
+Registered in 0.003512 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.96 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.622 seconds
+Domain Reload Profiling:
+	ReloadAssembly (622ms)
+		BeginReloadAssembly (88ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (486ms)
+			LoadAssemblies (52ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (152ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (230ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (44ms)
+				ProcessInitializeOnLoadAttributes (127ms)
+				ProcessInitializeOnLoadMethodAttributes (38ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.61 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5985.
+Memory consumption went from 238.7 MB to 236.4 MB.
+Total: 3.349900 ms (FindLiveObjects: 0.363300 ms CreateObjectMapping: 0.167200 ms MarkObjects: 2.167600 ms  DeleteObjects: 0.651200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004164 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.87 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.722 seconds
+Domain Reload Profiling:
+	ReloadAssembly (723ms)
+		BeginReloadAssembly (91ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (570ms)
+			LoadAssemblies (52ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (175ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (32ms)
+			SetupLoadedEditorAssemblies (283ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (57ms)
+				ProcessInitializeOnLoadAttributes (159ms)
+				ProcessInitializeOnLoadMethodAttributes (48ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 2.33 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6000.
+Memory consumption went from 238.7 MB to 236.4 MB.
+Total: 4.236200 ms (FindLiveObjects: 0.634100 ms CreateObjectMapping: 0.110400 ms MarkObjects: 2.729500 ms  DeleteObjects: 0.761300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002937 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.611 seconds
+Domain Reload Profiling:
+	ReloadAssembly (611ms)
+		BeginReloadAssembly (83ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (27ms)
+		EndReloadAssembly (479ms)
+			LoadAssemblies (47ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (152ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (231ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (45ms)
+				ProcessInitializeOnLoadAttributes (127ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.52 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6015.
+Memory consumption went from 238.7 MB to 236.4 MB.
+Total: 3.248100 ms (FindLiveObjects: 0.323700 ms CreateObjectMapping: 0.160900 ms MarkObjects: 2.169900 ms  DeleteObjects: 0.592800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003169 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.645 seconds
+Domain Reload Profiling:
+	ReloadAssembly (645ms)
+		BeginReloadAssembly (84ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (27ms)
+		EndReloadAssembly (509ms)
+			LoadAssemblies (48ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (177ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (233ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (44ms)
+				ProcessInitializeOnLoadAttributes (130ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.70 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6030.
+Memory consumption went from 238.7 MB to 236.4 MB.
+Total: 3.221500 ms (FindLiveObjects: 0.371800 ms CreateObjectMapping: 0.154900 ms MarkObjects: 2.156600 ms  DeleteObjects: 0.537600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005055 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.93 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.709 seconds
+Domain Reload Profiling:
+	ReloadAssembly (709ms)
+		BeginReloadAssembly (89ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (27ms)
+		EndReloadAssembly (566ms)
+			LoadAssemblies (54ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (177ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (29ms)
+			SetupLoadedEditorAssemblies (281ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (64ms)
+				ProcessInitializeOnLoadAttributes (157ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 2.00 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6045.
+Memory consumption went from 238.7 MB to 236.5 MB.
+Total: 3.714100 ms (FindLiveObjects: 0.559100 ms CreateObjectMapping: 0.253200 ms MarkObjects: 2.247400 ms  DeleteObjects: 0.653400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003189 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Native extension for WindowsStandalone target not found
+Native extension for iOS target not found
+Native extension for Android target not found
+Refreshing native plugins compatible for Editor in 0.87 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.622 seconds
+Domain Reload Profiling:
+	ReloadAssembly (622ms)
+		BeginReloadAssembly (86ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (2ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (27ms)
+		EndReloadAssembly (488ms)
+			LoadAssemblies (48ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (151ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (25ms)
+			SetupLoadedEditorAssemblies (241ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (51ms)
+				ProcessInitializeOnLoadAttributes (130ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
+				AfterProcessingInitializeOnLoad (4ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
+Refreshing native plugins compatible for Editor in 1.73 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6060.
+Memory consumption went from 238.7 MB to 236.5 MB.
+Total: 2.992000 ms (FindLiveObjects: 0.323600 ms CreateObjectMapping: 0.081300 ms MarkObjects: 2.047700 ms  DeleteObjects: 0.539000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003048 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -2018,224 +1353,41 @@ Native extension for Android target not found
 Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.629 seconds
+- Completed reload, in  0.628 seconds
 Domain Reload Profiling:
-	ReloadAssembly (629ms)
+	ReloadAssembly (628ms)
 		BeginReloadAssembly (86ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (2ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (491ms)
-			LoadAssemblies (47ms)
+			CreateAndSetChildDomain (28ms)
+		EndReloadAssembly (494ms)
+			LoadAssemblies (49ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (165ms)
+			SetupTypeCache (164ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (27ms)
-			SetupLoadedEditorAssemblies (230ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (231ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (14ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (45ms)
-				ProcessInitializeOnLoadAttributes (127ms)
-				ProcessInitializeOnLoadMethodAttributes (38ms)
+				BeforeProcessingInitializeOnLoad (44ms)
+				ProcessInitializeOnLoadAttributes (130ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (4ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.95 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.99 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6232.
-Memory consumption went from 234.5 MB to 232.2 MB.
-Total: 3.579000 ms (FindLiveObjects: 0.429500 ms CreateObjectMapping: 0.089100 ms MarkObjects: 2.384400 ms  DeleteObjects: 0.675200 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004786 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.29 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.687 seconds
-Domain Reload Profiling:
-	ReloadAssembly (687ms)
-		BeginReloadAssembly (95ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (28ms)
-		EndReloadAssembly (531ms)
-			LoadAssemblies (51ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (177ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (24ms)
-			SetupLoadedEditorAssemblies (251ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (20ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (52ms)
-				ProcessInitializeOnLoadAttributes (129ms)
-				ProcessInitializeOnLoadMethodAttributes (42ms)
-				AfterProcessingInitializeOnLoad (6ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.47 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6247.
-Memory consumption went from 234.5 MB to 232.2 MB.
-Total: 3.279700 ms (FindLiveObjects: 0.481100 ms CreateObjectMapping: 0.102200 ms MarkObjects: 2.058900 ms  DeleteObjects: 0.636300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003621 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 1.03 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.704 seconds
-Domain Reload Profiling:
-	ReloadAssembly (705ms)
-		BeginReloadAssembly (87ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (30ms)
-		EndReloadAssembly (566ms)
-			LoadAssemblies (47ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (173ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (36ms)
-			SetupLoadedEditorAssemblies (273ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (16ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (48ms)
-				ProcessInitializeOnLoadAttributes (153ms)
-				ProcessInitializeOnLoadMethodAttributes (50ms)
-				AfterProcessingInitializeOnLoad (4ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 1.89 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6262.
-Memory consumption went from 234.5 MB to 232.2 MB.
-Total: 4.666300 ms (FindLiveObjects: 0.696200 ms CreateObjectMapping: 0.382900 ms MarkObjects: 2.783200 ms  DeleteObjects: 0.803000 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.002994 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.64 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.630 seconds
-Domain Reload Profiling:
-	ReloadAssembly (631ms)
-		BeginReloadAssembly (84ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (2ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (27ms)
-		EndReloadAssembly (496ms)
-			LoadAssemblies (48ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (165ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (25ms)
-			SetupLoadedEditorAssemblies (230ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (45ms)
-				ProcessInitializeOnLoadAttributes (126ms)
-				ProcessInitializeOnLoadMethodAttributes (38ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.18 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5106 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6277.
-Memory consumption went from 234.5 MB to 232.2 MB.
-Total: 3.478000 ms (FindLiveObjects: 0.468200 ms CreateObjectMapping: 0.094100 ms MarkObjects: 2.094300 ms  DeleteObjects: 0.820800 ms)
+Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 6075.
+Memory consumption went from 238.8 MB to 236.5 MB.
+Total: 3.197600 ms (FindLiveObjects: 0.385300 ms CreateObjectMapping: 0.082000 ms MarkObjects: 2.155600 ms  DeleteObjects: 0.574300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 

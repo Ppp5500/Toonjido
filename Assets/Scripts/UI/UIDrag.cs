@@ -1,9 +1,10 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using ToonJido.Control;
 
-namespace ToonJido.UI{
+namespace ToonJido.UI
+{
     public class UIDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
         private CurrentControl.State tempState;
@@ -16,8 +17,11 @@ namespace ToonJido.UI{
         float _minSafe;
         float canvasSize;
         float topRectSize;
+        public GameObject sideButtonParant;
+        private Image[] buttons;
 
-        void Start() {
+        void Start()
+        {
             _safeArea = Screen.safeArea;
             canvasSize = canvas.GetComponent<RectTransform>().sizeDelta.y;
             topRectSize = topRect.sizeDelta.y;
@@ -25,7 +29,6 @@ namespace ToonJido.UI{
             _minAnchor = _safeArea.position;
             _maxAnchor = _minAnchor + _safeArea.size;
             var temp = _minAnchor.y;
-
 
             _minAnchor.x /= Screen.width;
             _minAnchor.y /= Screen.height;
@@ -35,6 +38,10 @@ namespace ToonJido.UI{
             _minSafe = canvasSize / 2;
             _maxSafe = _minSafe - (temp + topRectSize);
             _minSafe *= -0.9f;
+
+            buttons = sideButtonParant.GetComponentsInChildren<Image>();
+
+            Down();
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -46,10 +53,23 @@ namespace ToonJido.UI{
                 (RectTransform)canvas.transform,
                 data.position,
                 canvas.worldCamera,
-                out position);
+                out position
+            );
             position.x = 0;
             position.y = Mathf.Clamp(position.y, _minSafe, _maxSafe);
             transform.position = canvas.transform.TransformPoint(position);
+
+            foreach (Image item in buttons)
+            {
+                float alpha = normalize(position.y, 0, 1);
+                Color delColor = new(1, 1, 1, alpha);
+                item.color = delColor;
+            }
+        }
+
+        float normalize(float value, float min, float max)
+        {
+            return (value - min) / (max - min);
         }
 
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
@@ -63,13 +83,14 @@ namespace ToonJido.UI{
             CurrentControl.state = tempState;
         }
 
-        public void Down(){
+        public void Down()
+        {
             transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
         }
 
-        public void Up(){
+        public void Up()
+        {
             transform.position = canvas.transform.TransformPoint(new Vector2(0, _maxSafe));
         }
     }
 }
-

@@ -15,7 +15,7 @@ D:/Projects/3DJido
 -logFile
 Logs/AssetImportWorker2.log
 -srvPort
-56806
+64436
 Successfully changed project path to: D:/Projects/3DJido
 D:/Projects/3DJido
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ D:/Projects/3DJido
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [45408] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 1796868372 [EditorId] 1796868372 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [42556] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2572306160 [EditorId] 2572306160 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [45408] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 1796868372 [EditorId] 1796868372 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [42556] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2572306160 [EditorId] 2572306160 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 75.46 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 70.98 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.21f1 (1b156197d683)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Resources/UnitySubsystems
@@ -68,52 +68,52 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56332
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56728
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003787 seconds.
+Registered in 0.003995 seconds.
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 166 ms
-Refreshing native plugins compatible for Editor in 105.36 ms, found 3 plugins.
+Android Extension - Scanning For ADB Devices 184 ms
+Refreshing native plugins compatible for Editor in 65.32 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.675 seconds
+- Completed reload, in  0.713 seconds
 Domain Reload Profiling:
-	ReloadAssembly (676ms)
-		BeginReloadAssembly (52ms)
+	ReloadAssembly (713ms)
+		BeginReloadAssembly (45ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (0ms)
-		EndReloadAssembly (561ms)
-			LoadAssemblies (51ms)
+		EndReloadAssembly (546ms)
+			LoadAssemblies (44ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (78ms)
+			SetupTypeCache (142ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (15ms)
-			SetupLoadedEditorAssemblies (433ms)
+			RebuildScriptCaches (13ms)
+			SetupLoadedEditorAssemblies (364ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (210ms)
+				InitializePlatformSupportModulesInManaged (222ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (105ms)
+				RefreshPlugins (65ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (69ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
+				ProcessInitializeOnLoadAttributes (48ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.005112 seconds.
+Registered in 0.003134 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -121,32 +121,32 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 165.77 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 65.47 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.331 seconds
+- Completed reload, in  0.808 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1332ms)
-		BeginReloadAssembly (89ms)
+	ReloadAssembly (809ms)
+		BeginReloadAssembly (65ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (20ms)
-		EndReloadAssembly (1135ms)
-			LoadAssemblies (74ms)
+			CreateAndSetChildDomain (14ms)
+		EndReloadAssembly (677ms)
+			LoadAssemblies (54ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (448ms)
+			SetupTypeCache (225ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (66ms)
-			SetupLoadedEditorAssemblies (516ms)
+			RebuildScriptCaches (35ms)
+			SetupLoadedEditorAssemblies (345ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (42ms)
-				SetLoadedEditorAssemblies (2ms)
-				RefreshPlugins (166ms)
-				BeforeProcessingInitializeOnLoad (76ms)
-				ProcessInitializeOnLoadAttributes (181ms)
-				ProcessInitializeOnLoadMethodAttributes (47ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (66ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (158ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
 				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
@@ -155,13 +155,13 @@ Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 1.77 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.03 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5286 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 65 unused Assets / (2.3 MB). Loaded Objects now: 5764.
-Memory consumption went from 247.1 MB to 244.8 MB.
-Total: 4.806300 ms (FindLiveObjects: 0.851900 ms CreateObjectMapping: 0.122300 ms MarkObjects: 2.932100 ms  DeleteObjects: 0.897800 ms)
+Unloading 5290 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 65 unused Assets / (2.3 MB). Loaded Objects now: 5768.
+Memory consumption went from 247.8 MB to 245.5 MB.
+Total: 3.260700 ms (FindLiveObjects: 0.351400 ms CreateObjectMapping: 0.088400 ms MarkObjects: 2.215500 ms  DeleteObjects: 0.604500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -176,89 +176,82 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 515149.371498 seconds.
-  path: Assets/BeautifulSky/CubeMap/Materials/Sky_Anime_12_morning_a.mat
-  artifactKey: Guid(3c5c10e1dc999ef45a5445c71730240c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/BeautifulSky/CubeMap/Materials/Sky_Anime_12_morning_a.mat using Guid(3c5c10e1dc999ef45a5445c71730240c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efbacb08edf7a80ded30b91f58ff7eb1') in 0.329046 seconds 
+  Time since last request: 611048.703044 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category
+  artifactKey: Guid(16bcb4f904dd81349a4497b2b593a4b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category using Guid(16bcb4f904dd81349a4497b2b593a4b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08e5ab2a0ac5d5dc1587c27afb2af72a') in 0.012119 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/BeautifulSky/Panoramic/Materials/Sky_Anime_17_Night_a.mat
-  artifactKey: Guid(6e3a0b07e952838498c77f5ab3acb5c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/BeautifulSky/Panoramic/Materials/Sky_Anime_17_Night_a.mat using Guid(6e3a0b07e952838498c77f5ab3acb5c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd880c0e4053657e8f71f5ffcad388680') in 0.044169 seconds 
+  Time since last request: 21.216218 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/7. 화장실버튼.png
+  artifactKey: Guid(b8621f26c1bb8f34bb3ec62aa33952cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/7. 화장실버튼.png using Guid(b8621f26c1bb8f34bb3ec62aa33952cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cdca784336e6325117dbf4e1cbdc6d5c') in 0.095057 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000062 seconds.
-  path: Assets/BeautifulSky/CubeMap/Materials/Sky_Anime_10_Night_b.mat
-  artifactKey: Guid(5f6890de7bbc82f4b83a8138dfaccb25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/BeautifulSky/CubeMap/Materials/Sky_Anime_10_Night_b.mat using Guid(5f6890de7bbc82f4b83a8138dfaccb25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8af9a80db2098327c72e71bc76c5ca46') in 0.120167 seconds 
+  Time since last request: 2.321893 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/4. 시설버튼.png
+  artifactKey: Guid(997f2633cbcd7254f92d84f62f90e95a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/4. 시설버튼.png using Guid(997f2633cbcd7254f92d84f62f90e95a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a778a55d5d17cfc34da92851c1d33b8e') in 0.062356 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/ToonSky/Materials/ToonBlueSkyDome_Blue.mat
-  artifactKey: Guid(79c6934c21771df4f8e41807e919eb26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ToonSky/Materials/ToonBlueSkyDome_Blue.mat using Guid(79c6934c21771df4f8e41807e919eb26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '445ae9576ec373ed319b6d8d7c7fada0') in 0.320041 seconds 
+  Time since last request: 9.458820 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/4. 시설버튼.png
+  artifactKey: Guid(997f2633cbcd7254f92d84f62f90e95a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/4. 시설버튼.png using Guid(997f2633cbcd7254f92d84f62f90e95a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcd4ae36e8dce14118dae431083eb754') in 0.028035 seconds 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003913 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Symbol file LoadedFromMemory is not a mono symbol file
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.83 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.721 seconds
-Domain Reload Profiling:
-	ReloadAssembly (721ms)
-		BeginReloadAssembly (97ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (35ms)
-		EndReloadAssembly (573ms)
-			LoadAssemblies (57ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (172ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (27ms)
-			SetupLoadedEditorAssemblies (268ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (18ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (55ms)
-				ProcessInitializeOnLoadAttributes (143ms)
-				ProcessInitializeOnLoadMethodAttributes (46ms)
-				AfterProcessingInitializeOnLoad (5ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (8ms)
-Platform modules already initialized, skipping
-Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.43 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5111 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 47 unused Assets / (2.3 MB). Loaded Objects now: 5865.
-Memory consumption went from 240.9 MB to 238.6 MB.
-Total: 4.670800 ms (FindLiveObjects: 0.549400 ms CreateObjectMapping: 0.131200 ms MarkObjects: 3.029700 ms  DeleteObjects: 0.959400 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Received Import Request.
+  Time since last request: 14.264215 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/1-1. 맛집버튼색.png
+  artifactKey: Guid(8b2ff0e8ae2bc9d40afadfebafaabfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/1-1. 맛집버튼색.png using Guid(8b2ff0e8ae2bc9d40afadfebafaabfce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2a8df58f1167ae0e97281f64fcfa3d8') in 0.015548 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 115.831431 seconds.
+  path: Assets/Images/UI/Test/03 MainIcons/검색창 배경.png
+  artifactKey: Guid(a259cc830863704438b5eb3254d60b87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/03 MainIcons/검색창 배경.png using Guid(a259cc830863704438b5eb3254d60b87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11672aa5b5c6966165bef4219754e126') in 0.051155 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.191694 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/1. 맛집버튼.png
+  artifactKey: Guid(be1604ce488ea134eab58e789abd7ac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/1. 맛집버튼.png using Guid(be1604ce488ea134eab58e789abd7ac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9aac5570fbf2d44ce1368c18ffb4d011') in 0.013023 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/3. 숙박버튼.png
+  artifactKey: Guid(c3a835e1188c9f844878f084032c0d23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/3. 숙박버튼.png using Guid(c3a835e1188c9f844878f084032c0d23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5350619aa46088ec73641f8c9e9b370') in 0.009895 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/7. 화장실버튼.png
+  artifactKey: Guid(b8621f26c1bb8f34bb3ec62aa33952cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/7. 화장실버튼.png using Guid(b8621f26c1bb8f34bb3ec62aa33952cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47d1740ae41e9fbcbe4be4989c8d34a7') in 0.009137 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/3-3. 숙박버튼색.png
+  artifactKey: Guid(68663d0c3c043c14bad15f65689bc056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/3-3. 숙박버튼색.png using Guid(68663d0c3c043c14bad15f65689bc056) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e00592255f3298365faf49f51f91d400') in 0.009315 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/2. 패션버튼.png
+  artifactKey: Guid(0fb92d90f75aec644bc8932f723f261f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/2. 패션버튼.png using Guid(0fb92d90f75aec644bc8932f723f261f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4744e2bf7897c81d1525e5483da120f') in 0.009647 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Images/UI/Test/05 SearchedList/Category/6-6. 버스버튼색.png
+  artifactKey: Guid(6cfeb7cec25dc21468b6af884f90308a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/05 SearchedList/Category/6-6. 버스버튼색.png using Guid(6cfeb7cec25dc21468b6af884f90308a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '640370089c9b027719dd5bebe48d2a08') in 0.009018 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Images/UI/Test/229번째이미지2.png
+  artifactKey: Guid(45c0117718bce0f4a8f5a4f0b11220e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/UI/Test/229번째이미지2.png using Guid(45c0117718bce0f4a8f5a4f0b11220e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d4e6a7dc418749b4649dc52d18ba24f') in 0.020823 seconds 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
 Process exiting

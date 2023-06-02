@@ -2,94 +2,107 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BezierMissile : MonoBehaviour
+namespace ToonJido.Game
 {
-    Vector3[] m_points = new Vector3[4];
-
-    private float m_timerMax = 0;
-    private float m_timerCurrent = 0;
-    private float m_speed;
-
-    public void Init(Transform _startTr, Transform _endTr, float _speed, float _newPointDistanceFromStartTr, float _newPointDistanceFromEndTr)
+    public class BezierMissile : MonoBehaviour
     {
-        m_speed = _speed;
+        Vector3[] m_points = new Vector3[4];
 
-        // ³¡¿¡ µµÂøÇÒ ½Ã°£À» ·£´ıÀ¸·Î ÁÜ.
-        m_timerMax = Random.Range(2.0f, 3.0f);
+        private float m_timerMax = 0;
+        private float m_timerCurrent = 0;
+        private float m_speed;
 
-        // ½ÃÀÛ ÁöÁ¡.
-        m_points[0] = _startTr.position;
-
-        // ½ÃÀÛ ÁöÁ¡À» ±âÁØÀ¸·Î ·£´ı Æ÷ÀÎÆ® ÁöÁ¤.
-        m_points[1] = _startTr.position +
-            (_newPointDistanceFromStartTr * Random.Range(-1.0f, 1.0f) * _startTr.right) + // X (ÁÂ, ¿ì ÀüÃ¼)
-            (_newPointDistanceFromStartTr * Random.Range(-0.15f, 1.0f) * _startTr.up) + // Y (¾Æ·¡ÂÊ Á¶±İ, À§ÂÊ ÀüÃ¼)
-            (_newPointDistanceFromStartTr * Random.Range(-1.0f, 1.0f) * _startTr.forward); // Z (¾Õ, µÚ ÀüÃ¼)
-
-        // µµÂø ÁöÁ¡À» ±âÁØÀ¸·Î ·£´ı Æ÷ÀÎÆ® ÁöÁ¤.
-        m_points[2] = _endTr.position +
-            (_newPointDistanceFromEndTr * Random.Range(-1.0f, 1.0f) * _endTr.right) + // X (ÁÂ, ¿ì ÀüÃ¼)
-            (_newPointDistanceFromEndTr * Random.Range(-1.0f, 1.0f) * _endTr.up) + // Y (À§, ¾Æ·¡ ÀüÃ¼)
-            (_newPointDistanceFromEndTr * Random.Range(0.8f, 1.0f) * _endTr.forward); // Z (¾Õ ÂÊ¸¸)
-
-        // µµÂø ÁöÁ¡.
-        m_points[3] = _endTr.position;
-
-        transform.position = _startTr.position;
-    }
-
-    void Update()
-    {
-        if (m_timerCurrent > m_timerMax)
+        public void Init(
+            Transform _startTr,
+            Transform _endTr,
+            float _speed,
+            float _newPointDistanceFromStartTr,
+            float _newPointDistanceFromEndTr
+        )
         {
-            return;
+            m_speed = _speed;
+
+            // ëì— ë„ì°©í•  ì‹œê°„ì„ ëœë¤ìœ¼ë¡œ ì¤Œ.
+            m_timerMax = Random.Range(2.0f, 3.0f);
+
+            // ì‹œì‘ ì§€ì .
+            m_points[0] = _startTr.position;
+
+            // ì‹œì‘ ì§€ì ì„ ê¸°ì¤€ìœ¼ë¡œ ëœë¤ í¬ì¸íŠ¸ ì§€ì •.
+            m_points[1] =
+                _startTr.position
+                + (_newPointDistanceFromStartTr * Random.Range(-1.0f, 1.0f) * _startTr.right) // X (ì¢Œ, ìš° ì „ì²´)
+                + (_newPointDistanceFromStartTr * Random.Range(-0.15f, 1.0f) * _startTr.up) // Y (ì•„ë˜ìª½ ì¡°ê¸ˆ, ìœ„ìª½ ì „ì²´)
+                + (_newPointDistanceFromStartTr * Random.Range(-1.0f, 1.0f) * _startTr.forward); // Z (ì•, ë’¤ ì „ì²´)
+
+            // ë„ì°© ì§€ì ì„ ê¸°ì¤€ìœ¼ë¡œ ëœë¤ í¬ì¸íŠ¸ ì§€ì •.
+            m_points[2] =
+                _endTr.position
+                + (_newPointDistanceFromEndTr * Random.Range(-1.0f, 1.0f) * _endTr.right)
+                + (_newPointDistanceFromEndTr * Random.Range(-1.0f, 1.0f) * _endTr.up)
+                + (_newPointDistanceFromEndTr * Random.Range(0.8f, 1.0f) * _endTr.forward);
+
+            // ë„ì°© ì§€ì .
+            m_points[3] = _endTr.position;
+
+            transform.position = _startTr.position;
         }
 
-        // °æ°ú ½Ã°£ °è»ê.
-        m_timerCurrent += Time.deltaTime * m_speed;
+        void Update()
+        {
+            if (m_timerCurrent > m_timerMax)
+            {
+                return;
+            }
 
-        // º£Áö¾î °î¼±À¸·Î X,Y,Z ÁÂÇ¥ ¾ò±â.
-        transform.position = new Vector3(
-            CubicBezierCurve(m_points[0].x, m_points[1].x, m_points[2].x, m_points[3].x),
-            CubicBezierCurve(m_points[0].y, m_points[1].y, m_points[2].y, m_points[3].y),
-            CubicBezierCurve(m_points[0].z, m_points[1].z, m_points[2].z, m_points[3].z)
-        );
-    }
+            // ê²½ê³¼ ì‹œê°„ ê³„ì‚°.
+            m_timerCurrent += Time.deltaTime * m_speed;
 
-    /// <summary>
-    /// 3Â÷ º£Áö¾î °î¼±.
-    /// </summary>
-    /// <param name="a">½ÃÀÛ À§Ä¡</param>
-    /// <param name="b">½ÃÀÛ À§Ä¡¿¡¼­ ¾ó¸¶³ª ²ªÀÏ Áö Á¤ÇÏ´Â À§Ä¡</param>
-    /// <param name="c">µµÂø À§Ä¡¿¡¼­ ¾ó¸¶³ª ²ªÀÏ Áö Á¤ÇÏ´Â À§Ä¡</param>
-    /// <param name="d">µµÂø À§Ä¡</param>
-    /// <returns></returns>
-    private float CubicBezierCurve(float a, float b, float c, float d)
-    {
-        // (0~1)ÀÇ °ª¿¡ µû¶ó º£Áö¾î °î¼± °ªÀ» ±¸ÇÏ±â ¶§¹®¿¡, ºñÀ²¿¡ µû¸¥ ½Ã°£À» ±¸Çß´Ù.
-        float t = m_timerCurrent / m_timerMax; // (ÇöÀç °æ°ú ½Ã°£ / ÃÖ´ë ½Ã°£)
+            // ë² ì§€ì–´ ê³¡ì„ ìœ¼ë¡œ X,Y,Z ì¢Œí‘œ ì–»ê¸°.
+            transform.position = new Vector3(
+                CubicBezierCurve(m_points[0].x, m_points[1].x, m_points[2].x, m_points[3].x),
+                CubicBezierCurve(m_points[0].y, m_points[1].y, m_points[2].y, m_points[3].y),
+                CubicBezierCurve(m_points[0].z, m_points[1].z, m_points[2].z, m_points[3].z)
+            );
+        }
 
-        // ¹æÁ¤½Ä.
-        /*
-        return Mathf.Pow((1 - t), 3) * a
-            + Mathf.Pow((1 - t), 2) * 3 * t * b
-            + Mathf.Pow(t, 2) * 3 * (1 - t) * c
-            + Mathf.Pow(t, 3) * d;
-        */
+        /// <summary>
+        /// 3ì°¨ ë² ì§€ì–´ ê³¡ì„ .
+        /// </summary>
+        /// <param name="a">ì‹œì‘ ìœ„ì¹˜</param>
+        /// <param name="b">ì‹œì‘ ìœ„ì¹˜ì—ì„œ ì–¼ë§ˆë‚˜ êº¾ì¼ ì§€ ì •í•˜ëŠ” ìœ„ì¹˜</param>
+        /// <param name="c">ë„ì°© ìœ„ì¹˜ì—ì„œ ì–¼ë§ˆë‚˜ êº¾ì¼ ì§€ ì •í•˜ëŠ” ìœ„ì¹˜</param>
+        /// <param name="d">ë„ì°© ìœ„ì¹˜</param>
+        /// <returns></returns>
+        private float CubicBezierCurve(float a, float b, float c, float d)
+        {
+            // (0~1)ì˜ ê°’ì— ë”°ë¼ ë² ì§€ì–´ ê³¡ì„  ê°’ì„ êµ¬í•˜ê¸° ë•Œë¬¸ì—, ë¹„ìœ¨ì— ë”°ë¥¸ ì‹œê°„ì„ êµ¬í–ˆë‹¤.
+            // (í˜„ì¬ ê²½ê³¼ ì‹œê°„ / ìµœëŒ€ ì‹œê°„)
+            float t = m_timerCurrent / m_timerMax;
 
-        // ÀÌÇØÇÑ´ë·Î ÆíÇÏ°Ô ¾²¸é.
-        float ab = Mathf.Lerp(a, b, t);
-        float bc = Mathf.Lerp(b, c, t);
-        float cd = Mathf.Lerp(c, d, t);
+            // ë°©ì •ì‹.
+            /*
+            return Mathf.Pow((1 - t), 3) * a
+                + Mathf.Pow((1 - t), 2) * 3 * t * b
+                + Mathf.Pow(t, 2) * 3 * (1 - t) * c
+                + Mathf.Pow(t, 3) * d;
+            */
 
-        float abbc = Mathf.Lerp(ab, bc, t);
-        float bccd = Mathf.Lerp(bc, cd, t);
+            // ì´í•´í•œëŒ€ë¡œ í¸í•˜ê²Œ ì“°ë©´.
+            float ab = Mathf.Lerp(a, b, t);
+            float bc = Mathf.Lerp(b, c, t);
+            float cd = Mathf.Lerp(c, d, t);
 
-        return Mathf.Lerp(abbc, bccd, t);
-    }
+            float abbc = Mathf.Lerp(ab, bc, t);
+            float bccd = Mathf.Lerp(bc, cd, t);
 
-    void OnTriggerEnter(Collider collision)
-    {
-        Destroy(this.gameObject, 0.35f); // ÇÑÂÊ¿¡ Trigger Ã¼Å©ÇÏ´Â °Í°ú Rigidbody ÄÄÆ÷³ÍÆ® Ãß°¡ ÀØÁö ¸»±â.
+            return Mathf.Lerp(abbc, bccd, t);
+        }
+
+        void OnTriggerEnter(Collider collision)
+        {
+            // í•œìª½ì— Trigger ì²´í¬í•˜ëŠ” ê²ƒê³¼ Rigidbody ì»´í¬ë„ŒíŠ¸ ì¶”ê°€ ìŠì§€ ë§ê¸°.
+            Destroy(this.gameObject, 0.35f);
+        }
     }
 }

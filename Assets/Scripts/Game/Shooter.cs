@@ -2,45 +2,66 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+namespace ToonJido.Game
 {
-    public GameObject m_missilePrefab; // ¹Ì»çÀÏ ÇÁ¸®ÆÕ.
-    public List<GameObject> targets;
-    private GameObject m_target; // µµÂø ÁöÁ¡.
-
-    [Header("¹Ì»çÀÏ ±â´É °ü·Ã")]
-    public float m_speed = 2; // ¹Ì»çÀÏ ¼Óµµ.
-    [Space(10f)]
-    public float m_distanceFromStart = 6.0f; // ½ÃÀÛ ÁöÁ¡À» ±âÁØÀ¸·Î ¾ó¸¶³ª ²ªÀÏÁö.
-    public float m_distanceFromEnd = 3.0f; // µµÂø ÁöÁ¡À» ±âÁØÀ¸·Î ¾ó¸¶³ª ²ªÀÏÁö.
-    [Space(10f)]
-    public int m_shotCount = 12; // ÃÑ ¸î °³ ¹ß»çÇÒ°ÇÁö.
-    [Range(0, 1)] public float m_interval = 0.15f;
-    public int m_shotCountEveryInterval = 2; // ÇÑ¹ø¿¡ ¸î °³¾¿ ¹ß»çÇÒ°ÇÁö.
-
-    public void ShootStarBall()
+    public class Shooter : MonoBehaviour
     {
-        StartCoroutine(CreateMissile());
-    }
+        // ë¯¸ì‚¬ì¼ í”„ë¦¬íŒ¹.
+        public GameObject m_missilePrefab;
+        public List<GameObject> targets;
+        // ë„ì°© ì§€ì .
+        private GameObject m_target;
 
-    IEnumerator CreateMissile()
-    {
-        m_target = targets[Random.Range(0, targets.Count)];
-        int _shotCount = m_shotCount;
-        while (_shotCount > 0)
+        [Header("????? ??? ????")]
+        public float m_speed = 2;
+
+        [Space(10f)]
+        // ì‹œì‘ ì§€ì ì„ ê¸°ì¤€ìœ¼ë¡œ ì–¼ë§ˆë‚˜ êº¾ì¼ì§€.
+        public float m_distanceFromStart = 6.0f;
+        // ë„ì°© ì§€ì ì„ ê¸°ì¤€ìœ¼ë¡œ ì–¼ë§ˆë‚˜ êº¾ì¼ì§€.
+        public float m_distanceFromEnd = 3.0f;
+
+        [Space(10f)]
+        // ì´ ëª‡ ê°œ ë°œì‚¬í• ê±´ì§€.
+        public int m_shotCount = 12;
+
+        [Range(0, 1)]
+        public float m_interval = 0.15f;
+        // í•œë²ˆì— ëª‡ ê°œì”© ë°œì‚¬í• ê±´ì§€.
+        public int m_shotCountEveryInterval = 2;
+
+        public void ShootStarBall()
         {
-            for (int i = 0; i < m_shotCountEveryInterval; i++)
-            {
-                if (_shotCount > 0)
-                {
-                    GameObject missile = Instantiate(m_missilePrefab);
-                    missile.GetComponent<BezierMissile>().Init(this.gameObject.transform, m_target.transform, m_speed, m_distanceFromStart, m_distanceFromEnd);
-
-                    _shotCount--;
-                }
-            }
-            yield return new WaitForSeconds(m_interval);
+            StartCoroutine(CreateMissile());
         }
-        yield return null;
+
+        IEnumerator CreateMissile()
+        {
+            m_target = targets[Random.Range(0, targets.Count)];
+            int _shotCount = m_shotCount;
+            while (_shotCount > 0)
+            {
+                for (int i = 0; i < m_shotCountEveryInterval; i++)
+                {
+                    if (_shotCount > 0)
+                    {
+                        GameObject missile = Instantiate(m_missilePrefab);
+                        missile
+                            .GetComponent<BezierMissile>()
+                            .Init(
+                                this.gameObject.transform,
+                                m_target.transform,
+                                m_speed,
+                                m_distanceFromStart,
+                                m_distanceFromEnd
+                            );
+
+                        _shotCount--;
+                    }
+                }
+                yield return new WaitForSeconds(m_interval);
+            }
+            yield return null;
+        }
     }
 }

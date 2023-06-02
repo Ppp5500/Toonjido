@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ToonJido.Control;
 using ToonJido.Data.Model;
+using ToonJido.Common;
 
 namespace ToonJido.UI
 {
@@ -27,9 +28,9 @@ namespace ToonJido.UI
         {
             wstring = await GetWeatherData();
             wstring = wstring.Substring(2, wstring.Length - 4);
-            // ÇöÀç ¼­¹öÃø¿¡¼­ º¸³»´Â jsonÀÌ Àß¸øµÈ ÆÄÀÏÀÓ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jsonï¿½ï¿½ ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             weather = JsonConvert.DeserializeObject<WeatherInfo>(wstring);
-            weatherText.text = ($"±â¿Â: {weather.temp}, °­¼ö·®: {weather.rainfall}, ½Àµµ: {weather.humidity}");
+            weatherText.text = ($"ï¿½ï¿½ï¿½: {weather.temp}, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: {weather.rainfall}, ï¿½ï¿½ï¿½ï¿½: {weather.humidity}");
         }
 
         private async Task<string> GetWeatherData()

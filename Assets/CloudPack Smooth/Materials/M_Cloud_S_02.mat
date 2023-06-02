@@ -76,10 +76,10 @@ Material:
     - _BackLight_Strength: 0.5
     - _ColorFalloff: 0
     - _CoreDarkness: 0
-    - _EdgeBrightness: 0
+    - _EdgeBrightness: 0.4
     - _FuzzyPower: 0
-    - _HeigthOffset: -0.4
-    - _NoisePower: 0
+    - _HeigthOffset: 0.9
+    - _NoisePower: -10
     - _NoiseStrength: 0.5
     - _NoiseTiling: 4
     - _Noise_Strength: 0.5
@@ -91,7 +91,7 @@ Material:
     - Color_171CFD5E: {r: 0.8078432, g: 0.8666667, b: 0.9058824, a: 1}
     - Color_243C1702: {r: 0.45882356, g: 0.4705882, b: 0.6, a: 1}
     - Color_ee3b86a7dfd2455fa338dd4b8712e5c3: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.93948025, g: 0.93948025, b: 0.9811321, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0, g: 0, b: 0, a: 0}
     - _SecColor: {r: 0.818249, g: 0.748932, b: 0.8490566, a: 1}
   m_BuildTextureStacks: []
