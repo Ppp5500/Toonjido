@@ -6,7 +6,7 @@ namespace ToonJido.UI{
     public class ButtonMappeFirstLogin : MonoBehaviour
     {
         private SceneLoaderSingleton sl;
-        private LoginManager lm;
+        private InitializeManager lm;
 
         [SerializeField] private Button tutorialCheckButton;
         [SerializeField] private Button kakaoLoginButton;
@@ -16,7 +16,7 @@ namespace ToonJido.UI{
             sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderSingleton>();
             tutorialCheckButton.onClick.AddListener(() => sl.LoadSceneAsync("03 TestScene"));
 
-            lm = GameObject.Find("LoginManager").GetComponent<LoginManager>();
+            lm = GameObject.Find("LoginManager").GetComponent<InitializeManager>();
             kakaoLoginButton.onClick.AddListener(() => lm.OpenKakaoLogin());
         }
     }

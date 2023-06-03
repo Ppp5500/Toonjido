@@ -59,12 +59,7 @@ namespace ToonJido.UI
             position.y = Mathf.Clamp(position.y, _minSafe, _maxSafe);
             transform.position = canvas.transform.TransformPoint(position);
 
-            foreach (Image item in buttons)
-            {
-                float alpha = normalize(position.y, 0, 1);
-                Color delColor = new(1, 1, 1, alpha);
-                item.color = delColor;
-            }
+
         }
 
         float normalize(float value, float min, float max)
@@ -81,16 +76,25 @@ namespace ToonJido.UI
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
         {
             CurrentControl.state = tempState;
+            if(transform.position.y > (Screen.height/2)){
+                Up();
+            }
+            else{
+                Down();
+            }
         }
 
         public void Down()
         {
             transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
+            sideButtonParant.SetActive(true);
         }
 
         public void Up()
         {
             transform.position = canvas.transform.TransformPoint(new Vector2(0, _maxSafe));
+            sideButtonParant.SetActive(false);
+
         }
     }
 }

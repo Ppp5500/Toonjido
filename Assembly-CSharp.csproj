@@ -62,7 +62,7 @@
      <Compile Include="Assets\Scripts\Control\NavPlayerControl.cs" />
      <Compile Include="Assets\Scripts\Game\Shooter.cs" />
      <Compile Include="Assets\Scripts\Data\Model\Weather.cs" />
-     <Compile Include="Assets\Scripts\Login\LoginManager.cs" />
+     <Compile Include="Assets\Scripts\Login\InitializeManager.cs" />
      <Compile Include="Assets\Scripts\GPSEncoder\GPSEncoder.cs" />
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
      <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
@@ -80,9 +80,9 @@
      <Compile Include="Assets\Scripts\Common\SceneLoaderSingleton.cs" />
      <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\Login\UserProfile.cs" />
+     <Compile Include="Assets\Scripts\UI\ContentScaler.cs" />
      <Compile Include="Assets\Scripts\Control\CurrentControl.cs" />
      <Compile Include="Assets\VFX\Environment VFX pack\Demo\Scripts\_InputKeyBoard.cs" />
-     <Compile Include="Assets\Scripts\UI\ContentScaler.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Images\desing-space-paper-textured-background.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

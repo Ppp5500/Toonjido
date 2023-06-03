@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
-using System;
+using System.IO;
 using TMPro;
 using ToonJido.Control;
 using UnityEngine;
@@ -17,7 +17,7 @@ namespace ToonJido.Search
 {
     public class SearchManager : MonoBehaviour
     {
-        SearchedStore store = new();
+        SearchedStore storeData = new();
 
         [SerializeField]
         private UIDrag drag;
@@ -54,16 +54,62 @@ namespace ToonJido.Search
 
         [SerializeField]
         private Sprite fullHeart;
+
+
+#region DetailCanvasProperties
+        [SerializeField] private GameObject detailCanvas;
+        [SerializeField] private GameObject detailContent;
+        [SerializeField] private GameObject loadingPanel;
+        [SerializeField]
+        private UnityEngine.UI.Image Thumbnail;
+        [SerializeField]
+        private TextMeshProUGUI title;
+        [SerializeField]
+        private TextMeshProUGUI storeName;
+
+        [SerializeField]
+        private TextMeshProUGUI starText;
+        [SerializeField]
+        private TextMeshProUGUI clockText;
+        [SerializeField]
+        private TextMeshProUGUI explainText;
+        [SerializeField]
+        private TextMeshProUGUI addressText;
+        [SerializeField]
+        private TextMeshProUGUI contactText;
+        [SerializeField]
+        private List<UnityEngine.UI.Image> stars;
+
+#endregion DetailCanvasProperties
         private HttpClient client = HttpClientProvider.GetHttpClient();
 
         private List<GameObject> resultPrefs = new List<GameObject>();
         public static SearchManager instance;
 
-        private void Awake()
+        private async void Awake()
         {
             if (instance == null)
             {
                 instance = this;
+            }
+
+            try
+            {
+                using (StreamReader reader = new(dataPath))
+                {
+                    var data = await reader.ReadToEndAsync();
+                    var setting = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    storeData = JsonConvert.DeserializeObject<SearchedStore>(data, setting);
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                print(ex.Message);
             }
         }
 
@@ -124,23 +170,22 @@ namespace ToonJido.Search
             return result;
         }
 
-        public async Task<SearchedStore> SearchStoreByAddress(string address)
+        public SearchedStore SearchStoreByAddress(string address)
         {
-            var searchURL = baseURL + "get_Market_DB_List";
-            var response = await client.GetAsync(searchURL);
-            response.EnsureSuccessStatusCode();
-            var httpResult = await response.Content.ReadAsStringAsync();
+            // var searchURL = baseURL + "get_Market_DB_List";
+            // var response = await client.GetAsync(searchURL);
+            // response.EnsureSuccessStatusCode();
+            // var httpResult = await response.Content.ReadAsStringAsync();
+            //SearchedStore searchedStore = new();
+            // var setting = new JsonSerializerSettings
+            // {
+            //     NullValueHandling = NullValueHandling.Ignore,
+            //     MissingMemberHandling = MissingMemberHandling.Ignore
+            // };
+            // searchedStore = JsonConvert.DeserializeObject<SearchedStore>(httpResult, setting);
 
             SearchedStore searchedStore = new();
-
-            var setting = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
-            };
-            searchedStore = JsonConvert.DeserializeObject<SearchedStore>(httpResult, setting);
-
-            searchedStore.cultures = searchedStore.cultures
+            searchedStore.cultures = storeData.cultures
                 .Where(x => x.lot_number == address)
                 .ToArray();
             return searchedStore;
@@ -172,7 +217,14 @@ namespace ToonJido.Search
                     resultPrefs.Add(mypref);
 
                     Button button = mypref.GetComponent<Button>();
-                    button.interactable = false;
+                    // ColorBlock colorBlock = new(){
+                    //     normalColor = Color.gray,
+                    //     highlightedColor = Color.white,
+                    //     pressedColor = Color.white,
+                    //     selectedColor = Color.white,
+                    //     disabledColor = Color.gray
+                    // };
+                    // button.colors = colorBlock;
                 }
                 else
                 {
@@ -183,11 +235,12 @@ namespace ToonJido.Search
                     Rect rect = new Rect(0, 0, tex.width, tex.height);
                     Sprite sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
 
+                    string storeName = input.cultures[i].market_name;
+
                     mypref.transform
                         .Find("Main Image")
                         .GetComponent<UnityEngine.UI.Image>()
                         .sprite = sp;
-                    string storeName = input.cultures[i].market_name;
                     mypref.transform
                         .Find("Store Name")
                         .GetComponent<TextMeshProUGUI>()
@@ -209,8 +262,7 @@ namespace ToonJido.Search
                     mypref.transform
                         .Find("Heart Icon")
                         .GetComponent<UnityEngine.UI.Image>()
-                        .sprite =
-                        input.cultures[i].open_check == "O" ? blankHeart : fullHeart;
+                        .sprite = input.cultures[i].open_check == "O" ? blankHeart : fullHeart;
                     var lot = input.cultures[i].lot_number;
                     mypref.transform
                         .Find("PathFindButton")
@@ -233,8 +285,39 @@ namespace ToonJido.Search
             NavPlayerControl.navPlayerControl.SetDestination(lot);
         }
 
-        private void OpenDetailCanvas(string name){
+        private async void OpenDetailCanvas(string name)
+        {
+            // show detailCanvas
+            detailCanvas.SetActive(true);
 
+            loadingPanel.SetActive(true);
+            // Get data
+            var result = await SearchStore(name);
+            var setting = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+            SearchedStore store = JsonConvert.DeserializeObject<SearchedStore>(result, setting);
+            Culture currentStore = store.cultures[0];
+
+            string imgURL = currentStore.images[0].image;
+                    var data = await client.GetByteArrayAsync(baseURL + imgURL.Substring(1));
+                    Texture2D tex = new(690, 500);
+                    tex.LoadImage(data, false);
+                    Rect rect = new Rect(0, 0, tex.width, tex.height);
+                    Sprite sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
+
+            Thumbnail.sprite = sp;
+            title.text = currentStore.market_name;
+            storeName.text = currentStore.market_name;
+            starText.text = "4";
+            explainText.text = currentStore.explain;
+            clockText.text = currentStore.open_hours;
+            addressText.text = currentStore.address;
+            contactText.text = currentStore.phone;
+
+            loadingPanel.SetActive(false);
         }
 
         private void SearchPanelSwitch()
