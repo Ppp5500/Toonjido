@@ -2,9 +2,14 @@ using System;
 
 namespace ToonJido.Control
 {
-    public static class CurrentControl
+    public enum GPSStatus
     {
-        public enum State
+        avaliable,
+        invalid_timeout,
+        invalid_location
+    }
+
+    public enum State
         {
             Overlook,
             Eyelevel,
@@ -12,32 +17,35 @@ namespace ToonJido.Control
             Profile,
             Weather
         }
-
+    
+    public static class CurrentControl
+    {
         public static State state = State.Overlook;
         public static State lastState;
+        public static GPSStatus gpsStatus;
 
         /// <summary>
-        /// ºÎ°¨ »óÅÂ·Î ÀüÈ¯
+        /// ï¿½Î°ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         /// </summary>
         public static Action overlookAction;
 
         /// <summary>
-        /// ¾ÆÀÌ·¹º§ »óÅÂ·Î ÀüÈ¯
+        /// ï¿½ï¿½ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         /// </summary>
         public static Action eyelevelAction;
 
         /// <summary>
-        /// °Ë»ö °á°ú¸¦ º¸¿©ÁÖ´Â »óÅÂ·Î ÀüÈ¯ÇÒ ¶§
+        /// ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½
         /// </summary>
         public static Action searchResultAction;
 
         /// <summary>
-        /// ÇÁ·ÎÇÊÀ» º¸¿©ÁÖ´Â »óÅÂ·Î ÀüÈ¯ÇÒ ¶§
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½
         /// </summary>
         public static Action profileAction;
 
         /// <summary>
-        /// ³¯¾¾¸¦ º¸¿©ÁÖ´Â »óÅÂ·Î ÀüÈ¯ÇÒ ¶§
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½
         /// </summary>
         public static Action weatherAction;
 
@@ -57,7 +65,9 @@ namespace ToonJido.Control
 
         public static void ChangeToSearchResult()
         {
-            lastState = state;
+            if(state != State.SearchResult){
+                lastState = state;
+            }
             state = State.SearchResult;
             searchResultAction();
         }

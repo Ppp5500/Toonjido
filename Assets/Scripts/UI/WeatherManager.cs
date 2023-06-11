@@ -17,6 +17,11 @@ namespace ToonJido.UI
         string wstring;
         WeatherInfo weather = new();
 
+        public TextMeshProUGUI tem;
+        public TextMeshProUGUI cloud;
+        public TextMeshProUGUI hum;
+
+
 
         // Start is called before the first frame update
         void Start()
@@ -28,9 +33,20 @@ namespace ToonJido.UI
         {
             wstring = await GetWeatherData();
             wstring = wstring.Substring(2, wstring.Length - 4);
-            // ���� ���������� ������ json�� �߸��� ������
+            print(wstring);
             weather = JsonConvert.DeserializeObject<WeatherInfo>(wstring);
-            weatherText.text = ($"���: {weather.temp}, ������: {weather.rainfall}, ����: {weather.humidity}");
+            tem.text=weather.temp.ToString() + "°C";
+            switch(weather.sky){
+                case 1:
+                    cloud.text = "맑은 날";
+                    break;
+                case 4:
+                    cloud.text = "흐린 날";
+                    break;
+            }
+            hum.text = weather.humidity + "%";
+
+            //weatherText.text = ($"기온: {weather.temp}, 강수확률: {weather.rainfall}, 습도: {weather.humidity}");
         }
 
         private async Task<string> GetWeatherData()

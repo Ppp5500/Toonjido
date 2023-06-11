@@ -1,4 +1,5 @@
 using UnityEngine;
+using ToonJido.Data.Model;
 
 namespace ToonJido.Test
 {
@@ -16,35 +17,48 @@ namespace ToonJido.Test
             // Position used for the cube.
             position = new Vector3(0.0f, 0.0f, 0.0f);
         }
-
+#if DEVELOPMENT
 #if UNITY_EDITOR
         void OnGUI()
         {
             // Compute a fontSize based on the size of the screen width.
             GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-            GUI.Label(new Rect(20, 60, width, height * 0.25f),
-                 $"platform:Editor\nver:{Application.version}");
+            GUI.Label(
+                new Rect(20, 60, width, height * 0.25f),
+                $"platform:Editor\nver:{Application.version}"
+            );
+
+            GUI.Label(
+                new Rect(20, 160, width, height * 0.25f),
+                $"s id:{UserProfile.social_login_id}"
+            );
         }
 #elif UNITY_ANDROID
-    void OnGUI()
-    {
-        // Compute a fontSize based on the size of the screen width.
-        GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
+        void OnGUI()
+        {
+            // Compute a fontSize based on the size of the screen width.
+            GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-        GUI.Label(new Rect(20, 20, width, height * 0.25f),
-             "platform:Android");
-    }
+            GUI.Label(new Rect(20, 20, width, height * 0.25f), "platform:Android");
+            GUI.Label(
+                new Rect(20, 160, width, height * 0.25f),
+                $"s id:{UserProfile.social_login_id}"
+            );
+        }
 #elif UNITY_IOS
-    void OnGUI()
-    {
-        // Compute a fontSize based on the size of the screen width.
-        GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
+        void OnGUI()
+        {
+            Compute a fontSize based on the size of the screen width.
+            GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-        GUI.Label(new Rect(20, 20, width, height * 0.25f),
-             "platform:iOS");
-    }
+            GUI.Label(new Rect(20, 20, width, height * 0.25f), "platform:iOS");
+            GUI.Label(
+                new Rect(20, 160, width, height * 0.25f),
+                $"s id:{UserProfile.social_login_id}"
+            );
+        }
+#endif
 #endif
     }
 }
-

@@ -6,6 +6,7 @@ using System.Text;
 using System;
 using ToonJido.Data.Model;
 using static appSetting;
+using System.Threading.Tasks;
 
 namespace ToonJido.Data.Saver
 {
@@ -13,7 +14,6 @@ namespace ToonJido.Data.Saver
     {
         private const string tokenPW = "rmdwjd17!!";
         private readonly string userInfoPath = Path.Combine(Application.persistentDataPath, "playerInfo.json");
-
 
         private bool disposedValue;
 
@@ -23,6 +23,12 @@ namespace ToonJido.Data.Saver
         {
             string saveData = JsonConvert.SerializeObject(user);
             File.WriteAllTextAsync(userInfoPath, saveData);
+        }
+
+        public async Task<string> LoadUserSocialIdAsync(){
+            string loadData = await File.ReadAllTextAsync(userInfoPath);
+            User user = JsonConvert.DeserializeObject<User>(loadData);
+            return user.user_social_id;
         }
 
 

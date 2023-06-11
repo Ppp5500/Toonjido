@@ -5,7 +5,9 @@ namespace ToonJido.Data.Model
     [Serializable]
     public class User
     {
-        private uint uid;
+        public uint uid {get; set;}
+        public string user_social_id{get; set;}
+        public string token {get; set;}
         private int gender;
         private uint age;
         private string nickName;

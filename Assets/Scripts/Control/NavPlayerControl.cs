@@ -4,11 +4,10 @@ using UnityEngine.AI;
 namespace ToonJido.Control
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(LineRenderer))]
     public class NavPlayerControl : MonoBehaviour
     {
         private NavMeshAgent myNavMeshAgent;
-        private LineRenderer lineRenderer;
+        public LineRenderer lineRenderer;
 
         [SerializeField]
         private GameObject clickMarker;
@@ -16,6 +15,7 @@ namespace ToonJido.Control
         [SerializeField]
         private Transform visualObjectsParent;
         public static NavPlayerControl navPlayerControl;
+        public GameObject noticeCanvas;
 
         void Awake()
         {
@@ -29,7 +29,8 @@ namespace ToonJido.Control
         void Start()
         {
             myNavMeshAgent = GetComponent<NavMeshAgent>();
-            lineRenderer = GetComponent<LineRenderer>();
+            lineRenderer.material.mainTextureScale = new Vector2(0.5f, 1f);
+
 
             lineRenderer.startWidth = 4f;
             lineRenderer.endWidth = 4f;
@@ -47,11 +48,20 @@ namespace ToonJido.Control
             if (myNavMeshAgent.hasPath)
             {
                 DrwaPath();
-                if (myNavMeshAgent.remainingDistance < 3f)
+                if (myNavMeshAgent.remainingDistance < 5f)
                 {
+                    // 도착 알림
+                    
+                    // 경로 지우기
                     ClearPath();
                 }
             }
+            
+            // Animates main texture scale in a funky way!
+            // float scaleX = Mathf.Cos(Time.time) * 0.5f + 1;
+            // float scaleY = Mathf.Sin(Time.time) * 0.5f + 1;
+            float offsetX = Time.time - (int)Time.time;
+            lineRenderer.material.mainTextureOffset = new Vector2(1 - offsetX, 1);
         }
 
         private void ClickToMove()
@@ -67,10 +77,19 @@ namespace ToonJido.Control
 
         public void SetDestination(Vector3 target)
         {
-            clickMarker.transform.SetParent(visualObjectsParent);
-            myNavMeshAgent.SetDestination(target);
             clickMarker.SetActive(true);
-            clickMarker.transform.position = target;
+            clickMarker.transform.SetParent(visualObjectsParent);
+            myNavMeshAgent.enabled = true;
+            if(myNavMeshAgent.isOnNavMesh){
+                myNavMeshAgent.SetDestination(target);
+                clickMarker.SetActive(true);
+                clickMarker.transform.position = target;
+            }
+            else{
+                // 유효하지 않은 위치
+                noticeCanvas.SetActive(true);
+            }
+            
         }
 
         private void DrwaPath()
@@ -96,11 +115,12 @@ namespace ToonJido.Control
 
         private void ClearPath()
         {
-            print("clear!");
+            clickMarker.SetActive(false);
             myNavMeshAgent.path.ClearCorners();
             // myNavMeshAgent.isStopped = true;
             myNavMeshAgent.ResetPath();
             lineRenderer.positionCount = 0;
+            myNavMeshAgent.enabled = false;
         }
     }
 }

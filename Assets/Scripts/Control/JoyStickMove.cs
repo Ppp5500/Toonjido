@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ToonJido.Control
 {
-    // °Á ÀÌ°Å CameraWork¿¡ ÇÕÃÄ¹ö¸®´Â °Ô ³ªÀ» °Í °°Àºµð?
+    // ï¿½ï¿½ ï¿½Ì°ï¿½ CameraWorkï¿½ï¿½ ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
     public class JoyStickMove : MonoBehaviour
     {
         private Vector3 moveInput;
@@ -14,7 +14,7 @@ namespace ToonJido.Control
             transform.Translate(moveInput * moveSpeed * Time.deltaTime, Space.Self);
         }
 
-        public void InputTest(Vector2 input)
+        public void GetInput(Vector2 input)
         {
             moveInput.x = input.x;
             moveInput.z = input.y;

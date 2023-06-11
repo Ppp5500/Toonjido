@@ -7,7 +7,7 @@ namespace ToonJido.UI
 {
     public class UIDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
-        private CurrentControl.State tempState;
+        private State tempState;
         public Canvas canvas;
         public RectTransform topRect;
         Rect _safeArea;
@@ -41,7 +41,7 @@ namespace ToonJido.UI
 
             buttons = sideButtonParant.GetComponentsInChildren<Image>();
 
-            Down();
+            FirstDown();
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -70,7 +70,7 @@ namespace ToonJido.UI
         void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
         {
             tempState = CurrentControl.state;
-            CurrentControl.state = CurrentControl.State.SearchResult;
+            CurrentControl.state = State.SearchResult;
         }
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData)
@@ -88,13 +88,18 @@ namespace ToonJido.UI
         {
             transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
             sideButtonParant.SetActive(true);
+            // CurrentControl.ChangeToLastState();
+        }
+
+        public void FirstDown(){
+            transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
         }
 
         public void Up()
         {
             transform.position = canvas.transform.TransformPoint(new Vector2(0, _maxSafe));
             sideButtonParant.SetActive(false);
-
+            // CurrentControl.ChangeToSearchResult();
         }
     }
 }

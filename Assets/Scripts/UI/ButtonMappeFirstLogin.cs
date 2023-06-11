@@ -16,7 +16,7 @@ namespace ToonJido.UI{
             sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderSingleton>();
             tutorialCheckButton.onClick.AddListener(() => sl.LoadSceneAsync("03 TestScene"));
 
-            lm = GameObject.Find("LoginManager").GetComponent<InitializeManager>();
+            lm = GameObject.Find("InitializeManager").GetComponent<InitializeManager>();
             kakaoLoginButton.onClick.AddListener(() => lm.OpenKakaoLogin());
         }
     }

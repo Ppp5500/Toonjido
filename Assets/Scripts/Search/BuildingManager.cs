@@ -27,13 +27,13 @@ namespace ToonJido.Search
 
         public Vector3 GetBuildingPosition(string address)
         {
-            Vector3 test = (
+            Vector3 result = (
                 from item in buildingInfos
                 where item.address == address
                 select item.navPosition
             ).First();
 
-            return test;
+            return result;
         }
     }
 }

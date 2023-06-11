@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 namespace ToonJido.Data.Model
 {
@@ -14,6 +15,7 @@ namespace ToonJido.Data.Model
     {
         public int id { get; set; }
         public string lot_number { get; set; } = String.Empty;
+        public string find_number {get; set;} = String.Empty;
         public string market_name { get; set; } = null!;
         public string cawarock { get; set; } = String.Empty;
         public int category { get; set; }
@@ -28,6 +30,7 @@ namespace ToonJido.Data.Model
         public string explain { get; set; } = String.Empty;
         public string section { get; set; } = String.Empty;
         public review[]? reviews { get; set; }
+        public float average_grade {get; set;} = 0.0f;
         public Image[]? images { get; set; }
     }
 

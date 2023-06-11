@@ -1,15 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using ToonJido.UI;
 
 namespace ToonJido.Control
 {
-    public enum GPSStatus
-    {
-        avaliable,
-        invalid_timeout,
-        invalid_location
-    }
-
     public class GPSManager : MonoBehaviour
     {
         private float width;
@@ -18,11 +12,10 @@ namespace ToonJido.Control
         private float lon;
         private float xPos;
         private float yPos;
-        private int count;
-        private string debugmessage;
-        private GPSStatus status;
 
+        public GameObject playerGPSLoactionObject;
         public Transform playerGPSLocation;
+        public string gpsNotAvaliableMessage = "GPS를 이용할 수 없거나 서비스 지역을 벗어났습니다.";
 
         void Awake()
         {
@@ -33,14 +26,7 @@ namespace ToonJido.Control
             lon = 0f;
             xPos = 0f;
             yPos = 0f;
-            count = 0;
-            status = GPSStatus.avaliable;
-
-            playerGPSLocation = transform;
-
-            // �׸���ŸƮ��Ÿ��
-            // GPSEncoder.SetLocalOrigin(new Vector2(36.80939f, 127.1443f));
-
+            CurrentControl.gpsStatus = GPSStatus.avaliable;
             // õ�ȿ�
             GPSEncoder.SetLocalOrigin(new Vector2(36.80926f, 127.14783f));
         }
@@ -48,7 +34,15 @@ namespace ToonJido.Control
         void Start()
         {
             StartCoroutine(LocationCoroutine());
+        }
 
+        private void Update() {
+            if(CurrentControl.gpsStatus == GPSStatus.avaliable){
+                playerGPSLoactionObject.SetActive(true);
+            }
+            else{
+                playerGPSLoactionObject.SetActive(false);
+            }
         }
 
 #if DEVELOPMENT
@@ -59,21 +53,16 @@ namespace ToonJido.Control
             // // Compute a fontSize based on the size of the screen width.
             // GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-            // //GUI.Label(new Rect(20, 100, width, height * 0.25f),
-            // //     $"lat: {lat} lon: {lon}");
+            // GUI.Label(new Rect(20, 700, width, height * 0.25f), $"lat: {lat} lon: {lon} count:{count}");
 
-            // //GUI.Label(new Rect(20, 200, width, height * 0.25f),
-            // //     $"x: {xPos} lon: {yPos}");
+            // GUI.Label(new Rect(20, 800, width, height * 0.25f), $"x: {xPos} y: {yPos}");
 
-            // GUI.Label(new Rect(20, 300, width, height * 0.25f),
-            //      $"message: {debugmessage}");
+            // GUI.Label(new Rect(20, 900, width, height * 0.25f), $"message: {debugmessage} status:{CurrentControl.gpsStatus}");
         }
 #endif
-
         private void FixedUpdate()
         {
-            if (playerGPSLocation != null)
-            {
+            if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
             }
         }
@@ -89,42 +78,50 @@ namespace ToonJido.Control
             // No permission handling needed in Editor
 #elif UNITY_ANDROID
 
-        if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.FineLocation))
-        {
-            UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.FineLocation);
-            while (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.FineLocation))
+            if (
+                !UnityEngine.Android.Permission.HasUserAuthorizedPermission(
+                    UnityEngine.Android.Permission.FineLocation
+                )
+            )
             {
-                yield return null;
+                UnityEngine.Android.Permission.RequestUserPermission(
+                    UnityEngine.Android.Permission.FineLocation
+                );
+                while (
+                    !UnityEngine.Android.Permission.HasUserAuthorizedPermission(
+                        UnityEngine.Android.Permission.FineLocation
+                    )
+                )
+                {
+                    yield return null;
+                }
             }
-        }
 
-        //���� ��û�ε� s7���� �۵� �� ��
-        /*
-        if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.CoarseLocation)) {
-            UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.CoarseLocation);
-        }
-        */
-
-        // First, check if user has location service enabled
-        if (!UnityEngine.Input.location.isEnabledByUser) {
-            // TODO Failure
-            Debug.LogFormat("Android and Location not enabled");
-            yield break;
-        }
+            // First, check if user has location service enabled
+            if (!UnityEngine.Input.location.isEnabledByUser)
+            {
+                // TODO Failure
+                // Debug.LogFormat("Android and Location not enabled");
+                yield break;
+            }
 
 #elif UNITY_IOS
-        if (!UnityEngine.Input.location.isEnabledByUser) {
-            // TODO Failure
-            Debug.LogFormat("IOS and Location not enabled");
-            yield break;
-        }
+            if (!UnityEngine.Input.location.isEnabledByUser)
+            {
+                // TODO Failure
+                // Debug.LogFormat("IOS and Location not enabled");
+                yield break;
+            }
 #endif
             // Start service before querying location
             UnityEngine.Input.location.Start(0.1f, 0.1f);
 
             // Wait until service initializes
-            int maxWait = 15;
-            while (UnityEngine.Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
+            int maxWait = 5;
+            while (
+                UnityEngine.Input.location.status == LocationServiceStatus.Initializing
+                && maxWait > 0
+            )
             {
                 yield return new WaitForSecondsRealtime(1);
                 maxWait--;
@@ -132,8 +129,11 @@ namespace ToonJido.Control
 
             // Editor has a bug which doesn't set the service status to Initializing. So extra wait in Editor.
 #if UNITY_EDITOR
-            int editorMaxWait = 15;
-            while (UnityEngine.Input.location.status == LocationServiceStatus.Stopped && editorMaxWait > 0)
+            int editorMaxWait = 5;
+            while (
+                UnityEngine.Input.location.status == LocationServiceStatus.Stopped
+                && editorMaxWait > 0
+            )
             {
                 yield return new WaitForSecondsRealtime(1);
                 editorMaxWait--;
@@ -145,7 +145,9 @@ namespace ToonJido.Control
             {
                 // TODO Failure
                 Debug.LogFormat("Timed out");
-                status = GPSStatus.invalid_timeout;
+                // debugmessage = "Timed out";
+                NoticeManager.instance.ShowNotice(gpsNotAvaliableMessage);
+                CurrentControl.gpsStatus = GPSStatus.invalid_timeout;
                 yield break;
             }
 
@@ -153,11 +155,38 @@ namespace ToonJido.Control
             if (UnityEngine.Input.location.status != LocationServiceStatus.Running)
             {
                 // TODO Failure
-                Debug.LogFormat("Unable to determine device location. Failed with status {0}", UnityEngine.Input.location.status);
+                Debug.LogFormat(
+                    "Unable to determine device location. Failed with status {0}",
+                    UnityEngine.Input.location.status
+                );
+                NoticeManager.instance.ShowNotice(gpsNotAvaliableMessage);
+                CurrentControl.gpsStatus = GPSStatus.invalid_timeout;
                 yield break;
             }
             else
             {
+                lat = UnityEngine.Input.location.lastData.latitude;
+                lon = UnityEngine.Input.location.lastData.longitude;
+
+                if (lon < 127.14667760034673 | lon > 127.15273843675989 )
+                {
+                    print("lon is outrange");
+                    // debugmessage = "lon is outrange";
+                    NoticeManager.instance.ShowNotice(gpsNotAvaliableMessage);
+                    CurrentControl.gpsStatus = GPSStatus.invalid_location;
+                    yield break;
+                }
+
+                if (lat < 36.806334353989236 | lat > 36.811181607182505)
+                {
+                    print("lat is outrange");
+                    // debugmessage = "lat is outrange";
+                    NoticeManager.instance.ShowNotice(gpsNotAvaliableMessage);
+                    CurrentControl.gpsStatus = GPSStatus.invalid_location;
+                    yield break;
+                }
+                CurrentControl.gpsStatus = GPSStatus.avaliable;
+
                 while (true)
                 {
                     /*
@@ -174,26 +203,12 @@ namespace ToonJido.Control
                     lat = UnityEngine.Input.location.lastData.latitude;
                     lon = UnityEngine.Input.location.lastData.longitude;
 
-                    if(lon < 127.14559498942343 | lon > 127.14559498942343)
-                    {
-                        print("lon is outrange");
-                        debugmessage = "lon is outrange";
-                        yield break;
-                    }
-
-                    if(lat > 36.80627972193478 |lat < 36.813149916958146)
-                    {
-                        print("lat is outrange");
-                        debugmessage = "lat is outrange";
-                        yield break;
-                    }
-
                     var encodedValue = GPSEncoder.GPSToUCS(lat, lon);
 
                     xPos = encodedValue.x;
                     yPos = encodedValue.z;
-                    count++;
-                    yield return new WaitForSeconds(.1f);
+                    // count++;
+                    yield return new WaitForSeconds(.5f);
                 }
             }
         }
@@ -206,9 +221,9 @@ namespace ToonJido.Control
             StopCoroutine(LocationCoroutine());
         }
 
-        public void LocationAvailableCheck()
+        public void StartGPSCoroutine()
         {
-
+            StartCoroutine(LocationCoroutine());
         }
     }
 }
