@@ -11,12 +11,14 @@ public class zzimTest : MonoBehaviour
 {
     HttpClient client = HttpClientProvider.GetHttpClient();
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
-        //postzzim();
+        postzzim();
         getzzim();
-        postNotZzimeAsync();
-        getzzim();
+        //postNotZzimeAsync();
+        await DeleteZzim("86");
+
+        //getzzim();
     }
 
     private async void postNotZzimeAsync()
@@ -68,5 +70,20 @@ public class zzimTest : MonoBehaviour
         response.EnsureSuccessStatusCode();
         var result = await response.Content.ReadAsStringAsync();
         print(result);
+    }
+
+    public async Task DeleteZzim(string _marketId){
+        var values = new Dictionary<string, string>{
+            {"account", "2774886049"},
+            {"market_id", _marketId}
+        };
+
+        string url = appSetting.baseURL + "delete_favorite/";
+        var data = new FormUrlEncodedContent(values);
+        var response = await client.PostAsync(url, data);
+
+        response.EnsureSuccessStatusCode();
+        print(response.StatusCode);
+        var result = await response.Content.ReadAsStringAsync();
     }
 }

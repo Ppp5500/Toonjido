@@ -37,7 +37,7 @@ namespace ToonJido.Search
                 buttons[i] = sections[i].GetComponent<Button>();
                 var curGameObject = buttons[i].gameObject;
                 int num = i;
-                buttons[i].onClick.AddListener(() => FocusToSection(curGameObject, num));
+                buttons[i].onClick.AddListener(async () => await FocusToSectionAsync(curGameObject, num));
                 areaMarker[i] = sections[i].transform.GetChild(1).gameObject;
             }
         }
@@ -52,7 +52,7 @@ namespace ToonJido.Search
             }
         }
 
-        public void FocusToSection(GameObject target, int curIndex){
+        public async Task FocusToSectionAsync(GameObject target, int curIndex){
             var sectionNum = curIndex +1;
             if(target != curSelected){
                 if(curMarker is not null){
@@ -67,7 +67,7 @@ namespace ToonJido.Search
                 curMarker.SetActive(true);
             }
             else{
-                SearchManager.instance.SearchByCategoryInSection(category, sectionNum);
+                await SearchManager.instance.SearchByCategoryInSectionAsync(category, sectionNum);
             }
             
         }

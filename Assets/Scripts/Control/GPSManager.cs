@@ -15,7 +15,7 @@ namespace ToonJido.Control
 
         public GameObject playerGPSLoactionObject;
         public Transform playerGPSLocation;
-        public string gpsNotAvaliableMessage = "GPS를 이용할 수 없거나 서비스 지역을 벗어났습니다.";
+        public string gpsNotAvaliableMessage = "몇가지 기능은 천안 원도심 지역에서만 이용 가능합니다.";
 
         void Awake()
         {

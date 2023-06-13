@@ -48,7 +48,9 @@ namespace ToonJido.Search
         [SerializeField] private TextMeshProUGUI explainText;
         [SerializeField] private TextMeshProUGUI addressText;
         [SerializeField] private TextMeshProUGUI contactText;
-        [SerializeField] private List<UnityEngine.UI.Image> stars;
+        [SerializeField] private UnityEngine.UI.Image[] stars = new UnityEngine.UI.Image[5];
+        [SerializeField] private Sprite blankStar;
+        [SerializeField] private Sprite fullStar;
         [SerializeField] private Sprite blankHeart;
         [SerializeField] private Sprite fullHeart;
 #endregion DetailCanvasProperties
@@ -116,7 +118,7 @@ namespace ToonJido.Search
                 }
                 else
                 {
-                    DisplayResult(searchResultArr);
+                    await DisplayResult(searchResultArr);
                 }
             }
             else
@@ -154,14 +156,14 @@ namespace ToonJido.Search
             return searchedStore;
         }
 
-        public void SearchByCategoryInSection(int category, int section){
+        public async Task SearchByCategoryInSectionAsync(int category, int section){
             SearchedStore searchedStore = new();
             string sumSection = "Section" + section;
             searchedStore.cultures = storeData.cultures
                 .Where(x => x.section == sumSection)
                 .Where(x => x.category == category)
                 .ToArray();
-            DisplayResult(searchedStore);
+            await DisplayResult(searchedStore);
         }
 
         public async void SearchKeyStoresAsync(){
@@ -200,7 +202,7 @@ namespace ToonJido.Search
                 result.cultures[i] = tempSearchedStore.cultures[0];
             }
 
-            DisplayResult(result);
+            await DisplayResult(result);
         }
 
         private SearchedStore SearchByMarketId(int[] idArr){
@@ -217,7 +219,7 @@ namespace ToonJido.Search
             return searchedStore;
         }
 
-        public async void DisplayResult(SearchedStore input)
+        public async Task DisplayResult(SearchedStore input)
         {
             ClearResultList();
             drag.Up();
@@ -247,6 +249,7 @@ namespace ToonJido.Search
                 }
                 else
                 {
+                    // 썸네일 이미지 다운
                     string imgURL = input.cultures[i].images[0].image;
                     var data = await client.GetByteArrayAsync(baseURL + imgURL.Substring(1));
                     Texture2D tex = new(120, 120);
@@ -254,7 +257,11 @@ namespace ToonJido.Search
                     Rect rect = new Rect(0, 0, tex.width, tex.height);
                     Sprite sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
 
+                    UnityEngine.UI.Image[] stars = new UnityEngine.UI.Image[5];
+
                     string storeName = input.cultures[i].market_name;
+                    int rank = Mathf.RoundToInt(input.cultures[i].average_grade);
+                    if(rank == 0) rank = 1;
 
                     mypref.transform
                         .Find("Main Image Mask")
@@ -275,6 +282,15 @@ namespace ToonJido.Search
                         .Find("Rank")
                         .GetComponent<TextMeshProUGUI>()
                         .SetText(input.cultures[i].average_grade.ToString("F1"));
+                    stars = mypref.transform
+                        .Find("Stars")
+                        .GetComponentsInChildren<UnityEngine.UI.Image>();
+                    for(int j = 0; j < rank; j++){
+                        stars[j].sprite = fullStar;
+                    }
+                    for(int k = rank; k < 5; k++){
+                        stars[k].sprite = blankStar;
+                    }
                     mypref.transform
                         .Find("Bottom")
                         .gameObject
@@ -282,17 +298,10 @@ namespace ToonJido.Search
                         .Find("Tel Info")
                         .GetComponent<TextMeshProUGUI>()
                         .SetText(input.cultures[i].phone.Substring(2));
-                    // 일단 open_check로 넣어놨는데 유저가 찜을 했는지 검사하는 걸로 바꿔야 됨
-                    // mypref.transform
-                    //     .Find("Heart Icon")
-                    //     .GetComponent<UnityEngine.UI.Image>()
-                    //     .sprite = input.cultures[i].open_check == "O" ? blankHeart : fullHeart;
-                    // var find_number = input.cultures[i].find_number;
-                    // mypref.transform
-                    //     .Find("FocusButton")
-                    //     .GetComponent<Button>()
-                    //     .onClick.AddListener(() => FocusToBuilding(find_number));
-                    // scroll content의 가장 위에 삽입
+                    mypref.transform
+                        .Find("Review Info")
+                        .GetComponent<TextMeshProUGUI>()
+                        .SetText("| 리뷰 " + input.cultures[i].reviews.Length);
                     mypref.transform.SetSiblingIndex(0);
 
                     Button button = mypref.GetComponent<Button>();
@@ -334,32 +343,6 @@ namespace ToonJido.Search
             }
         }
 
-        public async void SearchZzimListAsync(){
-            
-            var zzimarr = await RequestZzimArray(UserProfile.social_login_id);
-            //var zzimarr = await RequestZzimArray("2774886049");
-            var stores = SearchByMarketId(zzimarr);
-            DisplayResult(stores);
-        }
-
-        private async Task<int[]> RequestZzimArray(string account){
-            string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + account;
-
-            var response = await client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsStringAsync();
-            var temp = JsonConvert.DeserializeObject<ZzimList>(result);
-            int[] zzimarr = temp.market_ids;
-
-            // foreach(var item in zzimarr.Select((value, index) => (value, index))){
-            //     print($"index: {item.index}, value: {item.value}");
-            // }
-
-            int[] distArr = zzimarr.Distinct().ToArray();
-
-            return distArr;
-        }
-
         private async void OpenDetailCanvas(string name)
         {
             pathFindButton.onClick.RemoveAllListeners();
@@ -379,12 +362,22 @@ namespace ToonJido.Search
             SearchedStore store = JsonConvert.DeserializeObject<SearchedStore>(result, setting);
             Culture currentStore = store.cultures[0];
 
+            var market_id = currentStore.id;
+            // 찜 목록을 다운 받아서 이미 찜한 상점인지 검사
+            var zzimArr = await RequestZzimArray(UserProfile.social_login_id);
+            bool isZzim = zzimArr.Contains(market_id);
+
+            // 이미지 다운로드
             string imgURL = currentStore.images[0].image;
                     var data = await client.GetByteArrayAsync(baseURL + imgURL.Substring(1));
                     Texture2D tex = new(690, 500);
                     tex.LoadImage(data, false);
                     Rect rect = new Rect(0, 0, tex.width, tex.height);
                     Sprite sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
+            // 점수 계산
+            int rank = Mathf.RoundToInt(currentStore.average_grade);
+            if(rank == 0) rank = 1;
+ 
 
             var find_number = currentStore.find_number;
             Thumbnail.sprite = sp;
@@ -394,10 +387,33 @@ namespace ToonJido.Search
             clockText.text = currentStore.open_hours;
             addressText.text = currentStore.address;
             contactText.text = currentStore.phone;
+            for(int j = 0; j < rank; j++){
+                    stars[j].sprite = fullStar;
+                    print($"{j}st star is full star!");
+                }
+                for(int k = rank; k < 5; k++){
+                    stars[k].sprite = blankStar;
+                    print($"{k}st star is blank star!");
+                }
             pathFindButton.onClick.AddListener(() => PathFind(find_number));
-            var market_id = currentStore.id;
-            zzimButton.onClick.AddListener(() => PostZzim(UserProfile.social_login_id, market_id.ToString(), true, zzimButton));
-            print("test");
+
+            // 이미 찜을 한 가게면
+            if(isZzim){
+                // 버튼 이미지 변경
+                UnityEngine.UI.Image zzimbuttonImage = zzimButton.gameObject.GetComponent<UnityEngine.UI.Image>();
+                zzimbuttonImage.sprite = fullHeart;
+                // 버튼에 리스너 추가
+                zzimButton.onClick.AddListener(async () => await DeleteZzim(UserProfile.social_login_id, market_id.ToString(), zzimButton));
+            }
+            // 찜을 안 한 가게면
+            else{
+                // 버튼 이미지 변경
+                UnityEngine.UI.Image zzimbuttonImage = zzimButton.gameObject.GetComponent<UnityEngine.UI.Image>();
+                zzimbuttonImage.sprite = blankHeart;
+                // 버튼에 리스너 추가
+                zzimButton.onClick.AddListener(async () => await PostZzim(UserProfile.social_login_id, market_id.ToString(), true, zzimButton));
+            }
+
             menuButton.gameObject.SetActive(false);
             detailContentBackButton.gameObject.SetActive(true);
             loadingPanel.SetActive(false);
@@ -412,7 +428,16 @@ namespace ToonJido.Search
         }
 
 #region Zzim Functions
-        public async void PostZzim(string _account, string _marketId, bool _isFavorite, Button button){
+        /// <summary>
+        /// 서버에 찜 등록
+        /// 버튼의 이미지도 바뀜
+        /// </summary>
+        /// <param name="_account">등록할 회원 번호</param>
+        /// <param name="_marketId">등록할 가게 번호</param>
+        /// <param name="_isFavorite"></param>
+        /// <param name="button">이미지가 바뀔 버튼</param>
+        /// <returns></returns>
+        public async Task PostZzim(string _account, string _marketId, bool _isFavorite, Button button){
             string isFavorite = _isFavorite ? "True" : "False";
             var values = new Dictionary<string, string>{
                 {"account", _account},
@@ -426,8 +451,65 @@ namespace ToonJido.Search
 
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
-            print("zzim!");
             button.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = fullHeart;
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(async () => await DeleteZzim(_account, _marketId, button));
+        }
+        /// <summary>
+        /// 서버에서 찜 삭제
+        /// </summary>
+        /// <param name="_account"></param>
+        /// <param name="_marketId"></param>
+        /// <param name="_isFavorite"></param>
+        /// <param name="button"></param>
+        /// <returns></returns>
+        public async Task DeleteZzim(string _account, string _marketId, Button button){
+            var values = new Dictionary<string, string>{
+                {"account", _account},
+                {"market_id", _marketId}
+            };
+
+            string url = appSetting.baseURL + "delete_favorite/";
+            var data = new FormUrlEncodedContent(values);
+            var response = await client.PostAsync(url, data);
+
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            button.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = blankHeart;
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(async () => await PostZzim(_account, _marketId, true, button));
+        }
+
+        /// <summary>
+        /// UserProfile에 등록된 유저 번호를 이용하여
+        /// 찜목록을 서버에서 받아오고 보여줌
+        /// </summary>
+        /// <returns></returns>
+        public async void SearchZzimListAsync(){
+            var zzimarr = await RequestZzimArray(UserProfile.social_login_id);
+            //var zzimarr = await RequestZzimArray("2774886049");
+            var stores = SearchByMarketId(zzimarr);
+            await DisplayResult(stores);
+        }
+
+        /// <summary>
+        /// 서버에 회원의 찜 목록을 요청
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        private async Task<int[]> RequestZzimArray(string account){
+            string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + account;
+
+            var response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            var temp = JsonConvert.DeserializeObject<ZzimList>(result);
+            int[] zzimarr = temp.market_ids;
+
+            // 중복 제거
+            int[] distArr = zzimarr.Distinct().ToArray();
+
+            return distArr;
         }
 #endregion
 

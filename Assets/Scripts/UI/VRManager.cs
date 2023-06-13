@@ -12,16 +12,40 @@ namespace ToonJido.UI{
         [SerializeField] GameObject eyelevelPlayer;
         [SerializeField] Toggle vrToggle;
         [SerializeField] GameObject vrObjects;
+        [SerializeField] List<GameObject> overlookObjects;
+        [SerializeField] List<GameObject> eyelevelObjects;
         private BuildingManager buildingManager;
         // Start is called before the first frame update
         void Start()
         {
             buildingManager = BuildingManager.buildingManager;
             vrToggle.onValueChanged.AddListener((x) => ToggleOnOff(x));
+
+            for(int i = 0; i < vrObjects.transform.childCount; i++){
+                eyelevelObjects.Add(vrObjects.transform.GetChild(i).Find("Eyelevel Canvas").gameObject);
+            }
+
+            for(int i = 0; i < vrObjects.transform.childCount; i++){
+                overlookObjects.Add(vrObjects.transform.GetChild(i).Find("Overlook Canvas").gameObject);
+            }
+
+            foreach(var item in overlookObjects){
+                item.SetActive(false);
+            }
         }
 
         private void ToggleOnOff(bool input){
-            vrObjects.SetActive(input);
+            // vrObjects.SetActive(input);
+            if(input){
+                foreach(var item in overlookObjects){
+                    item.SetActive(true);
+                }
+            }
+            else{
+                foreach(var item in overlookObjects){
+                    item.SetActive(false);
+                }
+            }
         }
 
         public void OpenVrLink(string url){

@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 5650073996373142339}
   - component: {fileID: 4993643711292281395}
   m_Layer: 8
-  m_Name: Overloock Canvas
+  m_Name: Overlook Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

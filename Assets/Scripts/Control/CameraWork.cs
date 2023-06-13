@@ -172,8 +172,8 @@ namespace ToonJido.Control
                             // 실제 카메라 이동 로직
                             nowPos = touch.position - touch.deltaPosition;
                             movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
-                            if(-60 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x <270){
-                                if(-150 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 170)
+                            if(-80 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < 275){
+                                if(-165 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 180)
                                 camTarget.transform.Translate(movePos);
                             }
                             
@@ -214,7 +214,6 @@ namespace ToonJido.Control
                 }
             }
 
-            // 현재 조작 모드가 아이레벨일 때
             else if (CurrentControl.state == State.Eyelevel)
             {
                 if (Input.touchCount > 0)
@@ -223,76 +222,21 @@ namespace ToonJido.Control
 
                     if (touch.phase == TouchPhase.Began)
                     {
+                        // 터치가 UI위에서 시작되었는지 검사
                         startOnUI01 = IsPointerOverUI(touch.fingerId) ? true : false;
-                        // 터치가 UI위에서 시작된 경우 카메라 이동 false
-                        if (startOnUI01)
-                        {
-                            startOnBuilding01 = false;
-                            return;
-                        }
-                        else
-                        {
-                            // player.transform.Translate(
-                            //     moveInput * moveSpeed * Time.deltaTime,
-                            //     Space.Self
-                            // );
-                            prePos = touch.position - touch.deltaPosition;
 
-                            startOnBuilding01 = true;
-                            // 첫 터치 때 레이에 맞은 오브젝트 감지
-                            if (
-                                GetEncounter(
-                                    ref firstEncounter,
-                                    out var position,
-                                    out var norVec,
-                                    startOnBuilding01
-                                )
-                            )
-                            {
-                                HitPos.transform.position = position;
-                                HitPos.transform.up = norVec;
-                                // 터치 시작을 건물에서 시작하면 시점 변환 X
-                                startOnBuilding01 = true;
-                                startOnUI01 = true;
-                            }
-                            else
-                            {
-                                startOnBuilding01 = false;
-                            }
+                        // 터치가 UI위에서 시작되지 않았다면
+                        // 최소 터치 위치 계산, raycast로 건물 검색
+                        if(startOnUI01 is false){
+                            prePos = touch.position - touch.deltaPosition;
+                            GetEncounter(ref firstEncounter);
                         }
                     }
                     else if (touch.phase == TouchPhase.Moved)
                     {
-                        if (startOnBuilding01)
-                        {
-                            // 터치 이동 시 레이에 맞은 오브젝트 감지
-                            if (
-                                GetEncounter(
-                                    ref lastEncounter,
-                                    out var position,
-                                    out var norVec,
-                                    startOnBuilding01
-                                )
-                            )
-                            {
-                                HitPos.transform.position = position;
-                                HitPos.transform.up = norVec;
-                            }
-                            else
-                            {
-                                startOnBuilding01 = false;
-                                HitPos.transform.position = new(0, -1, 0);
-                                firstEncounter = null;
-                                lastEncounter = null;
-                            }
-                        }
-
-                        if (startOnUI01)
-                        {
-                            return;
-                        }
-                        else
-                        {
+                        // 터치가 UI위에서 시작되지 않았다면
+                        // 카메라 회전
+                        if(startOnUI01 is false){
                             // 카메라 회전 로직
                             nowPos = touch.position - touch.deltaPosition;
                             movePos = (Vector3)(prePos - nowPos) * rotateSpeed * Time.deltaTime;
@@ -313,29 +257,179 @@ namespace ToonJido.Control
                             player.transform.Rotate(new Vector3(0, movePos.x, 0), Space.Self);
                             prePos = touch.position - touch.deltaPosition;
                         }
+
                     }
                     else if(touch.phase == TouchPhase.Stationary){
-                        if(startOnBuilding01){
-                            GetEncounter(ref lastEncounter);
-                        }
+                        GetEncounter(ref lastEncounter);
                     }
                     else if (touch.phase == TouchPhase.Ended)
                     {
-                        if (startOnBuilding01)
+                        if (CheckSameObject(firstEncounter, lastEncounter))
                         {
-                            // 터치를 끝낼 때의 오브젝트와 터치를 시작할 때의 오브젝트가 같은지 검사
-                            if (CheckSameObject(firstEncounter, lastEncounter))
+                            var address = lastEncounter.GetComponent<BuildingInfo>().address;
+                            var result = SearchManager.instance.SearchStoreByAddress(address);
+                            SearchManager.instance.DisplayResult(result);
+                        }
+                        firstEncounter = null;
+                        lastEncounter = null;
+                    }
+
+                    // 두 손가락 컨트롤 로직
+                    if (Input.touchCount == 2)
+                    {
+                        Touch touch02 = Input.GetTouch(1);
+
+                        if (touch02.phase == TouchPhase.Began)
+                        {
+                            prePos02 = touch02.position - touch02.deltaPosition;
+                        }
+                        else if (touch02.phase == TouchPhase.Moved)
+                        {
+                            // 카메라 회전 로직
+                            nowPos02 = touch02.position - touch02.deltaPosition;
+                            movePos02 =
+                                (Vector3)(prePos02 - nowPos02) * rotateSpeed * Time.deltaTime;
+
+                            var verAnglePow = movePos02.y * -1;
+                            var nextVerAngle = eyeLevelTransform.eulerAngles.x + verAnglePow;
+                            if (nextVerAngle > 180)
+                                nextVerAngle -= 360;
+
+                            if (-30 < nextVerAngle && nextVerAngle < 30)
                             {
-                                var address = lastEncounter.GetComponent<BuildingInfo>().address;
-                                var result = SearchManager.instance.SearchStoreByAddress(address);
-                                SearchManager.instance.DisplayResult(result);
+                                eyeLevelTransform.rotation *= Quaternion.AngleAxis(
+                                    verAnglePow,
+                                    Vector3.right
+                                );
                             }
-                            HitPos.transform.position = new(0, -2, 0);
-                            firstEncounter = null;
-                            lastEncounter = null;
-                            startOnBuilding01 = false;
+
+                            player.transform.Rotate(new Vector3(0, movePos02.x, 0), Space.Self);
+                            prePos02 = touch02.position - touch02.deltaPosition;
                         }
                     }
+
+            // 현재 조작 모드가 아이레벨일 때
+            // else if (CurrentControl.state == State.Eyelevel)
+            // {
+            //     if (Input.touchCount > 0)
+            //     {
+            //         Touch touch = Input.GetTouch(0);
+
+            //         if (touch.phase == TouchPhase.Began)
+            //         {
+            //             startOnUI01 = IsPointerOverUI(touch.fingerId) ? true : false;
+            //             // 터치가 UI위에서 시작된 경우 카메라 이동 false
+            //             if (startOnUI01)
+            //             {
+            //                 startOnBuilding01 = false;
+            //                 return;
+            //             }
+            //             else
+            //             {
+            //                 // player.transform.Translate(
+            //                 //     moveInput * moveSpeed * Time.deltaTime,
+            //                 //     Space.Self
+            //                 // );
+            //                 prePos = touch.position - touch.deltaPosition;
+
+            //                 startOnBuilding01 = true;
+            //                 // 첫 터치 때 레이에 맞은 오브젝트 감지
+            //                 if (
+            //                     GetEncounter(
+            //                         ref firstEncounter,
+            //                         out var position,
+            //                         out var norVec,
+            //                         startOnBuilding01
+            //                     )
+            //                 )
+            //                 {
+            //                     HitPos.transform.position = position;
+            //                     HitPos.transform.up = norVec;
+            //                     // 터치 시작을 건물에서 시작하면 시점 변환 X
+            //                     startOnBuilding01 = true;
+            //                     startOnUI01 = true;
+            //                 }
+            //                 else
+            //                 {
+            //                     startOnBuilding01 = false;
+            //                 }
+            //             }
+            //         }
+            //         else if (touch.phase == TouchPhase.Moved)
+            //         {
+            //             if (startOnBuilding01)
+            //             {
+            //                 // 터치 이동 시 레이에 맞은 오브젝트 감지
+            //                 if (
+            //                     GetEncounter(
+            //                         ref lastEncounter,
+            //                         out var position,
+            //                         out var norVec,
+            //                         startOnBuilding01
+            //                     )
+            //                 )
+            //                 {
+            //                     HitPos.transform.position = position;
+            //                     HitPos.transform.up = norVec;
+            //                 }
+            //                 else
+            //                 {
+            //                     startOnBuilding01 = false;
+            //                     HitPos.transform.position = new(0, -1, 0);
+            //                     firstEncounter = null;
+            //                     lastEncounter = null;
+            //                 }
+            //             }
+
+            //             if (startOnUI01)
+            //             {
+            //                 return;
+            //             }
+            //             else
+            //             {
+            //                 // 카메라 회전 로직
+            //                 nowPos = touch.position - touch.deltaPosition;
+            //                 movePos = (Vector3)(prePos - nowPos) * rotateSpeed * Time.deltaTime;
+
+            //                 var verAnglePow = movePos.y * -1;
+            //                 var nextVerAngle = eyeLevelTransform.eulerAngles.x + verAnglePow;
+            //                 if (nextVerAngle > 180)
+            //                     nextVerAngle -= 360;
+
+            //                 if (-30 < nextVerAngle && nextVerAngle < 30)
+            //                 {
+            //                     eyeLevelTransform.rotation *= Quaternion.AngleAxis(
+            //                         verAnglePow,
+            //                         Vector3.right
+            //                     );
+            //                 }
+
+            //                 player.transform.Rotate(new Vector3(0, movePos.x, 0), Space.Self);
+            //                 prePos = touch.position - touch.deltaPosition;
+            //             }
+            //         }
+            //         else if(touch.phase == TouchPhase.Stationary){
+            //             if(startOnBuilding01){
+            //                 GetEncounter(ref lastEncounter);
+            //             }
+            //         }
+            //         else if (touch.phase == TouchPhase.Ended)
+            //         {
+            //             if (startOnBuilding01)
+            //             {
+            //                 // 터치를 끝낼 때의 오브젝트와 터치를 시작할 때의 오브젝트가 같은지 검사
+            //                 if (CheckSameObject(firstEncounter, lastEncounter))
+            //                 {
+            //                     var address = lastEncounter.GetComponent<BuildingInfo>().address;
+            //                     var result = SearchManager.instance.SearchStoreByAddress(address);
+            //                     SearchManager.instance.DisplayResult(result);
+            //                 }
+            //                 HitPos.transform.position = new(0, -2, 0);
+            //                 firstEncounter = null;
+            //                 lastEncounter = null;
+            //                 startOnBuilding01 = false;
+            //             }
+            //         }
 
                     // // 두 손가락 컨트롤 로직
                     // if (Input.touchCount == 2)
