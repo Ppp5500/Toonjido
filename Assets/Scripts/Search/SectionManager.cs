@@ -10,6 +10,7 @@ using ToonJido.Common;
 using UnityEngine.UI;
 using static appSetting;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace ToonJido.Search
 {
@@ -58,18 +59,28 @@ namespace ToonJido.Search
                 if(curMarker is not null){
                     curMarker.SetActive(false);
                 }
-                
+
+                var cam = Camera.main;
+                var camWidth = cam.pixelWidth;
+                var camHeight = cam.pixelHeight;
+
+                Vector3 viewPos = cam.ScreenToWorldPoint(new Vector3(camWidth/2, camHeight/3, 500));
+                Vector3 centerPos = cam.ScreenToWorldPoint(new Vector3(camWidth/2, camHeight/2, 500));
+                var temp = viewPos - centerPos;
+
                 curSelected = target;
-                Vector3 lot = new Vector3(target.transform.position.x, 0, target.transform.position.z);
+
+                Vector3 lot = new Vector3(target.transform.position.x, 0, target.transform.position.z + temp.z);
+
                 StartCoroutine(FTS(lot));
 
                 curMarker = target.transform.GetChild(1).gameObject;
                 curMarker.SetActive(true);
             }
             else{
+
                 await SearchManager.instance.SearchByCategoryInSectionAsync(category, sectionNum);
-            }
-            
+            }  
         }
 
         IEnumerator FTS(Vector3 target){

@@ -53,9 +53,6 @@ namespace ToonJido.Control
         private Vector3 movePos02;
         private Transform PlayerGPSLocation;
         private bool startOnUI01 = true;
-        private bool startOnUI02 = true;
-        private bool startOnBuilding01 = true;
-        private bool startOnBuilding02 = true;
 
         // 아이레벨 카메라 이동관련 변수
         private float rotateSpeed = 2f;
@@ -104,6 +101,8 @@ namespace ToonJido.Control
         [SerializeField] private Sprite overlookIcon;
         [SerializeField] private Sprite eyelevelIcon;
 
+        NoticeManager noticeManager;
+
         void Start()
         {
             eventSystem = EventSystem.current;
@@ -122,19 +121,21 @@ namespace ToonJido.Control
             CurrentControl.weatherAction += SwitchCont;
 
             layer1 = LayerMask.NameToLayer("Default");
-
             layer2 = LayerMask.NameToLayer("Path");
+            noticeManager = NoticeManager.GetInstance();
 
             // gpsButton.onClick.AddListener(() => ResetPosToPlayer());
             changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
             weatherButton.onClick.AddListener(() => CurrentControl.ChangeToWeather());
             weatherBackButton.onClick.AddListener(() => CurrentControl.ChangeToLastState());
+
+            gpsToggle.onValueChanged.AddListener((value) => GPSFollowOnOff(value));
         }
 
 #if DEVELOPMENT
         private void OnGUI() { }
 #endif
-        void Update()
+        async void Update()
         {
             UICam.fieldOfView = cameras[0].m_Lens.FieldOfView;
             overlookCam.fieldOfView = cameras[0].m_Lens.FieldOfView;
@@ -268,7 +269,7 @@ namespace ToonJido.Control
                         {
                             var address = lastEncounter.GetComponent<BuildingInfo>().address;
                             var result = SearchManager.instance.SearchStoreByAddress(address);
-                            SearchManager.instance.DisplayResult(result);
+                            await SearchManager.instance.DisplayResult(result);
                         }
                         firstEncounter = null;
                         lastEncounter = null;
@@ -502,7 +503,7 @@ namespace ToonJido.Control
                     isGPSTracking = true;
                 }
                 else{
-                    NoticeManager.instance.ShowNotice("GPS 사용 불가 시에는 따라가기 기능을 이용할 수 없습니다.");
+                    noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 따라가기 기능을 이용할 수 없습니다.");
                     gpsToggle.isOn = false;
                 }
             }

@@ -15,7 +15,7 @@ D:/Projects/3DJido
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-54045
+54986
 Successfully changed project path to: D:/Projects/3DJido
 D:/Projects/3DJido
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ D:/Projects/3DJido
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [9876] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2563571082 [EditorId] 2563571082 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [23152] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2922533072 [EditorId] 2922533072 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [9876] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2563571082 [EditorId] 2563571082 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [23152] Host "[IP] 172.30.1.97 [Port] 0 [Flags] 2 [Guid] 2922533072 [EditorId] 2922533072 [Version] 1048832 [Id] WindowsEditor(7,Pandango360) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 94.26 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 89.64 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.21f1 (1b156197d683)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Resources/UnitySubsystems
@@ -68,52 +68,52 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56776
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56864
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.21f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003460 seconds.
+Registered in 0.003413 seconds.
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 164 ms
-Refreshing native plugins compatible for Editor in 81.23 ms, found 3 plugins.
+Android Extension - Scanning For ADB Devices 147 ms
+Refreshing native plugins compatible for Editor in 80.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.599 seconds
+- Completed reload, in  0.573 seconds
 Domain Reload Profiling:
-	ReloadAssembly (599ms)
-		BeginReloadAssembly (61ms)
+	ReloadAssembly (573ms)
+		BeginReloadAssembly (62ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (0ms)
-		EndReloadAssembly (478ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (449ms)
 			LoadAssemblies (60ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (63ms)
+			SetupTypeCache (65ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (14ms)
-			SetupLoadedEditorAssemblies (370ms)
+			SetupLoadedEditorAssemblies (342ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (220ms)
+				InitializePlatformSupportModulesInManaged (197ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (81ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (47ms)
-				ProcessInitializeOnLoadMethodAttributes (21ms)
+				ProcessInitializeOnLoadAttributes (43ms)
+				ProcessInitializeOnLoadMethodAttributes (20ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003366 seconds.
+Registered in 0.003427 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -121,33 +121,33 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 75.03 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 83.38 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.892 seconds
+- Completed reload, in  0.809 seconds
 Domain Reload Profiling:
-	ReloadAssembly (893ms)
-		BeginReloadAssembly (63ms)
+	ReloadAssembly (810ms)
+		BeginReloadAssembly (67ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (13ms)
-		EndReloadAssembly (773ms)
-			LoadAssemblies (64ms)
+			CreateAndSetChildDomain (14ms)
+		EndReloadAssembly (689ms)
+			LoadAssemblies (56ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (237ms)
+			SetupTypeCache (184ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (38ms)
-			SetupLoadedEditorAssemblies (413ms)
+			RebuildScriptCaches (39ms)
+			SetupLoadedEditorAssemblies (394ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (15ms)
+				InitializePlatformSupportModulesInManaged (13ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (75ms)
-				BeforeProcessingInitializeOnLoad (75ms)
-				ProcessInitializeOnLoadAttributes (202ms)
-				ProcessInitializeOnLoadMethodAttributes (41ms)
-				AfterProcessingInitializeOnLoad (4ms)
+				RefreshPlugins (83ms)
+				BeforeProcessingInitializeOnLoad (67ms)
+				ProcessInitializeOnLoadAttributes (188ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (3ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (3ms)
@@ -156,12 +156,12 @@ Platform modules already initialized, skipping
 Worker process is ready to serve import requests
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 1.15 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.08 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6231 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 68 unused Assets / (2.4 MB). Loaded Objects now: 6708.
-Memory consumption went from 279.4 MB to 277.1 MB.
-Total: 3.912300 ms (FindLiveObjects: 0.459400 ms CreateObjectMapping: 0.261600 ms MarkObjects: 2.604900 ms  DeleteObjects: 0.585800 ms)
+Unloading 6218 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 65 unused Assets / (2.0 MB). Loaded Objects now: 6699.
+Memory consumption went from 272.7 MB to 270.6 MB.
+Total: 3.060800 ms (FindLiveObjects: 0.384200 ms CreateObjectMapping: 0.102700 ms MarkObjects: 2.126300 ms  DeleteObjects: 0.447000 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -175,15 +175,9 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
-Received Import Request.
-  Time since last request: 161758.181687 seconds.
-  path: Assets/Simple Toon/Demo/Scenes/DemoScene1.unity
-  artifactKey: Guid(f8d2c849252e54bd08b0c224ddb18cd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Simple Toon/Demo/Scenes/DemoScene1.unity using Guid(f8d2c849252e54bd08b0c224ddb18cd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ec357909f8b1e3f415745f42f6a92e8') in 0.013774 seconds 
-========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.003288 seconds.
+Registered in 0.002952 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
@@ -191,44 +185,44 @@ Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 0.97 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.42 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.735 seconds
+- Completed reload, in  0.827 seconds
 Domain Reload Profiling:
-	ReloadAssembly (736ms)
-		BeginReloadAssembly (99ms)
+	ReloadAssembly (827ms)
+		BeginReloadAssembly (109ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (3ms)
+			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (33ms)
-		EndReloadAssembly (582ms)
-			LoadAssemblies (57ms)
+			CreateAndSetChildDomain (38ms)
+		EndReloadAssembly (660ms)
+			LoadAssemblies (67ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (189ms)
+			SetupTypeCache (215ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (30ms)
-			SetupLoadedEditorAssemblies (270ms)
+			RebuildScriptCaches (34ms)
+			SetupLoadedEditorAssemblies (298ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (14ms)
+				InitializePlatformSupportModulesInManaged (15ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (50ms)
-				ProcessInitializeOnLoadAttributes (150ms)
-				ProcessInitializeOnLoadMethodAttributes (52ms)
-				AfterProcessingInitializeOnLoad (3ms)
+				BeforeProcessingInitializeOnLoad (58ms)
+				ProcessInitializeOnLoadAttributes (164ms)
+				ProcessInitializeOnLoadMethodAttributes (54ms)
+				AfterProcessingInitializeOnLoad (4ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (11ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
 Platform modules already initialized, skipping
 Shader 'Custom/ColorFilter': fallback shader 'Legacy Shaders/Transparent/Vertexlit' not found
-Refreshing native plugins compatible for Editor in 2.27 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 2.11 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 6010 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 48 unused Assets / (2.1 MB). Loaded Objects now: 6723.
-Memory consumption went from 265.1 MB to 263.0 MB.
-Total: 3.595600 ms (FindLiveObjects: 0.474400 ms CreateObjectMapping: 0.286000 ms MarkObjects: 2.246400 ms  DeleteObjects: 0.588200 ms)
+Unloading 6006 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 48 unused Assets / (2.0 MB). Loaded Objects now: 6713.
+Memory consumption went from 259.9 MB to 257.8 MB.
+Total: 3.730300 ms (FindLiveObjects: 0.396300 ms CreateObjectMapping: 0.083300 ms MarkObjects: 2.597700 ms  DeleteObjects: 0.652300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -241,193 +235,3 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 670.479666 seconds.
-  path: Assets/Images/UI/Resource/14. 1인칭 시점/00. 검색 메뉴 아이콘.png
-  artifactKey: Guid(927ab7720e1919247acdb373c5827874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/14. 1인칭 시점/00. 검색 메뉴 아이콘.png using Guid(927ab7720e1919247acdb373c5827874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4eaaac0a13fde285fdbd3e3908df1533') in 0.112426 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Images/UI/Resource/08. 메인화면/00. 검색 아이콘.png
-  artifactKey: Guid(272e21708b778084393de7972418a874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/08. 메인화면/00. 검색 아이콘.png using Guid(272e21708b778084393de7972418a874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b95ba600aae376e4a9fe459e5b4b40a4') in 0.034978 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Images/UI/Resource/12. 길찾기/00. 뒤로가기 아이콘.png
-  artifactKey: Guid(196a8a817b17b8e49b46af44205f4a26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/12. 길찾기/00. 뒤로가기 아이콘.png using Guid(196a8a817b17b8e49b46af44205f4a26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7319ced38a2b74fafd60acbeb008890b') in 0.009196 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Images/UI/Resource/16. 길찾기 종료창/00. 검색 메뉴 아이콘.png
-  artifactKey: Guid(c428f3eaec29f8840bc3ba9cf3bf217a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/16. 길찾기 종료창/00. 검색 메뉴 아이콘.png using Guid(c428f3eaec29f8840bc3ba9cf3bf217a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb4c972006b6a8e7a70c9556a9754c99') in 0.004877 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Images/UI/Resource/16. 길찾기 종료창/00. 검색바.png
-  artifactKey: Guid(0b814b10e22e27447983e1b237f3a8b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/16. 길찾기 종료창/00. 검색바.png using Guid(0b814b10e22e27447983e1b237f3a8b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3732fbce2749fabcf2921731392e40d6') in 0.006552 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/Images/UI/Resource/10. 상단 카테고리 활성화/00. 검색 아이콘.png
-  artifactKey: Guid(1329e8161989d3b4ebc74ca2d8e77419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/10. 상단 카테고리 활성화/00. 검색 아이콘.png using Guid(1329e8161989d3b4ebc74ca2d8e77419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '887ebb00289e49ad5ab443a9c6f7e79c') in 0.004248 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Images/UI/Resource/11. 탑뷰 길검색/00. 검색바.png
-  artifactKey: Guid(d5b74526559112247b2f8b016aca8c05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/11. 탑뷰 길검색/00. 검색바.png using Guid(d5b74526559112247b2f8b016aca8c05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e53ef8803869941ff4278636e53cd6e0') in 0.005022 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Images/UI/Resource/17. 1인칭 vr/00. 검색바.png
-  artifactKey: Guid(2dc11219029db774ea4f9319d0a3a170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/17. 1인칭 vr/00. 검색바.png using Guid(2dc11219029db774ea4f9319d0a3a170) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ead4b873f5ac31a56a68563547221b2c') in 0.006224 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Images/UI/Resource/04. 어플 권한/01.권한창.png
-  artifactKey: Guid(f7bffa44376efb64987844c5805d396b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/04. 어플 권한/01.권한창.png using Guid(f7bffa44376efb64987844c5805d396b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '909cd27b18d91f5681097e749d657fe8') in 0.074227 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Images/UI/Resource/11. 탑뷰 길검색/00. 검색 아이콘.png
-  artifactKey: Guid(f6fe861f84ef5ba448775028b97767f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/11. 탑뷰 길검색/00. 검색 아이콘.png using Guid(f6fe861f84ef5ba448775028b97767f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e13ace794227ad5f1e9d9d713a9c17c0') in 0.005346 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Images/UI/Resource/02. 로딩/1성구.png
-  artifactKey: Guid(6199c73d675bee24c8d28b7428ec23ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/02. 로딩/1성구.png using Guid(6199c73d675bee24c8d28b7428ec23ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56e9d3d078248c2b3a69eb611b0086a0') in 0.008686 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Images/UI/Resource/15. 1인칭 검색/00. 검색 아이콘 2.png
-  artifactKey: Guid(d4a886b9112ae904da3012770f3d7761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/15. 1인칭 검색/00. 검색 아이콘 2.png using Guid(d4a886b9112ae904da3012770f3d7761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6b78b9cadba6937b89ed1919252f6e6') in 0.015082 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Images/UI/Resource/16. 길찾기 종료창/00. 검색 아이콘.png
-  artifactKey: Guid(c848f0a25fc5b9349a56ea2ed9fe5e97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/16. 길찾기 종료창/00. 검색 아이콘.png using Guid(c848f0a25fc5b9349a56ea2ed9fe5e97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '638cf9bd02771422996d1a8cad58e59e') in 0.004665 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Images/UI/Resource/08. 메인화면/00. 검색바.png
-  artifactKey: Guid(55054d863d70225499aaecb196f93a4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/08. 메인화면/00. 검색바.png using Guid(55054d863d70225499aaecb196f93a4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c679844c02b7baa03e741e0114bf5d7') in 0.026644 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.855071 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Addressable Group Rules/AddressableGroupRulesAsset On.png
-  artifactKey: Guid(b42cfc0207f15f443a07b99dcf369c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Addressable Group Rules/AddressableGroupRulesAsset On.png using Guid(b42cfc0207f15f443a07b99dcf369c40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '845926690181bcc7b676e5632c28d007') in 0.010216 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Pseudo Locale/d_PseudoLocale On@2x.png
-  artifactKey: Guid(2899925c01d43a1448901cd2d77ad0ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Pseudo Locale/d_PseudoLocale On@2x.png using Guid(2899925c01d43a1448901cd2d77ad0ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cafcf2851fbc55041234b9d4a053f87') in 0.009096 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Localize Asset Component/d_LocalizeAssetComponent On.png
-  artifactKey: Guid(3f0e0f001fade0743a1181ab704009a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Localize Asset Component/d_LocalizeAssetComponent On.png using Guid(3f0e0f001fade0743a1181ab704009a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca8dcd6349d4b5e0a1d6939345197a0e') in 0.008945 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Google Sheets Provider/d_GoogleSheetsProvider.png
-  artifactKey: Guid(512bb80a420593e4f8c7d4d7e000457f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Google Sheets Provider/d_GoogleSheetsProvider.png using Guid(512bb80a420593e4f8c7d4d7e000457f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32022fcc5dcc56160cdaf1723af8383f') in 0.010006 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Google Sheets Provider/d_GoogleSheetsProvider On@2x.png
-  artifactKey: Guid(421af6a889ee43a469c9b90d8d1df23c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Google Sheets Provider/d_GoogleSheetsProvider On@2x.png using Guid(421af6a889ee43a469c9b90d8d1df23c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b35c6c7f3e36944f983b30c05db06be8') in 0.008888 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Localize String Component/d_LocalizeStringComponent.png
-  artifactKey: Guid(f905fbed7b9cc4540ad8cda4844e10fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Localize String Component/d_LocalizeStringComponent.png using Guid(f905fbed7b9cc4540ad8cda4844e10fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '770593d9beaba3f64d440c6e461319a6') in 0.008642 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Images/UI/Resource/01. 로고화면/Android app icon(108x108).png
-  artifactKey: Guid(c5c7f70d8802e94469a3784b7d18c0f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/01. 로고화면/Android app icon(108x108).png using Guid(c5c7f70d8802e94469a3784b7d18c0f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b40ebed07ef2bcba6a7f312cb87d8bc0') in 0.012151 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Images/UI/Resource/00. 앱 아이콘/Android app icon(324x324).png
-  artifactKey: Guid(cd049d766536dd242950293c3399059a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/00. 앱 아이콘/Android app icon(324x324).png using Guid(cd049d766536dd242950293c3399059a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c023188c2a27763c3559b8f1a744a551') in 0.015227 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Images/UI/Resource/01. 로고화면/Android app icon(81x81).png
-  artifactKey: Guid(c50daf22c9d09a749b9d83fdc21915e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/01. 로고화면/Android app icon(81x81).png using Guid(c50daf22c9d09a749b9d83fdc21915e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd257aa56587af0d4b11dfe214affa6fe') in 0.010267 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Images/UI/Resource/00. 앱 아이콘/Android app icon(216x216).png
-  artifactKey: Guid(8dea3ef9672a38842a496d3584a57d31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/00. 앱 아이콘/Android app icon(216x216).png using Guid(8dea3ef9672a38842a496d3584a57d31) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50835a73a9dc553994ecb9755d343e76') in 0.013751 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Pseudo Locale/d_PseudoLocale.png
-  artifactKey: Guid(f5d6785151d2e524d8f8c1c88e8e69e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Pseudo Locale/d_PseudoLocale.png using Guid(f5d6785151d2e524d8f8c1c88e8e69e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2430234f5c7e0b699e57a0c4ff8537d9') in 0.008915 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Addressable Group Rules/d_AddressableGroupRulesAsset@2x.png
-  artifactKey: Guid(49b09cf7dc342a54486fa97fea078e39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Addressable Group Rules/d_AddressableGroupRulesAsset@2x.png using Guid(49b09cf7dc342a54486fa97fea078e39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1596975969ef3ab5a92acf6fff2bfb2f') in 0.009320 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Localize Asset Component/d_LocalizeAssetComponent On@2x.png
-  artifactKey: Guid(44bd37511148d39408ed3faf774e205f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Localize Asset Component/d_LocalizeAssetComponent On@2x.png using Guid(44bd37511148d39408ed3faf774e205f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '366342703b285c09fed8d53339657599') in 0.007627 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000044 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Google Sheets Provider/d_GoogleSheetsProvider@2x.png
-  artifactKey: Guid(1148caaada8387743b27d72bac21b25a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Google Sheets Provider/d_GoogleSheetsProvider@2x.png using Guid(1148caaada8387743b27d72bac21b25a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6a3b2178a28b19e17dda0ebfcec40da') in 0.009270 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Images/UI/Resource/00. 앱 아이콘/Android app icon(108x108).png
-  artifactKey: Guid(231c51c0e9635694ba3cc76c1a63c29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/00. 앱 아이콘/Android app icon(108x108).png using Guid(231c51c0e9635694ba3cc76c1a63c29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a74b495655ae530c9508ee21a35bacc') in 0.010750 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Packages/com.unity.localization/Editor/Icons/Localize Asset Component/d_LocalizeAssetComponent@2x.png
-  artifactKey: Guid(cf4ca476b51c3154d93d75015667bb62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.localization/Editor/Icons/Localize Asset Component/d_LocalizeAssetComponent@2x.png using Guid(cf4ca476b51c3154d93d75015667bb62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32597d3de8455c3b02cdaa2aa03b0585') in 0.008645 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Images/UI/Resource/01. 로고화면/Android app icon(432x432).png
-  artifactKey: Guid(8d1aad1d29fdee544878e6cc9790c8b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Images/UI/Resource/01. 로고화면/Android app icon(432x432).png using Guid(8d1aad1d29fdee544878e6cc9790c8b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2940cc5750f2664e2eab3fcbd2fbb5e') in 0.017398 seconds 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0

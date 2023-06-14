@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using ToonJido.Control;
+using System.Collections;
 
 namespace ToonJido.UI
 {
@@ -15,6 +16,7 @@ namespace ToonJido.UI
         Vector2 _maxAnchor;
         float _maxSafe;
         float _minSafe;
+        float _halfSafe;
         float canvasSize;
         float topRectSize;
         public GameObject sideButtonParant;
@@ -37,6 +39,7 @@ namespace ToonJido.UI
 
             _minSafe = canvasSize / 2;
             _maxSafe = _minSafe - (temp + topRectSize);
+            _halfSafe = _maxSafe * 0.3f;
             _minSafe *= -0.9f;
 
             buttons = sideButtonParant.GetComponentsInChildren<Image>();
@@ -58,8 +61,6 @@ namespace ToonJido.UI
             position.x = 0;
             position.y = Mathf.Clamp(position.y, _minSafe, _maxSafe);
             transform.position = canvas.transform.TransformPoint(position);
-
-
         }
 
         float normalize(float value, float min, float max)
@@ -86,9 +87,15 @@ namespace ToonJido.UI
 
         public void Down()
         {
-            transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
+            //transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
+            StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _minSafe)), 0.2f));
             sideButtonParant.SetActive(true);
-            // CurrentControl.ChangeToLastState();
+        }
+
+        public void Half(){
+            //transform.position = canvas.transform.TransformPoint(new Vector2(0, _halfSafe));
+            StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _halfSafe)), 0.1f));
+            sideButtonParant.SetActive(false);
         }
 
         public void FirstDown(){
@@ -97,9 +104,20 @@ namespace ToonJido.UI
 
         public void Up()
         {
-            transform.position = canvas.transform.TransformPoint(new Vector2(0, _maxSafe));
+            //transform.position = canvas.transform.TransformPoint(new Vector2(0, _maxSafe));
+            StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _maxSafe)), 0.2f));
             sideButtonParant.SetActive(false);
             // CurrentControl.ChangeToSearchResult();
+        }
+
+        IEnumerator MoveSmooth(Transform origin, Vector3 target, float duringTime){
+            float t = 0.0f;
+            Vector3 startPosition = origin.position;
+            while(t < 1){
+                t += Time.deltaTime / duringTime;
+                origin.position = Vector3.Lerp(startPosition, target, t);
+                yield return null;
+            }
         }
     }
 }

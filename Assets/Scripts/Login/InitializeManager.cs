@@ -49,7 +49,6 @@ namespace ToonJido.Login
         }
 
         private bool CheckTokenFile(){
-
             return File.Exists(appSetting.tokenPath);
         }
 

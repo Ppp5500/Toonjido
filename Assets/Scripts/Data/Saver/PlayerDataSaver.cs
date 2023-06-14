@@ -13,10 +13,7 @@ namespace ToonJido.Data.Saver
     public class PlayerDataSaver : IDisposable
     {
         private const string tokenPW = "rmdwjd17!!";
-        private readonly string userInfoPath = Path.Combine(Application.persistentDataPath, "playerInfo.json");
-
         private bool disposedValue;
-
         private byte[] buffer = new byte[1024];
 
         public void SavePlayerInfo(User user)
@@ -31,8 +28,24 @@ namespace ToonJido.Data.Saver
             return user.user_social_id;
         }
 
+        public bool DeleteUserSocialId(){
+            try{
+                File.Delete(userInfoPath);
+            }
+            catch(DirectoryNotFoundException ex){
+                Console.WriteLine(ex.Message);
+                return true;
+            }
+            catch(IOException ex){
+                Console.WriteLine(ex.Message);
+                return false;
+            }
 
-        public async void SaveToken(string token)
+            return true;
+        }
+
+
+        public async Task SaveToken(string token)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(token);
             var encToken = Encrypt(bytes, tokenPW);
@@ -58,6 +71,22 @@ namespace ToonJido.Data.Saver
             bytes = Decrypt(bytes, tokenPW);
 
             return Encoding.UTF8.GetString(bytes);
+        }
+
+        public bool DeleteToken(){
+            try{
+                File.Delete(tokenPath);
+            }
+            catch(DirectoryNotFoundException ex){
+                Console.WriteLine(ex.Message);
+                return true;
+            }
+            catch(IOException ex){
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+            return true;
         }
 
 

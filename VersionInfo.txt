@@ -109,3 +109,14 @@ overlook 모델링들의 머테리얼 색 변경
 검색 목록에서 별 갯수가 평점을 반영하도록 구현
 찜 목록 삭제 기능 추가
 실수로 await 키워드 빼먹은 메소드들에 await 추가
+
+1.0.4
+메뉴 화면에 앱 종료, 로그아웃 버튼 추가
+Notice manager 수정
+앱 시작 시 자동으로 주변 검색 기능 실행
+
+1.0.5
+UIdrag에 half 메소드 추가
+section 선택 시 모달을 half로 표시, 섹션을 화면의 2/3지점에 둠
+iOS status bar 표시
+SearchManager 최적화

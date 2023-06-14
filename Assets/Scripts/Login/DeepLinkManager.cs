@@ -47,7 +47,7 @@ namespace ToonJido.Login
         }
 #endif
 
-        private void onDeepLinkActivated(string url)
+        private async void onDeepLinkActivated(string url)
         {
             // Update DeepLink Manager global variable, so URL can be accessed from anywhere.
             // deeplinkURL = url;
@@ -67,18 +67,18 @@ namespace ToonJido.Login
                 User user = new(){
                     user_social_id = myuser_social_id
                 };
-                saver.SaveToken(token);
+                await saver.SaveToken(token);
                 saver.SavePlayerInfo(user);
             }
 
             SceneLoaderSingleton.instance.LoadSceneAsync("03 TestScene");
         }
 
-        public void SaveToken(string token)
+        public async void SaveToken(string token)
         {
             using (PlayerDataSaver saver = new())
             {
-                saver.SaveToken(token);
+                await saver.SaveToken(token);
             }
         }
 

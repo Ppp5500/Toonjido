@@ -92,63 +92,63 @@ namespace ToonJido.Search
             searchButton.onClick.AddListener(() => ClickSearchButton());
             detailContentBackButton.onClick.AddListener(() => BackToSearchResult());
             findRoadButton.onClick.AddListener(() => inputField.ActivateInputField());
+
+            //SearchKeyStoresAsync();
         }
 
         public async void ClickSearchButton()
         {
             if (!string.IsNullOrEmpty(inputField.text))
             {
-                // CurrentControl.ChangeToSearchResult();
                 noResultText.SetActive(false);
                 var searchResult = await SearchStore(inputField.text);
-                SearchedStore searchResultArr = new();
-                var setting = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                };
-                searchResultArr = JsonConvert.DeserializeObject<SearchedStore>(
-                    searchResult,
-                    setting
-                );
 
-                if (searchResultArr.cultures.Length == 0)
+                if (searchResult.cultures.Length == 0)
                 {
                     noResultText.SetActive(true);
                 }
                 else
                 {
-                    await DisplayResult(searchResultArr);
+                    await DisplayResult(searchResult);
                 }
             }
             else
                 return;
         }
 
-        private async Task<string> SearchStore(string keyword)
+        /// <summary>
+        /// 서버에 검색어로 검색 요청
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        private async Task<SearchedStore> SearchStore(string keyword)
         {
+            // 서버 통신
             var searchURL = baseURL + "search/?query=" + keyword;
             var response = await client.GetAsync(searchURL);
             response.EnsureSuccessStatusCode();
+            var searchResult = await response.Content.ReadAsStringAsync();
+            
+            // 내보낼 객체 생성
+            SearchedStore result = new();
+            var setting = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
 
-            var result = await response.Content.ReadAsStringAsync();
+            result = JsonConvert.DeserializeObject<SearchedStore>( searchResult, setting );
+
             return result;
         }
 
+        /// <summary>
+        /// 초기화 단계에서 저장한 데이터에서 find_number가 일치하는 가게 검색
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
         public SearchedStore SearchStoreByAddress(string address)
         {
-            // var searchURL = baseURL + "get_Market_DB_List";
-            // var response = await client.GetAsync(searchURL);
-            // response.EnsureSuccessStatusCode();
-            // var httpResult = await response.Content.ReadAsStringAsync();
-            //SearchedStore searchedStore = new();
-            // var setting = new JsonSerializerSettings
-            // {
-            //     NullValueHandling = NullValueHandling.Ignore,
-            //     MissingMemberHandling = MissingMemberHandling.Ignore
-            // };
-            // searchedStore = JsonConvert.DeserializeObject<SearchedStore>(httpResult, setting);
-
             SearchedStore searchedStore = new();
             searchedStore.cultures = storeData.cultures
                 .Where(x => x.find_number == address)
@@ -156,6 +156,12 @@ namespace ToonJido.Search
             return searchedStore;
         }
 
+        /// <summary>
+        /// section 내에서 category가 일치하는 가게들 검색 하여 Display
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="section"></param>
+        /// <returns></returns>
         public async Task SearchByCategoryInSectionAsync(int category, int section){
             SearchedStore searchedStore = new();
             string sumSection = "Section" + section;
@@ -163,12 +169,10 @@ namespace ToonJido.Search
                 .Where(x => x.section == sumSection)
                 .Where(x => x.category == category)
                 .ToArray();
-            await DisplayResult(searchedStore);
+            await DisplayResult(searchedStore, "Half");
         }
 
         public async void SearchKeyStoresAsync(){
-            SearchedStore tempSearchedStore = new();
-            //Culture[] tempCultures = new Culture[15];
             SearchedStore result = new(){
                 cultures = new Culture[13]
             };
@@ -191,16 +195,26 @@ namespace ToonJido.Search
                 "투데이 이즈 유어 벌스데이"
             };
 
-            for(int i = 0; i < keyStoresName.Length; i++){
-                string temp = await SearchStore(keyStoresName[i]);
-                var setting = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                };
-                tempSearchedStore = JsonConvert.DeserializeObject<SearchedStore>(temp, setting);
-                result.cultures[i] = tempSearchedStore.cultures[0];
-            }
+            result.cultures = storeData.cultures.Where(x => keyStoresName.Contains(x.market_name)).ToArray();
+
+            // for(int i = 0; i < keyStoresName.Length; i++){
+
+            //     SearchedStore searchedStore = new();
+            //     string keyword = keyStoresName[i];
+
+            //     // searchedStore.cultures = storeData.cultures
+            //     // .Where(x => x.market_name == keyword)
+            //     // .ToArray();
+
+            //     string temp = await SearchStore(keyStoresName[i]);
+            //     var setting = new JsonSerializerSettings
+            //     {
+            //         NullValueHandling = NullValueHandling.Ignore,
+            //         MissingMemberHandling = MissingMemberHandling.Ignore
+            //     };
+            //     tempSearchedStore = JsonConvert.DeserializeObject<SearchedStore>(temp, setting);
+            //     result.cultures[i] = tempSearchedStore.cultures[0];
+            // }
 
             await DisplayResult(result);
         }
@@ -219,10 +233,28 @@ namespace ToonJido.Search
             return searchedStore;
         }
 
-        public async Task DisplayResult(SearchedStore input)
+        /// <summary>
+        /// Oepn modal and instance result prefs
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="popupWay">"Up"=full screen(default), "Half"=half screen, "Down"=not open</param>
+        /// <returns></returns>
+        public async Task DisplayResult(SearchedStore input, string popupWay = "Up")
         {
             ClearResultList();
-            drag.Up();
+            if(detailContentScroll.activeSelf) BackToSearchResult();
+            switch(popupWay){
+                case "Up":
+                    drag.Up();
+                    break;
+                case "Half":
+                    drag.Half();
+                    break;
+                case "Down":
+                    drag.Down();
+                    break;
+            }
+
             loadingText.SetActive(true);
             for (int i = 0; i < input.cultures.Length; i++)
             {
@@ -314,17 +346,8 @@ namespace ToonJido.Search
 
         public void PathFind(string address)
         {
-
             Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
             NavPlayerControl.navPlayerControl.SetDestination(lot);
-
-            // if(CurrentControl.gpsStatus == GPSStatus.avaliable){
-            //     Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-            //     NavPlayerControl.navPlayerControl.SetDestination(lot);
-            // }
-            // else{
-            //     NoticeManager.instance.ShowNotice("GPS를 이용할 수 없을 때는 길찾기를 할 수 없습니다.");
-            // }
         }
 
         public void FocusToBuilding(string address){
@@ -346,24 +369,18 @@ namespace ToonJido.Search
         private async void OpenDetailCanvas(string name)
         {
             pathFindButton.onClick.RemoveAllListeners();
+
             // show detailCanvas
             detailContentScroll.SetActive(true);
             loadingPanel.SetActive(true);
-
             resultScroll.SetActive(false);
 
             // Get data
             var result = await SearchStore(name);
-            var setting = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                };
-            SearchedStore store = JsonConvert.DeserializeObject<SearchedStore>(result, setting);
-            Culture currentStore = store.cultures[0];
-
-            var market_id = currentStore.id;
+            Culture currentStore = result.cultures[0];
+            
             // 찜 목록을 다운 받아서 이미 찜한 상점인지 검사
+            var market_id = currentStore.id;
             var zzimArr = await RequestZzimArray(UserProfile.social_login_id);
             bool isZzim = zzimArr.Contains(market_id);
 
@@ -374,11 +391,12 @@ namespace ToonJido.Search
                     tex.LoadImage(data, false);
                     Rect rect = new Rect(0, 0, tex.width, tex.height);
                     Sprite sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
+
             // 점수 계산
             int rank = Mathf.RoundToInt(currentStore.average_grade);
             if(rank == 0) rank = 1;
- 
 
+            // detailCanvas에 적용
             var find_number = currentStore.find_number;
             Thumbnail.sprite = sp;
             storeName.text = currentStore.market_name;
@@ -389,13 +407,12 @@ namespace ToonJido.Search
             contactText.text = currentStore.phone;
             for(int j = 0; j < rank; j++){
                     stars[j].sprite = fullStar;
-                    print($"{j}st star is full star!");
                 }
                 for(int k = rank; k < 5; k++){
                     stars[k].sprite = blankStar;
-                    print($"{k}st star is blank star!");
                 }
             pathFindButton.onClick.AddListener(() => PathFind(find_number));
+            pathFindButton.onClick.AddListener(() => drag.Half());
 
             // 이미 찜을 한 가게면
             if(isZzim){
@@ -465,8 +482,9 @@ namespace ToonJido.Search
         /// <returns></returns>
         public async Task DeleteZzim(string _account, string _marketId, Button button){
             var values = new Dictionary<string, string>{
-                {"account", _account},
-                {"market_id", _marketId}
+                //{"account", _account},
+                {"account", "2774886049"},
+                {"market_id", "236"}
             };
 
             string url = appSetting.baseURL + "delete_favorite/";
@@ -487,7 +505,7 @@ namespace ToonJido.Search
         /// <returns></returns>
         public async void SearchZzimListAsync(){
             var zzimarr = await RequestZzimArray(UserProfile.social_login_id);
-            //var zzimarr = await RequestZzimArray("2774886049");
+            // var zzimarr = await RequestZzimArray("2774886049");
             var stores = SearchByMarketId(zzimarr);
             await DisplayResult(stores);
         }
@@ -498,7 +516,7 @@ namespace ToonJido.Search
         /// <param name="account"></param>
         /// <returns></returns>
         private async Task<int[]> RequestZzimArray(string account){
-            string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + account;
+            string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + "2774886049";
 
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -506,6 +524,9 @@ namespace ToonJido.Search
             var temp = JsonConvert.DeserializeObject<ZzimList>(result);
             int[] zzimarr = temp.market_ids;
 
+            foreach(var item in zzimarr){
+                print(item.ToString());
+            }
             // 중복 제거
             int[] distArr = zzimarr.Distinct().ToArray();
 
