@@ -2,16 +2,15 @@ using System;
 using UnityEngine;
 using ToonJido.Data.Model;
 using ToonJido.Data.Saver;
-using ToonJido.Common;
+using static appSetting;
 
 namespace ToonJido.Login
 {
     public class DeepLinkManager : MonoBehaviour
     {
         public static DeepLinkManager Instance { get; private set; }
-        [Header("This object is not destroy on load")]
 
-        public string deeplinkURL;
+        [HideInInspector] public Action activatedAction;
         private string token;
         private string loadtoken;
 
@@ -26,9 +25,6 @@ namespace ToonJido.Login
                     // Cold start and Application.absoluteURL not null so process Deep Link.
                     onDeepLinkActivated(Application.absoluteURL);
                 }
-                // Initialize DeepLink Manager global variable.
-                else deeplinkURL = "[none]";
-                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -59,8 +55,11 @@ namespace ToonJido.Login
             int length = token.Length;
             string myuser_social_id = token.Substring(length-10, 10);
             token = token.Remove(length - 10, 10);
+
+
             UserProfile.token = token;
             UserProfile.social_login_id = myuser_social_id;
+            PlayerPrefs.SetString(KakaoUserIdKey, myuser_social_id);
 
             using (PlayerDataSaver saver = new())
             {
@@ -71,6 +70,7 @@ namespace ToonJido.Login
                 saver.SavePlayerInfo(user);
             }
 
+            activatedAction();
             SceneLoaderSingleton.instance.LoadSceneAsync("03 TestScene");
         }
 

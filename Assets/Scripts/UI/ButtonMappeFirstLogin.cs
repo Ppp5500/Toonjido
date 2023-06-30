@@ -7,17 +7,28 @@ namespace ToonJido.UI{
     {
         private SceneLoaderSingleton sl;
         private InitializeManager lm;
+        private SampleWebView sw;
+        private DeepLinkManager dm;
 
         [SerializeField] private Button tutorialCheckButton;
         [SerializeField] private Button kakaoLoginButton;
+        [SerializeField] private Button skipLoginButton;
+        [SerializeField] private GameObject signupCanvas;
 
         void Start()
         {
             sl = GameObject.Find("SceneLoader").GetComponent<SceneLoaderSingleton>();
             tutorialCheckButton.onClick.AddListener(() => sl.LoadSceneAsync("03 TestScene"));
 
-            lm = GameObject.Find("InitializeManager").GetComponent<InitializeManager>();
-            kakaoLoginButton.onClick.AddListener(() => lm.OpenKakaoLogin());
+            sw = GameObject.Find("WebviewManager").GetComponent<SampleWebView>();
+            kakaoLoginButton.onClick.AddListener(() => sw.OpenWebViewerCaller());
+            kakaoLoginButton.onClick.AddListener(() => signupCanvas.SetActive(false));
+
+            skipLoginButton.onClick.AddListener(() => UserProfile.social_login_id = string.Empty);
+            skipLoginButton.onClick.AddListener(() => sl.LoadSceneAsync("03 TestScene"));
+
+            dm = GameObject.Find("DeepLinkManager").GetComponent<DeepLinkManager>();
+            dm.activatedAction += sw.CloseWebViewerCaller;
         }
     }
 }

@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{2842db00-81dc-2009-9b54-f44fbc29a923}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleAuth", "AppleAuth.csproj", "{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleAuth.Editor", "AppleAuth.Editor.csproj", "{c2df2453-fe1d-80b6-c185-2baae0fc9694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{ec9bca0d-2ec8-88b1-3d05-43960bd51317}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,6 +16,12 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2842db00-81dc-2009-9b54-f44fbc29a923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2842db00-81dc-2009-9b54-f44fbc29a923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{c2df2453-fe1d-80b6-c185-2baae0fc9694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c2df2453-fe1d-80b6-c185-2baae0fc9694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ec9bca0d-2ec8-88b1-3d05-43960bd51317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ec9bca0d-2ec8-88b1-3d05-43960bd51317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,7 +10,6 @@ using ToonJido.Common;
 using UnityEngine.UI;
 using static appSetting;
 using System.Collections.Generic;
-using UnityEngine.EventSystems;
 
 namespace ToonJido.Search
 {

@@ -21,6 +21,8 @@ namespace ToonJido.UI{
             if(instance is null){
                 instance = this;
             }
+
+            DontDestroyOnLoad(noticeCanvas);
         }
 
         public static NoticeManager GetInstance(){
@@ -50,28 +52,33 @@ namespace ToonJido.UI{
         /// <summary>
         /// Set Confirm Button Onclick to Close Notice Canvas
         /// </summary>
-        public void SetConfirmButtonDefault(){
+        public NoticeManager SetConfirmButtonDefault(){
             confirmButton.onClick.RemoveAllListeners();
             confirmButton.onClick.AddListener( () => { noticeCanvas.SetActive(false); });
+            return this;
         }
 
-        public void SetConfirmButton(Action action){
+        public NoticeManager SetConfirmButton(Action action){
             confirmButton.onClick.RemoveAllListeners();
             confirmButton.onClick.AddListener(() => action());
+            return this;
         }
 
         /// <summary>
         /// Set Cancel Button Onclick to Close Notice Canvas
         /// </summary>
-        public void SetCancelButtonDefault(){
+        public NoticeManager SetCancelButtonDefault(){
             if(cancelButton.gameObject.activeSelf is false) cancelButton.gameObject.SetActive(true); 
             cancelButton.onClick.RemoveAllListeners();
             cancelButton.onClick.AddListener( () => { noticeCanvas.SetActive(false); });
-        } 
-        public void SetCancelButton(Action action){
+            return this;
+        }
+
+        public NoticeManager SetCancelButton(Action action){
             if(cancelButton.gameObject.activeSelf is false) cancelButton.gameObject.SetActive(true); 
             cancelButton.onClick.RemoveAllListeners();
             cancelButton.onClick.AddListener(() => action());
+            return this;
         }
     }
 }

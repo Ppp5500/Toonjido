@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using ToonJido.UI;
 
 namespace ToonJido.Control
 {
@@ -15,7 +16,7 @@ namespace ToonJido.Control
         [SerializeField]
         private Transform visualObjectsParent;
         public static NavPlayerControl navPlayerControl;
-        public GameObject noticeCanvas;
+        private NoticeManager noticeManager;
 
         void Awake()
         {
@@ -31,10 +32,13 @@ namespace ToonJido.Control
             myNavMeshAgent = GetComponent<NavMeshAgent>();
             lineRenderer.material.mainTextureScale = new Vector2(0.5f, 1f);
 
-
-            lineRenderer.startWidth = 4f;
-            lineRenderer.endWidth = 4f;
+            lineRenderer.startWidth = 2f;
+            lineRenderer.endWidth = 2f;
             lineRenderer.positionCount = 0;
+
+            noticeManager = NoticeManager.GetInstance();
+
+            //SetDestination(new Vector3(165.33f, 0.0f, 24.1f));
         }
 
         // Update is called once per frame
@@ -48,18 +52,16 @@ namespace ToonJido.Control
             if (myNavMeshAgent.hasPath)
             {
                 DrwaPath();
-                if (myNavMeshAgent.remainingDistance < 5f)
+                if (myNavMeshAgent.remainingDistance < 10f)
                 {
                     // 도착 알림
-                    
+                    noticeManager.ShowNoticeDefaultStyle("목적지 근처에 도착하였습니다.");
+
                     // 경로 지우기
                     ClearPath();
                 }
             }
             
-            // Animates main texture scale in a funky way!
-            // float scaleX = Mathf.Cos(Time.time) * 0.5f + 1;
-            // float scaleY = Mathf.Sin(Time.time) * 0.5f + 1;
             float offsetX = Time.time - (int)Time.time;
             lineRenderer.material.mainTextureOffset = new Vector2(1 - offsetX, 1);
         }
@@ -87,9 +89,8 @@ namespace ToonJido.Control
             }
             else{
                 // 유효하지 않은 위치
-                noticeCanvas.SetActive(true);
+                noticeManager.ShowNoticeDefaultStyle("네비게이션을 사용할 수 없는 위치입니다.");
             }
-            
         }
 
         private void DrwaPath()
@@ -117,7 +118,6 @@ namespace ToonJido.Control
         {
             clickMarker.SetActive(false);
             myNavMeshAgent.path.ClearCorners();
-            // myNavMeshAgent.isStopped = true;
             myNavMeshAgent.ResetPath();
             lineRenderer.positionCount = 0;
             myNavMeshAgent.enabled = false;

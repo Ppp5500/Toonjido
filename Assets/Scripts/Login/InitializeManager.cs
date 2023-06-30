@@ -5,20 +5,22 @@ using ToonJido.Data.Saver;
 using System.Threading.Tasks;
 using static appSetting;
 using ToonJido.Common;
-using ToonJido.Data.Model;
+using ToonJido.UI;
 
 namespace ToonJido.Login
 {
     public class InitializeManager : MonoBehaviour
     {
+        // common managers
         private SceneLoaderSingleton sceneLoader;
-        private HttpClient client = HttpClientProvider.GetHttpClient();
-        public string token;
-        public GameObject warningCanvas;
+        private NoticeManager noticeManager;
+        private HttpClient client;
 
         void Start()
         {
             sceneLoader = SceneLoaderSingleton.instance;
+            noticeManager = NoticeManager.GetInstance();
+            client = HttpClientProvider.GetHttpClient();
 
             AppInitialization();
         }
@@ -33,21 +35,52 @@ namespace ToonJido.Login
             //      $"token:{token}");
         }
 #endif
-
         private async void AppInitialization(){
-            await DownloadMarketDB();
-            if(CheckTokenFile()){
-                UserProfile.token = GetToken();
-                UserProfile.social_login_id = await GetUserSocialIdAsync();
-                sceneLoader.LoadSceneAsync("03 TestScene");
+            bool netConnection = await DownloadMarketDB();
+
+            if(netConnection)
+            {
+                if(PlayerPrefs.HasKey(AppleUserIdKey))
+                {
+                    UserProfile.social_login_id = PlayerPrefs.GetString(AppleUserIdKey);
+                    UserProfile.curr_id_type = IdType.apple;
+                    sceneLoader.LoadSceneAsync("03 TestScene");
+                }
+                else if(PlayerPrefs.HasKey(KakaoUserIdKey))
+                {
+                    UserProfile.social_login_id = PlayerPrefs.GetString(KakaoUserIdKey);
+                    UserProfile.curr_id_type = IdType.kakao;
+                    sceneLoader.LoadSceneAsync("03 TestScene");
+                }
+                else{
+                    sceneLoader.LoadSceneAsync("02 FirstLoginScene");
+                }
             }
-            else{
-                token = "no token";
-                sceneLoader.LoadSceneAsync("02 FirstLoginScene");
-            }
-                
         }
 
+        public async Task<bool> DownloadMarketDB()
+        {
+            var searchURL = baseURL + "get_Market_DB_List";
+            
+            try{
+                var response = await client.GetAsync(searchURL);
+                var httpResult = await response.Content.ReadAsStringAsync();
+                using(StreamWriter outputFile = new(dataPath))
+                {
+                    await outputFile.WriteAsync(httpResult);
+                }
+            }
+            catch(HttpRequestException){
+                noticeManager.SetConfirmButton(() => Application.Quit());
+                noticeManager.DisableCancelButton();
+                noticeManager.ShowNotice("서버와의 연결에 실패했습니다. 어플리케이션을 종료합니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // not using
         private bool CheckTokenFile(){
             return File.Exists(appSetting.tokenPath);
         }
@@ -62,27 +95,6 @@ namespace ToonJido.Login
             using(PlayerDataSaver saver = new()){
                 return await saver.LoadUserSocialIdAsync();
             }
-        }
-
-        public async Task DownloadMarketDB()
-        {
-            var searchURL = baseURL + "get_Market_DB_List";
-            var response = await client.GetAsync(searchURL);
-            try{
-                response.EnsureSuccessStatusCode();
-            }
-            catch(HttpRequestException){
-                warningCanvas.SetActive(true);
-                return;
-            }
-            var httpResult = await response.Content.ReadAsStringAsync();
-            using(StreamWriter outputFile = new(dataPath)){
-                await outputFile.WriteAsync(httpResult);
-            }
-        }
-
-        public void OpenKakaoLogin(){
-            Application.OpenURL(appSetting.baseURL + "kakaoGetLogin");
         }
     }
 }

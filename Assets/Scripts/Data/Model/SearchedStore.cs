@@ -32,6 +32,7 @@ namespace ToonJido.Data.Model
         public review[]? reviews { get; set; }
         public float average_grade {get; set;} = 0.0f;
         public Image[]? images { get; set; }
+        public string[]? review_grades{get; set;}
     }
 
     [Serializable]

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using ToonJido.Data.Model;
 using ToonJido.Common;
 using ToonJido.UI;
+using ToonJido.Login;
 using static appSetting;
 using System.Collections;
 using System;
@@ -19,6 +20,7 @@ namespace ToonJido.Search
 {
     public class SearchManager : MonoBehaviour
     {
+        // Data from Init phase
         SearchedStore storeData = new();
 
         [SerializeField] private UIDrag drag;
@@ -32,6 +34,7 @@ namespace ToonJido.Search
         [SerializeField] private GameObject resultPref;
         [SerializeField] private GameObject noResultText;
         [SerializeField] private GameObject camTarget;
+
 
 #region DetailCanvasProperties
         [Header("Detail Content Scroll Properties")]
@@ -48,13 +51,18 @@ namespace ToonJido.Search
         [SerializeField] private TextMeshProUGUI explainText;
         [SerializeField] private TextMeshProUGUI addressText;
         [SerializeField] private TextMeshProUGUI contactText;
+        [SerializeField] private TMP_InputField reviewInputField;
         [SerializeField] private UnityEngine.UI.Image[] stars = new UnityEngine.UI.Image[5];
+        [SerializeField] private Button postReviewButton;
         [SerializeField] private Sprite blankStar;
         [SerializeField] private Sprite fullStar;
         [SerializeField] private Sprite blankHeart;
         [SerializeField] private Sprite fullHeart;
+        private int selectedStarRank = 0;
 #endregion DetailCanvasProperties
 
+        // common managers
+        private NoticeManager noticeManager;
         private HttpClient client = HttpClientProvider.GetHttpClient();
         private List<GameObject> resultPrefs = new List<GameObject>();
         public static SearchManager instance;
@@ -92,12 +100,20 @@ namespace ToonJido.Search
             searchButton.onClick.AddListener(() => ClickSearchButton());
             detailContentBackButton.onClick.AddListener(() => BackToSearchResult());
             findRoadButton.onClick.AddListener(() => inputField.ActivateInputField());
+            noticeManager = NoticeManager.GetInstance();
 
-            //SearchKeyStoresAsync();
+            StartCoroutine(WaitThenCallback(2.0f, () => SearchKeyStoresAsync()));
+        }
+        
+        private IEnumerator WaitThenCallback(float time, Action callback)
+        {
+            yield return new WaitForSeconds(time);
+            callback();
         }
 
         public async void ClickSearchButton()
         {
+
             if (!string.IsNullOrEmpty(inputField.text))
             {
                 noResultText.SetActive(false);
@@ -105,6 +121,8 @@ namespace ToonJido.Search
 
                 if (searchResult.cultures.Length == 0)
                 {
+                    ClearResultList();
+                    drag.Up();
                     noResultText.SetActive(true);
                 }
                 else
@@ -136,8 +154,30 @@ namespace ToonJido.Search
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore
             };
-
             result = JsonConvert.DeserializeObject<SearchedStore>( searchResult, setting );
+
+            return result;
+        }
+
+        /// <summary>
+        /// 서버에 사용자의 리뷰와 함께 자세한 가게 정보 요청
+        /// </summary>
+        /// <returns></returns>
+        public async Task<DetailInfo> GetDetailReview(string account, string market_id){
+            string url = appSetting.baseURL + "get_favorite_review/" + "?social_login_id=" + account + "&market_id=" + market_id;
+            var response = await client.GetAsync(url);
+
+            response.EnsureSuccessStatusCode();
+            var searchResult = await response.Content.ReadAsStringAsync();
+                        
+            // 내보낼 객체 생성
+            DetailInfo result = new();
+            var setting = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            result = JsonConvert.DeserializeObject<DetailInfo>( searchResult, setting );
 
             return result;
         }
@@ -196,27 +236,7 @@ namespace ToonJido.Search
             };
 
             result.cultures = storeData.cultures.Where(x => keyStoresName.Contains(x.market_name)).ToArray();
-
-            // for(int i = 0; i < keyStoresName.Length; i++){
-
-            //     SearchedStore searchedStore = new();
-            //     string keyword = keyStoresName[i];
-
-            //     // searchedStore.cultures = storeData.cultures
-            //     // .Where(x => x.market_name == keyword)
-            //     // .ToArray();
-
-            //     string temp = await SearchStore(keyStoresName[i]);
-            //     var setting = new JsonSerializerSettings
-            //     {
-            //         NullValueHandling = NullValueHandling.Ignore,
-            //         MissingMemberHandling = MissingMemberHandling.Ignore
-            //     };
-            //     tempSearchedStore = JsonConvert.DeserializeObject<SearchedStore>(temp, setting);
-            //     result.cultures[i] = tempSearchedStore.cultures[0];
-            // }
-
-            await DisplayResult(result);
+            await DisplayResult(result, popupWay: "Nothing");
         }
 
         private SearchedStore SearchByMarketId(int[] idArr){
@@ -237,7 +257,7 @@ namespace ToonJido.Search
         /// Oepn modal and instance result prefs
         /// </summary>
         /// <param name="input"></param>
-        /// <param name="popupWay">"Up"=full screen(default), "Half"=half screen, "Down"=not open</param>
+        /// <param name="popupWay">"Up"=full screen(default), "Half"=half screen, "Down"=Down, "Nothing"=Do nothing</param>
         /// <returns></returns>
         public async Task DisplayResult(SearchedStore input, string popupWay = "Up")
         {
@@ -252,6 +272,10 @@ namespace ToonJido.Search
                     break;
                 case "Down":
                     drag.Down();
+                    break;
+                case "Nothing":
+                    break;
+                default:
                     break;
             }
 
@@ -346,16 +370,31 @@ namespace ToonJido.Search
 
         public void PathFind(string address)
         {
-            Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-            NavPlayerControl.navPlayerControl.SetDestination(lot);
+            if(CurrentControl.gpsStatus == GPSStatus.avaliable){
+                Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
+                NavPlayerControl.navPlayerControl.SetDestination(lot);
+                drag.Half();
+                FocusToHalf(lot);
+            }
+            else{
+                noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 길찾기를 이용할 수 없습니다.");
+            }
         }
 
-        public void FocusToBuilding(string address){
-            Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-            StartCoroutine(FTB(lot));
+        public void FocusToHalf(Vector3 target){
+            var cam = Camera.main;
+            var camWidth = cam.pixelWidth;
+            var camHeight = cam.pixelHeight;
+
+            Vector3 viewPos = cam.ScreenToWorldPoint(new Vector3(camWidth/2, camHeight/3, 500));
+            Vector3 centerPos = cam.ScreenToWorldPoint(new Vector3(camWidth/2, camHeight/2, 500));
+            var temp = viewPos - centerPos;
+            Vector3 lot = new Vector3(target.x, 0, target.z + temp.z);
+
+            StartCoroutine(FocusCoroutine(lot));
         }
 
-        IEnumerator FTB(Vector3 target){
+        IEnumerator FocusCoroutine(Vector3 target){
             float t = 0.0f;
             Vector3 startPosition = camTarget.transform.position;
 
@@ -375,14 +414,11 @@ namespace ToonJido.Search
             loadingPanel.SetActive(true);
             resultScroll.SetActive(false);
 
-            // Get data
+            // Get Store data
             var result = await SearchStore(name);
             Culture currentStore = result.cultures[0];
-            
-            // 찜 목록을 다운 받아서 이미 찜한 상점인지 검사
+
             var market_id = currentStore.id;
-            var zzimArr = await RequestZzimArray(UserProfile.social_login_id);
-            bool isZzim = zzimArr.Contains(market_id);
 
             // 이미지 다운로드
             string imgURL = currentStore.images[0].image;
@@ -391,10 +427,6 @@ namespace ToonJido.Search
                     tex.LoadImage(data, false);
                     Rect rect = new Rect(0, 0, tex.width, tex.height);
                     Sprite sp = Sprite.Create(tex, rect, new Vector2(0.5f, 0.5f));
-
-            // 점수 계산
-            int rank = Mathf.RoundToInt(currentStore.average_grade);
-            if(rank == 0) rank = 1;
 
             // detailCanvas에 적용
             var find_number = currentStore.find_number;
@@ -405,32 +437,78 @@ namespace ToonJido.Search
             clockText.text = currentStore.open_hours;
             addressText.text = currentStore.address;
             contactText.text = currentStore.phone;
-            for(int j = 0; j < rank; j++){
-                    stars[j].sprite = fullStar;
-                }
-                for(int k = rank; k < 5; k++){
-                    stars[k].sprite = blankStar;
-                }
+
+            // 길찾기 버튼
             pathFindButton.onClick.AddListener(() => PathFind(find_number));
             pathFindButton.onClick.AddListener(() => drag.Half());
 
-            // 이미 찜을 한 가게면
-            if(isZzim){
-                // 버튼 이미지 변경
-                UnityEngine.UI.Image zzimbuttonImage = zzimButton.gameObject.GetComponent<UnityEngine.UI.Image>();
-                zzimbuttonImage.sprite = fullHeart;
-                // 버튼에 리스너 추가
-                zzimButton.onClick.AddListener(async () => await DeleteZzim(UserProfile.social_login_id, market_id.ToString(), zzimButton));
+            if(UserProfile.social_login_id != string.Empty)
+            {
+                // 찜 목록을 다운 받아서 이미 찜한 상점인지 검사
+                var zzimArr = await RequestZzimArray(UserProfile.social_login_id);
+                bool isZzim = zzimArr.Contains(market_id);
+
+                // 이미 찜을 한 가게면
+                if(isZzim){
+                    // 버튼 이미지 변경
+                    UnityEngine.UI.Image zzimbuttonImage = zzimButton.gameObject.GetComponent<UnityEngine.UI.Image>();
+                    zzimbuttonImage.sprite = fullHeart;
+                    // 버튼에 리스너 추가
+                    zzimButton.onClick.AddListener(async () => await DeleteZzim(UserProfile.social_login_id, market_id.ToString(), zzimButton));
+                }
+                // 찜을 안 한 가게면
+                else{
+                    // 버튼 이미지 변경
+                    UnityEngine.UI.Image zzimbuttonImage = zzimButton.gameObject.GetComponent<UnityEngine.UI.Image>();
+                    zzimbuttonImage.sprite = blankHeart;
+                    // 버튼에 리스너 추가
+                    zzimButton.onClick.AddListener(async () => await PostZzim(UserProfile.social_login_id, market_id.ToString(), true, zzimButton));
+                }
+
+                // Get Review data
+                var reviewResult = await GetDetailReview(UserProfile.social_login_id, market_id.ToString());
+                
+                // 점수 계산
+                // int rank = Mathf.RoundToInt(currentStore.average_grade);
+                int rank = reviewResult.review_grades.Length > 0 ? reviewResult.review_grades[0] : 1;
+
+                // 자신이 쓴 리뷰가 없으면
+                if(reviewResult.review_contents.Length < 1){
+                    // 별들을 비어 있는 별로
+                    foreach(var item in stars){
+                        item.sprite = blankStar;
+                    }
+
+                    reviewInputField.interactable = true;
+                    postReviewButton.onClick.AddListener(async () => await PostReviewAsync(UserProfile.social_login_id, market_id.ToString(), reviewInputField.text, selectedStarRank.ToString()));
+                    postReviewButton.interactable = false;
+                }
+                // 자신이 쓴 리뷰가 있으면
+                else{
+                    for(int j = 0; j < rank; j++){
+                        stars[j].sprite = fullStar;
+                    }
+                    for(int k = rank; k < 5; k++){
+                        stars[k].sprite = blankStar;
+                    }
+
+                    foreach(var item in stars){
+                        item.GetComponent<Button>().interactable = false;
+                    }
+
+                    reviewInputField.text = reviewResult.review_contents[0];
+                    reviewInputField.interactable = false;
+                    postReviewButton.interactable = false;
+                }
             }
-            // 찜을 안 한 가게면
-            else{
-                // 버튼 이미지 변경
-                UnityEngine.UI.Image zzimbuttonImage = zzimButton.gameObject.GetComponent<UnityEngine.UI.Image>();
-                zzimbuttonImage.sprite = blankHeart;
-                // 버튼에 리스너 추가
-                zzimButton.onClick.AddListener(async () => await PostZzim(UserProfile.social_login_id, market_id.ToString(), true, zzimButton));
+            else
+            {
+                zzimButton.interactable = false;
+                postReviewButton.interactable = false;
+                reviewInputField.interactable = false;
             }
 
+            // 상세 화면 표시
             menuButton.gameObject.SetActive(false);
             detailContentBackButton.gameObject.SetActive(true);
             loadingPanel.SetActive(false);
@@ -444,7 +522,26 @@ namespace ToonJido.Search
             detailContentBackButton.gameObject.SetActive(false);
         }
 
-#region Zzim Functions
+        public void CheckReadyPostReview(){
+            if(reviewInputField.text is not null && selectedStarRank is not 0){
+                postReviewButton.interactable = true;
+            }
+            else{
+                postReviewButton.interactable = false;
+            }
+        }
+
+        public void DrawingStars(int input){
+            selectedStarRank = input;
+            for(int j = 0; j < selectedStarRank; j++){
+                stars[j].sprite = fullStar;
+            }
+            for(int k = selectedStarRank; k < 5; k++){
+                stars[k].sprite = blankStar;
+            }
+        }
+
+#region Zzim Methods
         /// <summary>
         /// 서버에 찜 등록
         /// 버튼의 이미지도 바뀜
@@ -472,6 +569,7 @@ namespace ToonJido.Search
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(async () => await DeleteZzim(_account, _marketId, button));
         }
+
         /// <summary>
         /// 서버에서 찜 삭제
         /// </summary>
@@ -482,9 +580,9 @@ namespace ToonJido.Search
         /// <returns></returns>
         public async Task DeleteZzim(string _account, string _marketId, Button button){
             var values = new Dictionary<string, string>{
-                //{"account", _account},
-                {"account", "2774886049"},
-                {"market_id", "236"}
+                {"account", _account},
+                //{"account", "2774886049"},
+                {"market_id", _marketId}
             };
 
             string url = appSetting.baseURL + "delete_favorite/";
@@ -500,12 +598,11 @@ namespace ToonJido.Search
 
         /// <summary>
         /// UserProfile에 등록된 유저 번호를 이용하여
-        /// 찜목록을 서버에서 받아오고 보여줌
+        /// Request Zzim Array를 호출하여 서버에서 찜목록을 받아오고 보여줌
         /// </summary>
         /// <returns></returns>
         public async void SearchZzimListAsync(){
             var zzimarr = await RequestZzimArray(UserProfile.social_login_id);
-            // var zzimarr = await RequestZzimArray("2774886049");
             var stores = SearchByMarketId(zzimarr);
             await DisplayResult(stores);
         }
@@ -516,7 +613,7 @@ namespace ToonJido.Search
         /// <param name="account"></param>
         /// <returns></returns>
         private async Task<int[]> RequestZzimArray(string account){
-            string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + "2774886049";
+            string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + account;
 
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
@@ -524,13 +621,48 @@ namespace ToonJido.Search
             var temp = JsonConvert.DeserializeObject<ZzimList>(result);
             int[] zzimarr = temp.market_ids;
 
-            foreach(var item in zzimarr){
-                print(item.ToString());
-            }
             // 중복 제거
             int[] distArr = zzimarr.Distinct().ToArray();
 
             return distArr;
+        }
+#endregion
+
+#region Review Methods
+        public async Task PostReviewAsync(string account, string market_id, string article, string grade){
+            var values = new Dictionary<string, string>{
+                {"account", account},
+                {"market_id", market_id},
+                {"content", article},
+                {"grade", grade}
+            };
+
+            string url = appSetting.baseURL + "create_review/";
+            var data = new FormUrlEncodedContent(values);
+            var response = await client.PostAsync(url, data);
+
+            if(response.EnsureSuccessStatusCode().IsSuccessStatusCode){
+                noticeManager.ShowNoticeDefaultStyle("리뷰 등록이 완료되었습니다.");
+                postReviewButton.interactable = false;
+                reviewInputField.interactable = false;
+
+                foreach(var item in stars){
+                    item.GetComponent<Button>().interactable = false;
+                }
+            }
+            var result = await response.Content.ReadAsStringAsync();
+        }
+
+        public void DeleteReview(){
+
+        }
+
+        public void SearchReviewList(){
+            
+        }
+
+        public void RequestReviewArrayToServer(){
+            
         }
 #endregion
 

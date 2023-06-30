@@ -26,30 +26,28 @@ namespace ToonJido.Control
         private Camera mainCamera;
         [SerializeField] Camera UICam;
         [SerializeField] Camera overlookCam;
-        private EventSystem eventSystem;
+
 
         [Header("Virtual Cameras")]
         [SerializeField]
         private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
 
+
         [Tooltip("Current use camera")]
         public CinemachineVirtualCamera ActiveCamera = null;
-
+        // virtual 카메라 전환 시 변경할 카메리의 culling mask layer
         int layer1;
         int layer2;
         bool isGPSTracking = false;
+
         // 부감 카메라 이동관련 변수
         private float spanSpeed = 2f;
         private const float zoomSpeed = 10f;
         private const float twoFingerZoomPower = 3f;
-        private const float minFOV = 20,
-            maxFOV = 70,
-            defaultFOV = 50;
-        private Vector2 nowPos,
-            prePos;
+        private const float minFOV = 20, maxFOV = 70, defaultFOV = 50;
+        private Vector2 nowPos, prePos;
         private Vector3 movePos;
-        private Vector2 nowPos02,
-            prePos02;
+        private Vector2 nowPos02, prePos02;
         private Vector3 movePos02;
         private Transform PlayerGPSLocation;
         private bool startOnUI01 = true;
@@ -69,9 +67,13 @@ namespace ToonJido.Control
         private float maxRayDis = 50f;
         private GameObject firstEncounter;
         private GameObject lastEncounter;
-        public GameObject HitPos;
-        public GameObject overlookCity;
-        public GameObject eyelevelCity;
+        private bool isAleadySearched = false;
+        
+        // 모델링들
+        [Header("Modelings")]
+        [SerializeField] private GameObject overlookCity;
+        [SerializeField] private GameObject eyelevelCity;
+        [SerializeField] private GameObject eyelevelCityExtra;
 
 #if DEVELOPMENT
         // 테스트용 변수들
@@ -80,11 +82,13 @@ namespace ToonJido.Control
 
         // UI들
         [Header("UI Objects")]
+        [SerializeField] private GameObject mainUICanvas;
         [SerializeField] private GameObject joyStick;
         public GameObject bottomBar;
         [SerializeField] private GameObject category;
         [SerializeField] private GameObject sideButton;
         [SerializeField] private Toggle gpsToggle;
+        [SerializeField] private Button gpsButton;
         [SerializeField] private GameObject zoomInButton;
         [SerializeField] private GameObject zoomOutButton;
         [SerializeField] private Button changeViewButton;
@@ -94,6 +98,8 @@ namespace ToonJido.Control
         [SerializeField] private GameObject numberCanvas;
         [SerializeField] private GameObject overCanvas;
         [SerializeField] private GameObject settingCanvas;
+        [SerializeField] private Slider holdSlider;
+        private float sliderMaxValue = 0.5f;
         [SerializeField] private Button settingBackButton;
         [SerializeField] private Slider moveSpeedSlider;
 
@@ -101,7 +107,11 @@ namespace ToonJido.Control
         [SerializeField] private Sprite overlookIcon;
         [SerializeField] private Sprite eyelevelIcon;
 
+        // common managers
         NoticeManager noticeManager;
+        BackKeyManager backKeyManager;
+        PPVolumeManager pPVolumeManager;
+        EventSystem eventSystem;
 
         void Start()
         {
@@ -109,7 +119,9 @@ namespace ToonJido.Control
             mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             eyeLevelTransform = GameObject.Find("EyeLevelCamPos").GetComponent<Transform>();
             PlayerGPSLocation = GameObject.Find("PlayerGPSLocation").GetComponent<Transform>();
+            pPVolumeManager = GameObject.Find("PPVolumeManager").GetComponent<PPVolumeManager>();
             player = GameObject.Find("EyelevelPlayer");
+            holdSlider.maxValue = sliderMaxValue;
 
             layerMask = 1 << LayerMask.NameToLayer("Store");
             RenderSettings.fog = false;
@@ -123,12 +135,12 @@ namespace ToonJido.Control
             layer1 = LayerMask.NameToLayer("Default");
             layer2 = LayerMask.NameToLayer("Path");
             noticeManager = NoticeManager.GetInstance();
+            backKeyManager = BackKeyManager.GetInstance();
 
-            // gpsButton.onClick.AddListener(() => ResetPosToPlayer());
+            gpsButton.onClick.AddListener(() => ResetPosToPlayer());
             changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
             weatherButton.onClick.AddListener(() => CurrentControl.ChangeToWeather());
             weatherBackButton.onClick.AddListener(() => CurrentControl.ChangeToLastState());
-
             gpsToggle.onValueChanged.AddListener((value) => GPSFollowOnOff(value));
         }
 
@@ -137,11 +149,16 @@ namespace ToonJido.Control
 #endif
         async void Update()
         {
+            // UI overray camera와 maincamera의 시야각을 동일하게 맞춰줌
             UICam.fieldOfView = cameras[0].m_Lens.FieldOfView;
             overlookCam.fieldOfView = cameras[0].m_Lens.FieldOfView;
 
-            // 플레이어 이동 코드랑 건물 터치 코드가 섞여있음....
-            // 난중에 분리해야 됨
+            // if(Input.touchCount == 0){
+            //     Touch touch = Input.GetTouch(0);
+            //     if(eventSystem.IsPointerOverGameObject(touch.fingerId)){
+            //         return;
+            //     }
+            // }
 
             // 현재 조작 모드가 부감일 때
             if (CurrentControl.state == State.Overlook)
@@ -149,38 +166,54 @@ namespace ToonJido.Control
                 if (Input.touchCount > 0)
                 {
                     Touch touch = Input.GetTouch(0);
+                    if(eventSystem.IsPointerOverGameObject(touch.fingerId)){
+                        return;
+                    }
 
                     if (touch.phase == TouchPhase.Began)
                     {
                         movePos = Vector3.zero;
 
+                        prePos = touch.position - touch.deltaPosition;
+
                         // 터치가 UI위에서 시작된 경우 카메라 이동 false
-                        if (IsPointerOverUI(touch.fingerId))
-                            startOnUI01 = false;
-                        else
-                        {
-                            startOnUI01 = true;
-                            prePos = touch.position - touch.deltaPosition;
-                        }
+                        // if (IsPointerOverUI(touch.fingerId))
+                        //     startOnUI01 = false;
+                        // else
+                        // {
+                        //     startOnUI01 = true;
+                        //     prePos = touch.position - touch.deltaPosition;
+                        // }
                     }
                     else if (touch.phase == TouchPhase.Moved)
                     {
                         // 화면 이동 속도 업데이트
                         spanSpeed = CalSpanSpeed(mainCamera.fieldOfView);
 
-                        if (startOnUI01)
-                        {
-                            // 실제 카메라 이동 로직
-                            nowPos = touch.position - touch.deltaPosition;
-                            movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
-                            if(-80 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < 275){
-                                if(-165 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 180)
-                                camTarget.transform.Translate(movePos);
-                            }
-                            
-                            // mainCamera.transform.Translate(movePos);
-                            prePos = touch.position - touch.deltaPosition;
+                        // 실제 카메라 이동 로직
+                        nowPos = touch.position - touch.deltaPosition;
+                        movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
+                        if(-80 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < 275){
+                            if(-165 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 180)
+                            camTarget.transform.Translate(movePos);
                         }
+                        
+                        // mainCamera.transform.Translate(movePos);
+                        prePos = touch.position - touch.deltaPosition;
+
+                        // if (startOnUI01)
+                        // {
+                        //     // 실제 카메라 이동 로직
+                        //     nowPos = touch.position - touch.deltaPosition;
+                        //     movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
+                        //     if(-80 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < 275){
+                        //         if(-165 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 180)
+                        //         camTarget.transform.Translate(movePos);
+                        //     }
+                            
+                        //     // mainCamera.transform.Translate(movePos);
+                        //     prePos = touch.position - touch.deltaPosition;
+                        // }
                     }
 
                     // 두 손가락 컨트롤 로직
@@ -221,16 +254,20 @@ namespace ToonJido.Control
                 {
                     Touch touch = Input.GetTouch(0);
 
+                    // if(eventSystem.IsPointerOverGameObject(touch.fingerId)){
+                    //     return;
+                    // }
+
                     if (touch.phase == TouchPhase.Began)
                     {
                         // 터치가 UI위에서 시작되었는지 검사
-                        startOnUI01 = IsPointerOverUI(touch.fingerId) ? true : false;
+                        startOnUI01 = eventSystem.IsPointerOverGameObject(touch.fingerId);
 
                         // 터치가 UI위에서 시작되지 않았다면
-                        // 최소 터치 위치 계산, raycast로 건물 검색
+                        // 최초 터치 위치 계산, raycast로 건물 검색
                         if(startOnUI01 is false){
                             prePos = touch.position - touch.deltaPosition;
-                            GetEncounter(ref firstEncounter);
+                            //GetEncounter(ref firstEncounter);
                         }
                     }
                     else if (touch.phase == TouchPhase.Moved)
@@ -258,21 +295,39 @@ namespace ToonJido.Control
                             player.transform.Rotate(new Vector3(0, movePos.x, 0), Space.Self);
                             prePos = touch.position - touch.deltaPosition;
                         }
-
+                        holdSlider.value =0;
                     }
                     else if(touch.phase == TouchPhase.Stationary){
                         GetEncounter(ref lastEncounter);
+                        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+                        if (Physics.Raycast(ray, out hit, maxRayDis, layerMask) && !isAleadySearched)
+                        {
+                            holdSlider.gameObject.SetActive(true);
+                            holdSlider.gameObject.transform.position = touch.position + new Vector2(0f, 80f);
+                            holdSlider.value += Time.deltaTime;
+                            if(holdSlider.value > sliderMaxValue - 0.01f){
+                                isAleadySearched = true;
+                                holdSlider.gameObject.SetActive(false);
+                                var address = lastEncounter.GetComponent<BuildingInfo>().address;
+                                var result = SearchManager.instance.SearchStoreByAddress(address);
+                                await SearchManager.instance.DisplayResult(result);
+                            }
+                        }
                     }
                     else if (touch.phase == TouchPhase.Ended)
                     {
-                        if (CheckSameObject(firstEncounter, lastEncounter))
-                        {
-                            var address = lastEncounter.GetComponent<BuildingInfo>().address;
-                            var result = SearchManager.instance.SearchStoreByAddress(address);
-                            await SearchManager.instance.DisplayResult(result);
-                        }
+                        // if (CheckSameObject(firstEncounter, lastEncounter))
+                        // {
+                        //     var address = lastEncounter.GetComponent<BuildingInfo>().address;
+                        //     var result = SearchManager.instance.SearchStoreByAddress(address);
+                        //     await SearchManager.instance.DisplayResult(result);
+                        // }
                         firstEncounter = null;
                         lastEncounter = null;
+                        isAleadySearched = false;
+                        holdSlider.gameObject.SetActive(false);
+                        holdSlider.value =0;
                     }
 
                     // 두 손가락 컨트롤 로직
@@ -569,11 +624,13 @@ namespace ToonJido.Control
                 UICam.gameObject.SetActive(true);
                 overlookCam.gameObject.SetActive(true);
 
+                mainUICanvas.SetActive(true);
                 joyStick.SetActive(false);
                 bottomBar.SetActive(true);
                 category.SetActive(true);
                 sideButton.SetActive(true);
                 gpsToggle.gameObject.SetActive(true);
+                gpsButton.gameObject.SetActive(false);
                 zoomInButton.SetActive(true);
                 zoomOutButton.SetActive(true);
 
@@ -581,11 +638,11 @@ namespace ToonJido.Control
                 changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
                 overlookCity.SetActive(true);
                 eyelevelCity.SetActive(false);
+                eyelevelCityExtra.SetActive(false);
 
                 RenderSettings.fog = false;
+                pPVolumeManager.TurnOffDepthOfField();
                 weatherCanvas.SetActive(false);
-                // numberCanvas.SetActive(true);
-                // overCanvas.SetActive(true);
                 changeViewButton.image.sprite = eyelevelIcon;
             }
             else if (CurrentControl.state == State.Eyelevel)
@@ -597,11 +654,13 @@ namespace ToonJido.Control
                 UICam.gameObject.SetActive(false);
                 overlookCam.gameObject.SetActive(false);
 
+                mainUICanvas.SetActive(true);
                 joyStick.SetActive(true);
                 bottomBar.SetActive(false);
                 category.SetActive(false);
                 sideButton.SetActive(true);
                 gpsToggle.gameObject.SetActive(false);
+                gpsButton.gameObject.SetActive(true);
                 zoomInButton.SetActive(false);
                 zoomOutButton.SetActive(false);
 
@@ -609,11 +668,10 @@ namespace ToonJido.Control
                 changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToOverlook());
                 overlookCity.SetActive(false);
                 eyelevelCity.SetActive(true);
+                eyelevelCityExtra.SetActive(true);
 
                 StartCoroutine(
-                    WaitThenCallback(
-                        0.7f,
-                        () =>
+                    WaitThenCallback( 0.7f,() =>
                         {
                             if (CurrentControl.state == State.Eyelevel)
                             {
@@ -623,10 +681,8 @@ namespace ToonJido.Control
                         }
                     )
                 );
-
+                pPVolumeManager.TurnOnDepthOfField();
                 weatherCanvas.SetActive(false);
-                // numberCanvas.SetActive(false);
-                // overCanvas.SetActive(false);
                 changeViewButton.image.sprite = overlookIcon;
             }
             else if (CurrentControl.state == State.SearchResult)
@@ -641,9 +697,28 @@ namespace ToonJido.Control
             }
             else if (CurrentControl.state == State.Weather)
             {
+                SwitchCamera(cameras[2]);
+
+                mainUICanvas.SetActive(false);
                 joyStick.SetActive(false);
                 sideButton.SetActive(false);
                 weatherCanvas.SetActive(true);
+
+                overlookCity.SetActive(false);
+                eyelevelCity.SetActive(true);
+                eyelevelCityExtra.SetActive(true);
+
+                StartCoroutine(
+                    WaitThenCallback( 0.7f,() =>
+                        {
+                            if (CurrentControl.state == State.Weather)
+                            {
+                                RenderSettings.fog = true;
+                                RenderSettings.fogDensity = 0.005f;
+                            }
+                        }
+                    )
+                );
             }
         }
 
@@ -768,6 +843,7 @@ namespace ToonJido.Control
 #endif
         }
 
+        // overlook cam과 eyelevel cam 사이의 전환
         public void SwitchCamera(CinemachineVirtualCamera cam)
         {
             cam.Priority = 1;
@@ -784,7 +860,7 @@ namespace ToonJido.Control
         public void ResetPosToPlayer()
         {
             if(CurrentControl.gpsStatus is not GPSStatus.avaliable){
-                print("can not use gps");
+                noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 현재 위치 이동 기능을 이용할 수 없습니다.");
                 return;
             }
 

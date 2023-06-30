@@ -120,3 +120,15 @@ UIdrag에 half 메소드 추가
 section 선택 시 모달을 half로 표시, 섹션을 화면의 2/3지점에 둠
 iOS status bar 표시
 SearchManager 최적화
+
+1.1.4
+WeatherCanvas 변경
+AppleManager 추가
+	- FaceID를 이용하여 Apple서버에 계정 연동 요청
+Webview 추가
+	- 카카오로그인 시 브라우저가 열리는 것이 아닌 Webview를 통해서 로그인하도록 변경
+
+1.1.5
+AppleManager에서 AppleLogin 시 API서버에 회원가입 요청하도록 추가
+InitManager
+AccountChecker

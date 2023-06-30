@@ -14,41 +14,16 @@ public class zzimTest : MonoBehaviour
     async void Start()
     {
         postzzim();
-        getzzim();
-        //postNotZzimeAsync();
-        await DeleteZzim("86");
+        //getzzim();
+        //await DeleteZzim("236");
 
         //getzzim();
-    }
-
-    private async void postNotZzimeAsync()
-    {
-        var values = new Dictionary<string, string>{
-            {"account", "2774886049"},
-            {"market_id", "108"},
-            {"is_favorite", "false"}
-        };
-
-        string url = appSetting.baseURL + "create_favorite/";
-        var data = new FormUrlEncodedContent(values);
-        var response = await client.PostAsync(url, data);
-
-        response.EnsureSuccessStatusCode();
-        var result = await response.Content.ReadAsStringAsync();
-        print(response.ToString());
-        print(result);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public async void postzzim(){
         var values = new Dictionary<string, string>{
             {"account", "2774886049"},
-            {"market_id", "108"},
+            {"market_id", "236"},
             {"is_favorite", "True"}
         };
 

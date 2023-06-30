@@ -20,7 +20,12 @@ namespace ToonJido.UI
         float canvasSize;
         float topRectSize;
         public GameObject sideButtonParant;
+        [HideInInspector] public bool isModalUp = false;
         private Image[] buttons;
+        private Button handleButton;
+        private Image handleImage;
+        public Sprite upHandleSprite;
+        public Sprite downHandleSprite;
 
         void Start()
         {
@@ -42,8 +47,9 @@ namespace ToonJido.UI
             _halfSafe = _maxSafe * 0.3f;
             _minSafe *= -0.9f;
 
-            buttons = sideButtonParant.GetComponentsInChildren<Image>();
-
+            //buttons = sideButtonParant.GetComponentsInChildren<Image>();
+            handleButton = transform.Find("Handle Button").GetComponent<Button>();
+            handleImage = transform.Find("Handle Image").GetComponent<Image>();
             FirstDown();
         }
 
@@ -62,6 +68,16 @@ namespace ToonJido.UI
             position.y = Mathf.Clamp(position.y, _minSafe, _maxSafe);
             transform.position = canvas.transform.TransformPoint(position);
         }
+
+#if UNITY_ANDROID
+        // Update is called once per frame
+        void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Escape)){
+                BackKeyInput();
+            }
+        }
+#endif
 
         float normalize(float value, float min, float max)
         {
@@ -85,17 +101,26 @@ namespace ToonJido.UI
             }
         }
 
+        public void BackKeyInput(){
+            if(isModalUp){
+                Down();
+            }
+        }
+
         public void Down()
         {
-            //transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
             StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _minSafe)), 0.2f));
+            handleImage.sprite = upHandleSprite;
+            handleButton.onClick.RemoveAllListeners();
+            handleButton.onClick.AddListener(() => Up());
             sideButtonParant.SetActive(true);
+            isModalUp = false;
         }
 
         public void Half(){
-            //transform.position = canvas.transform.TransformPoint(new Vector2(0, _halfSafe));
             StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _halfSafe)), 0.1f));
             sideButtonParant.SetActive(false);
+            isModalUp = true;
         }
 
         public void FirstDown(){
@@ -104,10 +129,12 @@ namespace ToonJido.UI
 
         public void Up()
         {
-            //transform.position = canvas.transform.TransformPoint(new Vector2(0, _maxSafe));
             StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _maxSafe)), 0.2f));
+            handleImage.sprite = downHandleSprite;
+            handleButton.onClick.RemoveAllListeners();
+            handleButton.onClick.AddListener(() => Down());
             sideButtonParant.SetActive(false);
-            // CurrentControl.ChangeToSearchResult();
+            isModalUp = true;
         }
 
         IEnumerator MoveSmooth(Transform origin, Vector3 target, float duringTime){
