@@ -9,8 +9,10 @@ namespace ToonJido.UI{
         private InitializeManager lm;
         private SampleWebView sw;
         private DeepLinkManager dm;
+        private AppleManager am;
 
         [SerializeField] private Button tutorialCheckButton;
+        [SerializeField] private Button appleLoginButton;
         [SerializeField] private Button kakaoLoginButton;
         [SerializeField] private Button skipLoginButton;
         [SerializeField] private GameObject signupCanvas;
@@ -29,6 +31,13 @@ namespace ToonJido.UI{
 
             dm = GameObject.Find("DeepLinkManager").GetComponent<DeepLinkManager>();
             dm.activatedAction += sw.CloseWebViewerCaller;
+
+#if UNITY_IOS
+            am = GameObject.Find("AppleManager").GetComponent<AppleManager>();
+            appleLoginButton.onClick.AddListener(() => am.SignIN());
+#else
+            appleLoginButton.gameObject.SetActive(false);
+#endif
         }
     }
 }

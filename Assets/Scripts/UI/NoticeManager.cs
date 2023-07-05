@@ -21,6 +21,9 @@ namespace ToonJido.UI{
             if(instance is null){
                 instance = this;
             }
+            else{
+                Destroy(this);
+            }
 
             DontDestroyOnLoad(noticeCanvas);
         }
@@ -45,8 +48,9 @@ namespace ToonJido.UI{
             noticeCanvas.SetActive(true);
         }
 
-        public void DisableCancelButton(){
-            cancelButton.gameObject.SetActive(false); 
+        public NoticeManager DisableCancelButton(){
+            cancelButton.gameObject.SetActive(false);
+            return this;
         }
 
         /// <summary>

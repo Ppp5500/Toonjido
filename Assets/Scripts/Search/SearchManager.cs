@@ -1,20 +1,25 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Linq;
-using System.IO;
+
+using Newtonsoft.Json;
+
+using static appSetting;
+
 using TMPro;
+
+using ToonJido.Common;
 using ToonJido.Control;
+using ToonJido.Data.Model;
+using ToonJido.Login;
+using ToonJido.UI;
+
 using UnityEngine;
 using UnityEngine.UI;
-using Newtonsoft.Json;
-using ToonJido.Data.Model;
-using ToonJido.Common;
-using ToonJido.UI;
-using ToonJido.Login;
-using static appSetting;
-using System.Collections;
-using System;
 
 namespace ToonJido.Search
 {
@@ -236,7 +241,7 @@ namespace ToonJido.Search
             };
 
             result.cultures = storeData.cultures.Where(x => keyStoresName.Contains(x.market_name)).ToArray();
-            await DisplayResult(result, popupWay: "Nothing");
+            await DisplayResult(result, popupWay: "Up");
         }
 
         private SearchedStore SearchByMarketId(int[] idArr){
@@ -370,6 +375,12 @@ namespace ToonJido.Search
 
         public void PathFind(string address)
         {
+#if DEVELOPMENT
+            Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
+            NavPlayerControl.navPlayerControl.SetDestination(lot);
+            drag.Half();
+            FocusToHalf(lot);
+#else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
                 NavPlayerControl.navPlayerControl.SetDestination(lot);
@@ -379,6 +390,7 @@ namespace ToonJido.Search
             else{
                 noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 길찾기를 이용할 수 없습니다.");
             }
+#endif
         }
 
         public void FocusToHalf(Vector3 target){
@@ -477,9 +489,11 @@ namespace ToonJido.Search
                     // 별들을 비어 있는 별로
                     foreach(var item in stars){
                         item.sprite = blankStar;
+                        item.GetComponent<Button>().interactable = true;
                     }
 
                     reviewInputField.interactable = true;
+                    reviewInputField.text = string.Empty;
                     postReviewButton.onClick.AddListener(async () => await PostReviewAsync(UserProfile.social_login_id, market_id.ToString(), reviewInputField.text, selectedStarRank.ToString()));
                     postReviewButton.interactable = false;
                 }
@@ -614,7 +628,6 @@ namespace ToonJido.Search
         /// <returns></returns>
         private async Task<int[]> RequestZzimArray(string account){
             string url =  baseURL + "get_favorite_market_ids/" + "?social_login_id=" + account;
-
             var response = await client.GetAsync(url);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();

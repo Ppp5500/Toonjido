@@ -132,3 +132,10 @@ Webview 추가
 AppleManager에서 AppleLogin 시 API서버에 회원가입 요청하도록 추가
 InitManager
 AccountChecker
+
+1.1.6
+날씨 UI에 데이터 연동
+로그인 시스템 별로 로그아웃 기능 설정
+로그인 시스템 별로 회원탈퇴 기능 설정
+iphone에서 Playerprefs를 이용한 데이터 저장이 안 되길래 그냥 PlayerInfoSaver로 저장시켜버림
+흐린 날씨일때 reflection cude 변경

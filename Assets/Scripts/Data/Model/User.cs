@@ -16,5 +16,12 @@ namespace ToonJido.Data.Model
         public string nickname {get; set;}
         public int[] review {get; set;}
         public int[] wishList {get; set;}
+
+        public IdType idType {get; set;}
+    }
+
+    public enum IdType{
+            apple,
+            kakao
     }
 }

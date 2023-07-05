@@ -22,7 +22,7 @@ namespace ToonJido.Control
     {
         public static State state = State.Overlook;
         public static State lastState;
-        public static GPSStatus gpsStatus;
+        public static GPSStatus gpsStatus = GPSStatus.invalid_location;
 
         /// <summary>
         /// �ΰ� ���·� ��ȯ

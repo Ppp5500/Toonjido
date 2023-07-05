@@ -1,11 +1,18 @@
-using UnityEngine;
-using UnityEngine.UI;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Security.Cryptography;
+
+using static appSetting;
+
+using ToonJido.Common;
+using ToonJido.Data.Model;
 using ToonJido.Login;
 using ToonJido.UI;
-using static appSetting;
-using System;
-using System.Security.Cryptography;
-using System.Collections.Generic;
+
+using UnityEngine;
+using UnityEngine.UI;
 
 public class AccountChecker : MonoBehaviour
 {
@@ -15,13 +22,21 @@ public class AccountChecker : MonoBehaviour
 
     // common managers
     private NoticeManager noticeManager;
+    private HttpClient client;
+
+#if UNITY_IOS
+    private AppleManager am;
+#endif
 
     // Start is called before the first frame update
     void Start()
     {
         noticeManager = NoticeManager.GetInstance();
-        //JWTTest();
-        // GenerateAppStoreJwtToken("MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgqLt9ltnpdwEE36ywY3FNzOFT1T7Fx8HFQXPrZMg9XpCgCgYIKoZIzj0DAQehRANCAARV/UD4kBLJcApsbVXLnw55ZXl30VwBRy0Sd5MmBXKwB0NUfdC1w2h/8I1QPxS5EO6MkS57xGokt+2/Kt+JRvsJ");
+        client = HttpClientProvider.GetHttpClient();
+#if UNITY_IOS
+        am = GameObject.Find("AppleManager").GetComponent<AppleManager>();
+#endif
+
         if(UserProfile.social_login_id == string.Empty)
         {
             NoAccount();
@@ -29,7 +44,8 @@ public class AccountChecker : MonoBehaviour
         }
         else
         {
-
+            SetLogoutButton();
+            SetWithdrawalButton();
         }
     }
 
@@ -40,19 +56,29 @@ public class AccountChecker : MonoBehaviour
 
     public void HideLogoutAndWithdrawalButton(){
         logoutButton.gameObject.SetActive(false);
+        withdrawalButton.gameObject.SetActive(false);
     }
 
     public void SetLogoutButton(){
         logoutButton.gameObject.SetActive(true);
 
-        if(UserProfile.curr_id_type == IdType.apple)
-        {
-            PlayerPrefs.DeleteKey(AppleUserIdKey);
-        }
-        else if(UserProfile.curr_id_type == IdType.kakao)
-        {
-            PlayerPrefs.DeleteKey(KakaoUserIdKey);
-        }
+        logoutButton.onClick.AddListener(
+            () => {
+                noticeManager
+                    .SetCancelButtonDefault()
+                    .SetConfirmButton(
+                        () =>
+                        {
+                            if(File.Exists(appSetting.userInfoPath))
+                            {
+                                File.Delete(appSetting.userInfoPath);
+                            }
+                            Application.Quit();
+                        }
+                    )
+                    .ShowNotice("로그아웃 시 자동 로그인이 해지 됩니다. 계속 하시겠습니까?");
+            }
+        );
     }
 
     public void SetWithdrawalButton(){
@@ -60,21 +86,53 @@ public class AccountChecker : MonoBehaviour
         withdrawalButton.onClick.AddListener(
             () =>
             {
-                noticeManager.SetCancelButtonDefault()
-                                .SetConfirmButton(
-                                    () => 
-                                    {
-                                        var url = baseURL + "deleteAccount/" + UserProfile.social_login_id;
-                                        if(UserProfile.curr_id_type == IdType.apple)
-                                        {
+                noticeManager
+                    .SetCancelButtonDefault()
+                    .SetConfirmButton(
+                        async () => 
+                        {
+                            noticeManager.ShowNotice("처리 중입니다...");
 
-                                        }
-                                        else if(UserProfile.curr_id_type == IdType.kakao)
-                                        {
+                            // api 서버의 데이터 베이스에서 회원 정보 삭제
+                            var url = baseURL + "deleteAccount/";
+                            Dictionary<string, string> value = new()
+                            {
+                                { "social_login_id", UserProfile.social_login_id }
+                            };
+                            var data = new FormUrlEncodedContent(value);
+                            var result = await client.PostAsync(url, data);
 
-                                        }
-                                    })
-                                    .ShowNotice("사용자 정보가 모두 삭제 됩니다. 계속 하시겠습니까?");
+                            try
+                            {
+                                result.EnsureSuccessStatusCode();
+                            }
+                            catch
+                            {
+                                noticeManager.ShowNoticeDefaultStyle("오류가 발생했습니다. 관리자에게 문의하세요.");
+                                return;
+                            }
+
+                            // 애플 로그인인지 확인
+                            if(UserProfile.curr_id_type == IdType.apple)
+                            {
+#if UNITY_IOS
+                                // 애플 연동 해제
+                                //am.SignOUT();
+#endif
+                            }
+
+                            // 로컬 기기에 저장된 자동 로그인 정보 삭제
+                            if(File.Exists(appSetting.userInfoPath))
+                            {
+                                File.Delete(appSetting.userInfoPath);
+                            }
+
+                            noticeManager.DisableCancelButton()
+                                .SetConfirmButton( () => Application.Quit())
+                                .ShowNotice("회원 탈퇴가 완료되었습니다. 재접속 해주시기 바랍니다.");
+                            
+                        })
+                        .ShowNotice("사용자 정보가 모두 삭제 되며, 복구할 수 없습니다. 계속 하시겠습니까?");
             }
         );
     }

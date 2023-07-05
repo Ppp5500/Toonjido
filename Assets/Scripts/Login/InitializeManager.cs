@@ -1,11 +1,14 @@
-using UnityEngine;
 using System.IO;
 using System.Net.Http;
-using ToonJido.Data.Saver;
 using System.Threading.Tasks;
+
 using static appSetting;
+
 using ToonJido.Common;
+using ToonJido.Data.Saver;
 using ToonJido.UI;
+
+using UnityEngine;
 
 namespace ToonJido.Login
 {
@@ -22,6 +25,7 @@ namespace ToonJido.Login
             noticeManager = NoticeManager.GetInstance();
             client = HttpClientProvider.GetHttpClient();
 
+            print("is this cna watch?");
             AppInitialization();
         }
 
@@ -38,21 +42,23 @@ namespace ToonJido.Login
         private async void AppInitialization(){
             bool netConnection = await DownloadMarketDB();
 
+            Debug.Log("netCon: "+ netConnection);
+
             if(netConnection)
             {
-                if(PlayerPrefs.HasKey(AppleUserIdKey))
+                if(CheckUserInfoFile())
                 {
-                    UserProfile.social_login_id = PlayerPrefs.GetString(AppleUserIdKey);
-                    UserProfile.curr_id_type = IdType.apple;
+                    using(PlayerDataSaver saver = new())
+                    {
+                        var user = await saver.LoadUserAsync();
+                        UserProfile.social_login_id = user.user_social_id;
+                        UserProfile.curr_id_type = user.idType;
+                    }
+
                     sceneLoader.LoadSceneAsync("03 TestScene");
                 }
-                else if(PlayerPrefs.HasKey(KakaoUserIdKey))
+                else
                 {
-                    UserProfile.social_login_id = PlayerPrefs.GetString(KakaoUserIdKey);
-                    UserProfile.curr_id_type = IdType.kakao;
-                    sceneLoader.LoadSceneAsync("03 TestScene");
-                }
-                else{
                     sceneLoader.LoadSceneAsync("02 FirstLoginScene");
                 }
             }
@@ -83,6 +89,10 @@ namespace ToonJido.Login
         // not using
         private bool CheckTokenFile(){
             return File.Exists(appSetting.tokenPath);
+        }
+
+        private bool CheckUserInfoFile(){
+            return File.Exists(appSetting.userInfoPath);
         }
 
         private string GetToken(){

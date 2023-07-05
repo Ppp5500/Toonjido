@@ -45,6 +45,7 @@ namespace ToonJido.Control
         private const float zoomSpeed = 10f;
         private const float twoFingerZoomPower = 3f;
         private const float minFOV = 20, maxFOV = 70, defaultFOV = 50;
+        private const float minXPos = -90, maxXPos = 275, minYPos = -360, maxYPos = 140;
         private Vector2 nowPos, prePos;
         private Vector3 movePos;
         private Vector2 nowPos02, prePos02;
@@ -65,7 +66,6 @@ namespace ToonJido.Control
         //private int layerMask;
         public LayerMask layerMask;
         private float maxRayDis = 50f;
-        private GameObject firstEncounter;
         private GameObject lastEncounter;
         private bool isAleadySearched = false;
         
@@ -82,6 +82,7 @@ namespace ToonJido.Control
 
         // UI들
         [Header("UI Objects")]
+        [SerializeField] private Slider holdSlider;
         [SerializeField] private GameObject mainUICanvas;
         [SerializeField] private GameObject joyStick;
         public GameObject bottomBar;
@@ -98,7 +99,6 @@ namespace ToonJido.Control
         [SerializeField] private GameObject numberCanvas;
         [SerializeField] private GameObject overCanvas;
         [SerializeField] private GameObject settingCanvas;
-        [SerializeField] private Slider holdSlider;
         private float sliderMaxValue = 0.5f;
         [SerializeField] private Button settingBackButton;
         [SerializeField] private Slider moveSpeedSlider;
@@ -153,13 +153,6 @@ namespace ToonJido.Control
             UICam.fieldOfView = cameras[0].m_Lens.FieldOfView;
             overlookCam.fieldOfView = cameras[0].m_Lens.FieldOfView;
 
-            // if(Input.touchCount == 0){
-            //     Touch touch = Input.GetTouch(0);
-            //     if(eventSystem.IsPointerOverGameObject(touch.fingerId)){
-            //         return;
-            //     }
-            // }
-
             // 현재 조작 모드가 부감일 때
             if (CurrentControl.state == State.Overlook)
             {
@@ -175,15 +168,6 @@ namespace ToonJido.Control
                         movePos = Vector3.zero;
 
                         prePos = touch.position - touch.deltaPosition;
-
-                        // 터치가 UI위에서 시작된 경우 카메라 이동 false
-                        // if (IsPointerOverUI(touch.fingerId))
-                        //     startOnUI01 = false;
-                        // else
-                        // {
-                        //     startOnUI01 = true;
-                        //     prePos = touch.position - touch.deltaPosition;
-                        // }
                     }
                     else if (touch.phase == TouchPhase.Moved)
                     {
@@ -193,27 +177,14 @@ namespace ToonJido.Control
                         // 실제 카메라 이동 로직
                         nowPos = touch.position - touch.deltaPosition;
                         movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
-                        if(-80 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < 275){
-                            if(-165 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 180)
+
+                        // CamTarget의 위치 제한
+                        if(minXPos < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < maxXPos){
+                            if(minYPos < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < maxYPos)
                             camTarget.transform.Translate(movePos);
                         }
                         
-                        // mainCamera.transform.Translate(movePos);
                         prePos = touch.position - touch.deltaPosition;
-
-                        // if (startOnUI01)
-                        // {
-                        //     // 실제 카메라 이동 로직
-                        //     nowPos = touch.position - touch.deltaPosition;
-                        //     movePos = (Vector3)(prePos - nowPos) * spanSpeed * Time.deltaTime;
-                        //     if(-80 < camTarget.transform.position.x + movePos.x && camTarget.transform.position.x + movePos.x < 275){
-                        //         if(-165 < camTarget.transform.position.z + movePos.y && camTarget.transform.position.z + movePos.y < 180)
-                        //         camTarget.transform.Translate(movePos);
-                        //     }
-                            
-                        //     // mainCamera.transform.Translate(movePos);
-                        //     prePos = touch.position - touch.deltaPosition;
-                        // }
                     }
 
                     // 두 손가락 컨트롤 로직
@@ -235,14 +206,6 @@ namespace ToonJido.Control
                             var newFOV = cameras[0].m_Lens.FieldOfView +=
                                 twoFingerZoomPower * deltaDiff * Time.deltaTime;
                             cameras[0].m_Lens.FieldOfView = Clamp(newFOV, minFOV, maxFOV);
-
-                            // filterStrenth = (newFOV - 50) / 70;
-                            // filterStrenth = Clamp(filterStrenth, 0.0f, 0.5f);
-                            // debugText = filterStrenth.ToString();
-                            // foreach (var item in materials)
-                            // {
-                            //     item.SetFloat("_FilterStrenth", filterStrenth);
-                            // }
                         }
                     }
                 }
@@ -323,7 +286,6 @@ namespace ToonJido.Control
                         //     var result = SearchManager.instance.SearchStoreByAddress(address);
                         //     await SearchManager.instance.DisplayResult(result);
                         // }
-                        firstEncounter = null;
                         lastEncounter = null;
                         isAleadySearched = false;
                         holdSlider.gameObject.SetActive(false);

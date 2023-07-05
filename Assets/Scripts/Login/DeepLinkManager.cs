@@ -56,18 +56,16 @@ namespace ToonJido.Login
             string myuser_social_id = token.Substring(length-10, 10);
             token = token.Remove(length - 10, 10);
 
-
-            UserProfile.token = token;
             UserProfile.social_login_id = myuser_social_id;
-            PlayerPrefs.SetString(KakaoUserIdKey, myuser_social_id);
 
             using (PlayerDataSaver saver = new())
             {
                 User user = new(){
-                    user_social_id = myuser_social_id
+                    user_social_id = myuser_social_id,
+                    idType = IdType.kakao
                 };
                 await saver.SaveToken(token);
-                saver.SavePlayerInfo(user);
+                await saver.SavePlayerInfo(user);
             }
 
             activatedAction();

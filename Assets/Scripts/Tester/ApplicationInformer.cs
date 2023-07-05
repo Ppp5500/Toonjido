@@ -1,5 +1,5 @@
 using UnityEngine;
-using ToonJido.Data.Model;
+using ToonJido.Login;
 
 namespace ToonJido.Test
 {

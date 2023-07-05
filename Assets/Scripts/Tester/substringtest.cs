@@ -42,7 +42,7 @@ public class substringtest : MonoBehaviour
                     user_social_id = myuser_social_id
                 };
                 await saver.SaveToken(token);
-                saver.SavePlayerInfo(user);
+                await saver.SavePlayerInfo(user);
             }
         }
 

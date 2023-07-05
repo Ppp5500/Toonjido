@@ -16,16 +16,22 @@ namespace ToonJido.Data.Saver
         private bool disposedValue;
         private byte[] buffer = new byte[1024];
 
-        public void SavePlayerInfo(User user)
+        public async Task SavePlayerInfo(User user)
         {
             string saveData = JsonConvert.SerializeObject(user);
-            File.WriteAllTextAsync(userInfoPath, saveData);
+            await File.WriteAllTextAsync(userInfoPath, saveData);
         }
 
         public async Task<string> LoadUserSocialIdAsync(){
             string loadData = await File.ReadAllTextAsync(userInfoPath);
             User user = JsonConvert.DeserializeObject<User>(loadData);
             return user.user_social_id;
+        }
+
+        public async Task<User> LoadUserAsync(){
+            string loadData = await File.ReadAllTextAsync(userInfoPath);
+            User user = JsonConvert.DeserializeObject<User>(loadData);
+            return user;
         }
 
         public bool DeleteUserSocialId(){

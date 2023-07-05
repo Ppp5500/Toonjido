@@ -39,12 +39,17 @@ namespace ToonJido.Control
         }
 
         private void Update() {
+#if DEVELOPMENT
+
+#else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 playerGPSLoactionObject.SetActive(true);
             }
             else{
                 playerGPSLoactionObject.SetActive(false);
             }
+#endif
+
         }
 
 #if DEVELOPMENT
@@ -64,9 +69,13 @@ namespace ToonJido.Control
 #endif
         private void FixedUpdate()
         {
+#if DEVELOPMENT
+            playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
+#else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
             }
+#endif
         }
 
         IEnumerator LocationCoroutine()

@@ -11,6 +11,9 @@ using System.Net.Http;
 using ToonJido.Common;
 using ToonJido.Login;
 using static appSetting;
+using System;
+using ToonJido.Data.Saver;
+using ToonJido.Data.Model;
 
 public class AppleManager : MonoBehaviour
 {
@@ -18,7 +21,6 @@ public class AppleManager : MonoBehaviour
 
     private float width;
     private float height;
-    public GameObject appleLoginButton;
     public string debugText = string.Empty;
 
     private HttpClient client;
@@ -39,8 +41,8 @@ public class AppleManager : MonoBehaviour
             this.appleAuthManager = new AppleAuthManager(deserializer);
         }
         else{
-            print("apple sign in not support!");
-            appleLoginButton.SetActive(false);
+            Debug.Log("apple sign in not support!");
+            Destroy(this.gameObject);
         }
 
         client = HttpClientProvider.GetHttpClient();
@@ -115,24 +117,54 @@ public class AppleManager : MonoBehaviour
 
                     // And now you have all the information to create/login a user in your system
                     debugText += "\nauth code: " + authorizationCode;
-                    debugText += "\nuser: " + userId;
-                    debugText += "\nemail: " + email;
-                    debugText += "\ntoken: " + identityToken;
+                    //debugText += "\nuser: " + userId;
+                    //debugText += "\nemail: " + email;
+                    //debugText += "\ntoken: " + identityToken;
+                    //debugText += "\nauth code: "+ authorizationCode;
                     Debug.Log("id: "+ userId);
                     Debug.Log("token: "+ identityToken);
+                    Debug.Log("auth code: "+ authorizationCode);
+
 
                     if(email is null)
                     {
                         email = string.Empty;
                     }
                     bool isSuccess = await APIServerSigninRequest(userId, email);
-                    if(isSuccess){
+                    Debug.Log("create Account is success?: " + isSuccess);
+                    if(isSuccess)
+                    {
                         // 다음 씬으로
-                        PlayerPrefs.SetString(AppleUserIdKey, userId);
-                        PlayerPrefs.SetString("AppleUserEmail", email);
+                        try{
+                            PlayerPrefs.SetString(AppleUserIdKey, userId);
+                            PlayerPrefs.Save();
+                            print("save success!");
+                        }
+                        catch(Exception ex)
+                        {
+                            Debug.Log("save prefs went wrong!");
+                            Debug.Log("what cause save problem: " + ex.Message);
+                        }
+                        Debug.Log("appleid: "+ userId);
+                        print("saved id: " + PlayerPrefs.GetString(AppleUserIdKey));
+                        print("is id saved?:" + PlayerPrefs.HasKey(AppleUserIdKey));
+                        // PlayerPrefs.SetString("AppleUserEmail", email);
                         UserProfile.social_login_id = userId;
                         UserProfile.curr_id_type = IdType.apple;
+
+                        using (PlayerDataSaver saver = new())
+                        {
+                            User user = new(){
+                                user_social_id = userId,
+                                idType = IdType.apple
+                            };
+                            await saver.SavePlayerInfo(user);
+                        }
                         SceneLoaderSingleton.instance.LoadSceneAsync("03 TestScene");
+                    }
+                    else
+                    {
+                        Debug.Log("Create Account fail");
                     }
                 }
             },
@@ -205,12 +237,12 @@ public class AppleManager : MonoBehaviour
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<bool> AppleServerSignoutRequest(string id, string authCode){
+    public async Task<bool> AppleServerSignoutRequest(string id, string token){
         debugText += "now we are in request";
         var url = appSetting.baseURL + "apple_login/";
         var values = new Dictionary<string, string>{
             {"social_login_id", id},
-            {"email", authCode}
+            {"token", token}
         };
 
         var data = new FormUrlEncodedContent(values);

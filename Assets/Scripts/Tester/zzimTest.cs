@@ -11,7 +11,7 @@ public class zzimTest : MonoBehaviour
 {
     HttpClient client = HttpClientProvider.GetHttpClient();
     // Start is called before the first frame update
-    async void Start()
+    void Start()
     {
         postzzim();
         //getzzim();
