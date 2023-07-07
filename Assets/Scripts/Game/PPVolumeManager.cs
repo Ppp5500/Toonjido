@@ -16,11 +16,9 @@ public class PPVolumeManager : MonoBehaviour
 
     public void TurnOnDepthOfField(){
         depthOfField.mode.Override(DepthOfFieldMode.Gaussian);
-        print(depthOfField.mode);
     }
 
     public void TurnOffDepthOfField(){
         depthOfField.mode.Override(DepthOfFieldMode.Off);
-        print(depthOfField.mode);
     }
 }

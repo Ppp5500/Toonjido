@@ -1,20 +1,26 @@
-using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using Cinemachine;
+
+using static System.Math;
+
+using ToonJido.Search;
+using ToonJido.UI;
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using ToonJido.Search;
-using ToonJido.UI;
-using static System.Math;
 
 #if UNITY_EDITOR
 
 #elif UNITY_ANDROID
 using UnityEngine.Android;
+
 #elif UINTY_IOS
 using UnityEngine.iOS;
+
 #endif
 
 namespace ToonJido.Control
@@ -71,9 +77,11 @@ namespace ToonJido.Control
         
         // 모델링들
         [Header("Modelings")]
-        [SerializeField] private GameObject overlookCity;
-        [SerializeField] private GameObject eyelevelCity;
-        [SerializeField] private GameObject eyelevelCityExtra;
+        [SerializeField] GameObject overlookCity;
+        [SerializeField] GameObject eyelevelCity;
+        [SerializeField] GameObject eyelevelCityExtra;
+        [SerializeField] GameObject eyelevelCityExtra02;
+
 
 #if DEVELOPMENT
         // 테스트용 변수들
@@ -95,13 +103,15 @@ namespace ToonJido.Control
         [SerializeField] private Button changeViewButton;
         [SerializeField] private Button weatherButton;
         [SerializeField] private Button weatherBackButton;
-        [SerializeField] private GameObject weatherCanvas;
+        [SerializeField] private CanvasListItem weatherCanvas;
         [SerializeField] private GameObject numberCanvas;
         [SerializeField] private GameObject overCanvas;
-        [SerializeField] private GameObject settingCanvas;
+        [SerializeField] private CanvasListItem settingCanvas;
+        [SerializeField] CanvasListItem menuCanvas;
         private float sliderMaxValue = 0.5f;
         [SerializeField] private Button settingBackButton;
         [SerializeField] private Slider moveSpeedSlider;
+        [SerializeField] List<GameObject> singCanvaslist = new();
 
         [Header("UI Resources")]
         [SerializeField] private Sprite overlookIcon;
@@ -152,6 +162,23 @@ namespace ToonJido.Control
             // UI overray camera와 maincamera의 시야각을 동일하게 맞춰줌
             UICam.fieldOfView = cameras[0].m_Lens.FieldOfView;
             overlookCam.fieldOfView = cameras[0].m_Lens.FieldOfView;
+
+            float curFOV = cameras[0].m_Lens.FieldOfView;
+            switch (curFOV)
+            {
+                case float value when value <= 30:
+                    SwitchSign(singCanvaslist[0]);
+                    break;
+
+                case float value when 40 <= value && value <= 50:
+                    SwitchSign(singCanvaslist[1]);
+                    break;
+
+                case float value when 50 < value:
+                    SwitchSign(singCanvaslist[2]);
+                    break;
+
+            }
 
             // 현재 조작 모드가 부감일 때
             if (CurrentControl.state == State.Overlook)
@@ -280,12 +307,6 @@ namespace ToonJido.Control
                     }
                     else if (touch.phase == TouchPhase.Ended)
                     {
-                        // if (CheckSameObject(firstEncounter, lastEncounter))
-                        // {
-                        //     var address = lastEncounter.GetComponent<BuildingInfo>().address;
-                        //     var result = SearchManager.instance.SearchStoreByAddress(address);
-                        //     await SearchManager.instance.DisplayResult(result);
-                        // }
                         lastEncounter = null;
                         isAleadySearched = false;
                         holdSlider.gameObject.SetActive(false);
@@ -601,6 +622,7 @@ namespace ToonJido.Control
                 overlookCity.SetActive(true);
                 eyelevelCity.SetActive(false);
                 eyelevelCityExtra.SetActive(false);
+                eyelevelCityExtra02.SetActive(true);
 
                 RenderSettings.fog = false;
                 pPVolumeManager.TurnOffDepthOfField();
@@ -631,6 +653,8 @@ namespace ToonJido.Control
                 overlookCity.SetActive(false);
                 eyelevelCity.SetActive(true);
                 eyelevelCityExtra.SetActive(true);
+                eyelevelCityExtra02.SetActive(true);
+
 
                 StartCoroutine(
                     WaitThenCallback( 0.7f,() =>
@@ -664,11 +688,13 @@ namespace ToonJido.Control
                 mainUICanvas.SetActive(false);
                 joyStick.SetActive(false);
                 sideButton.SetActive(false);
+                if(menuCanvas.gameObject.activeSelf) { menuCanvas.SetActive(false); }
                 weatherCanvas.SetActive(true);
 
                 overlookCity.SetActive(false);
                 eyelevelCity.SetActive(true);
                 eyelevelCityExtra.SetActive(true);
+                eyelevelCityExtra02.SetActive(true);
 
                 StartCoroutine(
                     WaitThenCallback( 0.7f,() =>
@@ -742,69 +768,6 @@ namespace ToonJido.Control
 #endif
         }
 
-        private bool GetEncounter(ref GameObject output, out Vector3 point, out Vector3 norVector, bool isStartOnBuilding)
-        {
-            if (isStartOnBuilding is false)
-            {
-                output = null;
-                point = Vector3.one;
-                norVector = hit.normal;
-                return false;
-            }
-#if UNITY_EDITOR
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                output = hit.collider.gameObject;
-                point = hit.point;
-                norVector = hit.normal;
-                return true;
-            }
-            else
-            {
-                output = null;
-                point = Vector3.one;
-                norVector = hit.normal;
-                return false;
-            }
-#elif UNITY_ANDROID
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                output = hit.collider.gameObject;
-                point = hit.point;
-                norVector = hit.normal;
-                return true;
-            }
-            else
-            {
-                output = null;
-                point = Vector3.one;
-                norVector = hit.normal;
-                return false;
-            }
-#elif UNITY_IOS
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                output = hit.collider.gameObject;
-                point = hit.point;
-                norVector = hit.normal;
-                return true;
-            }
-            else
-            {
-                output = null;
-                point = Vector3.one;
-                norVector = hit.normal;
-                return false;
-            }
-#endif
-        }
-
         // overlook cam과 eyelevel cam 사이의 전환
         public void SwitchCamera(CinemachineVirtualCamera cam)
         {
@@ -815,6 +778,19 @@ namespace ToonJido.Control
             {
                 if (c != cam)
                     c.Priority = 0;
+            }
+        }
+
+        private void SwitchSign(GameObject _signCanvas)
+        {
+            _signCanvas.SetActive(true);
+
+            foreach(var item in singCanvaslist)
+            {
+                if(item != _signCanvas)
+                {
+                    item.SetActive(false);
+                }
             }
         }
 
@@ -834,34 +810,6 @@ namespace ToonJido.Control
             {
                 player.transform.position = PlayerGPSLocation.transform.position;
             }
-        }
-
-        private bool CheckSameObject(GameObject objA, GameObject objB)
-        {
-            if (objA == null || objB == null)
-            {
-                return false;
-            }
-            else
-            {
-                if (objA == objB)
-                    return true;
-                else
-                    return false;
-            }
-        }
-
-        // 터치가 UI위에서 이루어지는지 검사
-        public bool IsPointerOverUI(int fingerId)
-        {
-            return (
-                eventSystem.IsPointerOverGameObject(fingerId)
-                && eventSystem.currentSelectedGameObject != null
-            );
-        }
-
-        public void ChangeMoveSpeed(){
-            moveSpeed = moveSpeedSlider.value;
         }
     }
 }

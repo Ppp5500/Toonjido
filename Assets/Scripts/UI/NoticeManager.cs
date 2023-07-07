@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using TMPro;
+
+using ToonJido.Control;
+
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
 
 namespace ToonJido.UI{
     public class NoticeManager : MonoBehaviour
     {
         [Header("UI Elements")]
-        [SerializeField] private GameObject noticeCanvas;
+        [SerializeField] private CanvasListItem noticeCanvas;
         [SerializeField] private TextMeshProUGUI noticeArticle;
         [SerializeField] private Button confirmButton;
         [SerializeField] private Button cancelButton;

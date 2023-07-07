@@ -139,3 +139,18 @@ AccountChecker
 로그인 시스템 별로 회원탈퇴 기능 설정
 iphone에서 Playerprefs를 이용한 데이터 저장이 안 되길래 그냥 PlayerInfoSaver로 저장시켜버림
 흐린 날씨일때 reflection cude 변경
+
+1.2.0_03
+오브젝트들에 Oclude culling 설정
+시장 내 천장의 일부분을 투명하게 변경
+시장 내 바닥의 색을 조금 더 초록색으로 변경
+일부 머테리얼의 셰이더 변경
+툰셰이더를 사용한 머테리얼의 rim 값 변경
+
+1.2.1
+Section을 표시 할 때 카테고리에 해당하는 이미지도 표시하도록 추가
+Section을 표시 할 때 폰트 색을 카테고리에 맞춰서 변경하도록 추가
+Android에서 BackKey 대응
+	- BackKeyManager 수정
+	- CanvasListItem 추가
+	- CanvasListItemPrent 추가

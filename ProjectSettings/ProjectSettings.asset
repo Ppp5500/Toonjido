@@ -136,7 +136,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.1.6
+  bundleVersion: 1.2.1
   preloadedAssets:
   - {fileID: 11400000, guid: 3b6ed446cd91f1c43a50d05194d392d8, type: 2}
   metroInputSource: 0
@@ -165,7 +165,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 2
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 26
   AndroidTargetSdkVersion: 31
   AndroidPreferredInstallLocation: 1
@@ -591,7 +591,9 @@ PlayerSettings:
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
   cameraUsageDescription: 
-  locationUsageDescription: Use GPS for current player Location
+  locationUsageDescription: "\uD604\uC7AC \uC704\uCE58 \uC548\uB0B4, \uAE38\uCC3E\uAE30
+    \uAE30\uB2A5 \uC0AC\uC6A9\uC744 \uC704\uD574 \uC0AC\uC6A9\uC790\uC758 \uC704\uCE58
+    \uC815\uBCF4\uC5D0 \uC811\uADFC\uD569\uB2C8\uB2E4."
   microphoneUsageDescription: 
   bluetoothUsageDescription: 
   switchNMETAOverride: 

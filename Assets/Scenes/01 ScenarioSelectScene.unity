@@ -801,7 +801,7 @@ PrefabInstance:
     - target: {fileID: 1221451545467618958, guid: bb168db999c47fb4687aea54e8370de2, type: 3}
       propertyPath: noticeCanvas
       value: 
-      objectReference: {fileID: 4110325554180813690}
+      objectReference: {fileID: 4110325554180813691}
     - target: {fileID: 1221451545467618958, guid: bb168db999c47fb4687aea54e8370de2, type: 3}
       propertyPath: confirmButton
       value: 
@@ -2430,6 +2430,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1789562249342214999, guid: d74a35a64d25d614bb4363849ce96071, type: 3}
   m_PrefabInstance: {fileID: 4110325554180813689}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4110325554180813691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110325554180813690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c2999620692f84ba74e8a170d13a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4734890215361821638
 PrefabInstance:
   m_ObjectHideFlags: 0

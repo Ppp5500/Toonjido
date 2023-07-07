@@ -1,15 +1,20 @@
-using UnityEngine;
-using TMPro;
-using System.Linq;
 using System.Collections;
-using Newtonsoft.Json;
-using ToonJido.Data.Model;
-using System.Threading.Tasks;
-using System.Net.Http;
-using ToonJido.Common;
-using UnityEngine.UI;
-using static appSetting;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+
+using static appSetting;
+
+using TMPro;
+
+using ToonJido.Common;
+using ToonJido.Data.Model;
+
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace ToonJido.Search
 {
@@ -17,17 +22,23 @@ namespace ToonJido.Search
     {
         public GameObject parent;
         public GameObject camTarget;
-        [SerializeField] private GameObject[] sections = new GameObject[15];
-        [SerializeField] private TMP_Text[] sectionText = new TMP_Text[15];
-        [SerializeField] private Button[] buttons = new Button[15];
-        [SerializeField] private GameObject[] areaMarker = new GameObject[15];
-        [SerializeField] private List<Toggle> toggles;
+        [SerializeField] GameObject[] sections = new GameObject[15];
+        [SerializeField] TMP_Text[] sectionText = new TMP_Text[15];
+        [SerializeField] Button[] buttons = new Button[15];
+        UnityEngine.UI.Image[] cateImages = new UnityEngine.UI.Image[15];
+        public Sprite[] cateSprite = new Sprite[6];
+        public Color[] cateFontColor = new Color[6];
+        [SerializeField] GameObject[] areaMarker = new GameObject[15];
+        [SerializeField] List<Toggle> toggles;
         private bool anyToggleOn = false;
         [SerializeField] private Dictionary<Toggle, int> toggleDic = new Dictionary<Toggle, int>();
         private GameObject curSelected;
         private GameObject curMarker;
+
+        [HideInInspector] public int category;
+
+        // common manager
         private HttpClient client = HttpClientProvider.GetHttpClient();
-        public int category;
 
         private void Awake() {
             for (int i = 0; i < parent.transform.childCount; i++)
@@ -38,7 +49,8 @@ namespace ToonJido.Search
                 var curGameObject = buttons[i].gameObject;
                 int num = i;
                 buttons[i].onClick.AddListener(async () => await FocusToSectionAsync(curGameObject, num));
-                areaMarker[i] = sections[i].transform.GetChild(1).gameObject;
+                cateImages[i] = sections[i].transform.GetChild(1).GetComponent<UnityEngine.UI.Image>();
+                areaMarker[i] = sections[i].transform.GetChild(2).gameObject;
             }
         }
 
@@ -73,7 +85,7 @@ namespace ToonJido.Search
 
                 StartCoroutine(FTS(lot));
 
-                curMarker = target.transform.GetChild(1).gameObject;
+                curMarker = target.transform.GetChild(2).gameObject;
                 curMarker.SetActive(true);
             }
             else{
@@ -115,11 +127,19 @@ namespace ToonJido.Search
         }
 
         private void SectionNumberUpdate(SearchedStoreWithSection input){
+            var cate = input.cultures[0].category;
+            var currCateSprite = cateSprite[cate - 1];
+            var currFontColor = cateFontColor[cate - 1];
             for(int i = 0; i < sectionText.Count(); i++){
                 string propertyName = "section" + (i + 1) + "_count";
+
                 // 리플렉션
                 sectionText[i].text = input.GetType().GetProperty(propertyName).GetValue(input, null).ToString();
-                // print($"sectionText[i].name: {sectionText[i].name}, sectionText[i].text: {sectionText[i].text}");
+
+                sectionText[i].color = currFontColor;
+                sectionText[i].color = currFontColor;
+
+                cateImages[i].sprite = currCateSprite;
             }
         }
 

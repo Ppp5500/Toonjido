@@ -118,7 +118,6 @@ namespace ToonJido.Search
 
         public async void ClickSearchButton()
         {
-
             if (!string.IsNullOrEmpty(inputField.text))
             {
                 noResultText.SetActive(false);
@@ -266,6 +265,7 @@ namespace ToonJido.Search
         /// <returns></returns>
         public async Task DisplayResult(SearchedStore input, string popupWay = "Up")
         {
+            noResultText.SetActive(false);
             ClearResultList();
             if(detailContentScroll.activeSelf) BackToSearchResult();
             switch(popupWay){
@@ -282,6 +282,11 @@ namespace ToonJido.Search
                     break;
                 default:
                     break;
+            }
+            if(input.cultures.Length < 1) 
+            {
+                print("no result!");
+                noResultText.SetActive(true);
             }
 
             loadingText.SetActive(true);
@@ -351,6 +356,16 @@ namespace ToonJido.Search
                     }
                     for(int k = rank; k < 5; k++){
                         stars[k].sprite = blankStar;
+                    }
+                    if(input.cultures[i].open_check != "O")
+                    {
+                        mypref.transform
+                            .Find("Bottom")
+                            .gameObject
+                            .transform
+                            .Find("Is Running")
+                            .gameObject
+                            .SetActive(false);
                     }
                     mypref.transform
                         .Find("Bottom")

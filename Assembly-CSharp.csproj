@@ -45,6 +45,7 @@
      <Compile Include="Assets\Scripts\UI\HighlightFix.cs" />
      <Compile Include="Assets\Scripts\Common\QuitApplication.cs" />
      <Compile Include="Assets\Scripts\Common\PermissionManager.cs" />
+     <Compile Include="Assets\Scripts\Control\CanvasListItem.cs" />
      <Compile Include="Assets\VFX\Environment VFX pack\Demo\Scripts\ObjectsSwitcher.cs" />
      <Compile Include="Assets\Scripts\UI\MenuCanvasControl.cs" />
      <Compile Include="Assets\Scripts\Tester\substringtest.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\SimpleToon\Model\Kawaii Slimes\Cameras\Scripts\AbstractTargetFollower.cs" />
      <Compile Include="Assets\Scripts\Login\AccountChecker.cs" />
      <Compile Include="Assets\Scripts\Data\Model\market_info.cs" />
+     <Compile Include="Assets\Scripts\Control\CanvasListItemPrent.cs" />
      <Compile Include="Assets\Scripts\Data\Model\WeatherData.cs" />
      <Compile Include="Assets\Scripts\Search\SearchManager.cs" />
      <Compile Include="Assets\Scripts\Tester\UserUpdateTest.cs" />
@@ -128,7 +130,6 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\Shader\Silhouette.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-     <None Include="Assets\AddressableAssetsData\link.xml" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />

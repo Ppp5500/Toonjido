@@ -25,25 +25,64 @@ namespace ToonJido.Control{
         void Update()
         {
             if(Input.GetKeyDown(KeyCode.Escape)){
-                if(activeCanvases.Count > 0){
-                    PopActiveCanvasList();
+                if(activeCanvases.Count > 0)
+                {
+                    if(CurrentControl.state == State.Weather)
+                    {
+                        CurrentControl.ChangeToLastState();
+                    }
+                    else
+                    {
+                        PopActiveCanvasList();
+                    }
                 }
-                else{
-                    drag.BackKeyInput();
+                else if(drag.isModalUp)
+                {
+                    drag.Down();
                 }
+                else
+                {
+                    NoticeManager.GetInstance()
+                        .SetCancelButtonDefault()
+                        .SetConfirmButton(() => Application.Quit())
+                        .ShowNotice("어플리케이션을 종료하시겠습니까?");
+                }
+
             }
         }
 #endif
 
-        public void AddActiveCanvasList(GameObject input){
-            input.SetActive(true);
-            activeCanvases.Push(input);
+        public void AddActiveCanvasList(GameObject _input){
+            _input.SetActive(true);
+            activeCanvases.Push(_input);
+            print("add! current items length: " + activeCanvases.Count);
         }
 
         public void PopActiveCanvasList(){
             activeCanvases.Pop().SetActive(false);
+            print("pop! current items length: " + activeCanvases.Count);
         }
 
+        public void PopActiveCanvasList(GameObject _input){
+            if(activeCanvases.Contains(_input))
+            {
+                activeCanvases.Pop().SetActive(false);
+                print("pop! current items length: " + activeCanvases.Count);
+            }
+            else
+            {
+                print("something went wrong");
+            }
+
+        }
+
+        public GameObject GetPeek(){
+            return activeCanvases.Peek();
+        }
+
+        public string TestMethod(){
+            return "yes! it work!";
+        }
     }
 }
 
