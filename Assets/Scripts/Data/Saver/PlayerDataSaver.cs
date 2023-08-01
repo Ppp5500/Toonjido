@@ -1,12 +1,17 @@
-using UnityEngine;
-using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System;
-using ToonJido.Data.Model;
-using static appSetting;
 using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+using static appSetting;
+
+using ToonJido.Data.Model;
+
+using UnityEngine;
 
 namespace ToonJido.Data.Saver
 {
@@ -49,7 +54,6 @@ namespace ToonJido.Data.Saver
 
             return true;
         }
-
 
         public async Task SaveToken(string token)
         {
@@ -95,6 +99,88 @@ namespace ToonJido.Data.Saver
             return true;
         }
 
+#region MarbleGameMethod
+        public async Task SaveMarbleData(MarbleGameData _data){
+            string dataString = JsonConvert.SerializeObject(_data);
+            
+            await File.WriteAllTextAsync(marbleGameDataPath ,dataString);
+        }
+
+        public async Task<MarbleGameData> LoadMarbleData(){
+            var dataString = await File.ReadAllTextAsync(marbleGameDataPath);
+
+            return JsonConvert.DeserializeObject<MarbleGameData>(dataString);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>return true when already access today, else return false. Update last access time.</returns>
+        public async Task<bool> CheckDragonEventRecord(){
+            // 저장된 파일이 있는지 검사
+            bool haveFile = File.Exists(lastAccessDatePath);
+
+            if(!haveFile){
+                DateTime today = DateTime.Now;
+                await File.WriteAllTextAsync(lastAccessDatePath, today.ToString());
+                return false;
+            }
+            else{
+                string loadData = await File.ReadAllTextAsync(lastAccessDatePath);
+                DateTime loadDate = DateTime.Parse(loadData);
+
+                var today = DateTime.Now;
+                var result = today.Day.CompareTo(loadDate.Day);
+
+                if (result < 0) {
+                    Console.WriteLine("how did you do that?");
+                    return false;
+                }
+                else if (result > 0) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_startTime">Time for check</param>
+        /// <returns>Returns true if it is within one hour of the entered time.</returns>
+        public async Task<bool> CheckDragonEventRecord(DateTime _startTime){
+            // 저장된 파일이 있는지 검사
+            bool haveFile = File.Exists(lastAccessDatePath);
+
+            var now = DateTime.Now;
+
+            if(!haveFile){
+                await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+                return false;
+            }
+            else{
+                string loadData = await File.ReadAllTextAsync(lastAccessDatePath);
+                DateTime loadDate = DateTime.Parse(loadData);
+                var endTime = _startTime.AddHours(1);
+
+                // 최종 접속 시간 업데이트
+                await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+                if (loadDate < _startTime) {
+                    return false;
+                }
+                else if (loadDate < endTime) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+#endregion
+
+#region EncryptionMethod
 
         public byte[] Encrypt(byte[] origin, string password)
         {
@@ -152,7 +238,6 @@ namespace ToonJido.Data.Saver
             }
         }
 
-
         public Rfc2898DeriveBytes CreateKey(string password)
         {
             byte[] keyBytes = Encoding.UTF8.GetBytes(password);         //??? ????
@@ -172,6 +257,7 @@ namespace ToonJido.Data.Saver
 
             return result;  //???? ???
         }
+#endregion
 
         protected virtual void Dispose(bool disposing)
         {
@@ -179,25 +265,14 @@ namespace ToonJido.Data.Saver
             {
                 if (disposing)
                 {
-                    // TODO: ?????? ????(?????? ???)?? ????????.
-                }
 
-                // TODO: ??????? ?????(??????? ???)?? ??????? ??????? ??????????.
-                // TODO: ? ??? null?? ????????.
+                }
                 disposedValue = true;
             }
         }
 
-        // // TODO: ??????? ??????? ??????? ??? 'Dispose(bool disposing)'?? ????? ??��?? ??????? ??????????.
-        // ~PlayerDataSaver()
-        // {
-        //     // ?? ??? ???????? ??????. 'Dispose(bool disposing)' ????? ???? ??? ???????.
-        //     Dispose(disposing: false);
-        // }
-
         public void Dispose()
         {
-            // ?? ??? ???????? ??????. 'Dispose(bool disposing)' ????? ???? ??? ???????.
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }

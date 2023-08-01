@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\AppleSignInUnity\AppleAuthSample\Editor\SignInWithApplePostprocessor.cs" />
+     <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Plugins\SprintBone\Editor\SpringBoneEditor.cs" />
      <None Include="Assets\Editor\Platform-Dependencies\Android\Checksum.txt" />
      <None Include="Assets\Editor\MediationAdapterDependencies.xml" />
     <Reference Include="UnityEngine">
@@ -315,6 +316,9 @@
     <Reference Include="Unity.VisualScripting.YamlDotNet">
         <HintPath>D:\Projects\3DJido\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
     </Reference>
+    <Reference Include="DOTweenEditor">
+        <HintPath>D:\Projects\3DJido\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Cecil.Mdb">
         <HintPath>D:\Projects\3DJido\Library\PackageCache\com.unity.burst@1.8.2\Unity.Burst.CodeGen\Unity.Burst.Cecil.Mdb.dll</HintPath>
     </Reference>
@@ -332,6 +336,9 @@
     </Reference>
     <Reference Include="log4netPlastic">
         <HintPath>D:\Projects\3DJido\Library\PackageCache\com.unity.collab-proxy@2.0.1\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+        <HintPath>D:\Projects\3DJido\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
         <HintPath>D:\Projects\3DJido\Library\PackageCache\com.unity.analytics@3.6.12\Unity.Analytics.Tracker.dll</HintPath>
@@ -795,14 +802,14 @@
     <Reference Include="UnityEngine.UI">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-        <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+        <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Localization.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.Localization.Editor.dll</HintPath>
@@ -911,6 +918,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{5bade8b7-7f8c-708c-3a33-752cdea91c92}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{2842db00-81dc-2009-9b54-f44fbc29a923}</Project>
       <Name>Assembly-CSharp</Name>
@@ -918,6 +929,14 @@
     <ProjectReference Include="AppleAuth.Editor.csproj">
       <Project>{c2df2453-fe1d-80b6-c185-2baae0fc9694}</Project>
       <Name>AppleAuth.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="OtoonEditor.csproj">
+      <Project>{4d8a361a-e6dc-0850-6833-e38ef36202d6}</Project>
+      <Name>OtoonEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="OtoonShader.csproj">
+      <Project>{ead8c612-6b3d-295a-7fa7-73cbae0a5499}</Project>
+      <Name>OtoonShader</Name>
     </ProjectReference>
     <ProjectReference Include="AppleAuth.csproj">
       <Project>{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}</Project>

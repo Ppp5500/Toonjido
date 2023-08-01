@@ -98,11 +98,5 @@ namespace ToonJido.Game
 
             return Mathf.Lerp(abbc, bccd, t);
         }
-
-        void OnTriggerEnter(Collider collision)
-        {
-            // 한쪽에 Trigger 체크하는 것과 Rigidbody 컴포넌트 추가 잊지 말기.
-            Destroy(this.gameObject, 0.35f);
-        }
     }
 }

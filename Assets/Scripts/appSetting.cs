@@ -10,4 +10,6 @@ public static class appSetting
     public static readonly string tokenPath = Path.Combine(Application.persistentDataPath, "token.txt");
     public static readonly string userInfoPath = Path.Combine(Application.persistentDataPath, "playerInfo.json");
     public static readonly string dataPath = Path.Combine(Application.persistentDataPath, "maindata.json");
+    public static readonly string lastAccessDatePath = Path.Combine(Application.persistentDataPath, "lastaccessdate.txt");
+    public static readonly string marbleGameDataPath = Path.Combine(Application.persistentDataPath, "marblegamedata.txt");
 }

@@ -1,0 +1,12 @@
+{
+	"balls" : [
+        {
+            "target" : 2,
+            "stars" : 3
+        },
+        {
+            "target" : 3,
+            "stars" :4
+        }
+	]
+}

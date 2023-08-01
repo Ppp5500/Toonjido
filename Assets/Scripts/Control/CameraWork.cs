@@ -12,6 +12,7 @@ using ToonJido.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 #if UNITY_EDITOR
 
@@ -42,16 +43,16 @@ namespace ToonJido.Control
         [Tooltip("Current use camera")]
         public CinemachineVirtualCamera ActiveCamera = null;
         // virtual 카메라 전환 시 변경할 카메리의 culling mask layer
-        int layer1;
-        int layer2;
+        int layerDefault;
+        int layerPath;
         bool isGPSTracking = false;
 
         // 부감 카메라 이동관련 변수
         private float spanSpeed = 2f;
         private const float zoomSpeed = 10f;
         private const float twoFingerZoomPower = 3f;
-        private const float minFOV = 20, maxFOV = 70, defaultFOV = 50;
-        private const float minXPos = -90, maxXPos = 275, minYPos = -360, maxYPos = 140;
+        private const float minFOV = 10, maxFOV = 90, defaultFOV = 50;
+        private const float minXPos = -90, maxXPos = 275, minYPos = -360, maxYPos = 180;
         private Vector2 nowPos, prePos;
         private Vector3 movePos;
         private Vector2 nowPos02, prePos02;
@@ -91,6 +92,8 @@ namespace ToonJido.Control
         // UI들
         [Header("UI Objects")]
         [SerializeField] private Slider holdSlider;
+        [Range(0.3f, 2.0f)]
+        public float sliderMaxValue = 0.5f;
         [SerializeField] private GameObject mainUICanvas;
         [SerializeField] private GameObject joyStick;
         public GameObject bottomBar;
@@ -108,10 +111,12 @@ namespace ToonJido.Control
         [SerializeField] private GameObject overCanvas;
         [SerializeField] private CanvasListItem settingCanvas;
         [SerializeField] CanvasListItem menuCanvas;
-        private float sliderMaxValue = 0.5f;
         [SerializeField] private Button settingBackButton;
         [SerializeField] private Slider moveSpeedSlider;
         [SerializeField] List<GameObject> singCanvaslist = new();
+        [SerializeField] GameObject BasementCanvas;
+        [SerializeField] GameObject busObjects;
+
 
         [Header("UI Resources")]
         [SerializeField] private Sprite overlookIcon;
@@ -122,6 +127,10 @@ namespace ToonJido.Control
         BackKeyManager backKeyManager;
         PPVolumeManager pPVolumeManager;
         EventSystem eventSystem;
+
+        // test
+        public Image image;
+        public TextMeshProUGUI myText;
 
         void Start()
         {
@@ -142,8 +151,8 @@ namespace ToonJido.Control
             CurrentControl.profileAction += SwitchCont;
             CurrentControl.weatherAction += SwitchCont;
 
-            layer1 = LayerMask.NameToLayer("Default");
-            layer2 = LayerMask.NameToLayer("Path");
+            layerDefault = LayerMask.NameToLayer("Default");
+            layerPath = LayerMask.NameToLayer("Path");
             noticeManager = NoticeManager.GetInstance();
             backKeyManager = BackKeyManager.GetInstance();
 
@@ -163,22 +172,23 @@ namespace ToonJido.Control
             UICam.fieldOfView = cameras[0].m_Lens.FieldOfView;
             overlookCam.fieldOfView = cameras[0].m_Lens.FieldOfView;
 
-            float curFOV = cameras[0].m_Lens.FieldOfView;
-            switch (curFOV)
-            {
-                case float value when value <= 30:
-                    SwitchSign(singCanvaslist[0]);
-                    break;
+            // float curFOV = cameras[0].m_Lens.FieldOfView;
+            // switch (curFOV)
+            // {
+            //     case float value when value <= 30:
+            //         SwitchSign(singCanvaslist[0]);
+            //         break;
 
-                case float value when 40 <= value && value <= 50:
-                    SwitchSign(singCanvaslist[1]);
-                    break;
+            //     case float value when 40 <= value && value <= 50:
+            //         SwitchSign(singCanvaslist[1]);
+            //         break;
 
-                case float value when 50 < value:
-                    SwitchSign(singCanvaslist[2]);
-                    break;
-
-            }
+            //     case float value when 50 < value:
+            //         SwitchSign(singCanvaslist[2]);
+            //         break;
+            // }
+            // image.rectTransform.sizeDelta = new Vector2(curFOV * 0.3f, curFOV * 0.3f);
+            // myText.fontSize = curFOV/10;
 
             // 현재 조작 모드가 부감일 때
             if (CurrentControl.state == State.Overlook)
@@ -254,10 +264,9 @@ namespace ToonJido.Control
                         startOnUI01 = eventSystem.IsPointerOverGameObject(touch.fingerId);
 
                         // 터치가 UI위에서 시작되지 않았다면
-                        // 최초 터치 위치 계산, raycast로 건물 검색
+                        // 최초 터치 위치 계산
                         if(startOnUI01 is false){
                             prePos = touch.position - touch.deltaPosition;
-                            //GetEncounter(ref firstEncounter);
                         }
                     }
                     else if (touch.phase == TouchPhase.Moved)
@@ -288,22 +297,25 @@ namespace ToonJido.Control
                         holdSlider.value =0;
                     }
                     else if(touch.phase == TouchPhase.Stationary){
-                        GetEncounter(ref lastEncounter);
-                        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                        if(startOnUI01 is false){
+                            GetEncounter(ref lastEncounter);
+                            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-                        if (Physics.Raycast(ray, out hit, maxRayDis, layerMask) && !isAleadySearched)
-                        {
-                            holdSlider.gameObject.SetActive(true);
-                            holdSlider.gameObject.transform.position = touch.position + new Vector2(0f, 80f);
-                            holdSlider.value += Time.deltaTime;
-                            if(holdSlider.value > sliderMaxValue - 0.01f){
-                                isAleadySearched = true;
-                                holdSlider.gameObject.SetActive(false);
-                                var address = lastEncounter.GetComponent<BuildingInfo>().address;
-                                var result = SearchManager.instance.SearchStoreByAddress(address);
-                                await SearchManager.instance.DisplayResult(result);
+                            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask) && !isAleadySearched)
+                            {
+                                holdSlider.gameObject.SetActive(true);
+                                holdSlider.gameObject.transform.position = touch.position + new Vector2(0f, 80f);
+                                holdSlider.value += Time.deltaTime;
+                                if(holdSlider.value > sliderMaxValue - 0.01f){
+                                    isAleadySearched = true;
+                                    holdSlider.gameObject.SetActive(false);
+                                    var address = lastEncounter.GetComponent<BuildingInfo>().address;
+                                    var result = SearchManager.instance.SearchStoreByAddress(address);
+                                    await SearchManager.instance.DisplayResult(result);
+                                }
                             }
                         }
+
                     }
                     else if (touch.phase == TouchPhase.Ended)
                     {
@@ -346,6 +358,353 @@ namespace ToonJido.Control
                             prePos02 = touch02.position - touch02.deltaPosition;
                         }
                     }
+                }
+            }
+
+            // 현재 조작 모드가 날씨일 때
+            if (CurrentControl.state == State.Weather)
+            {
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        prePos = touch.position - touch.deltaPosition;
+                    }
+                    else if (touch.phase == TouchPhase.Moved)
+                    {
+                        // 카메라 회전 로직
+                        nowPos = touch.position - touch.deltaPosition;
+                        movePos = (Vector3)(prePos - nowPos) * rotateSpeed * Time.deltaTime;
+
+                        var verAnglePow = movePos.y * -1;
+                        var nextVerAngle = eyeLevelTransform.eulerAngles.x + verAnglePow;
+                        if (nextVerAngle > 180)
+                            nextVerAngle -= 360;
+
+                        if (-30 < nextVerAngle && nextVerAngle < 30)
+                        {
+                            eyeLevelTransform.rotation *= Quaternion.AngleAxis(
+                                verAnglePow,
+                                Vector3.right
+                            );
+                        }
+
+                        player.transform.Rotate(new Vector3(0, movePos.x, 0), Space.Self);
+                        prePos = touch.position - touch.deltaPosition;
+                    }
+                }
+            }
+        }
+
+        void FixedUpdate() {
+            if(isGPSTracking){
+                camTarget.transform.position = PlayerGPSLocation.position;
+            }
+        }
+
+        void GPSFollowOnOff(bool input){
+            if(input){
+                if(CurrentControl.gpsStatus == GPSStatus.avaliable){
+                    isGPSTracking = true;
+                }
+                else{
+                    noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 따라가기 기능을 이용할 수 없습니다.");
+                    gpsToggle.isOn = false;
+                }
+            }
+            else{
+                isGPSTracking = false;
+            }
+            
+        }
+        
+        // 카메라 줌인
+        public void CamZoomIn()
+        {
+            var tempFOV = Clamp(cameras[0].m_Lens.FieldOfView - 10, minFOV, maxFOV);
+            var moveFOV = Abs(cameras[0].m_Lens.FieldOfView) - Abs(tempFOV);
+            StartCoroutine(CamMove((int)moveFOV));
+        }
+
+        // 카메라 줌아웃
+        public void CamZoomOut()
+        {
+            var tempFOV = Clamp(cameras[0].m_Lens.FieldOfView + 10, minFOV, maxFOV);
+            var moveFOV = Abs(cameras[0].m_Lens.FieldOfView) - Abs(tempFOV);
+            StartCoroutine(CamMove((int)moveFOV));
+        }
+
+        // 카메라 줌 코루틴
+        public IEnumerator CamMove(int input)
+        {
+            if (input < 0)
+            {
+                input = Abs(input);
+                for (int i = 0; i < input; i++)
+                {
+                    cameras[0].m_Lens.FieldOfView += 1;
+                    yield return new WaitForFixedUpdate();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < input; i++)
+                {
+                    cameras[0].m_Lens.FieldOfView -= 1;
+                    yield return new WaitForFixedUpdate();
+                }
+            }
+        }
+
+        private float CalSpanSpeed(float input)
+        {
+            return input / 10;
+        }
+
+        /// <summary>
+        /// 컨트롤 상태 변화 시에 호출될 메소드
+        /// </summary>
+        public void SwitchCont()
+        {
+            if (CurrentControl.state == State.Overlook)
+            {
+                SwitchCamera(cameras[0]);
+
+                mainCamera.cullingMask = (1 << layerDefault);
+                UICam.gameObject.SetActive(true);
+                overlookCam.gameObject.SetActive(true);
+
+                mainUICanvas.SetActive(true);
+                joyStick.SetActive(false);
+                bottomBar.SetActive(true);
+                category.SetActive(true);
+                sideButton.SetActive(true);
+                gpsToggle.gameObject.SetActive(true);
+                gpsButton.gameObject.SetActive(false);
+                zoomInButton.SetActive(true);
+                zoomOutButton.SetActive(true);
+                BasementCanvas.SetActive(true);
+                busObjects.SetActive(true);
+
+                changeViewButton.onClick.RemoveAllListeners();
+                changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
+                overlookCity.SetActive(true);
+                eyelevelCity.SetActive(false);
+                eyelevelCityExtra.SetActive(false);
+                eyelevelCityExtra02.SetActive(false);
+
+                RenderSettings.fog = false;
+                pPVolumeManager.TurnOffDepthOfField();
+                if(weatherCanvas.gameObject.activeSelf){weatherCanvas.SetActive(false);}
+                changeViewButton.image.sprite = eyelevelIcon;
+            }
+            else if (CurrentControl.state == State.Eyelevel)
+            {
+                SwitchCamera(cameras[1]);
+                
+                mainCamera.cullingMask = (1 << layerDefault) | (1 << layerPath);
+
+                UICam.gameObject.SetActive(false);
+                overlookCam.gameObject.SetActive(false);
+
+                holdSlider.gameObject.SetActive(true);
+                mainUICanvas.SetActive(true);
+                joyStick.SetActive(true);
+                bottomBar.SetActive(false);
+                category.SetActive(false);
+                sideButton.SetActive(true);
+                gpsToggle.gameObject.SetActive(false);
+                gpsButton.gameObject.SetActive(true);
+                zoomInButton.SetActive(false);
+                zoomOutButton.SetActive(false);
+                BasementCanvas.SetActive(false);
+                busObjects.SetActive(false);
+
+                changeViewButton.onClick.RemoveAllListeners();
+                changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToOverlook());
+                overlookCity.SetActive(false);
+                eyelevelCity.SetActive(true);
+                eyelevelCityExtra.SetActive(true);
+                eyelevelCityExtra02.SetActive(true);
+
+
+                StartCoroutine(
+                    WaitThenCallback( 0.7f,() =>
+                        {
+                            if (CurrentControl.state == State.Eyelevel)
+                            {
+                                RenderSettings.fog = true;
+                                RenderSettings.fogDensity = 0.005f;
+                            }
+                        }
+                    )
+                );
+                pPVolumeManager.TurnOnDepthOfField();
+                if(weatherCanvas.gameObject.activeSelf){weatherCanvas.SetActive(false);}
+                changeViewButton.image.sprite = overlookIcon;
+            }
+            else if (CurrentControl.state == State.SearchResult)
+            {
+                joyStick.SetActive(false);
+                sideButton.SetActive(false);
+            }
+            else if (CurrentControl.state == State.Profile)
+            {
+                joyStick.SetActive(false);
+                sideButton.SetActive(false);
+            }
+            else if (CurrentControl.state == State.Weather)
+            {
+                if(CurrentControl.lastState == State.Overlook){
+                    SwitchCamera(cameras[2]);
+                }
+
+                mainCamera.cullingMask = (1 << layerDefault) | (1 << layerPath);
+                UICam.gameObject.SetActive(false);
+                overlookCam.gameObject.SetActive(false);
+                
+                holdSlider.value = 0f;
+                holdSlider.gameObject.SetActive(false);
+                mainUICanvas.SetActive(false);
+                joyStick.SetActive(false);
+                sideButton.SetActive(false);
+                if(menuCanvas.gameObject.activeSelf) { menuCanvas.SetActive(false); }
+                weatherCanvas.SetActive(true);
+                BasementCanvas.SetActive(false);
+
+                overlookCity.SetActive(false);
+                eyelevelCity.SetActive(true);
+                eyelevelCityExtra.SetActive(true);
+                eyelevelCityExtra02.SetActive(true);
+
+                StartCoroutine(
+                    WaitThenCallback( 0.7f,() =>
+                        {
+                            if (CurrentControl.state == State.Weather)
+                            {
+                                RenderSettings.fog = true;
+                                RenderSettings.fogDensity = 0.005f;
+                            }
+                        }
+                    )
+                );
+            }
+        }
+
+        private IEnumerator WaitThenCallback(float time, Action callback)
+        {
+            yield return new WaitForSeconds(time);
+            callback();
+        }
+
+        /// <summary>
+        /// 레이에 맞은 오브젝트를 반환, 최대 거리와 레이어마스크는 이미 작성되어 있음
+        /// </summary>
+        /// <param name="output"></param>
+        private bool GetEncounter(ref GameObject output)
+        {
+            // if(!startOnUI01){
+            //     output = null;
+            //     return false;
+            // }
+#if UNITY_EDITOR
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            {
+                output = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+#elif UNITY_ANDROID
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            {
+                output = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+#elif UNITY_IOS
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            {
+                output = hit.collider.gameObject;
+                return true;
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+#endif
+        }
+
+        // overlook cam과 eyelevel cam 사이의 전환
+        public void SwitchCamera(CinemachineVirtualCamera cam)
+        {
+            cam.Priority = 1;
+            ActiveCamera = cam;
+
+            foreach (var c in cameras)
+            {
+                if (c != cam)
+                    c.Priority = 0;
+            }
+        }
+
+        private void SwitchSign(GameObject _signCanvas)
+        {
+            _signCanvas.SetActive(true);
+
+            foreach(var item in singCanvaslist)
+            {
+                if(item != _signCanvas)
+                {
+                    item.SetActive(false);
+                }
+            }
+        }
+
+        // 현재 사용자 위치로 카메라 이동
+        public void ResetPosToPlayer()
+        {
+            if(CurrentControl.gpsStatus is not GPSStatus.avaliable){
+                noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 현재 위치 이동 기능을 이용할 수 없습니다.");
+                return;
+            }
+
+            if (CurrentControl.state == State.Overlook)
+            {
+                camTarget.transform.position = PlayerGPSLocation.transform.position;
+            }
+            else if (CurrentControl.state == State.Eyelevel)
+            {
+                player.transform.position = PlayerGPSLocation.transform.position;
+            }
+        }
+
+        public void ChangeMoveSpeed(){
+            moveSpeed = moveSpeedSlider.value;
+        }
+    }
+}
+
+
+
+
+                
 
             // 현재 조작 모드가 아이레벨일 때
             // else if (CurrentControl.state == State.Eyelevel)
@@ -525,291 +884,3 @@ namespace ToonJido.Control
                     //         }
                     //     }
                     // }
-                }
-            }
-        }
-
-        void FixedUpdate() {
-            if(isGPSTracking){
-                camTarget.transform.position = PlayerGPSLocation.position;
-            }
-        }
-
-        void GPSFollowOnOff(bool input){
-            if(input){
-                if(CurrentControl.gpsStatus == GPSStatus.avaliable){
-                    isGPSTracking = true;
-                }
-                else{
-                    noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 따라가기 기능을 이용할 수 없습니다.");
-                    gpsToggle.isOn = false;
-                }
-            }
-            else{
-                isGPSTracking = false;
-            }
-            
-        }
-        
-        // 카메라 줌인
-        public void CamZoomIn()
-        {
-            var tempFOV = Clamp(cameras[0].m_Lens.FieldOfView - 10, minFOV, maxFOV);
-            var moveFOV = Abs(cameras[0].m_Lens.FieldOfView) - Abs(tempFOV);
-            StartCoroutine(CamMove((int)moveFOV));
-        }
-
-        // 카메라 줌아웃
-        public void CamZoomOut()
-        {
-            var tempFOV = Clamp(cameras[0].m_Lens.FieldOfView + 10, minFOV, maxFOV);
-            var moveFOV = Abs(cameras[0].m_Lens.FieldOfView) - Abs(tempFOV);
-            StartCoroutine(CamMove((int)moveFOV));
-        }
-
-        // 카메라 줌 코루틴
-        public IEnumerator CamMove(int input)
-        {
-            if (input < 0)
-            {
-                input = Abs(input);
-                for (int i = 0; i < input; i++)
-                {
-                    cameras[0].m_Lens.FieldOfView += 1;
-                    yield return new WaitForFixedUpdate();
-                }
-            }
-            else
-            {
-                for (int i = 0; i < input; i++)
-                {
-                    cameras[0].m_Lens.FieldOfView -= 1;
-                    yield return new WaitForFixedUpdate();
-                }
-            }
-        }
-
-        private float CalSpanSpeed(float input)
-        {
-            return input / 10;
-        }
-
-        /// <summary>
-        /// 컨트롤 상태 변화 시에 호출될 메소드
-        /// </summary>
-        public void SwitchCont()
-        {
-            if (CurrentControl.state == State.Overlook)
-            {
-                SwitchCamera(cameras[0]);
-
-                mainCamera.cullingMask = (1 << layer1);
-                UICam.gameObject.SetActive(true);
-                overlookCam.gameObject.SetActive(true);
-
-                mainUICanvas.SetActive(true);
-                joyStick.SetActive(false);
-                bottomBar.SetActive(true);
-                category.SetActive(true);
-                sideButton.SetActive(true);
-                gpsToggle.gameObject.SetActive(true);
-                gpsButton.gameObject.SetActive(false);
-                zoomInButton.SetActive(true);
-                zoomOutButton.SetActive(true);
-
-                changeViewButton.onClick.RemoveAllListeners();
-                changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
-                overlookCity.SetActive(true);
-                eyelevelCity.SetActive(false);
-                eyelevelCityExtra.SetActive(false);
-                eyelevelCityExtra02.SetActive(true);
-
-                RenderSettings.fog = false;
-                pPVolumeManager.TurnOffDepthOfField();
-                weatherCanvas.SetActive(false);
-                changeViewButton.image.sprite = eyelevelIcon;
-            }
-            else if (CurrentControl.state == State.Eyelevel)
-            {
-                SwitchCamera(cameras[1]);
-                
-                mainCamera.cullingMask = (1 << layer1) | (1 << layer2);
-
-                UICam.gameObject.SetActive(false);
-                overlookCam.gameObject.SetActive(false);
-
-                mainUICanvas.SetActive(true);
-                joyStick.SetActive(true);
-                bottomBar.SetActive(false);
-                category.SetActive(false);
-                sideButton.SetActive(true);
-                gpsToggle.gameObject.SetActive(false);
-                gpsButton.gameObject.SetActive(true);
-                zoomInButton.SetActive(false);
-                zoomOutButton.SetActive(false);
-
-                changeViewButton.onClick.RemoveAllListeners();
-                changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToOverlook());
-                overlookCity.SetActive(false);
-                eyelevelCity.SetActive(true);
-                eyelevelCityExtra.SetActive(true);
-                eyelevelCityExtra02.SetActive(true);
-
-
-                StartCoroutine(
-                    WaitThenCallback( 0.7f,() =>
-                        {
-                            if (CurrentControl.state == State.Eyelevel)
-                            {
-                                RenderSettings.fog = true;
-                                RenderSettings.fogDensity = 0.005f;
-                            }
-                        }
-                    )
-                );
-                pPVolumeManager.TurnOnDepthOfField();
-                weatherCanvas.SetActive(false);
-                changeViewButton.image.sprite = overlookIcon;
-            }
-            else if (CurrentControl.state == State.SearchResult)
-            {
-                joyStick.SetActive(false);
-                sideButton.SetActive(false);
-            }
-            else if (CurrentControl.state == State.Profile)
-            {
-                joyStick.SetActive(false);
-                sideButton.SetActive(false);
-            }
-            else if (CurrentControl.state == State.Weather)
-            {
-                SwitchCamera(cameras[2]);
-
-                mainUICanvas.SetActive(false);
-                joyStick.SetActive(false);
-                sideButton.SetActive(false);
-                if(menuCanvas.gameObject.activeSelf) { menuCanvas.SetActive(false); }
-                weatherCanvas.SetActive(true);
-
-                overlookCity.SetActive(false);
-                eyelevelCity.SetActive(true);
-                eyelevelCityExtra.SetActive(true);
-                eyelevelCityExtra02.SetActive(true);
-
-                StartCoroutine(
-                    WaitThenCallback( 0.7f,() =>
-                        {
-                            if (CurrentControl.state == State.Weather)
-                            {
-                                RenderSettings.fog = true;
-                                RenderSettings.fogDensity = 0.005f;
-                            }
-                        }
-                    )
-                );
-            }
-        }
-
-        private IEnumerator WaitThenCallback(float time, Action callback)
-        {
-            yield return new WaitForSeconds(time);
-            callback();
-        }
-
-        /// <summary>
-        /// 레이에 맞은 오브젝트를 반환, 최대 거리와 레이어마스크는 이미 작성되어 있음
-        /// </summary>
-        /// <param name="output"></param>
-        private bool GetEncounter(ref GameObject output)
-        {
-            // if(!startOnUI01){
-            //     output = null;
-            //     return false;
-            // }
-#if UNITY_EDITOR
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                output = hit.collider.gameObject;
-                return true;
-            }
-            else
-            {
-                output = null;
-                return false;
-            }
-#elif UNITY_ANDROID
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                output = hit.collider.gameObject;
-                return true;
-            }
-            else
-            {
-                output = null;
-                return false;
-            }
-#elif UNITY_IOS
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
-            {
-                output = hit.collider.gameObject;
-                return true;
-            }
-            else
-            {
-                output = null;
-                return false;
-            }
-#endif
-        }
-
-        // overlook cam과 eyelevel cam 사이의 전환
-        public void SwitchCamera(CinemachineVirtualCamera cam)
-        {
-            cam.Priority = 1;
-            ActiveCamera = cam;
-
-            foreach (var c in cameras)
-            {
-                if (c != cam)
-                    c.Priority = 0;
-            }
-        }
-
-        private void SwitchSign(GameObject _signCanvas)
-        {
-            _signCanvas.SetActive(true);
-
-            foreach(var item in singCanvaslist)
-            {
-                if(item != _signCanvas)
-                {
-                    item.SetActive(false);
-                }
-            }
-        }
-
-        // 현재 사용자 위치로 카메라 이동
-        public void ResetPosToPlayer()
-        {
-            if(CurrentControl.gpsStatus is not GPSStatus.avaliable){
-                noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 현재 위치 이동 기능을 이용할 수 없습니다.");
-                return;
-            }
-
-            if (CurrentControl.state == State.Overlook)
-            {
-                camTarget.transform.position = PlayerGPSLocation.transform.position;
-            }
-            else if (CurrentControl.state == State.Eyelevel)
-            {
-                player.transform.position = PlayerGPSLocation.transform.position;
-            }
-        }
-    }
-}

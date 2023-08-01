@@ -15,7 +15,8 @@ namespace ToonJido.Control
             Eyelevel,
             SearchResult,
             Profile,
-            Weather
+            Weather,
+            CutScene
         }
     
     public static class CurrentControl

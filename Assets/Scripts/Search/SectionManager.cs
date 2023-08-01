@@ -20,16 +20,25 @@ namespace ToonJido.Search
 {
     public class SectionManager : MonoBehaviour
     {
-        public GameObject parent;
+        public GameObject numberCanvas;
         public GameObject camTarget;
         [SerializeField] GameObject[] sections = new GameObject[15];
-        [SerializeField] TMP_Text[] sectionText = new TMP_Text[15];
-        [SerializeField] Button[] buttons = new Button[15];
-        UnityEngine.UI.Image[] cateImages = new UnityEngine.UI.Image[15];
-        public Sprite[] cateSprite = new Sprite[6];
-        public Color[] cateFontColor = new Color[6];
-        [SerializeField] GameObject[] areaMarker = new GameObject[15];
         [SerializeField] List<Toggle> toggles;
+        TMP_Text[] sectionText = new TMP_Text[15];
+        Button[] buttons = new Button[15];
+        GameObject[] areaMarker = new GameObject[15];
+        UnityEngine.UI.Image[] cateImages = new UnityEngine.UI.Image[15];
+        UnityEngine.UI.Image[] cateBGs = new UnityEngine.UI.Image[15];
+        UnityEngine.UI.Image[] cateSecondBGs = new UnityEngine.UI.Image[15];
+
+        [Space(10)]
+        [Header("Resources")]
+        public Sprite[] cateSprite = new Sprite[6];
+        public Sprite[] cateBGSprite = new Sprite[6];
+        public Sprite[] cateSecondBGSprite = new Sprite[6];
+        public Color[] cateFontColor = new Color[6];
+
+        // temp properties
         private bool anyToggleOn = false;
         [SerializeField] private Dictionary<Toggle, int> toggleDic = new Dictionary<Toggle, int>();
         private GameObject curSelected;
@@ -41,24 +50,28 @@ namespace ToonJido.Search
         private HttpClient client = HttpClientProvider.GetHttpClient();
 
         private void Awake() {
-            for (int i = 0; i < parent.transform.childCount; i++)
+            for (int i = 0; i < numberCanvas.transform.childCount; i++)
             {
-                sections[i] = parent.transform.GetChild(i).gameObject;
+                sections[i] = numberCanvas.transform.GetChild(i).gameObject;
                 sectionText[i] = sections[i].GetComponentInChildren<TMP_Text>();
                 buttons[i] = sections[i].GetComponent<Button>();
                 var curGameObject = buttons[i].gameObject;
                 int num = i;
                 buttons[i].onClick.AddListener(async () => await FocusToSectionAsync(curGameObject, num));
-                cateImages[i] = sections[i].transform.GetChild(1).GetComponent<UnityEngine.UI.Image>();
-                areaMarker[i] = sections[i].transform.GetChild(2).gameObject;
+                cateImages[i] = sections[i].transform.GetChild(2).GetComponent<UnityEngine.UI.Image>();
+                cateBGs[i] = sections[i].GetComponent<UnityEngine.UI.Image>();
+                cateSecondBGs[i] = sections[i].transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
+                areaMarker[i] = sections[i].transform.GetChild(3).gameObject;
             }
         }
 
         private void Start() {
-            parent.SetActive(false);
+            numberCanvas.SetActive(false);
+
             foreach(var item in toggles.Select((value, index) => (value, index))){
                 toggleDic.Add(item.value, item.index + 1);
             }
+
             foreach(KeyValuePair<Toggle, int> item in toggleDic){
                 item.Key.onValueChanged.AddListener( delegate{ SetCategory(item.Key, item.Value); });
             }
@@ -85,7 +98,7 @@ namespace ToonJido.Search
 
                 StartCoroutine(FTS(lot));
 
-                curMarker = target.transform.GetChild(2).gameObject;
+                curMarker = target.transform.GetChild(3).gameObject;
                 curMarker.SetActive(true);
             }
             else{
@@ -94,6 +107,7 @@ namespace ToonJido.Search
             }  
         }
 
+        // cam move method
         IEnumerator FTS(Vector3 target){
             float t = 0.0f;
             Vector3 startPosition = camTarget.transform.position;
@@ -129,17 +143,18 @@ namespace ToonJido.Search
         private void SectionNumberUpdate(SearchedStoreWithSection input){
             var cate = input.cultures[0].category;
             var currCateSprite = cateSprite[cate - 1];
+            var currCateBGSprite = cateBGSprite[cate - 1];
+            var currCateSecondBGSprite = cateSecondBGSprite[cate - 1];
             var currFontColor = cateFontColor[cate - 1];
             for(int i = 0; i < sectionText.Count(); i++){
                 string propertyName = "section" + (i + 1) + "_count";
 
                 // 리플렉션
                 sectionText[i].text = input.GetType().GetProperty(propertyName).GetValue(input, null).ToString();
-
-                sectionText[i].color = currFontColor;
-                sectionText[i].color = currFontColor;
-
+                // sectionText[i].color = currFontColor;
                 cateImages[i].sprite = currCateSprite;
+                cateBGs[i].sprite = currCateBGSprite;
+                cateSecondBGs[i].sprite = currCateSecondBGSprite;
             }
         }
 
@@ -162,10 +177,10 @@ namespace ToonJido.Search
 
             // 켜진 토글이 있으면 섹션 캔버스 Active
             if(anyToggleOn){
-                parent.SetActive(true);
+                numberCanvas.SetActive(true);
             }
             else{
-                parent.SetActive(false);
+                numberCanvas.SetActive(false);
             }
         }
     }

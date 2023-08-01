@@ -26,7 +26,8 @@ namespace ToonJido.Search
     public class SearchManager : MonoBehaviour
     {
         // Data from Init phase
-        SearchedStore storeData = new();
+        public SearchedStore storeData = new();
+        public bool isDone = false;
 
         [SerializeField] private UIDrag drag;
         [SerializeField] private Button searchButton;
@@ -91,6 +92,7 @@ namespace ToonJido.Search
                     };
 
                     storeData = JsonConvert.DeserializeObject<SearchedStore>(data, setting);
+                    isDone = true;
                 }
             }
             catch (FileNotFoundException ex)
@@ -136,6 +138,11 @@ namespace ToonJido.Search
             }
             else
                 return;
+        }
+
+        public async void SearchByName(string name){
+            var result = await SearchStore(name);
+            await DisplayResult(result);
         }
 
         /// <summary>
@@ -432,7 +439,7 @@ namespace ToonJido.Search
             }
         }
 
-        private async void OpenDetailCanvas(string name)
+        public async void OpenDetailCanvas(string name)
         {
             pathFindButton.onClick.RemoveAllListeners();
 
@@ -443,7 +450,17 @@ namespace ToonJido.Search
 
             // Get Store data
             var result = await SearchStore(name);
+            if(result.cultures.Length < 1){
+                noticeManager.ShowNoticeDefaultStyle("해당 매장은 업데이트 예정입니다.");
+                return;
+            }
             Culture currentStore = result.cultures[0];
+            if(currentStore.cawarock == string.Empty){
+                noticeManager.ShowNoticeDefaultStyle("해당 매장은 업데이트 예정입니다.");
+                return;
+            }
+
+            drag.Up();
 
             var market_id = currentStore.id;
 

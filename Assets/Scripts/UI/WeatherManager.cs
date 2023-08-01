@@ -1,13 +1,20 @@
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+using System;
 using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+using System.Net.Http;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+using DG.Tweening;
+
 using Newtonsoft.Json;
+
+using TMPro;
+
+using ToonJido.Common;
 using ToonJido.Control;
 using ToonJido.Data.Model;
-using ToonJido.Common;
+
+using UnityEngine;
 
 namespace ToonJido.UI
 {
@@ -15,6 +22,10 @@ namespace ToonJido.UI
     {
         // GameObjects
         [SerializeField] private GameObject rainEffect;
+        [SerializeField] private GameObject hdragon;
+        [SerializeField] private Transform hTargetPos;
+        [SerializeField] private Transform hFirstPos;
+
         private Light dirLight;
 
         [Header("Weather Display UI")]
@@ -66,6 +77,7 @@ namespace ToonJido.UI
 
         public async void DisplayWeather()
         {
+            weekdayText.text = GetWeekday();
             WeatherInfo weather = await GetWeatherData();
             var forecasts = await GetWeatherForecast();
             var dustData = await GetDustData();
@@ -97,6 +109,7 @@ namespace ToonJido.UI
 
             hum.text = weather.humidity + "%";
             dust.text = dustData.pm10Grade;
+            FlyDragon();
         }
 
         public Sprite GetPTY(string input)
@@ -109,6 +122,21 @@ namespace ToonJido.UI
                 "3" => snowySky,
                 "4" => thunderSky,
                 _ => clearSky
+            };
+        }
+
+        private string GetWeekday()
+        {
+            return DateTime.Now.DayOfWeek switch
+            {
+                DayOfWeek.Monday => "Monday",
+                DayOfWeek.Tuesday => "Tuesday",
+                DayOfWeek.Wednesday => "Wednesday",
+                DayOfWeek.Thursday => "Thursday",
+                DayOfWeek.Friday => "Friday",
+                DayOfWeek.Saturday => "Saturday",
+                DayOfWeek.Sunday => "Sunday",
+                _ => "Today"
             };
         }
 
@@ -171,6 +199,14 @@ namespace ToonJido.UI
             RenderSettings.ambientLight = cloudySkyAmientColor;
             //dirLight.color = cloudySkyDirLightColor;
             dirLight.intensity = 0.5f;
+        }
+
+        public void FlyDragon(){
+            hdragon.SetActive(true);
+            hdragon.transform.position = hFirstPos.transform.position;
+            hdragon.transform.rotation = hFirstPos.transform.rotation;
+            hdragon.transform.DOMove(hTargetPos.position, 3f);
+            hdragon.transform.DORotateQuaternion(hTargetPos.rotation, 3f);
         }
     }
 
