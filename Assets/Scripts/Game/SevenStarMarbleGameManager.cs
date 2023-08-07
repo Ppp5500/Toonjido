@@ -32,7 +32,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
     Dictionary<int, int> indexDic = new();
 
     const int startTime01 = 12;
-    const int startTime02 = 17;
+    const int startTime02 = 20;
     const int eventTime = 1;
 
     private static SevenStarMarbleGameManager instance;

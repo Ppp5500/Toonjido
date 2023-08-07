@@ -162,20 +162,34 @@ namespace ToonJido.Data.Saver
             }
             else{
                 string loadData = await File.ReadAllTextAsync(lastAccessDatePath);
-                DateTime loadDate = DateTime.Parse(loadData);
-                var endTime = _startTime.AddHours(1);
 
-                // 최종 접속 시간 업데이트
-                await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
-                if (loadDate < _startTime) {
+                // parsing 시도
+                try{
+                    DateTime loadDate = DateTime.Parse(loadData);
+                    var endTime = _startTime.AddHours(1);
+
+                    // 최종 접속 시간 업데이트
+                    await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+
+                    // 접속 시간 검사
+                    if (loadDate < _startTime) {
+                        return false;
+                    }
+                    else if (loadDate < endTime) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                // parsing 실패 시 
+                catch{
+                    // 최종 접속 시간 업데이트
+                    await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+
                     return false;
                 }
-                else if (loadDate < endTime) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+
             }
         }
 #endregion

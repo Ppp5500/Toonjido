@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ToonJido.Control
 {
@@ -9,6 +10,8 @@ namespace ToonJido.Control
         public GameObject cam;
         public float moveSpeed = 5f;
 
+        [SerializeField] private Slider moveSpeedSlider;
+
         private void Update()
         {
             transform.Translate(moveInput * moveSpeed * Time.deltaTime, Space.Self);
@@ -18,6 +21,10 @@ namespace ToonJido.Control
         {
             moveInput.x = input.x;
             moveInput.z = input.y;
+        }
+
+        public void ChangeMoveSpeed(){
+            moveSpeed = moveSpeedSlider.value;
         }
     }
 }

@@ -109,7 +109,7 @@ namespace ToonJido.Search
             findRoadButton.onClick.AddListener(() => inputField.ActivateInputField());
             noticeManager = NoticeManager.GetInstance();
 
-            StartCoroutine(WaitThenCallback(2.0f, () => SearchKeyStoresAsync()));
+            // StartCoroutine(WaitThenCallback(2.0f, () => SearchKeyStoresAsync()));
         }
         
         private IEnumerator WaitThenCallback(float time, Action callback)

@@ -808,11 +808,11 @@
     <Reference Include="Unity.Postprocessing.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+        <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
@@ -862,9 +862,33 @@
       <Project>{c2df2453-fe1d-80b6-c185-2baae0fc9694}</Project>
       <Name>AppleAuth.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
+      <Project>{709c074a-cdb1-b85b-5e87-9b92503f9783}</Project>
+      <Name>ToonyColorsPro.Demo.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXREditor.csproj">
+      <Project>{33392c0b-c43e-bd9a-8b99-a278e5b7256a}</Project>
+      <Name>CFXREditor</Name>
+    </ProjectReference>
     <ProjectReference Include="OtoonEditor.csproj">
       <Project>{4d8a361a-e6dc-0850-6833-e38ef36202d6}</Project>
       <Name>OtoonEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
+      <Project>{da2a1b3f-e371-f9c9-23d7-751a1e711939}</Project>
+      <Name>CFXR.WelcomeScreen</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXRRuntime.csproj">
+      <Project>{0a61f6c6-5b59-078d-d05c-739fb19d9300}</Project>
+      <Name>CFXRRuntime</Name>
+    </ProjectReference>
+    <ProjectReference Include="KinoBloom.Runtime.csproj">
+      <Project>{4e1ec6bb-b6bb-2995-30a4-2025e2b7d1ae}</Project>
+      <Name>KinoBloom.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXRDemo.csproj">
+      <Project>{14af4601-a29b-7417-16a4-3da19a541368}</Project>
+      <Name>CFXRDemo</Name>
     </ProjectReference>
     <ProjectReference Include="OtoonShader.csproj">
       <Project>{ead8c612-6b3d-295a-7fa7-73cbae0a5499}</Project>

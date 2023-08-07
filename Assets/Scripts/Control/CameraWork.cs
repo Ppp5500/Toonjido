@@ -61,11 +61,10 @@ namespace ToonJido.Control
         private bool startOnUI01 = true;
 
         // 아이레벨 카메라 이동관련 변수
-        private float rotateSpeed = 2f;
+        private readonly float rotateSpeed = 2f;
         public float moveSpeed = 30f;
         private GameObject player;
         private Transform eyeLevelTransform;
-        private Vector3 moveInput;
 
         // 레이
         private RaycastHit hit;
@@ -115,7 +114,7 @@ namespace ToonJido.Control
         [SerializeField] private Slider moveSpeedSlider;
         [SerializeField] List<GameObject> singCanvaslist = new();
         [SerializeField] GameObject BasementCanvas;
-        [SerializeField] GameObject busObjects;
+        [SerializeField] GameObject busIconCanvas;
 
 
         [Header("UI Resources")]
@@ -486,7 +485,7 @@ namespace ToonJido.Control
                 zoomInButton.SetActive(true);
                 zoomOutButton.SetActive(true);
                 BasementCanvas.SetActive(true);
-                busObjects.SetActive(true);
+                busIconCanvas.SetActive(true);
 
                 changeViewButton.onClick.RemoveAllListeners();
                 changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
@@ -520,7 +519,7 @@ namespace ToonJido.Control
                 zoomInButton.SetActive(false);
                 zoomOutButton.SetActive(false);
                 BasementCanvas.SetActive(false);
-                busObjects.SetActive(false);
+                busIconCanvas.SetActive(false);
 
                 changeViewButton.onClick.RemoveAllListeners();
                 changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToOverlook());
@@ -693,10 +692,6 @@ namespace ToonJido.Control
             {
                 player.transform.position = PlayerGPSLocation.transform.position;
             }
-        }
-
-        public void ChangeMoveSpeed(){
-            moveSpeed = moveSpeedSlider.value;
         }
     }
 }

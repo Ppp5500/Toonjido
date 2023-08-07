@@ -5,27 +5,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleAuth", "AppleAuth.csproj", "{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXRDemo", "CFXRDemo.csproj", "{14af4601-a29b-7417-16a4-3da19a541368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXRRuntime", "CFXRRuntime.csproj", "{0a61f6c6-5b59-078d-d05c-739fb19d9300}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{5bade8b7-7f8c-708c-3a33-752cdea91c92}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtoonShader", "OtoonShader.csproj", "{ead8c612-6b3d-295a-7fa7-73cbae0a5499}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXRRuntime", "CFXRRuntime.csproj", "{0a61f6c6-5b59-078d-d05c-739fb19d9300}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXRDemo", "CFXRDemo.csproj", "{14af4601-a29b-7417-16a4-3da19a541368}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoBloom.Runtime", "KinoBloom.Runtime.csproj", "{4e1ec6bb-b6bb-2995-30a4-2025e2b7d1ae}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtoonEditor", "OtoonEditor.csproj", "{4d8a361a-e6dc-0850-6833-e38ef36202d6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleAuth.Editor", "AppleAuth.Editor.csproj", "{c2df2453-fe1d-80b6-c185-2baae0fc9694}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{ec9bca0d-2ec8-88b1-3d05-43960bd51317}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXR.WelcomeScreen", "CFXR.WelcomeScreen.csproj", "{da2a1b3f-e371-f9c9-23d7-751a1e711939}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXREditor", "CFXREditor.csproj", "{33392c0b-c43e-bd9a-8b99-a278e5b7256a}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OtoonEditor", "OtoonEditor.csproj", "{4d8a361a-e6dc-0850-6833-e38ef36202d6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToonyColorsPro.Demo.Editor", "ToonyColorsPro.Demo.Editor.csproj", "{709c074a-cdb1-b85b-5e87-9b92503f9783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppleAuth.Editor", "AppleAuth.Editor.csproj", "{c2df2453-fe1d-80b6-c185-2baae0fc9694}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CFXR.WelcomeScreen", "CFXR.WelcomeScreen.csproj", "{da2a1b3f-e371-f9c9-23d7-751a1e711939}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{ec9bca0d-2ec8-88b1-3d05-43960bd51317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,28 +36,28 @@ Global
 		{2842db00-81dc-2009-9b54-f44fbc29a923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14af4601-a29b-7417-16a4-3da19a541368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14af4601-a29b-7417-16a4-3da19a541368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0a61f6c6-5b59-078d-d05c-739fb19d9300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0a61f6c6-5b59-078d-d05c-739fb19d9300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5bade8b7-7f8c-708c-3a33-752cdea91c92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5bade8b7-7f8c-708c-3a33-752cdea91c92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ead8c612-6b3d-295a-7fa7-73cbae0a5499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ead8c612-6b3d-295a-7fa7-73cbae0a5499}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0a61f6c6-5b59-078d-d05c-739fb19d9300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0a61f6c6-5b59-078d-d05c-739fb19d9300}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14af4601-a29b-7417-16a4-3da19a541368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14af4601-a29b-7417-16a4-3da19a541368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4e1ec6bb-b6bb-2995-30a4-2025e2b7d1ae}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4e1ec6bb-b6bb-2995-30a4-2025e2b7d1ae}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4d8a361a-e6dc-0850-6833-e38ef36202d6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4d8a361a-e6dc-0850-6833-e38ef36202d6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{c2df2453-fe1d-80b6-c185-2baae0fc9694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{c2df2453-fe1d-80b6-c185-2baae0fc9694}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ec9bca0d-2ec8-88b1-3d05-43960bd51317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ec9bca0d-2ec8-88b1-3d05-43960bd51317}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{da2a1b3f-e371-f9c9-23d7-751a1e711939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{da2a1b3f-e371-f9c9-23d7-751a1e711939}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33392c0b-c43e-bd9a-8b99-a278e5b7256a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33392c0b-c43e-bd9a-8b99-a278e5b7256a}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4d8a361a-e6dc-0850-6833-e38ef36202d6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4d8a361a-e6dc-0850-6833-e38ef36202d6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709c074a-cdb1-b85b-5e87-9b92503f9783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{709c074a-cdb1-b85b-5e87-9b92503f9783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{c2df2453-fe1d-80b6-c185-2baae0fc9694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c2df2453-fe1d-80b6-c185-2baae0fc9694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{da2a1b3f-e371-f9c9-23d7-751a1e711939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{da2a1b3f-e371-f9c9-23d7-751a1e711939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ec9bca0d-2ec8-88b1-3d05-43960bd51317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ec9bca0d-2ec8-88b1-3d05-43960bd51317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

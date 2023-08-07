@@ -41,16 +41,20 @@
      <Compile Include="Assets\Scripts\Game\FortuneWindowManager.cs" />
      <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Data\Model\LoginResponse.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_AutoRotate.cs" />
      <Compile Include="Assets\Scripts\Common\NotDestroy.cs" />
      <Compile Include="Assets\Scripts\Search\SectionManager.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
      <Compile Include="Assets\Scripts\UI\AudioPlayer.cs" />
      <Compile Include="Assets\Scripts\UI\HighlightFix.cs" />
      <Compile Include="Assets\Scripts\Common\QuitApplication.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RandomDir.cs" />
      <Compile Include="Assets\Scripts\Common\PermissionManager.cs" />
      <Compile Include="Assets\Scripts\Control\CanvasListItem.cs" />
      <Compile Include="Assets\VFX\Environment VFX pack\Demo\Scripts\ObjectsSwitcher.cs" />
      <Compile Include="Assets\Scripts\UI\MenuCanvasControl.cs" />
      <Compile Include="Assets\Scripts\Tester\substringtest.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_AutoDestructShuriken.cs" />
      <Compile Include="Assets\Scripts\Control\NavPlayerControl.cs" />
      <Compile Include="Assets\Scripts\Login\InitializeManager.cs" />
      <Compile Include="Assets\Scripts\Control\BackKeyManager.cs" />
@@ -64,6 +68,7 @@
      <Compile Include="Assets\Scripts\Control\CanvasListItemPrent.cs" />
      <Compile Include="Assets\Scripts\Data\Model\WeatherData.cs" />
      <Compile Include="Assets\Scripts\Search\SearchManager.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
      <Compile Include="Assets\Scripts\Tester\UserUpdateTest.cs" />
      <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scripts\DitherByCameraDistance.cs" />
      <Compile Include="Assets\Scripts\UI\BGPosition.cs" />
@@ -71,14 +76,17 @@
      <Compile Include="Assets\Scripts\Tester\AppleLoginTest.cs" />
      <Compile Include="Assets\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\Login\UserProfile.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_New.cs" />
      <Compile Include="Assets\Scripts\Data\Model\Fortune.cs" />
      <Compile Include="Assets\Scripts\Control\CityMove.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Game\PPVolumeManager.cs" />
      <Compile Include="Assets\Scripts\UI\ContentScaler.cs" />
      <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scripts\PingPongMove.cs" />
      <Compile Include="Assets\Scripts\Control\CurrentControl.cs" />
      <Compile Include="Assets\Scripts\Data\Saver\PlayerDataSaver.cs" />
      <Compile Include="Assets\Scripts\UI\UIUtils.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_LightIntensityFade.cs" />
      <Compile Include="Assets\Scripts\Login\KakaoManager.cs" />
      <Compile Include="Assets\ToonSky\Scripts\FreeCamMouseLook.cs" />
      <Compile Include="Assets\AppleSignInUnity\AppleAuthSample\GameMenuHandler.cs" />
@@ -115,6 +123,7 @@
      <Compile Include="Assets\Scripts\Data\Model\Weather.cs" />
      <Compile Include="Assets\Scripts\Tester\zzimTest.cs" />
      <Compile Include="Assets\Scripts\Data\Model\ZzimList.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RotateCamera.cs" />
      <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scripts\ShowcaseDemoController.cs" />
      <Compile Include="Assets\Scripts\UI\ButtonMaker.cs" />
      <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scripts\SceneHintController.cs" />
@@ -133,20 +142,11 @@
      <Compile Include="Assets\Scripts\Data\Model\SearchedStoreWithSection.cs" />
      <Compile Include="Assets\Scripts\Game\MarbleToCollect.cs" />
      <Compile Include="Assets\Scripts\Common\SceneLoaderSingleton.cs" />
+     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_Translate.cs" />
      <Compile Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scripts\Rotator.cs" />
      <Compile Include="Assets\Webview\sample\Assets\Scripts\SampleWebView.cs" />
      <Compile Include="Assets\Scripts\UI\SignObject.cs" />
      <Compile Include="Assets\VFX\Environment VFX pack\Demo\Scripts\_InputKeyBoard.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_AutoRotate.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_New.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RotateCamera.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RandomDir.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_LightIntensityFade.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_Translate.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Demo\Assets\CFX_Demo_RandomDirectionTranslate.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_LightFlicker.cs" />
-     <Compile Include="Assets\JMO Assets\Cartoon FX (legacy)\Scripts\CFX_AutoDestructShuriken.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\OToon- URP Toon Shading\Demo(Can be delete)\Scenes\5 Stylized Character UnityChan\license.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -958,11 +958,11 @@
     <Reference Include="Unity.Postprocessing.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow">
+        <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.Core">
         <HintPath>D:\Projects\3DJido\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
@@ -1016,18 +1016,6 @@
       <Project>{c2df2453-fe1d-80b6-c185-2baae0fc9694}</Project>
       <Name>AppleAuth.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="OtoonEditor.csproj">
-      <Project>{4d8a361a-e6dc-0850-6833-e38ef36202d6}</Project>
-      <Name>OtoonEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="OtoonShader.csproj">
-      <Project>{ead8c612-6b3d-295a-7fa7-73cbae0a5499}</Project>
-      <Name>OtoonShader</Name>
-    </ProjectReference>
-    <ProjectReference Include="AppleAuth.csproj">
-      <Project>{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}</Project>
-      <Name>AppleAuth</Name>
-    </ProjectReference>
     <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
       <Project>{709c074a-cdb1-b85b-5e87-9b92503f9783}</Project>
       <Name>ToonyColorsPro.Demo.Editor</Name>
@@ -1035,6 +1023,10 @@
     <ProjectReference Include="CFXREditor.csproj">
       <Project>{33392c0b-c43e-bd9a-8b99-a278e5b7256a}</Project>
       <Name>CFXREditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="OtoonEditor.csproj">
+      <Project>{4d8a361a-e6dc-0850-6833-e38ef36202d6}</Project>
+      <Name>OtoonEditor</Name>
     </ProjectReference>
     <ProjectReference Include="CFXR.WelcomeScreen.csproj">
       <Project>{da2a1b3f-e371-f9c9-23d7-751a1e711939}</Project>
@@ -1051,6 +1043,14 @@
     <ProjectReference Include="CFXRDemo.csproj">
       <Project>{14af4601-a29b-7417-16a4-3da19a541368}</Project>
       <Name>CFXRDemo</Name>
+    </ProjectReference>
+    <ProjectReference Include="OtoonShader.csproj">
+      <Project>{ead8c612-6b3d-295a-7fa7-73cbae0a5499}</Project>
+      <Name>OtoonShader</Name>
+    </ProjectReference>
+    <ProjectReference Include="AppleAuth.csproj">
+      <Project>{4e6e5eef-7e5a-08f2-dad1-005f26d0d344}</Project>
+      <Name>AppleAuth</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

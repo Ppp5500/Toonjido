@@ -135,6 +135,10 @@ public class SampleWebView : MonoBehaviour
             //// editor
             //separated: false
             );
+
+            webViewObject.ClearCache(true);
+            webViewObject.ClearCookies();
+
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
         webViewObject.bitmapRefreshCycle = 1;
 #endif
