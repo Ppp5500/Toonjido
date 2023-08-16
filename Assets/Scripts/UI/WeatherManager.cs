@@ -22,18 +22,19 @@ namespace ToonJido.UI
     {
         // GameObjects
         [SerializeField] private GameObject rainEffect;
-        [SerializeField] private GameObject hdragon;
         [SerializeField] private Transform hTargetPos;
         [SerializeField] private Transform hFirstPos;
 
         private Light dirLight;
 
         [Header("Weather Display UI")]
+        public UnityEngine.UI.Image todayWeathericon;
         public TextMeshProUGUI weekdayText;
         public TextMeshProUGUI todayMaxTem;
         public TextMeshProUGUI todayMinTem;
         public TextMeshProUGUI tem;
         public TextMeshProUGUI cloud;
+        public UnityEngine.UI.Image dustPanel;
 
         [Space(10)]
         public List<Forecast> forecastuis = new List<Forecast>();
@@ -56,6 +57,12 @@ namespace ToonJido.UI
         [ColorUsage(true, true)]
         public Color cloudySkyAmientColor;
 
+        [Header("Today Weather Icon Sprites")]
+        public Sprite clearIcon;
+        public Sprite cloudyIcon;
+        public Sprite rainyIcon;
+        public Sprite snowyIcon;
+
         [Header("Sky Icon Sprites")]
         public Sprite clearSky;
         public Sprite cloudySky;
@@ -63,8 +70,15 @@ namespace ToonJido.UI
         public Sprite thunderSky;
         public Sprite snowySky;
 
+        [Header("Dust Panel Sprites")]
+        public Sprite goodDust;
+        public Sprite normalDust;
+        public Sprite badDust;
+        public Sprite veryBadDust;
+
         // common managers
         private HttpClient client = HttpClientProvider.GetHttpClient();
+        public SevenStarMarbleGameManager ssmgManager;
 
         // Start is called before the first frame update
         async void Start()
@@ -77,30 +91,41 @@ namespace ToonJido.UI
 
         public async void DisplayWeather()
         {
+            ssmgManager.FlyingAround();
             weekdayText.text = GetWeekday();
             WeatherInfo weather = await GetWeatherData();
             var forecasts = await GetWeatherForecast();
             var dustData = await GetDustData();
 
+            todayWeathericon.sprite = weather.rainType switch
+            {
+                0 => clearIcon,
+                1 => rainyIcon,
+                2 => snowyIcon,
+                3 => snowyIcon,
+                5 => rainyIcon,
+                6 => rainyIcon,
+                7 => snowyIcon,
+                _ => clearIcon
+            };
+
+            // 비는 오지 않지만, 흐릴 때 아이콘 처리
+            if(weather.rainType == 0 && weather.sky == 3) { todayWeathericon.sprite = cloudyIcon; }
+            if(weather.rainType == 0 && weather.sky == 4) { todayWeathericon.sprite = cloudyIcon; }
+
             tem.text=weather.temp.ToString() + "°C";
             todayMinTem.text = forecasts[0].TMN;
             todayMaxTem.text = forecasts[0].TMX;
-            switch(weather.sky){
-                case 1:
-                    cloud.text = "맑음";
-                    break;
-                case 3:
-                    cloud.text = "흐림";
-                    break;
-                case 4:
-                    cloud.text = "흐림";
-                    break;
-                default:
-                    cloud.text = "맑음";
-                    break;                
-            }
 
-            for(int i = 0; i < forecastuis.Count; i++)
+            cloud.text = weather.sky switch
+            {
+                1 => "맑음",
+                3 => "흐림",
+                4 => "흐림",
+                _ => "맑음",
+            };
+
+            for (int i = 0; i < forecastuis.Count; i++)
             {
                 forecastuis[i].minTem.text = forecasts[i].TMN;
                 forecastuis[i].maxTem.text = forecasts[i].TMX;
@@ -109,7 +134,20 @@ namespace ToonJido.UI
 
             hum.text = weather.humidity + "%";
             dust.text = dustData.pm10Grade;
-            FlyDragon();
+            switch(dustData.pm10Grade){
+                case "좋음":
+                    dustPanel.sprite = goodDust;
+                    break;
+                case "보통":
+                    dustPanel.sprite = normalDust;
+                    break;
+                case "나쁨":
+                    dustPanel.sprite = badDust;
+                    break;
+                case "매우나쁨":
+                    dustPanel.sprite = veryBadDust;
+                    break;
+            }
         }
 
         public Sprite GetPTY(string input)
@@ -199,14 +237,6 @@ namespace ToonJido.UI
             RenderSettings.ambientLight = cloudySkyAmientColor;
             //dirLight.color = cloudySkyDirLightColor;
             dirLight.intensity = 0.5f;
-        }
-
-        public void FlyDragon(){
-            hdragon.SetActive(true);
-            hdragon.transform.position = hFirstPos.transform.position;
-            hdragon.transform.rotation = hFirstPos.transform.rotation;
-            hdragon.transform.DOMove(hTargetPos.position, 3f);
-            hdragon.transform.DORotateQuaternion(hTargetPos.rotation, 3f);
         }
     }
 

@@ -17,6 +17,10 @@ namespace ToonJido.Control
             }
             this.gameObject.SetActive(_value);
         }
+
+        public virtual void OnDestroy() {
+            BackKeyManager.GetInstance().PopActiveCanvasList();
+        }
     }
 }
 

@@ -18,13 +18,13 @@ namespace ToonJido.UI{
         void Start() {
             foreach(var signParent in signParents){
                 List<SignObject> signs = new();
-                signParent.GetComponentsInChildren<SignObject>(signs);
+                signParent.GetComponentsInChildren(signs);
 
-                foreach(var sign in signs){
-                    sign.gameObject.GetComponent<Button>().onClick.AddListener(
-                        () => SearchManager.instance.OpenDetailCanvas(sign.storeName)
-                    );
-                }
+                // foreach(var sign in signs){
+                //     sign.gameObject.GetComponent<Button>().onClick.AddListener(
+                //         () => SearchManager.instance.OpenDetailCanvas(sign.storeName)
+                //     );
+                // }
             }
 
             for(int i = 0; i < toggles.Count - 1; i++){
@@ -35,7 +35,7 @@ namespace ToonJido.UI{
                         currObj.SetActive(value);
                         isOn = value;
                         if(value){
-                            currObj.GetComponentsInChildren<SignObject>(signs);
+                            currObj.GetComponentsInChildren(signs);
                         }
                         else{
                             signs.RemoveRange(0,signs.Count);

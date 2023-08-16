@@ -16,5 +16,10 @@ namespace ToonJido.Control
                 window.DOScale(Vector3.one, 0.3f);
             }
         }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
     }
 }

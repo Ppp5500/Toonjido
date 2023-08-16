@@ -32,11 +32,25 @@ public class SevenStarMarbleGameManager : MonoBehaviour
     Dictionary<int, int> indexDic = new();
 
     const int startTime01 = 12;
-    const int startTime02 = 20;
+    const int startTime02 = 19;
     const int eventTime = 1;
 
+    const float dragonMoveInterval = 10;
+    bool dragonAppearChecker = false;
+    [SerializeField] Transform initPos;
+    [SerializeField] Transform firstTarget;
+    [SerializeField] Transform secondTarget;
+    [SerializeField] Transform thirdTarget;
+    [SerializeField] Transform forthTarget;
+    [SerializeField] Transform fifthTarget;
+    [SerializeField] Transform sixthTarget;
+
+    [SerializeField] Transform Axis;
+
+
+    // common
     private static SevenStarMarbleGameManager instance;
-    static Timer timer;
+    static readonly Timer timer;
 
 #if DEVELOPMENT
     private async void OnGUI() {
@@ -69,7 +83,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
         marbleGameData.balls = new();
     }
 
-    // Sington
+    // Singleton
     public static SevenStarMarbleGameManager GetInstance(){
         return instance;
     }
@@ -179,6 +193,76 @@ public class SevenStarMarbleGameManager : MonoBehaviour
         }
     }
 
+    public void FlyingAround(){
+        if(!dragonAppearChecker){
+            StartCoroutine(FlyingAroundIenum());
+            dragonAppearChecker = true;
+        }
+    }
+
+    IEnumerator FlyingAroundIenum(){
+            float t = 0f;
+
+            hDragon.SetActive(true);
+
+            hDragon.transform.position = initPos.position;
+            hDragon.transform.rotation = initPos.rotation;
+        while(true){
+            hDragon.transform.DOMove(firstTarget.position, 3);
+            hDragon.transform.DORotate(firstTarget.eulerAngles, 3);
+
+            while(t < dragonMoveInterval){
+                t += Time.deltaTime;
+                yield return null;
+            }
+            t = 0;
+            print($"timer: {t}, is time set?");
+
+            hDragon.transform.DOMove(secondTarget.position, 5);
+            hDragon.transform.DORotate(secondTarget.eulerAngles, 5);
+
+            while(t < dragonMoveInterval){
+                t += Time.deltaTime;
+                yield return null;
+            }
+            t = 0;
+            print($"timer: {t}, is time set?");
+
+            hDragon.transform.DOMove(thirdTarget.position, 3);
+            hDragon.transform.DORotate(thirdTarget.eulerAngles, 3);
+
+            while(t < dragonMoveInterval){
+                t += Time.deltaTime;
+                yield return null;
+            }
+            t = 0;
+            print($"timer: {t}, is time set?");
+
+            hDragon.transform.DOMove(forthTarget.position, 3);
+            hDragon.transform.DORotate(forthTarget.eulerAngles, 3);
+
+            while(t < dragonMoveInterval){
+                t += Time.deltaTime;
+                yield return null;
+            }
+            t = 0;
+            print($"timer: {t}, is time set?");
+
+            hDragon.transform.DOMove(fifthTarget.position, 3);
+            hDragon.transform.DORotate(fifthTarget.eulerAngles, 3);
+
+            while(t < dragonMoveInterval){
+                t += Time.deltaTime;
+                yield return null;
+            }
+            t = 0;
+            print($"timer: {t}, is time set?");
+
+            hDragon.transform.DOMove(sixthTarget.position, 3);
+            hDragon.transform.DORotate(sixthTarget.eulerAngles, 3);
+        }
+    }
+
     async void DragonEventAsync(System.Object source, ElapsedEventArgs e, DateTime _startTime){
         print("흥룡이 쿠아앙아 하고 울부짖었다.");
         using(PlayerDataSaver saver = new()){
@@ -187,26 +271,8 @@ public class SevenStarMarbleGameManager : MonoBehaviour
 
             if(!temp)
             {
-                hDragon.SetActive(true);
-                // director.Play();
-                hDragon.transform.position = dragonFirstPos.position;
-                hDragon.transform.DORotateQuaternion(dragonTargetPos.rotation, 3f);
-                hDragon.transform.DOMove(dragonTargetPos.position, 3f)
-                                    .OnComplete(async () => { hDragon.gameObject.GetComponent<Shooter>().ShootStarBall(out indexDic);
-                                                            
-                                                            foreach(var item in indexDic){
-                                                                marbleGameData.balls.Add(new Ball(){
-                                                                    target = item.Key.ToString(),
-                                                                    stars = item.Value.ToString()
-                                                                });
-
-                                                                print($"t: {item.Key}, s: {item.Value}");
-                                                            }
-
-                                                            await saver.SaveMarbleData(marbleGameData);
-                                                        }
-                                                );
-
+                FlyingAround();
+                await BallBall();
             }
             else
             {
@@ -223,31 +289,31 @@ public class SevenStarMarbleGameManager : MonoBehaviour
 
             if(!temp)
             {
-                hDragon.SetActive(true);
-                // director.Play();
-                hDragon.transform.position = dragonFirstPos.position;
-                hDragon.transform.DORotateQuaternion(dragonTargetPos.rotation, 3f);
-                hDragon.transform.DOMove(dragonTargetPos.position, 3f)
-                                    .OnComplete(async () => { hDragon.gameObject.GetComponent<Shooter>().ShootStarBall(out indexDic);
-                                                            
-                                                            foreach(var item in indexDic){
-                                                                marbleGameData.balls.Add(new Ball(){
-                                                                    target = item.Key.ToString(),
-                                                                    stars = item.Value.ToString()
-                                                                });
-
-                                                                print($"t: {item.Key}, s: {item.Value}");
-                                                            }
-
-                                                            await saver.SaveMarbleData(marbleGameData);
-                                                        }
-                                                );
-
+                FlyingAround();
+                await BallBall();
             }
             else
             {
                 await LoadMarbleData();
             }
         }
+    }
+
+    async Task BallBall(){
+        using PlayerDataSaver saver = new();
+        hDragon.gameObject.GetComponent<Shooter>().ShootStarBall(out indexDic);
+
+        foreach (var item in indexDic)
+        {
+            marbleGameData.balls.Add(new Ball()
+            {
+                target = item.Key.ToString(),
+                stars = item.Value.ToString()
+            });
+
+            print($"t: {item.Key}, s: {item.Value}");
+        }
+
+        await saver.SaveMarbleData(marbleGameData);
     }
 }

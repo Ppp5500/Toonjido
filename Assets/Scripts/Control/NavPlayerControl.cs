@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 using ToonJido.UI;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections;
 
 namespace ToonJido.Control
 {
@@ -8,14 +11,24 @@ namespace ToonJido.Control
     public class NavPlayerControl : MonoBehaviour
     {
         private NavMeshAgent myNavMeshAgent;
+        private Transform mytransform;
         public LineRenderer lineRenderer;
+        float t = 0f;
 
-        [SerializeField]
-        private GameObject clickMarker;
+        Coroutine pathRefinder = null;
 
-        [SerializeField]
-        private Transform visualObjectsParent;
+        [SerializeField] private GameObject clickMarker;
+        [SerializeField] private Transform visualObjectsParent;
+
+        [SerializeField] Transform PlyaerGPSLoc;
+        [SerializeField] GameObject pathFindExitParent;
+        [SerializeField] Button pathFindExitButton;
+        [SerializeField] TextMeshProUGUI currentPathObject;
+
+        // singleton
         public static NavPlayerControl navPlayerControl;
+
+        // common manager
         private NoticeManager noticeManager;
 
         void Awake()
@@ -30,6 +43,7 @@ namespace ToonJido.Control
         void Start()
         {
             myNavMeshAgent = GetComponent<NavMeshAgent>();
+            mytransform = GetComponent<Transform>();
             lineRenderer.material.mainTextureScale = new Vector2(0.5f, 1f);
 
             lineRenderer.startWidth = 2f;
@@ -37,6 +51,11 @@ namespace ToonJido.Control
             lineRenderer.positionCount = 0;
 
             noticeManager = NoticeManager.GetInstance();
+
+            pathFindExitButton.onClick.AddListener(() => ClearPath());
+
+            CurrentControl.eyelevelAction += EyelevelSetting;
+            CurrentControl.overlookAction += OverlookSetting;
 
             //SetDestination(new Vector3(165.33f, 0.0f, 24.1f));
         }
@@ -49,11 +68,16 @@ namespace ToonJido.Control
             //     ClickToMove();
             // }
 
+            mytransform.position = PlyaerGPSLoc.position;
+
             if (myNavMeshAgent.hasPath)
             {
-                DrwaPath();
-                if (myNavMeshAgent.remainingDistance < 10f)
+                DrawPath();
+
+                float distanceToTarget = Vector3.Distance(mytransform.position, myNavMeshAgent.destination);
+                if (distanceToTarget < 20f)
                 {
+                    print($"am i have path? {myNavMeshAgent.hasPath}");
                     // 도착 알림
                     noticeManager.ShowNoticeDefaultStyle("목적지 근처에 도착하였습니다.");
 
@@ -66,18 +90,28 @@ namespace ToonJido.Control
             lineRenderer.material.mainTextureOffset = new Vector2(1 - offsetX, 1);
         }
 
-        private void ClickToMove()
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            bool hasHit = Physics.Raycast(ray, out hit);
-            if (hasHit)
-            {
-                SetDestination(hit.point);
+        IEnumerator ReFind(Vector3 _target){
+
+
+            while(true){
+                yield return new WaitForSeconds(1);
+                ReCalPath(_target);
+                print("1!");
             }
         }
 
-        public void SetDestination(Vector3 target)
+        // private void ClickToMove()
+        // {
+        //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     RaycastHit hit;
+        //     bool hasHit = Physics.Raycast(ray, out hit);
+        //     if (hasHit)
+        //     {
+        //         SetDestination(hit.point);
+        //     }
+        // }
+
+        public void SetDestination(Vector3 target, string pathObjectName)
         {
             clickMarker.SetActive(true);
             clickMarker.transform.SetParent(visualObjectsParent);
@@ -86,6 +120,23 @@ namespace ToonJido.Control
                 myNavMeshAgent.SetDestination(target);
                 clickMarker.SetActive(true);
                 clickMarker.transform.position = target;
+
+                // UI 설정
+                pathFindExitParent.SetActive(true);
+                currentPathObject.text = pathObjectName;
+
+                if(CurrentControl.state == State.Eyelevel){
+                    EyelevelSetting();
+                }
+                else{
+                    OverlookSetting();
+                }
+
+                // 코루틴 설정
+                if(pathRefinder != null){
+                    StopCoroutine(pathRefinder);
+                }
+                pathRefinder = StartCoroutine(ReFind(target));
             }
             else{
                 // 유효하지 않은 위치
@@ -93,7 +144,20 @@ namespace ToonJido.Control
             }
         }
 
-        private void DrwaPath()
+        void ReCalPath(Vector3 _target){
+            if(myNavMeshAgent.isOnNavMesh){
+                //myNavMeshAgent.path.ClearCorners();
+                myNavMeshAgent.ResetPath();
+                // lineRenderer.positionCount = 0;
+                myNavMeshAgent.SetDestination(_target);
+            }
+            else{
+                // 유효하지 않은 위치
+                noticeManager.ShowNoticeDefaultStyle("네비게이션을 사용할 수 없는 위치입니다.");
+            }
+        }
+
+        private void DrawPath()
         {
             lineRenderer.positionCount = myNavMeshAgent.path.corners.Length;
             lineRenderer.SetPosition(0, transform.position);
@@ -116,11 +180,25 @@ namespace ToonJido.Control
 
         private void ClearPath()
         {
+            print("destination: " + myNavMeshAgent.destination);
+            pathFindExitParent.SetActive(false);
+            StopCoroutine(pathRefinder);
             clickMarker.SetActive(false);
             myNavMeshAgent.path.ClearCorners();
             myNavMeshAgent.ResetPath();
+            myNavMeshAgent.isStopped = true;
             lineRenderer.positionCount = 0;
             myNavMeshAgent.enabled = false;
+        }
+
+        public void OverlookSetting(){
+            lineRenderer.startWidth = 5f;
+            lineRenderer.endWidth = 5f;
+        }
+
+        public void EyelevelSetting(){
+            lineRenderer.startWidth = 2f;
+            lineRenderer.endWidth = 2f;
         }
     }
 }

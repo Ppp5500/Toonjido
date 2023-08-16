@@ -247,6 +247,7 @@ namespace ToonJido.Control
                 }
             }
 
+            // 움직이는 기능은 조이스틱에 JoyStickMove스크립트에 있음
             else if (CurrentControl.state == State.Eyelevel)
             {
                 if (Input.touchCount > 0)
@@ -282,7 +283,7 @@ namespace ToonJido.Control
                             if (nextVerAngle > 180)
                                 nextVerAngle -= 360;
 
-                            if (-30 < nextVerAngle && nextVerAngle < 30)
+                            if (-40 < nextVerAngle && nextVerAngle < 40)
                             {
                                 eyeLevelTransform.rotation *= Quaternion.AngleAxis(
                                     verAnglePow,

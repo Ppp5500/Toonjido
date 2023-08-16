@@ -33,6 +33,8 @@ namespace ToonJido.Data.Model
         public float average_grade {get; set;} = 0.0f;
         public Image[]? images { get; set; }
         public string[]? review_grades{get; set;}
+        public double? latitude {get; set;} 
+        public double? longitude {get; set;}
     }
 
     [Serializable]

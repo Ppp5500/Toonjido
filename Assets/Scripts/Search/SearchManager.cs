@@ -27,11 +27,17 @@ namespace ToonJido.Search
     {
         // Data from Init phase
         public SearchedStore storeData = new();
-        public bool isDone = false;
+        [HideInInspector]public bool isDone = false;
 
+        [Header("모달창 UI")]
         [SerializeField] private UIDrag drag;
+
+        [Space(10)]
+        [Header("검색 창 UI 요소")]
         [SerializeField] private Button searchButton;
         [SerializeField] private TMP_InputField inputField;
+
+        [Header("검색 결과창 UI 요소")]
         [SerializeField] private Button findRoadButton;
         [SerializeField] private GameObject searchList;
         [SerializeField] private GameObject resultScroll;
@@ -39,6 +45,8 @@ namespace ToonJido.Search
         [SerializeField] private GameObject resultParent;
         [SerializeField] private GameObject resultPref;
         [SerializeField] private GameObject noResultText;
+
+        [Header("포커싱 기능을 위한 캠 타겟")]
         [SerializeField] private GameObject camTarget;
 
 
@@ -66,6 +74,12 @@ namespace ToonJido.Search
         [SerializeField] private Sprite fullHeart;
         private int selectedStarRank = 0;
 #endregion DetailCanvasProperties
+
+        [Space(50)]
+        [Header("테스트 오브젝트들")]
+        // test
+        public GameObject iconObject;
+        public GameObject signCanvas;
 
         // common managers
         private NoticeManager noticeManager;
@@ -111,6 +125,18 @@ namespace ToonJido.Search
 
             // StartCoroutine(WaitThenCallback(2.0f, () => SearchKeyStoresAsync()));
         }
+
+#if DEVELOPMENT
+        private void OnGUI() {
+            if(GUI.Button(new Rect(300, 500, 100, 100), "map!")){
+                Application.OpenURL("https://map.naver.com/v5/directions/14137544.395059217,4476234.392605368/14153964.843715463,4412293.111933241/-/transit?c=11.23,0,0,0,dh");
+            }
+
+            if(GUI.Button(new Rect(300, 700, 100, 100), "map!2")){
+                Application.OpenURL("nmap://route/public?slat=35.09789741939864&slng=129.03468293094306&sname=%EB%82%A8%ED%8F%AC%EB%8F%99&dlat=35.17982543369992&dlng=129.07499499992576&dname=%EB%B6%80%EC%82%B0%EC%8B%9C%EC%B2%AD");
+            }
+        }
+#endif
         
         private IEnumerator WaitThenCallback(float time, Action callback)
         {
@@ -395,22 +421,45 @@ namespace ToonJido.Search
             loadingText.SetActive(false);
         }
 
-        public void PathFind(string address)
+        public async void PathFindAsync(string address, string _marketName)
         {
 #if DEVELOPMENT
-            Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-            NavPlayerControl.navPlayerControl.SetDestination(lot);
-            drag.Half();
-            FocusToHalf(lot);
+            var tempMarket = await SearchStore(_marketName);
+            var tempName = tempMarket.cultures[0].market_name;
+            var lat = tempMarket.cultures[0].latitude;
+            var lon = tempMarket.cultures[0].longitude;
+
+            noticeManager
+                .SetCancelButton(()
+                    => {
+                        Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
+                        NavPlayerControl.navPlayerControl.SetDestination(lot, _marketName);
+                        drag.Half();
+                        FocusToHalf(lot);
+                    })
+                .SetConfirmButton(()
+                    => {
+                        Application.OpenURL("https://map.kakao.com/link/to/" + _marketName + "," + lat + "," + lon);
+                    })
+                .ShowNotice("현재 개발 모드입니다! 강제 길찾기는 취소버튼을, 외부 길찾기 링크는 확인버튼을 눌러주세요.");
+
 #else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-                NavPlayerControl.navPlayerControl.SetDestination(lot);
+                NavPlayerControl.navPlayerControl.SetDestination(lot, _marketName);
                 drag.Half();
                 FocusToHalf(lot);
             }
             else{
-                noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 길찾기를 이용할 수 없습니다.");
+                var tempMarket = await SearchStore(_marketName);
+                var tempName = tempMarket.cultures[0].market_name;
+                var lat = tempMarket.cultures[0].latitude;
+                var lon = tempMarket.cultures[0].longitude;
+                noticeManager.SetCancelButtonDefault()
+                    .SetConfirmButton(()
+                        => Application.OpenURL("https://map.kakao.com/link/to/" + _marketName + "," + lat + "," + lon)
+                    )
+                    .ShowNotice("명지역길 외부에서는 길찾기를 사용할 수 없습니다. 외부 길찾기 기능을 여시겠습니까?");
             }
 #endif
         }
@@ -480,10 +529,19 @@ namespace ToonJido.Search
             explainText.text = currentStore.explain;
             clockText.text = currentStore.open_hours;
             addressText.text = currentStore.address;
-            contactText.text = currentStore.phone;
+            contactText.text = currentStore.phone[2..];
+            if(currentStore.latitude != null){
+                print($"lat: {currentStore.latitude}");
+
+                GameObject obj = Instantiate(iconObject);
+                obj.transform.parent = signCanvas.transform;
+                obj.transform.position = GPSEncoder.GPSToUCS((float)currentStore.latitude, (float)currentStore.longitude);
+                obj.transform.rotation = Quaternion.Euler(new Vector3(90,0,0));
+            }
+            
 
             // 길찾기 버튼
-            pathFindButton.onClick.AddListener(() => PathFind(find_number));
+            pathFindButton.onClick.AddListener(() => PathFindAsync(find_number, currentStore.market_name));
             pathFindButton.onClick.AddListener(() => drag.Half());
 
             if(UserProfile.social_login_id != string.Empty)

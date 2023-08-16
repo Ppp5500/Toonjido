@@ -70,7 +70,7 @@ namespace ToonJido.Control
         private void FixedUpdate()
         {
 #if DEVELOPMENT
-            playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
+            //playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
 #else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
