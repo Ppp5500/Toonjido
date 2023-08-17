@@ -127,15 +127,15 @@ namespace ToonJido.Search
         }
 
 #if DEVELOPMENT
-        private void OnGUI() {
-            if(GUI.Button(new Rect(300, 500, 100, 100), "map!")){
-                Application.OpenURL("https://map.naver.com/v5/directions/14137544.395059217,4476234.392605368/14153964.843715463,4412293.111933241/-/transit?c=11.23,0,0,0,dh");
-            }
+        // private void OnGUI() {
+        //     if(GUI.Button(new Rect(300, 500, 150, 150), "map!")){
+        //         Application.OpenURL("https://map.naver.com/v5/directions/14137544.395059217,4476234.392605368/14153964.843715463,4412293.111933241/-/transit?c=11.23,0,0,0,dh");
+        //     }
 
-            if(GUI.Button(new Rect(300, 700, 100, 100), "map!2")){
-                Application.OpenURL("nmap://route/public?slat=35.09789741939864&slng=129.03468293094306&sname=%EB%82%A8%ED%8F%AC%EB%8F%99&dlat=35.17982543369992&dlng=129.07499499992576&dname=%EB%B6%80%EC%82%B0%EC%8B%9C%EC%B2%AD");
-            }
-        }
+        //     if(GUI.Button(new Rect(300, 700, 150, 150), "map!2")){
+        //         Application.OpenURL("nmap://route/public?slat=35.09789741939864&slng=129.03468293094306&sname=%EB%82%A8%ED%8F%AC%EB%8F%99&dlat=35.17982543369992&dlng=129.07499499992576&dname=%EB%B6%80%EC%82%B0%EC%8B%9C%EC%B2%AD");
+        //     }
+        // }
 #endif
         
         private IEnumerator WaitThenCallback(float time, Action callback)
@@ -434,6 +434,7 @@ namespace ToonJido.Search
                     => {
                         Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
                         NavPlayerControl.navPlayerControl.SetDestination(lot, _marketName);
+                        noticeManager.CloseCanvas();
                         drag.Half();
                         FocusToHalf(lot);
                     })

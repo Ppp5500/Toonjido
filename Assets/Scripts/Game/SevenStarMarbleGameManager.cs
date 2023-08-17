@@ -55,17 +55,17 @@ public class SevenStarMarbleGameManager : MonoBehaviour
 #if DEVELOPMENT
     private async void OnGUI() {
 
-        if(GUI.Button(new Rect(50, 250, 150, 150), "save!")){
+        if(GUI.Button(new Rect(50, 250, 150, 150), "marble save!")){
             print("click!");
             await SaveMarbleData();
         }
 
-        if(GUI.Button(new Rect(50, 450, 150, 150), "load!")){
+        if(GUI.Button(new Rect(50, 450, 150, 150), "marble load!")){
             print("click!");
             await LoadMarbleData();
         }
 
-        if(GUI.Button(new Rect(50, 650, 150, 150), "found!")){
+        if(GUI.Button(new Rect(50, 650, 150, 150), "marble found!")){
             print("click!");
             FoundBall("3");
         }

@@ -18,6 +18,7 @@ namespace ToonJido.Control
         Coroutine pathRefinder = null;
 
         [SerializeField] private GameObject clickMarker;
+        [SerializeField] GameObject startMarker;
         [SerializeField] private Transform visualObjectsParent;
 
         [SerializeField] Transform PlyaerGPSLoc;
@@ -90,16 +91,6 @@ namespace ToonJido.Control
             lineRenderer.material.mainTextureOffset = new Vector2(1 - offsetX, 1);
         }
 
-        IEnumerator ReFind(Vector3 _target){
-
-
-            while(true){
-                yield return new WaitForSeconds(1);
-                ReCalPath(_target);
-                print("1!");
-            }
-        }
-
         // private void ClickToMove()
         // {
         //     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -113,13 +104,16 @@ namespace ToonJido.Control
 
         public void SetDestination(Vector3 target, string pathObjectName)
         {
-            clickMarker.SetActive(true);
-            clickMarker.transform.SetParent(visualObjectsParent);
             myNavMeshAgent.enabled = true;
             if(myNavMeshAgent.isOnNavMesh){
                 myNavMeshAgent.SetDestination(target);
                 clickMarker.SetActive(true);
+                clickMarker.transform.SetParent(visualObjectsParent);
                 clickMarker.transform.position = target;
+
+                startMarker.SetActive(true);
+                startMarker.transform.SetParent(visualObjectsParent);
+                startMarker.transform.position = PlyaerGPSLoc.position;
 
                 // UI 설정
                 pathFindExitParent.SetActive(true);
@@ -157,6 +151,15 @@ namespace ToonJido.Control
             }
         }
 
+        // 1초에 한번씩 ReCalPath를 호출하는 코루틴
+        IEnumerator ReFind(Vector3 _target){
+            while(true){
+                yield return new WaitForSeconds(1);
+                ReCalPath(_target);
+            }
+        }
+
+        // 경로 그리기
         private void DrawPath()
         {
             lineRenderer.positionCount = myNavMeshAgent.path.corners.Length;
@@ -178,12 +181,14 @@ namespace ToonJido.Control
             }
         }
 
+        // 경로 삭제
         private void ClearPath()
         {
             print("destination: " + myNavMeshAgent.destination);
             pathFindExitParent.SetActive(false);
             StopCoroutine(pathRefinder);
             clickMarker.SetActive(false);
+            startMarker.SetActive(false);
             myNavMeshAgent.path.ClearCorners();
             myNavMeshAgent.ResetPath();
             myNavMeshAgent.isStopped = true;
@@ -191,6 +196,7 @@ namespace ToonJido.Control
             myNavMeshAgent.enabled = false;
         }
 
+        // 뷰에 따라 linerenderer 설정 변경
         public void OverlookSetting(){
             lineRenderer.startWidth = 5f;
             lineRenderer.endWidth = 5f;

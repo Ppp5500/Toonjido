@@ -35,6 +35,7 @@ namespace ToonJido.UI
         public TextMeshProUGUI tem;
         public TextMeshProUGUI cloud;
         public UnityEngine.UI.Image dustPanel;
+        public UnityEngine.UI.Image dustIcon;
 
         [Space(10)]
         public List<Forecast> forecastuis = new List<Forecast>();
@@ -75,6 +76,12 @@ namespace ToonJido.UI
         public Sprite normalDust;
         public Sprite badDust;
         public Sprite veryBadDust;
+
+        [Header("Dust Icon Sprites")]
+        public Sprite goodDustIcon;
+        public Sprite normalDustIcon;
+        public Sprite badDustIcon;
+        public Sprite veryBadDustIcon;
 
         // common managers
         private HttpClient client = HttpClientProvider.GetHttpClient();
@@ -148,6 +155,15 @@ namespace ToonJido.UI
                     dustPanel.sprite = veryBadDust;
                     break;
             }
+
+            dustIcon.sprite = dustData.pm10Grade switch
+            {
+                "좋음" => goodDustIcon,
+                "보통" => normalDustIcon,
+                "나쁨" => badDustIcon,
+                "매우나쁨" => veryBadDustIcon,
+                _ => normalDustIcon
+            };
         }
 
         public Sprite GetPTY(string input)

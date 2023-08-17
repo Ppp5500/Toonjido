@@ -13,10 +13,10 @@ namespace ToonJido.UI{
     public class NoticeManager : MonoBehaviour
     {
         [Header("UI Elements")]
-        [SerializeField] private CanvasListItem noticeCanvas;
-        [SerializeField] private TextMeshProUGUI noticeArticle;
-        [SerializeField] private Button confirmButton;
-        [SerializeField] private Button cancelButton;
+        public CanvasListItem noticeCanvas;
+        public TextMeshProUGUI noticeArticle;
+        public Button confirmButton;
+        public Button cancelButton;
 
         [Space(10)]
         [Header("Test")]
@@ -37,12 +37,14 @@ namespace ToonJido.UI{
                 Destroy(this);
             }
 
-            DontDestroyOnLoad(noticeCanvas);
+            if(noticeCanvas != null){
+                DontDestroyOnLoad(noticeCanvas);
+            }
         }
 
 #if DEVELOPMENT
         void OnGUI() {
-            if(GUI.Button(new Rect(200, 200, 200, 200), "canvas!")){
+            if(GUI.Button(new Rect(250, 250, 150, 150), "Init Canvas!")){
                 InitCanvas("test!");
             };
         }
@@ -103,6 +105,10 @@ namespace ToonJido.UI{
             cancelButton.onClick.RemoveAllListeners();
             cancelButton.onClick.AddListener(() => action());
             return this;
+        }
+
+        public void CloseCanvas(){
+            noticeCanvas.SetActive(false);
         }
 
 
