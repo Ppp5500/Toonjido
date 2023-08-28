@@ -13,8 +13,9 @@ namespace ToonJido.Control
         private float xPos;
         private float yPos;
 
-        public GameObject playerGPSLoactionObject;
+
         public Transform playerGPSLocation;
+        public GameObject GPSMarker;
         private string gpsNotAvaliableMessage = "모든 기능은" + System.Environment.NewLine + "천안 원도심 지역 내에서만" + System.Environment.NewLine +"서비스가 가능합니다.";
         private NoticeManager noticeManager;
 
@@ -28,7 +29,7 @@ namespace ToonJido.Control
             xPos = 0f;
             yPos = 0f;
             CurrentControl.gpsStatus = GPSStatus.avaliable;
-            // õ�ȿ�
+            // 원점 설정
             GPSEncoder.SetLocalOrigin(new Vector2(36.80926f, 127.14783f));
         }
 
@@ -43,10 +44,10 @@ namespace ToonJido.Control
 
 #else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
-                playerGPSLoactionObject.SetActive(true);
+                GPSMarker.SetActive(true);
             }
             else{
-                playerGPSLoactionObject.SetActive(false);
+                GPSMarker.SetActive(false);
             }
 #endif
 
@@ -70,7 +71,7 @@ namespace ToonJido.Control
         private void FixedUpdate()
         {
 #if DEVELOPMENT
-            //playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
+            playerGPSLocation.position = new Vector3(26.3f, 0.5f, -27.7f);
 #else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);
@@ -183,7 +184,7 @@ namespace ToonJido.Control
                 {
                     print("lon is outrange");
                     // debugmessage = "lon is outrange";
-                noticeManager.ShowNoticeDefaultStyle(gpsNotAvaliableMessage);
+                    noticeManager.ShowNoticeDefaultStyle(gpsNotAvaliableMessage);
                     CurrentControl.gpsStatus = GPSStatus.invalid_location;
                     yield break;
                 }
@@ -192,7 +193,7 @@ namespace ToonJido.Control
                 {
                     print("lat is outrange");
                     // debugmessage = "lat is outrange";
-                noticeManager.ShowNoticeDefaultStyle(gpsNotAvaliableMessage);
+                    noticeManager.ShowNoticeDefaultStyle(gpsNotAvaliableMessage);
                     CurrentControl.gpsStatus = GPSStatus.invalid_location;
                     yield break;
                 }

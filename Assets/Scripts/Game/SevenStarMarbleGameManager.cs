@@ -1,19 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Timers;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.Playables;
-
-using ToonJido.Data.Saver;
-using ToonJido.Data.Model;
-using ToonJido.Game;
-using DG.Tweening;
 using System.Threading.Tasks;
+using System.Timers;
+
+using DG.Tweening;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
+using ToonJido.Data.Model;
+using ToonJido.Data.Saver;
+using ToonJido.Game;
+
+using UnityEngine;
+using UnityEngine.Playables;
 
 public class SevenStarMarbleGameManager : MonoBehaviour
 {
@@ -94,6 +96,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
         for(int i = 0; i < targetParant.transform.childCount; i++){
             targets.Add(targetParant.transform.GetChild(i).gameObject);
         }
+        FlyingAround();
         EventTimeCheck();
     }
 

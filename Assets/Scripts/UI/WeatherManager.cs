@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -94,6 +95,7 @@ namespace ToonJido.UI
             dirLight = GameObject.Find("Directional Light").GetComponent<Light>();
 
             await CheckTodayWeather();
+            StartCoroutine(AutoWeatherCheck());
         }
 
         public async void DisplayWeather()
@@ -229,6 +231,7 @@ namespace ToonJido.UI
 
         private async Task CheckTodayWeather(){
             var weather = await GetWeatherData();
+            print("check!");
             switch(weather.sky){
                 case 1:
                     rainEffect.SetActive(false);
@@ -253,6 +256,14 @@ namespace ToonJido.UI
             RenderSettings.ambientLight = cloudySkyAmientColor;
             //dirLight.color = cloudySkyDirLightColor;
             dirLight.intensity = 0.5f;
+        }
+
+        IEnumerator AutoWeatherCheck(){
+            while(true){
+                yield return new WaitForSeconds(180);
+
+                CheckTodayWeather();
+            }
         }
     }
 

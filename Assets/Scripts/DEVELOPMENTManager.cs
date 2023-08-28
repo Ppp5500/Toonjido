@@ -1,4 +1,3 @@
-#if DEVELOPMENT
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,8 +8,10 @@ using UnityEngine.UI;
 
 public class DEVELOPMENTManager : MonoBehaviour
 {
+
     public GameObject noticeManagerPref;
     public GameObject noticeCanvasPref;
+#if DEVELOPMENT
 
     // Start is called before the first frame update
     void Start()
@@ -31,5 +32,5 @@ public class DEVELOPMENTManager : MonoBehaviour
     {
         
     }
-}
 #endif
+}

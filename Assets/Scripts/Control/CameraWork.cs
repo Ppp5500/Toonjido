@@ -136,7 +136,8 @@ namespace ToonJido.Control
             eventSystem = EventSystem.current;
             mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             eyeLevelTransform = GameObject.Find("EyeLevelCamPos").GetComponent<Transform>();
-            PlayerGPSLocation = GameObject.Find("PlayerGPSLocation").GetComponent<Transform>();
+            // PlayerGPSLocation = GameObject.Find("PlayerGPSLocation").GetComponent<Transform>();
+            PlayerGPSLocation = GameObject.Find("GPS Modify Objects").transform.Find("Actual GPS Coor").GetComponent<Transform>();
             pPVolumeManager = GameObject.Find("PPVolumeManager").GetComponent<PPVolumeManager>();
             player = GameObject.Find("EyelevelPlayer");
             holdSlider.maxValue = sliderMaxValue;
@@ -283,7 +284,7 @@ namespace ToonJido.Control
                             if (nextVerAngle > 180)
                                 nextVerAngle -= 360;
 
-                            if (-40 < nextVerAngle && nextVerAngle < 40)
+                            if (-40 < nextVerAngle && nextVerAngle < 10)
                             {
                                 eyeLevelTransform.rotation *= Quaternion.AngleAxis(
                                     verAnglePow,
@@ -680,6 +681,16 @@ namespace ToonJido.Control
         // 현재 사용자 위치로 카메라 이동
         public void ResetPosToPlayer()
         {
+#if DEVELOPMENT
+            if (CurrentControl.state == State.Overlook)
+            {
+                camTarget.transform.position = PlayerGPSLocation.transform.position;
+            }
+            else if (CurrentControl.state == State.Eyelevel)
+            {
+                player.transform.position = PlayerGPSLocation.transform.position;
+            }
+#else
             if(CurrentControl.gpsStatus is not GPSStatus.avaliable){
                 noticeManager.ShowNoticeDefaultStyle("GPS 사용 불가 시에는 현재 위치 이동 기능을 이용할 수 없습니다.");
                 return;
@@ -693,6 +704,8 @@ namespace ToonJido.Control
             {
                 player.transform.position = PlayerGPSLocation.transform.position;
             }
+#endif
+
         }
     }
 }

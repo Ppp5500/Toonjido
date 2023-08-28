@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 9fec3f70542b7b14ba6801e6a2e033de
+guid: da065e2c1378fd147a2fbdfe10220b63
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontColor
+    second: {fileID: 2100000, guid: 6b28d0d0b049adb4a942a643f497ffe7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pannel_10______
+    second: {fileID: 2100000, guid: 2c6cf0c2df7b4a34a8a45287dc2070bc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

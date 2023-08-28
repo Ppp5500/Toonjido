@@ -21,7 +21,7 @@ namespace ToonJido.Control
         [SerializeField] GameObject startMarker;
         [SerializeField] private Transform visualObjectsParent;
 
-        [SerializeField] Transform PlyaerGPSLoc;
+        [SerializeField] Transform currGPSCoor;
         [SerializeField] GameObject pathFindExitParent;
         [SerializeField] Button pathFindExitButton;
         [SerializeField] TextMeshProUGUI currentPathObject;
@@ -69,7 +69,7 @@ namespace ToonJido.Control
             //     ClickToMove();
             // }
 
-            mytransform.position = PlyaerGPSLoc.position;
+            mytransform.position = currGPSCoor.position;
 
             if (myNavMeshAgent.hasPath)
             {
@@ -113,7 +113,7 @@ namespace ToonJido.Control
 
                 startMarker.SetActive(true);
                 startMarker.transform.SetParent(visualObjectsParent);
-                startMarker.transform.position = PlyaerGPSLoc.position;
+                startMarker.transform.position = currGPSCoor.position;
 
                 // UI 설정
                 pathFindExitParent.SetActive(true);

@@ -13,6 +13,7 @@ namespace ToonJido.Login
         [HideInInspector] public Action activatedAction;
         private string token;
         private string loadtoken;
+        public string deeplinkURL;
 
         private void Awake()
         {
@@ -35,18 +36,18 @@ namespace ToonJido.Login
 #if DEVELOPMENT
         private void OnGUI()
         {
-            // Compute a fontSize based on the size of the screen width.
-            // GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
+            //Compute a fontSize based on the size of the screen width.
+            GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
 
-            // GUI.Label(new Rect(20, 100, 500, 800),
-            //      $"d: {deeplinkURL}");
+            GUI.Label(new Rect(20, 100, 500, 800),
+                 $"d: {deeplinkURL}");
         }
 #endif
 
         private async void onDeepLinkActivated(string url)
         {
             // Update DeepLink Manager global variable, so URL can be accessed from anywhere.
-            // deeplinkURL = url;
+            deeplinkURL = url;
 
             // Decode the URL to determine action. 
             // In this example, the app expects a link formatted like this:
@@ -68,7 +69,9 @@ namespace ToonJido.Login
                 await saver.SavePlayerInfo(user);
             }
 
-            activatedAction();
+            if(activatedAction != null){
+                activatedAction();
+            }
             SceneLoaderSingleton.instance.LoadSceneAsync("03 TestScene");
         }
 
