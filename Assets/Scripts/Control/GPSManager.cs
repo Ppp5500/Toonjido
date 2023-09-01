@@ -13,7 +13,7 @@ namespace ToonJido.Control
         private float xPos;
         private float yPos;
 
-
+        public bool canMoveGPS = false ;
         public Transform playerGPSLocation;
         public GameObject GPSMarker;
         private string gpsNotAvaliableMessage = "모든 기능은" + System.Environment.NewLine + "천안 원도심 지역 내에서만" + System.Environment.NewLine +"서비스가 가능합니다.";
@@ -71,7 +71,14 @@ namespace ToonJido.Control
         private void FixedUpdate()
         {
 #if DEVELOPMENT
-            playerGPSLocation.position = new Vector3(26.3f, 0.5f, -27.7f);
+            if (canMoveGPS)
+            {
+
+            }
+            else
+            {
+                playerGPSLocation.position = new Vector3(26.3f, 0.5f, -27.7f);
+            }
 #else
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 playerGPSLocation.position = new Vector3(xPos, 0.5f, yPos);

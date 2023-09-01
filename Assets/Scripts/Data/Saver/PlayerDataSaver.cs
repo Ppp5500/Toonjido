@@ -153,7 +153,6 @@ namespace ToonJido.Data.Saver
         public async Task<bool> CheckDragonEventRecord(DateTime _startTime){
             // 저장된 파일이 있는지 검사
             bool haveFile = File.Exists(lastAccessDatePath);
-
             var now = DateTime.Now;
 
             if(!haveFile){
@@ -189,12 +188,60 @@ namespace ToonJido.Data.Saver
 
                     return false;
                 }
-
             }
         }
-#endregion
 
-#region EncryptionMethod
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_startTime"></param>
+        /// <returns>Return true if exist today event record</returns>
+        public async Task<bool> CheckDragonEventRecordForToday(DateTime _startTime)
+        {
+            // 저장된 파일이 있는지 검사
+            bool haveFile = File.Exists(lastAccessDatePath);
+            var now = DateTime.Now;
+
+            if (!haveFile)
+            {
+                await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+                return false;
+            }
+            else
+            {
+                string loadData = await File.ReadAllTextAsync(lastAccessDatePath);
+
+                // parsing 시도
+                try
+                {
+                    DateTime loadDate = DateTime.Parse(loadData);
+
+                    // 최종 접속 시간 업데이트
+                    await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+
+                    // 오늘 접속 했는지 검사
+                    if (loadDate.Date < _startTime.Date)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+                // parsing 실패 시 
+                catch
+                {
+                    // 최종 접속 시간 업데이트
+                    await File.WriteAllTextAsync(lastAccessDatePath, now.ToString());
+
+                    return false;
+                }
+            }
+        }
+        #endregion
+
+        #region EncryptionMethod
 
         public byte[] Encrypt(byte[] origin, string password)
         {

@@ -10,6 +10,7 @@ namespace ToonJido.Control
     [RequireComponent(typeof(NavMeshAgent))]
     public class NavPlayerControl : MonoBehaviour
     {
+        public GameObject eyelevelPlayer;
         private NavMeshAgent myNavMeshAgent;
         private Transform mytransform;
         public LineRenderer lineRenderer;
@@ -57,18 +58,11 @@ namespace ToonJido.Control
 
             CurrentControl.eyelevelAction += EyelevelSetting;
             CurrentControl.overlookAction += OverlookSetting;
-
-            //SetDestination(new Vector3(165.33f, 0.0f, 24.1f));
         }
 
         // Update is called once per frame
         void Update()
         {
-            // if (Input.GetMouseButtonDown(0))
-            // {
-            //     ClickToMove();
-            // }
-
             mytransform.position = currGPSCoor.position;
 
             if (myNavMeshAgent.hasPath)
@@ -109,7 +103,7 @@ namespace ToonJido.Control
                 myNavMeshAgent.SetDestination(target);
                 clickMarker.SetActive(true);
                 clickMarker.transform.SetParent(visualObjectsParent);
-                clickMarker.transform.position = target;
+                clickMarker.transform.position = target + new Vector3(0, 1f, 0);
 
                 startMarker.SetActive(true);
                 startMarker.transform.SetParent(visualObjectsParent);
@@ -131,6 +125,12 @@ namespace ToonJido.Control
                     StopCoroutine(pathRefinder);
                 }
                 pathRefinder = StartCoroutine(ReFind(target));
+
+                if(CurrentControl.state == State.Eyelevel)
+                {
+                    print(myNavMeshAgent.path.corners[0]);
+                    eyelevelPlayer.transform.LookAt(myNavMeshAgent.path.corners[0]);
+                }
             }
             else{
                 // 유효하지 않은 위치

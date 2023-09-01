@@ -13,7 +13,7 @@ namespace ToonJido.Game{
         }
         private void OnTriggerEnter(Collider other) {
             if(other.gameObject.CompareTag("Player")){
-                marbleGameManager.FoundBall(stars.ToString());
+                marbleGameManager.FoundMarble(stars.ToString());
                 FortuneWindowManager.GetInstance().ShowFortune();
                 Destroy(this.gameObject);
             }

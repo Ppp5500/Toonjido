@@ -54,12 +54,25 @@ public class SceneLoaderSingleton : MonoBehaviour
                 ao.allowSceneActivation = true;
             }
         }
-        StartCoroutine(Fade(0.0f));
+        StartCoroutine(Fade(0.0f, () => BackgroundDestroyCheck(sceneName)));
+    }
+
+    private void BackgroundDestroyCheck(string _sceneName)
+    {
+        if(_sceneName == "03 TestScene")
+        {
+            Destroy(loadingCanvas.gameObject);
+        }
+        else
+        {
+            loadingCanvas.gameObject.SetActive(false);
+        }
     }
 
     // Fade In/Out 시키는 함수
     IEnumerator Fade(float finalAlpha)
     {
+        loadingCanvas.gameObject.SetActive(true);
         loadingCanvas.blocksRaycasts = true;
 
         // 절대값 함수로 백분율 계산
@@ -83,6 +96,7 @@ public class SceneLoaderSingleton : MonoBehaviour
     // Fade In/Out 시키는 함수
     IEnumerator Fade(float finalAlpha, Action callback)
     {
+        loadingCanvas.gameObject.SetActive(true);
         loadingCanvas.blocksRaycasts = true;
 
         // 절대값 함수로 백분율 계산

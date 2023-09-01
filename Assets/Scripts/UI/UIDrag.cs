@@ -47,10 +47,9 @@ namespace ToonJido.UI
             _halfSafe = _maxSafe * 0.3f;
             _minSafe *= -0.9f;
 
-            //buttons = sideButtonParant.GetComponentsInChildren<Image>();
             handleButton = transform.Find("Handle Button").GetComponent<Button>();
             handleImage = transform.Find("Handle Image").GetComponent<Image>();
-            FirstDown();
+            Down();
         }
 
         void IDragHandler.OnDrag(PointerEventData eventData)
@@ -123,10 +122,6 @@ namespace ToonJido.UI
             isModalUp = true;
         }
 
-        public void FirstDown(){
-            transform.position = canvas.transform.TransformPoint(new Vector2(0, _minSafe));
-        }
-
         public void Up()
         {
             StartCoroutine(MoveSmooth(transform, canvas.transform.TransformPoint(new Vector2(0, _maxSafe)), 0.2f));
@@ -146,7 +141,5 @@ namespace ToonJido.UI
                 yield return null;
             }
         }
-
-        
     }
 }

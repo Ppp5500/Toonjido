@@ -58,19 +58,6 @@ public class AppleManager : MonoBehaviour
         }
     }
 
-    // private void OnGUI() {
-    //     GUI.backgroundColor = Color.yellow;
-    //     GUI.Box(new Rect(20, 200, width, height), "DebugCube");
-
-    //     // Compute a fontSize based on the size of the screen width.
-    //     GUI.skin.label.fontSize = (int)(Screen.width / 25.0f);
-
-    //     GUI.Label(
-    //         new Rect(20, 200, width, height),
-    //         $"apple :{debugText}"
-    //     );
-    // }
-
     public void SignIN(){
         debugText += "\nwe are in first line of sign in";
         var loginArgs = new AppleAuthLoginArgs(LoginOptions.IncludeEmail | LoginOptions.IncludeFullName);

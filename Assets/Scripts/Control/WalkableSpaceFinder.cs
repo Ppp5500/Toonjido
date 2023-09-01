@@ -129,7 +129,7 @@ public class WalkableSpaceFinder : MonoBehaviour
             }
         }
 
-        print($"Do we Found? {doWeFound}");
+        //print($"Do we Found? {doWeFound}");
         if(doWeFound)
         {
             // print($"index: {minIndex}, dist: {minValue}, pos: {raycastHits[minIndex].point}");

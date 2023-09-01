@@ -7,13 +7,13 @@ namespace ToonJido.Game
     public class Shooter : MonoBehaviour
     {
         // 미사일 프리팹.
-        public List<GameObject> ballPrefs;
+        public List<GameObject> marblePrefs;
         // 도착 지점들 부모
         [SerializeField] GameObject targetParant;
         // 도착 지점들
         List<GameObject> targets = new();
         List<int> targetIndex = new();
-        List<int> ballIndex = new();
+        List<int> marbleIndex = new();
         // Dictionary<int, int> indexDic = new();
         // 계산용 임시 속성
         GameObject m_target;
@@ -40,23 +40,22 @@ namespace ToonJido.Game
             }
         }
 
-        public void ShootStarBall(out Dictionary<int, int> indexDic)
+        public void ShootStarMarble(out Dictionary<int, int> indexDic)
         {
             indexDic = new();
             var targetIndex = GenerateTargetIndex();
-            var ballIndex = GenerateBallIndex();
+            var marbleIndex = GenerateMarbleIndex();
 
-            for(int i = 0; i < ballIndex.Count; i ++){
-                indexDic.Add(targetIndex[i], ballIndex[i]);
+            for(int i = 0; i < marbleIndex.Count; i ++){
+                indexDic.Add(targetIndex[i], marbleIndex[i]);
             }
 
             StartCoroutine(CreateMissileVer2(
                 targetIndex,
-                ballIndex
+                marbleIndex
                 )
             );
         }
-
 
         private List<int> GenerateTargetIndex()
         {
@@ -65,29 +64,24 @@ namespace ToonJido.Game
             return targetIndex;
         }
 
-        private List<int> GenerateBallIndex(){
-            ballIndex = new List<int>(){0, 1, 2, 3, 4, 5, 6};
-            ballIndex = ShuffleList(ballIndex);
-            return ballIndex;
+        private List<int> GenerateMarbleIndex(){
+            marbleIndex = new List<int>(){0, 1, 2, 3, 4, 5, 6};
+            marbleIndex = ShuffleList(marbleIndex);
+            return marbleIndex;
         }
-
-        public void RecallStarBall(List<int> _targetIndex, List<int> _ballIndex){
-
-        }
-
 
         /// <summary>
         /// 미사일 프리팹의 갯 수 만큼 공 발사,
         /// 도착 위치는 targetParent의 자식 중 겹치지 않게 랜덤,
         /// </summary>
         /// <returns></returns>
-        IEnumerator CreateMissileVer2(List<int> _targetIndex, List<int> _ballIndex)
+        IEnumerator CreateMissileVer2(List<int> _targetIndex, List<int> _marbleIndex)
         {
-            int _shotCount = _ballIndex.Count;
+            int _shotCount = _marbleIndex.Count;
 
             for(int i = 0; i < _shotCount; i ++){
                 m_target = targets[targetIndex[i]];
-                GameObject missile = Instantiate(ballPrefs[_ballIndex[i]]);
+                GameObject missile = Instantiate(marblePrefs[_marbleIndex[i]]);
                 missile
                     .GetComponent<BezierMissile>()
                     .Init(
@@ -109,9 +103,9 @@ namespace ToonJido.Game
         /// <returns></returns>
         IEnumerator CreateMissile(List<int> _targetIndex)
         {
-            int _shotCount = ballPrefs.Count;
+            int _shotCount = marblePrefs.Count;
             List<GameObject> randomTargets = ShuffleList(targets);
-            randomTargets.RemoveRange(ballPrefs.Count, randomTargets.Count - ballPrefs.Count);
+            randomTargets.RemoveRange(marblePrefs.Count, randomTargets.Count - marblePrefs.Count);
 
             while (_shotCount > 0)
             {
@@ -120,7 +114,7 @@ namespace ToonJido.Game
                 {
                     if (_shotCount > 0)
                     {
-                        GameObject missile = Instantiate(ballPrefs[_shotCount - 1]);
+                        GameObject missile = Instantiate(marblePrefs[_shotCount - 1]);
                         missile
                             .GetComponent<BezierMissile>()
                             .Init(

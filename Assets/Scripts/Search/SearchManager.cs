@@ -20,6 +20,7 @@ using ToonJido.UI;
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 namespace ToonJido.Search
 {
@@ -146,6 +147,7 @@ namespace ToonJido.Search
 
         public async void ClickSearchButton()
         {
+            BackToSearchResult();
             if (!string.IsNullOrEmpty(inputField.text))
             {
                 noResultText.SetActive(false);
@@ -400,13 +402,19 @@ namespace ToonJido.Search
                             .gameObject
                             .SetActive(false);
                     }
+                    var tel = "-";
+                    if(input.cultures[i].phone != string.Empty)
+                    {
+                        tel = Regex.Replace(input.cultures[i].phone, @"\D", "");
+                        tel = tel.Insert(3, "-").Insert(7, "-");
+                    }
                     mypref.transform
                         .Find("Bottom")
                         .gameObject
                         .transform
                         .Find("Tel Info")
                         .GetComponent<TextMeshProUGUI>()
-                        .SetText(input.cultures[i].phone.Substring(2));
+                        .SetText(tel);
                     mypref.transform
                         .Find("Review Info")
                         .GetComponent<TextMeshProUGUI>()
@@ -489,6 +497,18 @@ namespace ToonJido.Search
             }
         }
 
+        private void ModalChoice()
+        {
+            if(CurrentControl.state == State.Eyelevel)
+            {
+                drag.Down();
+            }
+            else if(CurrentControl.state == State.Overlook)
+            {
+                drag.Half();
+            }
+        }
+
         public async void OpenDetailCanvas(string name)
         {
             pathFindButton.onClick.RemoveAllListeners();
@@ -530,7 +550,12 @@ namespace ToonJido.Search
             explainText.text = currentStore.explain;
             clockText.text = currentStore.open_hours;
             addressText.text = currentStore.address;
-            contactText.text = currentStore.phone[2..];
+            contactText.text = "-";
+            if (currentStore.phone != string.Empty)
+            {
+                contactText.text = Regex.Replace(currentStore.phone, @"\D", "");
+                contactText.text = contactText.text.Insert(3, "-").Insert(7, "-");
+            }
             if(currentStore.latitude != null){
                 print($"lat: {currentStore.latitude}");
 
@@ -543,7 +568,7 @@ namespace ToonJido.Search
 
             // 길찾기 버튼
             pathFindButton.onClick.AddListener(() => PathFindAsync(find_number, currentStore.market_name));
-            pathFindButton.onClick.AddListener(() => drag.Half());
+            pathFindButton.onClick.AddListener(() => ModalChoice());
 
             if(UserProfile.social_login_id != string.Empty)
             {

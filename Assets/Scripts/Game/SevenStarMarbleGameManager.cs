@@ -20,25 +20,28 @@ using UnityEngine.Playables;
 public class SevenStarMarbleGameManager : MonoBehaviour
 {
     [SerializeField] GameObject hDragon;
-    [SerializeField] Transform dragonTargetPos;
-    [SerializeField] Transform dragonFirstPos;
-    [SerializeField] PlayableDirector director;
     public MarbleGameData marbleGameData = new();
 
     // 미사일 프리팹.
-    public List<GameObject> ballPrefs;
-    // 도착 지점들 부모
+    public List<GameObject> MarblePrefs;
+
+    // 미사일 도착 지점들 부모 오브젝트
     [SerializeField] GameObject targetParant;
-    // 도착 지점들
+
+    // 미사일 도착 지점들
     List<GameObject> targets = new();
     Dictionary<int, int> indexDic = new();
 
-    const int startTime01 = 12;
-    const int startTime02 = 19;
-    const int eventTime = 1;
+    // 게임 시작 시간
+    private const int startTime01 = 10;
+    private const int startTime02 = 19;
+    private const int eventTime = 1;
 
+    // 흥룡이 움직임 관련 변수
     const float dragonMoveInterval = 10;
     bool dragonAppearChecker = false;
+
+    [Header("Dragon Move Points")]
     [SerializeField] Transform initPos;
     [SerializeField] Transform firstTarget;
     [SerializeField] Transform secondTarget;
@@ -46,8 +49,6 @@ public class SevenStarMarbleGameManager : MonoBehaviour
     [SerializeField] Transform forthTarget;
     [SerializeField] Transform fifthTarget;
     [SerializeField] Transform sixthTarget;
-
-    [SerializeField] Transform Axis;
 
 
     // common
@@ -69,7 +70,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
 
         if(GUI.Button(new Rect(50, 650, 150, 150), "marble found!")){
             print("click!");
-            FoundBall("3");
+            FoundMarble("3");
         }
     }
 #endif
@@ -82,7 +83,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
         else{
             Destroy(this);
         }
-        marbleGameData.balls = new();
+        marbleGameData.marbles = new();
     }
 
     // Singleton
@@ -91,13 +92,15 @@ public class SevenStarMarbleGameManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-     void Start()
+     async Task Start()
     {
         for(int i = 0; i < targetParant.transform.childCount; i++){
             targets.Add(targetParant.transform.GetChild(i).gameObject);
         }
-        FlyingAround();
-        EventTimeCheck();
+        // FlyingAround();
+        // EventTimeCheck();
+        print(DateTime.Now.Date);
+        await DragonEventAsyncForToday(DateTime.Now);
     }
 
     async void EventTimeCheck(){
@@ -111,27 +114,22 @@ public class SevenStarMarbleGameManager : MonoBehaviour
 
         if(now < todayNoon){
             // 오전 타이머
-            print("it's morning!");
             SetEventTimer(timer, todayNoon, now);
         }
         else if(now < todayAfternoon){
             // 점심 이벤트
-            print("it's highnoon!");
             await DragonEventAsync(todayNoon);
         }
         else if(now < today8pm){
             // 오후 타이머
-            print("it's after noon");
             SetEventTimer(timer, today8pm, now);
         }
         else if(now < todayAfter8pm){
             // 저녁 이벤트
-            print("it's good evening");
             await DragonEventAsync(today8pm);
         }
         else{
             // 내일 점심 이벤트
-            print("see you tomorrow");
             DateTime tomorrowNoon = todayNoon.AddDays(1);
             SetEventTimer(timer, tomorrowNoon, now);
         }
@@ -157,7 +155,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Load saved marble data and generate(not shoot) balls
+    /// Load saved marble data and generate(not shoot) marbles
     /// </summary>
     /// <returns></returns>
     async Task LoadMarbleData(){
@@ -165,20 +163,18 @@ public class SevenStarMarbleGameManager : MonoBehaviour
             marbleGameData = await saver.LoadMarbleData();
         }
 
-        foreach(var item in marbleGameData.balls){
+        foreach(var item in marbleGameData.marbles){
             Transform tras = targets[int.Parse(item.target)].transform;
             int starNum = int.Parse(item.stars);
-            var ball = Instantiate(ballPrefs[starNum]);
-            Destroy(ball.GetComponent<BezierMissile>());
+            var marble = Instantiate(MarblePrefs[starNum]);
+            Destroy(marble.GetComponent<BezierMissile>());
 
-            ball.GetComponent<MarbleToCollect>().stars = starNum;
-            ball.transform.position = tras.position;
-            print($"t: {item.target}, s: {item.stars}");
+            marble.GetComponent<MarbleToCollect>().stars = starNum;
+            marble.transform.position = tras.position;
+            // print($"t: {item.target}, s: {item.stars}");
         }
 
         hDragon.SetActive(true);
-        hDragon.transform.position = dragonTargetPos.position;
-        hDragon.transform.rotation = dragonTargetPos.rotation;
     }
 
     /// <summary>
@@ -186,16 +182,17 @@ public class SevenStarMarbleGameManager : MonoBehaviour
     /// </summary>
     /// <param name="_stars">Number of star</param>
     /// <returns></returns>
-    public async void FoundBall(string _stars){
+    public async void FoundMarble(string _stars){
         if(marbleGameData != null){
             print("input: " + _stars);
-            var dataToRemove = marbleGameData.balls.Where(x => x.stars == _stars);
-            marbleGameData.balls = marbleGameData.balls.Except(dataToRemove).ToList();
+            var dataToRemove = marbleGameData.marbles.Where(x => x.stars == _stars);
+            marbleGameData.marbles = marbleGameData.marbles.Except(dataToRemove).ToList();
 
             await SaveMarbleData();
         }
     }
 
+    // 흥룡이를 돌아다니게 하는 메소드
     public void FlyingAround(){
         if(!dragonAppearChecker){
             StartCoroutine(FlyingAroundIenum());
@@ -219,7 +216,6 @@ public class SevenStarMarbleGameManager : MonoBehaviour
                 yield return null;
             }
             t = 0;
-            print($"timer: {t}, is time set?");
 
             hDragon.transform.DOMove(secondTarget.position, 5);
             hDragon.transform.DORotate(secondTarget.eulerAngles, 5);
@@ -229,7 +225,6 @@ public class SevenStarMarbleGameManager : MonoBehaviour
                 yield return null;
             }
             t = 0;
-            print($"timer: {t}, is time set?");
 
             hDragon.transform.DOMove(thirdTarget.position, 3);
             hDragon.transform.DORotate(thirdTarget.eulerAngles, 3);
@@ -239,7 +234,6 @@ public class SevenStarMarbleGameManager : MonoBehaviour
                 yield return null;
             }
             t = 0;
-            print($"timer: {t}, is time set?");
 
             hDragon.transform.DOMove(forthTarget.position, 3);
             hDragon.transform.DORotate(forthTarget.eulerAngles, 3);
@@ -249,7 +243,6 @@ public class SevenStarMarbleGameManager : MonoBehaviour
                 yield return null;
             }
             t = 0;
-            print($"timer: {t}, is time set?");
 
             hDragon.transform.DOMove(fifthTarget.position, 3);
             hDragon.transform.DORotate(fifthTarget.eulerAngles, 3);
@@ -259,7 +252,6 @@ public class SevenStarMarbleGameManager : MonoBehaviour
                 yield return null;
             }
             t = 0;
-            print($"timer: {t}, is time set?");
 
             hDragon.transform.DOMove(sixthTarget.position, 3);
             hDragon.transform.DORotate(sixthTarget.eulerAngles, 3);
@@ -270,12 +262,11 @@ public class SevenStarMarbleGameManager : MonoBehaviour
         print("흥룡이 쿠아앙아 하고 울부짖었다.");
         using(PlayerDataSaver saver = new()){
             bool temp = await saver.CheckDragonEventRecord(_startTime);
-            print(temp);
 
             if(!temp)
             {
                 FlyingAround();
-                await BallBall();
+                await InitMarbleGame();
             }
             else
             {
@@ -293,7 +284,7 @@ public class SevenStarMarbleGameManager : MonoBehaviour
             if(!temp)
             {
                 FlyingAround();
-                await BallBall();
+                await InitMarbleGame();
             }
             else
             {
@@ -302,19 +293,39 @@ public class SevenStarMarbleGameManager : MonoBehaviour
         }
     }
 
-    async Task BallBall(){
+    async Task DragonEventAsyncForToday(DateTime _startTime)
+    {
+        print("흥룡이 쿠아앙아 하고 울부짖었다.");
+        using (PlayerDataSaver saver = new())
+        {
+            bool temp = await saver.CheckDragonEventRecordForToday(_startTime);
+            print($"is access today? {temp}");
+
+            if (!temp)
+            {
+                FlyingAround();
+                await InitMarbleGame();
+            }
+            else
+            {
+                await LoadMarbleData();
+            }
+        }
+    }
+
+    async Task InitMarbleGame(){
         using PlayerDataSaver saver = new();
-        hDragon.gameObject.GetComponent<Shooter>().ShootStarBall(out indexDic);
+        hDragon.gameObject.GetComponent<Shooter>().ShootStarMarble(out indexDic);
 
         foreach (var item in indexDic)
         {
-            marbleGameData.balls.Add(new Ball()
+            marbleGameData.marbles.Add(new Marble()
             {
                 target = item.Key.ToString(),
                 stars = item.Value.ToString()
             });
 
-            print($"t: {item.Key}, s: {item.Value}");
+            // print($"t: {item.Key}, s: {item.Value}");
         }
 
         await saver.SaveMarbleData(marbleGameData);

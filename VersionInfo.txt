@@ -232,4 +232,22 @@ Webviewer
 SettingCanvas
 	- 최대 이동속도를 더 높게 설정
 GPS Modifing Manager
-	- 
+	-  GPS가 건물 안으로 잡힐 경우 근처 도로를 탐색해서 위치를 보정
+NavPlayerControl
+	- 1인칭에서 길찾기 시 시작지점을 쳐다보도록 설정
+API target을 33으로 변경
+
+1.4.0_02
+프로필 설정
+	- 최초 프로필 설정 시 서버에 먼저 프로필 정보를 초기화하도록 설정
+
+1.4.1
+코드 전체에서 ball과 marble 혼용하던 걸 marble로 통일
+각 씬 로딩 후 로딩 화면 Setactive false, 03 TestScene 로딩 후에는 더 이상 사용하지 않으므로 Destory
+
+1.4.2
+1인칭에서 GPS 버튼 누르면 엉뚱한 위치로 이동되는 현상 -> 해당 버튼이 CameraWork의 ResetPOs method를 호출하는데 해당 method는 Modified GPS Coor가 아닌 Actucal GPS Coor위치로 이동하도록 되어 있었음, Modified GPS Coor위치로 이동하도록 변경
+SetDestination 실행시 첫 경로를 천안역 앞으로 하는 버그가 있음(주로 Section10 쪽에서 발생) -> 천안역 근처 위치와 Section10 쪽 Blocker 설치하여 길을 막음 일단 지금 당장은 해당 현상 일어나지 않음
+기존에 가게 정보를 받아 올때 연락처에 전화기 특수문자가 포함되어 있었음 이를 단순히 문자열 앞의 두글자를 자르는 방식으로 해결했었는데 이를 정규식을 사용하도록 변경(SearchManager)
+SignCanvases의 상점을 나타내는 아이콘들에 Button Component 추가하고 누르면 SearchManager의 OpenDetatil 실행하도록 설정
+일정 시간 마다가 아니라 하루에 첫 접속 시에 구슬을 날리도록 설정(CheckDragonEventRecordForToday 작성, DragonEventAsyncForToday 작성)

@@ -44,9 +44,11 @@ public class NicknameManager : MonoBehaviour
 
     async Task Start()
     {
+        print("profile start!");
         if(UserProfile.social_login_id != string.Empty){
-            await InitProfileAsync();
+            print("profile init!");
 
+            await InitProfileAsync();
             for(int i = 0; i < profileSelectButtons.Count; i++){
                 int tempNum = i;
                 profileSelectButtons[tempNum].onClick.AddListener(() => SelectPic(tempNum));
@@ -54,6 +56,10 @@ public class NicknameManager : MonoBehaviour
 
             closeButton.onClick.AddListener(() => CloseCanvas());
             nicknameInputfield.onValueChanged.AddListener((_input) => EditNickname(_input));
+        }
+        else
+        {
+            nicknameText.text = UserProfile.social_login_id;
         }
     }
 
@@ -71,14 +77,10 @@ public class NicknameManager : MonoBehaviour
 
     async Task InitProfileAsync(){
         string loadedData = string.Empty;
+        print("file exist?: " + File.Exists(nicknameDataPath));
         loadedData = File.Exists(nicknameDataPath) ? await LoadProfileDataOnDevice() : await GetDataSavedOnServer();
+        print("server data" + loadedData);
         var loadedJObject = JObject.Parse(loadedData);
-
-        // 서버에서 받아온 정보가 null이면 초기화해서 다시 서버에 저장
-        if(loadedJObject["nickname"] == null){
-            await SetDataOnServer("흥룡이 프렌드", 0);
-            loadedJObject = JObject.Parse(await LoadProfileDataOnDevice());
-        }
 
         nicknameInputfield.text = loadedJObject["nickname"].ToString();
         DisplayNickname(loadedJObject);
@@ -151,9 +153,23 @@ public class NicknameManager : MonoBehaviour
         var url = baseURL + "get_user_profile/";
         var response = await client.GetAsync(url + "?social_login_id=" + UserProfile.social_login_id);
 
-        response.EnsureSuccessStatusCode();
-        var result = await response.Content.ReadAsStringAsync();
-        return result;
+        if (!response.IsSuccessStatusCode)
+        {
+            await InitServerData();
+            var result = await LoadProfileDataOnDevice();
+            return result;
+        }
+        else
+        {
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
+
+        }
+    }
+
+    async Task InitServerData()
+    {
+        await SetDataOnServer("흥룡이 프렌드", 0);
     }
 
     async Task SetDataOnServer(string _nickName, int _num){

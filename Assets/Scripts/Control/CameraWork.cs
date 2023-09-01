@@ -13,6 +13,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.AI;
 
 #if UNITY_EDITOR
 
@@ -36,22 +37,20 @@ namespace ToonJido.Control
 
 
         [Header("Virtual Cameras")]
-        [SerializeField]
-        private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
+        [SerializeField] private List<CinemachineVirtualCamera> cameras = new List<CinemachineVirtualCamera>();
 
 
         [Tooltip("Current use camera")]
-        public CinemachineVirtualCamera ActiveCamera = null;
+        [HideInInspector] public CinemachineVirtualCamera ActiveCamera = null;
         // virtual 카메라 전환 시 변경할 카메리의 culling mask layer
-        int layerDefault;
-        int layerPath;
-        bool isGPSTracking = false;
+        private int layerMaskDefault;
+        private int layerMaskPath;
+        private bool isGPSTracking = false;
 
         // 부감 카메라 이동관련 변수
         private float spanSpeed = 2f;
-        private const float zoomSpeed = 10f;
         private const float twoFingerZoomPower = 3f;
-        private const float minFOV = 10, maxFOV = 90, defaultFOV = 50;
+        private const float minFOV = 10, maxFOV = 90;
         private const float minXPos = -90, maxXPos = 275, minYPos = -360, maxYPos = 180;
         private Vector2 nowPos, prePos;
         private Vector3 movePos;
@@ -65,12 +64,11 @@ namespace ToonJido.Control
         public float moveSpeed = 30f;
         private GameObject player;
         private Transform eyeLevelTransform;
+        private NavMeshAgent eyeLevelAgent;
 
-        // 레이
+        // 레이용 변수들
         private RaycastHit hit;
-
-        //private int layerMask;
-        public LayerMask layerMask;
+        public LayerMask layerMaskStore;
         private float maxRayDis = 50f;
         private GameObject lastEncounter;
         private bool isAleadySearched = false;
@@ -109,12 +107,10 @@ namespace ToonJido.Control
         [SerializeField] private GameObject numberCanvas;
         [SerializeField] private GameObject overCanvas;
         [SerializeField] private CanvasListItem settingCanvas;
-        [SerializeField] CanvasListItem menuCanvas;
+        [SerializeField] private CanvasListItem menuCanvas;
         [SerializeField] private Button settingBackButton;
-        [SerializeField] private Slider moveSpeedSlider;
-        [SerializeField] List<GameObject> singCanvaslist = new();
-        [SerializeField] GameObject BasementCanvas;
-        [SerializeField] GameObject busIconCanvas;
+        [SerializeField] private GameObject BasementCanvas;
+        [SerializeField] private GameObject busIconCanvas;
 
 
         [Header("UI Resources")]
@@ -127,34 +123,31 @@ namespace ToonJido.Control
         PPVolumeManager pPVolumeManager;
         EventSystem eventSystem;
 
-        // test
-        public Image image;
-        public TextMeshProUGUI myText;
-
         void Start()
         {
             eventSystem = EventSystem.current;
             mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             eyeLevelTransform = GameObject.Find("EyeLevelCamPos").GetComponent<Transform>();
-            // PlayerGPSLocation = GameObject.Find("PlayerGPSLocation").GetComponent<Transform>();
-            PlayerGPSLocation = GameObject.Find("GPS Modify Objects").transform.Find("Actual GPS Coor").GetComponent<Transform>();
+            PlayerGPSLocation = GameObject.Find("GPS Modify Objects").transform.Find("Curr GPS Coor").Find("PlayerAncher").GetComponent<Transform>();
             pPVolumeManager = GameObject.Find("PPVolumeManager").GetComponent<PPVolumeManager>();
             player = GameObject.Find("EyelevelPlayer");
+            eyeLevelAgent = player.GetComponent<NavMeshAgent>();
             holdSlider.maxValue = sliderMaxValue;
 
-            layerMask = 1 << LayerMask.NameToLayer("Store");
+            layerMaskDefault = LayerMask.NameToLayer("Default");
+            layerMaskPath = LayerMask.NameToLayer("Path");
+            layerMaskStore = 1 << LayerMask.NameToLayer("Store");
+
             RenderSettings.fog = false;
+
+            noticeManager = NoticeManager.GetInstance();
+            backKeyManager = BackKeyManager.GetInstance();
 
             CurrentControl.overlookAction += SwitchCont;
             CurrentControl.eyelevelAction += SwitchCont;
             CurrentControl.searchResultAction += SwitchCont;
             CurrentControl.profileAction += SwitchCont;
             CurrentControl.weatherAction += SwitchCont;
-
-            layerDefault = LayerMask.NameToLayer("Default");
-            layerPath = LayerMask.NameToLayer("Path");
-            noticeManager = NoticeManager.GetInstance();
-            backKeyManager = BackKeyManager.GetInstance();
 
             gpsButton.onClick.AddListener(() => ResetPosToPlayer());
             changeViewButton.onClick.AddListener(() => CurrentControl.ChangeToEyelevel());
@@ -171,24 +164,6 @@ namespace ToonJido.Control
             // UI overray camera와 maincamera의 시야각을 동일하게 맞춰줌
             UICam.fieldOfView = cameras[0].m_Lens.FieldOfView;
             overlookCam.fieldOfView = cameras[0].m_Lens.FieldOfView;
-
-            // float curFOV = cameras[0].m_Lens.FieldOfView;
-            // switch (curFOV)
-            // {
-            //     case float value when value <= 30:
-            //         SwitchSign(singCanvaslist[0]);
-            //         break;
-
-            //     case float value when 40 <= value && value <= 50:
-            //         SwitchSign(singCanvaslist[1]);
-            //         break;
-
-            //     case float value when 50 < value:
-            //         SwitchSign(singCanvaslist[2]);
-            //         break;
-            // }
-            // image.rectTransform.sizeDelta = new Vector2(curFOV * 0.3f, curFOV * 0.3f);
-            // myText.fontSize = curFOV/10;
 
             // 현재 조작 모드가 부감일 때
             if (CurrentControl.state == State.Overlook)
@@ -284,7 +259,7 @@ namespace ToonJido.Control
                             if (nextVerAngle > 180)
                                 nextVerAngle -= 360;
 
-                            if (-40 < nextVerAngle && nextVerAngle < 10)
+                            if (-40 < nextVerAngle && nextVerAngle < 0)
                             {
                                 eyeLevelTransform.rotation *= Quaternion.AngleAxis(
                                     verAnglePow,
@@ -302,7 +277,7 @@ namespace ToonJido.Control
                             GetEncounter(ref lastEncounter);
                             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-                            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask) && !isAleadySearched)
+                            if (Physics.Raycast(ray, out hit, maxRayDis, layerMaskStore) && !isAleadySearched)
                             {
                                 holdSlider.gameObject.SetActive(true);
                                 holdSlider.gameObject.transform.position = touch.position + new Vector2(0f, 80f);
@@ -473,7 +448,7 @@ namespace ToonJido.Control
             {
                 SwitchCamera(cameras[0]);
 
-                mainCamera.cullingMask = (1 << layerDefault);
+                mainCamera.cullingMask = (1 << layerMaskDefault);
                 UICam.gameObject.SetActive(true);
                 overlookCam.gameObject.SetActive(true);
 
@@ -505,7 +480,7 @@ namespace ToonJido.Control
             {
                 SwitchCamera(cameras[1]);
                 
-                mainCamera.cullingMask = (1 << layerDefault) | (1 << layerPath);
+                mainCamera.cullingMask = (1 << layerMaskDefault) | (1 << layerMaskPath);
 
                 UICam.gameObject.SetActive(false);
                 overlookCam.gameObject.SetActive(false);
@@ -562,7 +537,7 @@ namespace ToonJido.Control
                     SwitchCamera(cameras[2]);
                 }
 
-                mainCamera.cullingMask = (1 << layerDefault) | (1 << layerPath);
+                mainCamera.cullingMask = (1 << layerMaskDefault) | (1 << layerMaskPath);
                 UICam.gameObject.SetActive(false);
                 overlookCam.gameObject.SetActive(false);
                 
@@ -613,7 +588,7 @@ namespace ToonJido.Control
 #if UNITY_EDITOR
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMaskStore))
             {
                 output = hit.collider.gameObject;
                 return true;
@@ -626,7 +601,7 @@ namespace ToonJido.Control
 #elif UNITY_ANDROID
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMaskStore))
             {
                 output = hit.collider.gameObject;
                 return true;
@@ -639,7 +614,7 @@ namespace ToonJido.Control
 #elif UNITY_IOS
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
 
-            if (Physics.Raycast(ray, out hit, maxRayDis, layerMask))
+            if (Physics.Raycast(ray, out hit, maxRayDis, layerMaskStore))
             {
                 output = hit.collider.gameObject;
                 return true;
@@ -665,19 +640,6 @@ namespace ToonJido.Control
             }
         }
 
-        private void SwitchSign(GameObject _signCanvas)
-        {
-            _signCanvas.SetActive(true);
-
-            foreach(var item in singCanvaslist)
-            {
-                if(item != _signCanvas)
-                {
-                    item.SetActive(false);
-                }
-            }
-        }
-
         // 현재 사용자 위치로 카메라 이동
         public void ResetPosToPlayer()
         {
@@ -688,7 +650,9 @@ namespace ToonJido.Control
             }
             else if (CurrentControl.state == State.Eyelevel)
             {
+                eyeLevelAgent.enabled = false;
                 player.transform.position = PlayerGPSLocation.transform.position;
+                eyeLevelAgent.enabled = true;
             }
 #else
             if(CurrentControl.gpsStatus is not GPSStatus.avaliable){

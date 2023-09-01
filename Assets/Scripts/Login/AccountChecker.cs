@@ -73,6 +73,16 @@ public class AccountChecker : MonoBehaviour
                             {
                                 File.Delete(appSetting.userInfoPath);
                             }
+
+                            if (File.Exists(appSetting.tokenPath))
+                            {
+                                File.Delete(appSetting.tokenPath);
+                            }
+
+                            if (File.Exists(appSetting.nicknameDataPath))
+                            {
+                                File .Delete(appSetting.nicknameDataPath);
+                            }
                             Application.Quit();
                         }
                     )
@@ -125,6 +135,16 @@ public class AccountChecker : MonoBehaviour
                             if(File.Exists(appSetting.userInfoPath))
                             {
                                 File.Delete(appSetting.userInfoPath);
+                            }
+
+                            if (File.Exists(appSetting.tokenPath))
+                            {
+                                File.Delete(appSetting.tokenPath);
+                            }
+
+                            if (File.Exists(appSetting.nicknameDataPath))
+                            {
+                                File.Delete(appSetting.nicknameDataPath);
                             }
 
                             noticeManager.DisableCancelButton()
