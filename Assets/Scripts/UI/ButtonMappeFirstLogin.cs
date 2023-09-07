@@ -40,13 +40,7 @@ namespace ToonJido.UI{
 
             // 로그인 건너뛰기
             skipLoginButton.onClick.AddListener(() => UserProfile.social_login_id = string.Empty);
-            skipLoginButton.onClick.AddListener(() => sl.LoadSceneAsync("03 TestScene"));
-// #if UNITY_IOS
-//             am = GameObject.Find("AppleManager").GetComponent<AppleManager>();
-//             appleLoginButton.onClick.AddListener(() => am.SignIN());
-// #elif UNITY_ANDROID
-//             appleLoginButton.gameObject.SetActive(false);
-// #endif
+            skipLoginButton.onClick.AddListener(() => sl.LoadSceneAsync("03 MainScene"));
         }
     }
 }

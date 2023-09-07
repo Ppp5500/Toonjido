@@ -72,7 +72,7 @@ namespace ToonJido.Login
             if(activatedAction != null){
                 activatedAction();
             }
-            SceneLoaderSingleton.instance.LoadSceneAsync("03 TestScene");
+            SceneLoaderSingleton.instance.LoadSceneAsync("03 MainScene");
         }
 
         public async void SaveToken(string token)

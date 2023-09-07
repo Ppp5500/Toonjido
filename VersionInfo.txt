@@ -251,3 +251,10 @@ SetDestination 실행시 첫 경로를 천안역 앞으로 하는 버그가 있�
 기존에 가게 정보를 받아 올때 연락처에 전화기 특수문자가 포함되어 있었음 이를 단순히 문자열 앞의 두글자를 자르는 방식으로 해결했었는데 이를 정규식을 사용하도록 변경(SearchManager)
 SignCanvases의 상점을 나타내는 아이콘들에 Button Component 추가하고 누르면 SearchManager의 OpenDetatil 실행하도록 설정
 일정 시간 마다가 아니라 하루에 첫 접속 시에 구슬을 날리도록 설정(CheckDragonEventRecordForToday 작성, DragonEventAsyncForToday 작성)
+
+NavMeshAgent 대신에 Naver 길찾기 API 사용하도록 변경
+	- NaverDirectionManager 작성
+	- 경로를 그리는 PathDrawer 작성
+MainUICanvas ver2
+	- 날씨 아이콘 애니메이션 제거하고 이미지 변경
+	- 1인칭 아이콘 애니메이션 변경

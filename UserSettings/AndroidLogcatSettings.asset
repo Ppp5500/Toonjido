@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "ce10160a8da0391304",
         "name": "com.roundstar.ToonJido",
-        "processId": 8227,
+        "processId": 13696,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -53,73 +53,31 @@
         {
             "deviceId": "ce10160a8da0391304",
             "name": "com.roundstar.ToonJido",
-            "processId": 23761,
-            "exited": true
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 2372,
-            "exited": true
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 24908,
-            "exited": true
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 884,
-            "exited": true
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 25085,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 25716,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 27337,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 30012,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 32620,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 31301,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
-            "processId": 6870,
-            "exited": false
-        },
-        {
-            "deviceId": "ce10160a8da0391304",
-            "name": "com.roundstar.ToonJido",
             "processId": 8227,
+            "exited": true
+        },
+        {
+            "deviceId": "ce10160a8da0391304",
+            "name": "com.roundstar.ToonJido",
+            "processId": 3206,
+            "exited": true
+        },
+        {
+            "deviceId": "ce10160a8da0391304",
+            "name": "com.roundstar.ToonJido",
+            "processId": 5707,
+            "exited": true
+        },
+        {
+            "deviceId": "ce10160a8da0391304",
+            "name": "com.roundstar.ToonJido",
+            "processId": 12199,
+            "exited": true
+        },
+        {
+            "deviceId": "ce10160a8da0391304",
+            "name": "com.roundstar.ToonJido",
+            "processId": 13696,
             "exited": false
         }
     ],
@@ -174,7 +132,7 @@
         "Behavior": 0
     },
     "m_FilterOptions": {
-        "m_Filter": "profile",
+        "m_Filter": "",
         "m_UseRegularExpressions": false,
         "m_MatchCase": false
     },

@@ -1,20 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="Current" Sdk="Microsoft.NET.Sdk">
+  <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>9.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
+    <Configurations>Debug;Release</Configurations>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{00DB4228-DC81-0920-9B54-F44FBC29A923}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -38,22 +36,21 @@
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <NoConfig>true</NoConfig>
+    <NoStandardLibraries>true</NoStandardLibraries>
     <NoStdLib>true</NoStdLib>
-    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
-    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
-    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+    <NoConfig>true</NoConfig>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <MSBuildWarningsAsMessages>MSB3277</MSBuildWarningsAsMessages>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.17</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.20</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>iOS:9</UnityBuildTarget>
     <UnityVersion>2021.3.21f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\pinka\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Tester\Njido.cs" />
@@ -64,6 +61,7 @@
     <Compile Include="Assets\Scripts\UI\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\UI\HighlightFix.cs" />
     <Compile Include="Assets\Scripts\Common\QuitApplication.cs" />
+    <Compile Include="Assets\Scripts\Search\NaverDirectionManager.cs" />
     <Compile Include="Assets\Scripts\Common\PermissionManager.cs" />
     <Compile Include="Assets\Scripts\Control\CanvasListItem.cs" />
     <Compile Include="Assets\Scripts\UI\MenuCanvasControl.cs" />
@@ -76,6 +74,7 @@
     <Compile Include="Assets\Scripts\Lunar\AgeOfMoonAPI.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
+    <Compile Include="Assets\Scripts\UI\PathDrawer.cs" />
     <Compile Include="Assets\SimpleToon\Model\Kawaii Slimes\Cameras\Scripts\AbstractTargetFollower.cs" />
     <Compile Include="Assets\Scripts\Login\AccountChecker.cs" />
     <Compile Include="Assets\Scripts\UI\VersionDisplayManager.cs" />
@@ -139,7 +138,6 @@
     <Compile Include="Assets\Scripts\Debug\ApplicationInformer.cs" />
     <Compile Include="Assets\AppleSignInUnity\AppleAuthSample\LoginMenuHandler.cs" />
     <Compile Include="Assets\Scripts\Control\CameraWork.cs" />
-    <Compile Include="Assets\Scripts\Control\GPSModifingManager.cs" />
     <Compile Include="Assets\Scripts\Common\HttpClientProvider.cs" />
     <Compile Include="Assets\AppleSignInUnity\AppleAuthSample\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Game\SevenStarMarbleGameManager.cs" />
@@ -155,6 +153,7 @@
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\SimpleToon\Shader\ToonLightBase.shader" />
     <None Include="Assets\JMO Assets\Cartoon FX Remaster\CFXR Assets\Shaders\CFXR Particle Glow.shader" />
     <None Include="Assets\FattySkybox_Paradise\Readme.txt" />
@@ -1008,58 +1007,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{B7E8AD5B-8C7F-8C70-3A33-752CDEA91C92}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
-    <ProjectReference Include="AppleAuth.Editor.csproj">
-      <Project>{5324DFC2-1DFE-B680-C185-2BAAE0FC9694}</Project>
-      <Name>AppleAuth.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
-      <Project>{4A079C70-B1CD-5BB8-5E87-9B92503F9783}</Project>
-      <Name>ToonyColorsPro.Demo.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="CFXREditor.csproj">
-      <Project>{0B2C3933-3EC4-9ABD-8B99-A278E5B7256A}</Project>
-      <Name>CFXREditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="OtoonEditor.csproj">
-      <Project>{1A368A4D-DCE6-5008-6833-E38EF36202D6}</Project>
-      <Name>OtoonEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
-      <Project>{3F1B2ADA-71E3-C9F9-23D7-751A1E711939}</Project>
-      <Name>CFXR.WelcomeScreen</Name>
-    </ProjectReference>
-    <ProjectReference Include="CFXRRuntime.csproj">
-      <Project>{C6F6610A-595B-8D07-D05C-739FB19D9300}</Project>
-      <Name>CFXRRuntime</Name>
-    </ProjectReference>
-    <ProjectReference Include="KinoBloom.Runtime.csproj">
-      <Project>{BBC61E4E-BBB6-9529-30A4-2025E2B7D1AE}</Project>
-      <Name>KinoBloom.Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="CFXRDemo.csproj">
-      <Project>{0146AF14-9BA2-1774-16A4-3DA19A541368}</Project>
-      <Name>CFXRDemo</Name>
-    </ProjectReference>
-    <ProjectReference Include="OtoonShader.csproj">
-      <Project>{12C6D8EA-3D6B-5A29-7FA7-73CBAE0A5499}</Project>
-      <Name>OtoonShader</Name>
-    </ProjectReference>
-    <ProjectReference Include="AppleAuth.csproj">
-      <Project>{EF5E6E4E-5A7E-F208-DAD1-005F26D0D344}</Project>
-      <Name>AppleAuth</Name>
-    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj" />
+    <ProjectReference Include="AppleAuth.Editor.csproj" />
+    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj" />
+    <ProjectReference Include="CFXREditor.csproj" />
+    <ProjectReference Include="OtoonEditor.csproj" />
+    <ProjectReference Include="CFXR.WelcomeScreen.csproj" />
+    <ProjectReference Include="CFXRRuntime.csproj" />
+    <ProjectReference Include="KinoBloom.Runtime.csproj" />
+    <ProjectReference Include="CFXRDemo.csproj" />
+    <ProjectReference Include="OtoonShader.csproj" />
+    <ProjectReference Include="AppleAuth.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

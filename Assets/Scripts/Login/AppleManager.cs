@@ -147,7 +147,7 @@ public class AppleManager : MonoBehaviour
                             };
                             await saver.SavePlayerInfo(user);
                         }
-                        SceneLoaderSingleton.instance.LoadSceneAsync("03 TestScene");
+                        SceneLoaderSingleton.instance.LoadSceneAsync("03 MainScene");
                     }
                     else
                     {

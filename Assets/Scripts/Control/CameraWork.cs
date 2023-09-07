@@ -471,6 +471,8 @@ namespace ToonJido.Control
                 eyelevelCityExtra.SetActive(false);
                 eyelevelCityExtra02.SetActive(false);
 
+                eyeLevelAgent.enabled = false;
+
                 RenderSettings.fog = false;
                 pPVolumeManager.TurnOffDepthOfField();
                 if(weatherCanvas.gameObject.activeSelf){weatherCanvas.SetActive(false);}
@@ -505,6 +507,7 @@ namespace ToonJido.Control
                 eyelevelCityExtra.SetActive(true);
                 eyelevelCityExtra02.SetActive(true);
 
+                eyeLevelAgent.enabled = true;
 
                 StartCoroutine(
                     WaitThenCallback( 0.7f,() =>
@@ -666,7 +669,9 @@ namespace ToonJido.Control
             }
             else if (CurrentControl.state == State.Eyelevel)
             {
+                eyeLevelAgent.enabled = false;
                 player.transform.position = PlayerGPSLocation.transform.position;
+                eyeLevelAgent.enabled = true;
             }
 #endif
 

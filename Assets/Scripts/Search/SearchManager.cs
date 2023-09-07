@@ -82,6 +82,10 @@ namespace ToonJido.Search
         public GameObject iconObject;
         public GameObject signCanvas;
 
+        public NaverDirectionManager naverDirectionManager;
+        public PathDrawer pathDrawer;
+        public Transform player;
+
         // common managers
         private NoticeManager noticeManager;
         private HttpClient client = HttpClientProvider.GetHttpClient();
@@ -123,8 +127,6 @@ namespace ToonJido.Search
             detailContentBackButton.onClick.AddListener(() => BackToSearchResult());
             findRoadButton.onClick.AddListener(() => inputField.ActivateInputField());
             noticeManager = NoticeManager.GetInstance();
-
-            // StartCoroutine(WaitThenCallback(2.0f, () => SearchKeyStoresAsync()));
         }
 
 #if DEVELOPMENT
@@ -138,12 +140,6 @@ namespace ToonJido.Search
         //     }
         // }
 #endif
-        
-        private IEnumerator WaitThenCallback(float time, Action callback)
-        {
-            yield return new WaitForSeconds(time);
-            callback();
-        }
 
         public async void ClickSearchButton()
         {
@@ -403,7 +399,7 @@ namespace ToonJido.Search
                             .SetActive(false);
                     }
                     var tel = "-";
-                    if(input.cultures[i].phone != string.Empty)
+                    if(12 < input.cultures[i].phone.Length)
                     {
                         tel = Regex.Replace(input.cultures[i].phone, @"\D", "");
                         tel = tel.Insert(3, "-").Insert(7, "-");
@@ -438,13 +434,16 @@ namespace ToonJido.Search
             var lon = tempMarket.cultures[0].longitude;
 
             noticeManager
-                .SetCancelButton(()
+                .SetCancelButton(async ()
                     => {
                         Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-                        NavPlayerControl.navPlayerControl.SetDestination(lot, _marketName);
+                        // NavPlayerControl.navPlayerControl.SetDestination(lot, _marketName);
+                        // noticeManager.CloseCanvas();
+                        // drag.Half();
+                        // FocusToHalf(lot);
+                        var arr = await naverDirectionManager.GetPathFromNaver(player.position, lot);
+                        pathDrawer.DrawLine(arr, tempName);
                         noticeManager.CloseCanvas();
-                        drag.Half();
-                        FocusToHalf(lot);
                     })
                 .SetConfirmButton(()
                     => {
@@ -551,7 +550,7 @@ namespace ToonJido.Search
             clockText.text = currentStore.open_hours;
             addressText.text = currentStore.address;
             contactText.text = "-";
-            if (currentStore.phone != string.Empty)
+            if (12 < currentStore.phone.Length)
             {
                 contactText.text = Regex.Replace(currentStore.phone, @"\D", "");
                 contactText.text = contactText.text.Insert(3, "-").Insert(7, "-");

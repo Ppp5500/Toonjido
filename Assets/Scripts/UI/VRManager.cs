@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ToonJido.Search;
 using ToonJido.Control;
+using UnityEngine.AI;
 
 namespace ToonJido.UI{
     public class VRManager : MonoBehaviour

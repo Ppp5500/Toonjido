@@ -59,7 +59,7 @@ public class SceneLoaderSingleton : MonoBehaviour
 
     private void BackgroundDestroyCheck(string _sceneName)
     {
-        if(_sceneName == "03 TestScene")
+        if(_sceneName == "03 MainScene")
         {
             Destroy(loadingCanvas.gameObject);
         }

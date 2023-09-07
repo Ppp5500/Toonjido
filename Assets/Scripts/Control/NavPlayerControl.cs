@@ -131,6 +131,8 @@ namespace ToonJido.Control
                     print(myNavMeshAgent.path.corners[0]);
                     eyelevelPlayer.transform.LookAt(myNavMeshAgent.path.corners[0]);
                 }
+                print(myNavMeshAgent.path.corners[0]);
+
             }
             else{
                 // 유효하지 않은 위치
