@@ -55,7 +55,7 @@ namespace ToonJido.Login
                         UserProfile.curr_id_type = user.idType;
                     }
 
-                    sceneLoader.LoadSceneAsync("03 TestScene");
+                    sceneLoader.LoadSceneAsync("03 MainScene");
                 }
                 else
                 {

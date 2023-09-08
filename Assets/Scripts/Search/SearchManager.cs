@@ -21,6 +21,7 @@ using ToonJido.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using UnityEngine.Networking;
 
 namespace ToonJido.Search
 {
@@ -49,6 +50,12 @@ namespace ToonJido.Search
 
         [Header("포커싱 기능을 위한 캠 타겟")]
         [SerializeField] private GameObject camTarget;
+
+        [Header("길찾기 관련 컴포넌트들")]
+        public NaverDirectionManager naverDirectionManager;
+        public PathDrawer pathDrawer;
+        public PlayerArrivalChecker playerArrivalChecker;
+        public Transform player;
 
 
 #region DetailCanvasProperties
@@ -81,10 +88,6 @@ namespace ToonJido.Search
         // test
         public GameObject iconObject;
         public GameObject signCanvas;
-
-        public NaverDirectionManager naverDirectionManager;
-        public PathDrawer pathDrawer;
-        public Transform player;
 
         // common managers
         private NoticeManager noticeManager;
@@ -443,30 +446,59 @@ namespace ToonJido.Search
                         // FocusToHalf(lot);
                         var arr = await naverDirectionManager.GetPathFromNaver(player.position, lot);
                         pathDrawer.DrawLine(arr, tempName);
+                        var index = arr.Length -1;
+                        var destination = GPSEncoder.GPSToUCS((float)arr[index][1], (float)arr[index][0]);
+                        playerArrivalChecker.SetArrivalChecker(destination);
+
+                        // 출발지 좌표 계산
+                        var startPoint = GPSEncoder.GPSToUCS((float)arr[0][1], (float)arr[0][0]);
+
                         noticeManager.CloseCanvas();
+                        FocusToHalf(startPoint);
                     })
                 .SetConfirmButton(()
                     => {
-                        Application.OpenURL("https://map.kakao.com/link/to/" + _marketName + "," + lat + "," + lon);
+                        address = "https://map.kakao.com/link/to/" + _marketName + "," + lat + "," + lon;
+                        Application.OpenURL(address);
+                        print(address);
                     })
                 .ShowNotice("현재 개발 모드입니다! 강제 길찾기는 취소버튼을, 외부 길찾기 링크는 확인버튼을 눌러주세요.");
 
 #else
+            var tempMarket = await SearchStore(_marketName);
+            var tempName = tempMarket.cultures[0].market_name;
             if(CurrentControl.gpsStatus == GPSStatus.avaliable){
                 Vector3 lot = BuildingManager.buildingManager.GetBuildingPosition(address);
-                NavPlayerControl.navPlayerControl.SetDestination(lot, _marketName);
+
+                // 네이버 길찾기 정보 획득
+                var arr = await naverDirectionManager.GetPathFromNaver(player.position, lot);
+
+                // 획득한 정보로 경로 그리기
+                pathDrawer.DrawLine(arr, tempName);
+
+                // 목적지 도착 검사 설정
+                var index = arr.Length -1;
+                var destination = GPSEncoder.GPSToUCS((float)arr[index][1], (float)arr[index][0]);
+                playerArrivalChecker.SetArrivalChecker(destination);
+
+                // 출발지 좌표 계산
+                var startPoint = GPSEncoder.GPSToUCS((float)arr[0][1], (float)arr[0][0]);
+
+                // UI작동
+                noticeManager.CloseCanvas();
                 drag.Half();
-                FocusToHalf(lot);
+                FocusToHalf(startPoint);
             }
             else{
-                var tempMarket = await SearchStore(_marketName);
-                var tempName = tempMarket.cultures[0].market_name;
                 var lat = tempMarket.cultures[0].latitude;
                 var lon = tempMarket.cultures[0].longitude;
                 noticeManager.SetCancelButtonDefault()
                     .SetConfirmButton(()
-                        => Application.OpenURL("https://map.kakao.com/link/to/" + _marketName + "," + lat + "," + lon)
-                    )
+                        => {
+                            address = "https://map.kakao.com/link/to/" + _marketName + "," + lat + "," + lon;
+                            Application.OpenURL(address);
+                            print(address);
+                        })
                     .ShowNotice("명지역길 외부에서는 길찾기를 사용할 수 없습니다. 외부 길찾기 기능을 여시겠습니까?");
             }
 #endif

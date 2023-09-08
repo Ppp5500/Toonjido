@@ -2,28 +2,28 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "AppleAuth/1.0.0": {
+      "KinoBloom.Runtime/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "compile": {
-          "bin/placeholder/AppleAuth.dll": {}
+          "bin/placeholder/KinoBloom.Runtime.dll": {}
         },
         "runtime": {
-          "bin/placeholder/AppleAuth.dll": {}
+          "bin/placeholder/KinoBloom.Runtime.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "AppleAuth/1.0.0": {
+    "KinoBloom.Runtime/1.0.0": {
       "type": "project",
-      "path": "AppleAuth.csproj",
-      "msbuildProject": "AppleAuth.csproj"
+      "path": "KinoBloom.Runtime.csproj",
+      "msbuildProject": "KinoBloom.Runtime.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "AppleAuth >= 1.0.0"
+      "KinoBloom.Runtime >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -33,9 +33,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj",
-      "projectName": "AppleAuth.Editor",
-      "projectPath": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj",
+      "projectUniqueName": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj",
+      "projectName": "ToonyColorsPro.Demo.Editor",
+      "projectPath": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj",
       "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
       "outputPath": "d:\\Projects\\3DJido\\obj\\",
       "projectStyle": "PackageReference",
@@ -59,8 +59,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "d:\\Projects\\3DJido\\AppleAuth.csproj": {
-              "projectPath": "d:\\Projects\\3DJido\\AppleAuth.csproj"
+            "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+              "projectPath": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj"
             }
           }
         }

@@ -1,0 +1,841 @@
+{
+  "format": 1,
+  "restore": {
+    "d:\\Projects\\3DJido\\Assembly-CSharp-Editor.csproj": {}
+  },
+  "projects": {
+    "d:\\Projects\\3DJido\\AppleAuth.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\AppleAuth.csproj",
+        "projectName": "AppleAuth",
+        "projectPath": "d:\\Projects\\3DJido\\AppleAuth.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj",
+        "projectName": "AppleAuth.Editor",
+        "projectPath": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\AppleAuth.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\Assembly-CSharp-Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\Assembly-CSharp-Editor.csproj",
+        "projectName": "Assembly-CSharp-Editor",
+        "projectPath": "d:\\Projects\\3DJido\\Assembly-CSharp-Editor.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\AppleAuth.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.csproj"
+              },
+              "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj"
+              },
+              "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj"
+              },
+              "d:\\Projects\\3DJido\\Assembly-CSharp.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\Assembly-CSharp.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXRDemo.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRDemo.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXREditor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXREditor.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXRRuntime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRRuntime.csproj"
+              },
+              "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj"
+              },
+              "d:\\Projects\\3DJido\\OtoonEditor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonEditor.csproj"
+              },
+              "d:\\Projects\\3DJido\\OtoonShader.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj"
+              },
+              "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj",
+        "projectName": "Assembly-CSharp-firstpass",
+        "projectPath": "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\AppleAuth.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.csproj"
+              },
+              "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXRDemo.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRDemo.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXREditor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXREditor.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXRRuntime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRRuntime.csproj"
+              },
+              "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj"
+              },
+              "d:\\Projects\\3DJido\\OtoonEditor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonEditor.csproj"
+              },
+              "d:\\Projects\\3DJido\\OtoonShader.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj"
+              },
+              "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\Assembly-CSharp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\Assembly-CSharp.csproj",
+        "projectName": "Assembly-CSharp",
+        "projectPath": "d:\\Projects\\3DJido\\Assembly-CSharp.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\AppleAuth.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.csproj"
+              },
+              "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\AppleAuth.Editor.csproj"
+              },
+              "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXRDemo.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRDemo.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXREditor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXREditor.csproj"
+              },
+              "d:\\Projects\\3DJido\\CFXRRuntime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRRuntime.csproj"
+              },
+              "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj"
+              },
+              "d:\\Projects\\3DJido\\OtoonEditor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonEditor.csproj"
+              },
+              "d:\\Projects\\3DJido\\OtoonShader.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj"
+              },
+              "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj",
+        "projectName": "CFXR.WelcomeScreen",
+        "projectPath": "d:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\CFXRDemo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\CFXRDemo.csproj",
+        "projectName": "CFXRDemo",
+        "projectPath": "d:\\Projects\\3DJido\\CFXRDemo.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\CFXRRuntime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\CFXRRuntime.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\CFXREditor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\CFXREditor.csproj",
+        "projectName": "CFXREditor",
+        "projectPath": "d:\\Projects\\3DJido\\CFXREditor.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\CFXRRuntime.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\CFXRRuntime.csproj",
+        "projectName": "CFXRRuntime",
+        "projectPath": "d:\\Projects\\3DJido\\CFXRRuntime.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj",
+        "projectName": "KinoBloom.Runtime",
+        "projectPath": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\OtoonEditor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\OtoonEditor.csproj",
+        "projectName": "OtoonEditor",
+        "projectPath": "d:\\Projects\\3DJido\\OtoonEditor.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\OtoonShader.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\OtoonShader.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\OtoonShader.csproj",
+        "projectName": "OtoonShader",
+        "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj",
+        "projectName": "ToonyColorsPro.Demo.Editor",
+        "projectPath": "d:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj",
+        "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
+        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\pinka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {
+              "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+                "projectPath": "d:\\Projects\\3DJido\\KinoBloom.Runtime.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using TMPro;
+using ToonJido.Control;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +22,7 @@ namespace ToonJido.UI{
         [SerializeField] private GameObject pathDrawStopButtonParent;
         [SerializeField] private Button pathDrawStopButton;
         [SerializeField] private TextMeshProUGUI destinationText;
-
-
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -39,7 +39,7 @@ namespace ToonJido.UI{
             
             for(int i = 0; i < _path.Length; i ++)
             {
-                var point = GPSEncoder.GPSToUCS((float)_path[i][1], (float)_path[i][0]);
+                var point = GPSEncoder.GPSToUCS((float)_path[i][1], (float)_path[i][0]) + new Vector3(0, 0.05f, 0);
                 lineRenderer.SetPosition(i, point);
             }
 
