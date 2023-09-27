@@ -263,3 +263,10 @@ MainUICanvas ver2
 1.4.2_07
 네이버 길찾기를 사용할 때, 유저가 목표지점에 도착했음을 파악하는 기능 제작
 	- PlayerArrivalCheck 작성
+
+1.4.4
+접속 시에 서버와의 연결을 확인하고 실패하면 종료하는 안내창 표시
+	- Init Manager 수정
+리뷰 창 제작 및 스크립트 작성
+	- ReviewManager  작성
+	- SeartchManager 수정

@@ -18,6 +18,7 @@ namespace ToonJido.Login
         private SceneLoaderSingleton sceneLoader;
         private NoticeManager noticeManager;
         private HttpClient client;
+        private bool isConnectionFail = false;
 
         void Start()
         {
@@ -25,7 +26,6 @@ namespace ToonJido.Login
             noticeManager = NoticeManager.GetInstance();
             client = HttpClientProvider.GetHttpClient();
 
-            print("is this cna watch?");
             AppInitialization();
         }
 
@@ -37,6 +37,17 @@ namespace ToonJido.Login
 
             // GUI.Label(new Rect(20, 200, 500, 500),
             //      $"token:{token}");
+        }
+#endif
+
+#if UNITY_ANDROID
+        void Update(){
+            // 연결 실패시 뒤로가기 버튼을 누르면 어플 종료
+            if(isConnectionFail){
+                if(Input.GetKeyDown(KeyCode.Escape)){
+                    Application.Quit();
+                }
+            }
         }
 #endif
         private async void AppInitialization(){
@@ -80,6 +91,7 @@ namespace ToonJido.Login
                 noticeManager.SetConfirmButton(() => Application.Quit());
                 noticeManager.DisableCancelButton();
                 noticeManager.ShowNotice("서버와의 연결에 실패했습니다. 어플리케이션을 종료합니다.");
+                isConnectionFail = true;
                 return false;
             }
 

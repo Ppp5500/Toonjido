@@ -286,7 +286,7 @@ namespace ToonJido.Control
                                     isAleadySearched = true;
                                     holdSlider.gameObject.SetActive(false);
                                     var address = lastEncounter.GetComponent<BuildingInfo>().address;
-                                    var result = SearchManager.instance.SearchStoreByAddress(address);
+                                    var result = SearchManager.instance.SearchByAddress(address);
                                     await SearchManager.instance.DisplayResult(result);
                                 }
                             }

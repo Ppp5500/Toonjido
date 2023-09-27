@@ -74,6 +74,10 @@ namespace ToonJido.Search
         [SerializeField] private TextMeshProUGUI addressText;
         [SerializeField] private TextMeshProUGUI contactText;
         [SerializeField] private TMP_InputField reviewInputField;
+        [SerializeField] private TextMeshProUGUI reviewPlaceHolder;
+        private const string noReviewMent = "리뷰를 남겨주세요.";
+        private const string noLoginMent = "로그인하고 리뷰를 남겨주세요.";
+        [SerializeField] private Button reviewCanvasOpenButton;
         [SerializeField] private UnityEngine.UI.Image[] stars = new UnityEngine.UI.Image[5];
         [SerializeField] private Button postReviewButton;
         [SerializeField] private Sprite blankStar;
@@ -91,6 +95,7 @@ namespace ToonJido.Search
 
         // common managers
         private NoticeManager noticeManager;
+        private ReviewManager reviewManager;
         private HttpClient client = HttpClientProvider.GetHttpClient();
         private List<GameObject> resultPrefs = new List<GameObject>();
         public static SearchManager instance;
@@ -130,6 +135,11 @@ namespace ToonJido.Search
             detailContentBackButton.onClick.AddListener(() => BackToSearchResult());
             findRoadButton.onClick.AddListener(() => inputField.ActivateInputField());
             noticeManager = NoticeManager.GetInstance();
+            reviewManager = GameObject.Find("ReviewManager").GetComponent<ReviewManager>();
+        }
+
+        public static SearchManager GetInstance(){
+            return instance;
         }
 
 #if DEVELOPMENT
@@ -167,7 +177,12 @@ namespace ToonJido.Search
                 return;
         }
 
-        public async void SearchByName(string name){
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async void SearchByNameAndDisplay(string name){
             var result = await SearchStore(name);
             await DisplayResult(result);
         }
@@ -177,7 +192,7 @@ namespace ToonJido.Search
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        private async Task<SearchedStore> SearchStore(string keyword)
+        public async Task<SearchedStore> SearchStore(string keyword)
         {
             // 서버 통신
             var searchURL = baseURL + "search/?query=" + keyword;
@@ -225,7 +240,7 @@ namespace ToonJido.Search
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public SearchedStore SearchStoreByAddress(string address)
+        public SearchedStore SearchByAddress(string address)
         {
             SearchedStore searchedStore = new();
             searchedStore.cultures = storeData.cultures
@@ -601,6 +616,13 @@ namespace ToonJido.Search
             pathFindButton.onClick.AddListener(() => PathFindAsync(find_number, currentStore.market_name));
             pathFindButton.onClick.AddListener(() => ModalChoice());
 
+            reviewCanvasOpenButton.onClick.AddListener(() => {
+                reviewManager.OpenReviewCanvas();
+                reviewManager.DisplayReview(currentStore.reviews, currentStore.market_name);
+                reviewCanvasOpenButton.onClick.RemoveAllListeners();
+            });
+
+            print($"current id: {UserProfile.social_login_id}");
             if(UserProfile.social_login_id != string.Empty)
             {
                 // 찜 목록을 다운 받아서 이미 찜한 상점인지 검사
@@ -630,9 +652,11 @@ namespace ToonJido.Search
                 // 점수 계산
                 // int rank = Mathf.RoundToInt(currentStore.average_grade);
                 int rank = reviewResult.review_grades.Length > 0 ? reviewResult.review_grades[0] : 1;
-
+                
                 // 자신이 쓴 리뷰가 없으면
                 if(reviewResult.review_contents.Length < 1){
+                    print("Not exist my review");
+                    reviewPlaceHolder.text = noReviewMent;
                     // 별들을 비어 있는 별로
                     foreach(var item in stars){
                         item.sprite = blankStar;
@@ -646,6 +670,7 @@ namespace ToonJido.Search
                 }
                 // 자신이 쓴 리뷰가 있으면
                 else{
+                    print("Exist my review");
                     for(int j = 0; j < rank; j++){
                         stars[j].sprite = fullStar;
                     }
@@ -665,8 +690,12 @@ namespace ToonJido.Search
             else
             {
                 zzimButton.interactable = false;
+                foreach(var item in stars){
+                    item.GetComponent<Button>().interactable = false;
+                }
                 postReviewButton.interactable = false;
                 reviewInputField.interactable = false;
+                reviewPlaceHolder.text = noLoginMent;
             }
 
             // 상세 화면 표시

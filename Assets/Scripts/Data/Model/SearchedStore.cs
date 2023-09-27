@@ -40,9 +40,9 @@ namespace ToonJido.Data.Model
     [Serializable]
     public class review
     {
-        public string title { get; set; } = string.Empty;
+        public string account { get; set; } = string.Empty;
         public string content { get; set; } = string.Empty;
-        public int rating { get; set; } = 0;
+        public int grade { get; set; } = 0;
     }
 
     [Serializable]

@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToonJido.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 namespace ToonJido.Control{
     public class BackKeyManager : MonoBehaviour
     {
         private static BackKeyManager instance;
         private Stack<GameObject> activeCanvases = new Stack<GameObject>();
-        [SerializeField] private UIDrag drag;
+        private UIDrag drag;
 
         private void Awake() {
             if(instance == null){
                 instance = this;
+            }
+        }
+
+        void Start(){
+            SceneManager.sceneLoaded += ModalCheck;
+        }
+
+        private void ModalCheck(Scene arg0, LoadSceneMode arg1)
+        {
+            if(arg0.name == "03 MainScene"){
+                drag = GameObject.Find("MainUICanvas ver2").transform.Find("Modal").GetComponent<UIDrag>();
             }
         }
 
@@ -55,19 +68,16 @@ namespace ToonJido.Control{
         public void AddActiveCanvasList(GameObject _input){
             _input.SetActive(true);
             activeCanvases.Push(_input);
-            print("add! current items length: " + activeCanvases.Count);
         }
 
         public void PopActiveCanvasList(){
             activeCanvases.Pop().SetActive(false);
-            print("pop! current items length: " + activeCanvases.Count);
         }
 
         public void PopActiveCanvasList(GameObject _input){
             if(activeCanvases.Contains(_input))
             {
                 activeCanvases.Pop().SetActive(false);
-                print("pop! current items length: " + activeCanvases.Count);
             }
             else
             {
@@ -78,10 +88,6 @@ namespace ToonJido.Control{
 
         public GameObject GetPeek(){
             return activeCanvases.Peek();
-        }
-
-        public string TestMethod(){
-            return "yes! it work!";
         }
     }
 }
