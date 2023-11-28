@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Projects\\3DJido\\OtoonEditor.csproj": {}
+    "D:\\Projects\\3DJido\\OtoonEditor.csproj": {}
   },
   "projects": {
-    "d:\\Projects\\3DJido\\OtoonEditor.csproj": {
+    "D:\\Projects\\3DJido\\OtoonEditor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Projects\\3DJido\\OtoonEditor.csproj",
+        "projectUniqueName": "D:\\Projects\\3DJido\\OtoonEditor.csproj",
         "projectName": "OtoonEditor",
-        "projectPath": "d:\\Projects\\3DJido\\OtoonEditor.csproj",
+        "projectPath": "D:\\Projects\\3DJido\\OtoonEditor.csproj",
         "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
-        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "outputPath": "D:\\Projects\\3DJido\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "d:\\Projects\\3DJido\\OtoonShader.csproj": {
-                "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj"
+              "D:\\Projects\\3DJido\\OtoonShader.csproj": {
+                "projectPath": "D:\\Projects\\3DJido\\OtoonShader.csproj"
               }
             }
           }
@@ -59,18 +59,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.2.23502.2\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "d:\\Projects\\3DJido\\OtoonShader.csproj": {
+    "D:\\Projects\\3DJido\\OtoonShader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Projects\\3DJido\\OtoonShader.csproj",
+        "projectUniqueName": "D:\\Projects\\3DJido\\OtoonShader.csproj",
         "projectName": "OtoonShader",
-        "projectPath": "d:\\Projects\\3DJido\\OtoonShader.csproj",
+        "projectPath": "D:\\Projects\\3DJido\\OtoonShader.csproj",
         "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
-        "outputPath": "d:\\Projects\\3DJido\\obj\\",
+        "outputPath": "D:\\Projects\\3DJido\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -114,7 +114,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.2.23502.2\\RuntimeIdentifierGraph.json"
         }
       }
     }

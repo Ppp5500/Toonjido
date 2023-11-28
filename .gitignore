@@ -1,7 +1,9 @@
+appSetting.cs
 *.png
 *.jpg
 *.hdr
 *.tif
+
 
 Builds/
 Library/

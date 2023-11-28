@@ -2,6 +2,107 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
+      "AppleAuth/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/AppleAuth.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AppleAuth.dll": {}
+        }
+      },
+      "AppleAuth.Editor/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "AppleAuth": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/AppleAuth.Editor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AppleAuth.Editor.dll": {}
+        }
+      },
+      "Assembly-CSharp/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "AppleAuth": "1.0.0",
+          "AppleAuth.Editor": "1.0.0",
+          "Assembly-CSharp-firstpass": "1.0.0",
+          "CFXR.WelcomeScreen": "1.0.0",
+          "CFXRDemo": "1.0.0",
+          "CFXREditor": "1.0.0",
+          "CFXRRuntime": "1.0.0",
+          "KinoBloom.Runtime": "1.0.0",
+          "OtoonEditor": "1.0.0",
+          "OtoonShader": "1.0.0",
+          "ToonyColorsPro.Demo.Editor": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Assembly-CSharp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Assembly-CSharp.dll": {}
+        }
+      },
+      "Assembly-CSharp-firstpass/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "AppleAuth": "1.0.0",
+          "AppleAuth.Editor": "1.0.0",
+          "CFXR.WelcomeScreen": "1.0.0",
+          "CFXRDemo": "1.0.0",
+          "CFXREditor": "1.0.0",
+          "CFXRRuntime": "1.0.0",
+          "KinoBloom.Runtime": "1.0.0",
+          "OtoonEditor": "1.0.0",
+          "OtoonShader": "1.0.0",
+          "ToonyColorsPro.Demo.Editor": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Assembly-CSharp-firstpass.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Assembly-CSharp-firstpass.dll": {}
+        }
+      },
+      "CFXR.WelcomeScreen/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/CFXR.WelcomeScreen.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CFXR.WelcomeScreen.dll": {}
+        }
+      },
+      "CFXRDemo/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "CFXRRuntime": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CFXRDemo.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CFXRDemo.dll": {}
+        }
+      },
+      "CFXREditor/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/CFXREditor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CFXREditor.dll": {}
+        }
+      },
       "CFXRRuntime/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
@@ -11,19 +112,131 @@
         "runtime": {
           "bin/placeholder/CFXRRuntime.dll": {}
         }
+      },
+      "KinoBloom.Runtime/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/KinoBloom.Runtime.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KinoBloom.Runtime.dll": {}
+        }
+      },
+      "OtoonEditor/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "OtoonShader": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/OtoonEditor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OtoonEditor.dll": {}
+        }
+      },
+      "OtoonShader/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/OtoonShader.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OtoonShader.dll": {}
+        }
+      },
+      "ToonyColorsPro.Demo.Editor/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "KinoBloom.Runtime": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ToonyColorsPro.Demo.Editor.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ToonyColorsPro.Demo.Editor.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "AppleAuth/1.0.0": {
+      "type": "project",
+      "path": "AppleAuth.csproj",
+      "msbuildProject": "AppleAuth.csproj"
+    },
+    "AppleAuth.Editor/1.0.0": {
+      "type": "project",
+      "path": "AppleAuth.Editor.csproj",
+      "msbuildProject": "AppleAuth.Editor.csproj"
+    },
+    "Assembly-CSharp/1.0.0": {
+      "type": "project",
+      "path": "Assembly-CSharp.csproj",
+      "msbuildProject": "Assembly-CSharp.csproj"
+    },
+    "Assembly-CSharp-firstpass/1.0.0": {
+      "type": "project",
+      "path": "Assembly-CSharp-firstpass.csproj",
+      "msbuildProject": "Assembly-CSharp-firstpass.csproj"
+    },
+    "CFXR.WelcomeScreen/1.0.0": {
+      "type": "project",
+      "path": "CFXR.WelcomeScreen.csproj",
+      "msbuildProject": "CFXR.WelcomeScreen.csproj"
+    },
+    "CFXRDemo/1.0.0": {
+      "type": "project",
+      "path": "CFXRDemo.csproj",
+      "msbuildProject": "CFXRDemo.csproj"
+    },
+    "CFXREditor/1.0.0": {
+      "type": "project",
+      "path": "CFXREditor.csproj",
+      "msbuildProject": "CFXREditor.csproj"
+    },
     "CFXRRuntime/1.0.0": {
       "type": "project",
       "path": "CFXRRuntime.csproj",
       "msbuildProject": "CFXRRuntime.csproj"
+    },
+    "KinoBloom.Runtime/1.0.0": {
+      "type": "project",
+      "path": "KinoBloom.Runtime.csproj",
+      "msbuildProject": "KinoBloom.Runtime.csproj"
+    },
+    "OtoonEditor/1.0.0": {
+      "type": "project",
+      "path": "OtoonEditor.csproj",
+      "msbuildProject": "OtoonEditor.csproj"
+    },
+    "OtoonShader/1.0.0": {
+      "type": "project",
+      "path": "OtoonShader.csproj",
+      "msbuildProject": "OtoonShader.csproj"
+    },
+    "ToonyColorsPro.Demo.Editor/1.0.0": {
+      "type": "project",
+      "path": "ToonyColorsPro.Demo.Editor.csproj",
+      "msbuildProject": "ToonyColorsPro.Demo.Editor.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "CFXRRuntime >= 1.0.0"
+      "AppleAuth >= 1.0.0",
+      "AppleAuth.Editor >= 1.0.0",
+      "Assembly-CSharp >= 1.0.0",
+      "Assembly-CSharp-firstpass >= 1.0.0",
+      "CFXR.WelcomeScreen >= 1.0.0",
+      "CFXRDemo >= 1.0.0",
+      "CFXREditor >= 1.0.0",
+      "CFXRRuntime >= 1.0.0",
+      "KinoBloom.Runtime >= 1.0.0",
+      "OtoonEditor >= 1.0.0",
+      "OtoonShader >= 1.0.0",
+      "ToonyColorsPro.Demo.Editor >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -33,11 +246,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Projects\\3DJido\\CFXRDemo.csproj",
-      "projectName": "CFXRDemo",
-      "projectPath": "d:\\Projects\\3DJido\\CFXRDemo.csproj",
+      "projectUniqueName": "D:\\Projects\\3DJido\\Assembly-CSharp-Editor.csproj",
+      "projectName": "Assembly-CSharp-Editor",
+      "projectPath": "D:\\Projects\\3DJido\\Assembly-CSharp-Editor.csproj",
       "packagesPath": "C:\\Users\\pinka\\.nuget\\packages\\",
-      "outputPath": "d:\\Projects\\3DJido\\obj\\",
+      "outputPath": "D:\\Projects\\3DJido\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,8 +272,41 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "d:\\Projects\\3DJido\\CFXRRuntime.csproj": {
-              "projectPath": "d:\\Projects\\3DJido\\CFXRRuntime.csproj"
+            "D:\\Projects\\3DJido\\AppleAuth.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\AppleAuth.csproj"
+            },
+            "D:\\Projects\\3DJido\\AppleAuth.Editor.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\AppleAuth.Editor.csproj"
+            },
+            "D:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\Assembly-CSharp-firstpass.csproj"
+            },
+            "D:\\Projects\\3DJido\\Assembly-CSharp.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\Assembly-CSharp.csproj"
+            },
+            "D:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\CFXR.WelcomeScreen.csproj"
+            },
+            "D:\\Projects\\3DJido\\CFXRDemo.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\CFXRDemo.csproj"
+            },
+            "D:\\Projects\\3DJido\\CFXREditor.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\CFXREditor.csproj"
+            },
+            "D:\\Projects\\3DJido\\CFXRRuntime.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\CFXRRuntime.csproj"
+            },
+            "D:\\Projects\\3DJido\\KinoBloom.Runtime.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\KinoBloom.Runtime.csproj"
+            },
+            "D:\\Projects\\3DJido\\OtoonEditor.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\OtoonEditor.csproj"
+            },
+            "D:\\Projects\\3DJido\\OtoonShader.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\OtoonShader.csproj"
+            },
+            "D:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj": {
+              "projectPath": "D:\\Projects\\3DJido\\ToonyColorsPro.Demo.Editor.csproj"
             }
           }
         }
@@ -85,7 +331,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
