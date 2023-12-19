@@ -6,6 +6,6 @@
 
 어플리케이션 다운로드: [Playstore](https://play.google.com/store/apps/details?id=com.roundstar.ToonJido&pcampaignid=web_share), [Appstore](https://apps.apple.com/kr/app/%EB%AA%85%EC%A7%80%EC%97%AD%EA%B8%B8/id6450936336)      
 
-<img src="https://github.com/Ppp5500/Toonjido/assets/98096591/413c1e8c-1a0a-4591-b507-7a11e74fcc5b" width="300" height="auto" title="명지역길 소개 이미지01" alt="상점 검색 페이지"/>
-<img src="https://github.com/Ppp5500/Toonjido/assets/98096591/2a691461-843e-416c-b1a9-c240b10f1ea6" width="300" height="auto" title="명지역길 소개 이미지01" alt="상점 검색 페이지"/>
-<img src="https://github.com/Ppp5500/Toonjido/assets/98096591/f538f156-7f63-454e-b1e7-ff4cfe15135c" width="300" height="auto" title="명지역길 소개 이미지01" alt="상점 검색 페이지"/><br/>
+<img src="https://github.com/Ppp5500/Toonjido/assets/98096591/413c1e8c-1a0a-4591-b507-7a11e74fcc5b" width="30%" height="auto" title="명지역길 소개 이미지01" alt="상점 검색 페이지"/>
+<img src="https://github.com/Ppp5500/Toonjido/assets/98096591/2a691461-843e-416c-b1a9-c240b10f1ea6" width="30%" height="auto" title="명지역길 소개 이미지01" alt="상점 검색 페이지"/>
+<img src="https://github.com/Ppp5500/Toonjido/assets/98096591/f538f156-7f63-454e-b1e7-ff4cfe15135c" width="30%" height="auto" title="명지역길 소개 이미지01" alt="상점 검색 페이지"/><br/>
